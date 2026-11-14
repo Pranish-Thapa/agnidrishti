@@ -1,9 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { Maximize2, Minimize2 } from 'lucide-react'
+import {
+  Crosshair,
+  Layers,
+  Maximize2,
+  Minus,
+  Plus,
+  Search,
+  X,
+} from 'lucide-react'
 import { useReducedMotion } from 'framer-motion'
 import { StatusBadge } from '../ui/StatusBadge'
+import { LogoMark } from '../ui/LogoMark'
 import { getDistrictFeature, type DistrictGeometry } from '../../lib/geo'
 import { palette, withAlpha } from '../../lib/palette'
 import { studyAreaBoundarySource, studyAreas, type StudyArea, type StudyAreaId } from '../../lib/regions'
@@ -22,10 +32,12 @@ type MapPanelProps = {
   layerLabel: string
   layer: LayerId
   year: string | null
+  years: string[]
   provider: ProviderId
-  /** Per-district aggregates for the active provider/year/layer; null where no data. */
   districtSummaries: (DistrictYearSummary | null)[] | null
   onSelectDistrict: (id: StudyAreaId) => void
+  onYearChange: (year: string) => void
+  onProviderChange: (provider: ProviderId) => void
 }
 
 type ViewMode = 'district' | 'hotspots' | 'both'
@@ -40,12 +52,6 @@ const viewModes: Array<{ id: ViewMode; label: string }> = [
   { id: 'both', label: 'Both' },
 ]
 
-/**
- * Choropleth intensity: sqrt-scaled like the calendar so one extreme district
- * cannot flatten the others. Intensity is computed against the largest
- * district total *within the same selection*, so colours compare districts,
- * not years. Districts without data render as muted outlines.
- */
 function districtStyle(
   districtId: string,
   summaries: (DistrictYearSummary | null)[] | null,
@@ -71,7 +77,6 @@ function districtStyle(
   }
 }
 
-/** Marker radius from FRP (MW): 3 px base, grows with sqrt(FRP), capped. */
 function markerRadius(frp: number | null): number {
   if (frp === null || frp <= 0) return 3
   return Math.min(3 + 1.15 * Math.sqrt(frp), 11)
@@ -81,6 +86,7 @@ function popupHtml(record: HotspotRecord): string {
   const rows: Array<[string, string]> = [
     ['Platform', record.platform],
     ['Acquired (UTC)', `${record.acqDate}${record.acqTime ? ` ${record.acqTime}` : ''}`],
+    ['Coordinates', `${record.latitude.toFixed(4)}, ${record.longitude.toFixed(4)}`],
     ['Brightness (K)', record.brightness.toFixed(1)],
   ]
   if (record.frp !== null) rows.push(['FRP (MW)', record.frp.toFixed(1)])
@@ -89,6 +95,7 @@ function popupHtml(record: HotspotRecord): string {
     rows.push(['Pass', record.daynight === 'D' ? 'Day' : 'Night'])
   }
   rows.push(['District', record.districtId.replace('NP-', '')])
+  rows.push(['Source', 'NASA FIRMS'])
   return `<div class="agnidrishti-popup">${rows
     .map(
       ([label, value]) =>
@@ -96,8 +103,6 @@ function popupHtml(record: HotspotRecord): string {
     )
     .join('')}<p class="agnidrishti-popup-note">One hotspot detection — not a unique fire.</p></div>`
 }
-
-
 
 /** Ray-casting point-in-polygon over GeoJSON Polygon/MultiPolygon rings. */
 function pointInDistrict(lat: number, lng: number, geometry: DistrictGeometry): boolean {
@@ -121,12 +126,17 @@ export function MapPanel({
   layerLabel,
   layer,
   year,
+  years,
   provider,
   districtSummaries,
   onSelectDistrict,
+  onYearChange,
+  onProviderChange,
 }: MapPanelProps) {
   const reduceMotion = useReducedMotion()
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const collapsedHostRef = useRef<HTMLDivElement | null>(null)
+  const expandedHostRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<L.Map | null>(null)
   const districtLayerRef = useRef<L.GeoJSON | null>(null)
   const hotspotLayerRef = useRef<L.LayerGroup | null>(null)
@@ -137,10 +147,13 @@ export function MapPanel({
   const [hotspots, setHotspots] = useState<(HotspotDataset | null)[] | null>(null)
   const [hotspotsLoading, setHotspotsLoading] = useState(false)
   const [hotspotsError, setHotspotsError] = useState(false)
+  const [selectedHotspot, setSelectedHotspot] = useState<HotspotRecord | null>(null)
+  const [infoOpen, setInfoOpen] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchFocused, setSearchFocused] = useState(false)
 
   const showHotspots = viewMode === 'hotspots' || viewMode === 'both'
   const markerFamily = useMemo(() => markerPlatforms(layer), [layer])
-  const markerFamilyKey = markerFamily.join('|')
 
   const featureCollection = useMemo(() => {
     const features = studyAreas
@@ -149,15 +162,35 @@ export function MapPanel({
     return { type: 'FeatureCollection' as const, features }
   }, [])
 
-  // Keep latest callbacks/state in refs so map handlers never go stale.
+  // Latest callbacks/state in refs so Leaflet handlers never go stale.
   const selectRef = useRef(onSelectDistrict)
   selectRef.current = onSelectDistrict
   const areaRef = useRef(area)
   areaRef.current = area
   const summariesRef = useRef(districtSummaries)
   summariesRef.current = districtSummaries
+  const hotspotSelectRef = useRef<(r: HotspotRecord) => void>(() => {})
+  hotspotSelectRef.current = setSelectedHotspot
 
-  // Initialize the Leaflet map once.
+  // ---- search (real: matches district name, province, p-code) ----
+  const query = searchQuery.trim().toLowerCase()
+  const searchResults = useMemo(() => {
+    if (!query) return []
+    return studyAreas.filter(
+      (s) =>
+        s.name.toLowerCase().includes(query) ||
+        s.province.toLowerCase().includes(query) ||
+        s.pcode.toLowerCase().includes(query),
+    )
+  }, [query])
+
+  const selectDistrict = (id: StudyAreaId) => {
+    onSelectDistrict(id)
+    setSearchQuery('')
+    setSearchFocused(false)
+  }
+
+  // ---- Initialize Leaflet once (container starts in the collapsed host) ----
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
     const map = L.map(containerRef.current, {
@@ -165,7 +198,7 @@ export function MapPanel({
       attributionControl: false,
       minZoom: MIN_ZOOM,
       maxZoom: MAX_ZOOM,
-      scrollWheelZoom: false, // page scrolling stays predictable; zoom via controls/double-click
+      scrollWheelZoom: false,
       dragging: true,
       touchZoom: true,
       doubleClickZoom: true,
@@ -182,30 +215,54 @@ export function MapPanel({
     }
   }, [])
 
-  // District selection via map click: the hotspot canvas renderer sits above
-  // the district SVG paths and would swallow their click events, so clicks on
-  // the map surface are resolved with a point-in-polygon test instead.
+  // ---- Move the Leaflet container between hosts on expand/collapse ----
   useEffect(() => {
-    const map = mapRef.current
-    if (!map) return
-    const onClick = (event: L.LeafletMouseEvent) => {
-      for (const feature of featureCollection.features) {
-        if (pointInDistrict(event.latlng.lat, event.latlng.lng, feature.geometry)) {
-          const id = (feature.properties as { id: string }).id
-          if (studyAreas.some((s) => s.id === id)) {
-            selectRef.current(id as StudyAreaId)
-          }
-          return
-        }
+    const node = containerRef.current
+    if (!node) return
+    const target = expanded ? expandedHostRef.current : collapsedHostRef.current
+    if (target && node.parentElement !== target) {
+      target.appendChild(node)
+    }
+    // invalidateSize alone does not repaint canvas layers: the Canvas
+    // renderer only redraws on moveend, which never fires when the center is
+    // unchanged. A same-view setView forces the full resize + repaint.
+    const invalidate = () => {
+      const map = mapRef.current
+      if (!map) return
+      map.invalidateSize({ pan: false })
+      map.setView(map.getCenter(), map.getZoom(), { animate: false })
+    }
+    const raf = requestAnimationFrame(() => invalidate())
+    const t1 = window.setTimeout(invalidate, 260)
+    const t2 = window.setTimeout(invalidate, 700)
+    if (!expanded) {
+      return () => {
+        cancelAnimationFrame(raf)
+        window.clearTimeout(t1)
+        window.clearTimeout(t2)
       }
     }
-    map.on('click', onClick)
-    return () => {
-      map.off('click', onClick)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setExpanded(false)
     }
-  }, [featureCollection])
+    document.addEventListener('keydown', onKey)
+    const onResize = () => invalidate()
+    window.addEventListener('resize', onResize)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', onKey)
+      window.removeEventListener('resize', onResize)
+      cancelAnimationFrame(raf)
+      window.clearTimeout(t1)
+      window.clearTimeout(t2)
+      requestAnimationFrame(() => invalidate())
+      window.setTimeout(invalidate, 300)
+    }
+  }, [expanded])
 
-  // District polygons: interactive selection + choropleth styling.
+  // ---- District polygons + choropleth ----
   useEffect(() => {
     const map = mapRef.current
     if (!map) return
@@ -226,17 +283,11 @@ export function MapPanel({
           `<strong>${props.name}</strong><br/>${props.id === areaRef.current.id ? 'Currently selected' : 'Click to select'}`,
           { sticky: true, className: 'agnidrishti-tooltip' },
         )
-        layerInstance.on('click', () => {
-          if (studyAreas.some((s) => s.id === props.id)) {
-            selectRef.current(props.id as StudyAreaId)
-          }
-        })
       },
     }).addTo(map)
     districtLayerRef.current = layer
   }, [featureCollection])
 
-  // Restyle the choropleth whenever selection or data changes (no rebuild).
   useEffect(() => {
     districtLayerRef.current?.setStyle((feature) =>
       districtStyle(
@@ -247,19 +298,72 @@ export function MapPanel({
     )
   }, [area.id, districtSummaries])
 
-  // Fit the selected district on selection change (and initially).
+  // ---- District selection via map click (canvas sits above the SVG paths) ----
   useEffect(() => {
     const map = mapRef.current
     if (!map) return
-    const target = featureCollection.features.find((f) => f.properties.id === area.id)
-    if (!target) return
-    const bounds = L.geoJSON(target as unknown as GeoJSON.GeoJsonObject).getBounds()
-    if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [14, 14], maxZoom: 10, animate: !reduceMotion })
+    const onClick = (event: L.LeafletMouseEvent) => {
+      for (const feature of featureCollection.features) {
+        if (pointInDistrict(event.latlng.lat, event.latlng.lng, feature.geometry)) {
+          const id = (feature.properties as { id: string }).id
+          if (studyAreas.some((s) => s.id === id)) {
+            selectRef.current(id as StudyAreaId)
+          }
+          return
+        }
+      }
     }
-  }, [area.id, featureCollection, reduceMotion])
+    map.on('click', onClick)
+    return () => {
+      map.off('click', onClick)
+    }
+  }, [featureCollection])
 
-  // Point-level detections: loaded only when the hotspot layer is active.
+  // ---- Fit helpers ----
+  const fitBoundsOf = (features: typeof featureCollection.features) => {
+    const map = mapRef.current
+    if (!map || features.length === 0) return
+    const bounds = L.geoJSON({
+      type: 'FeatureCollection',
+      features: features as unknown as GeoJSON.Feature[],
+    } as unknown as GeoJSON.GeoJsonObject).getBounds()
+    if (bounds.isValid()) {
+      map.fitBounds(bounds, { padding: [18, 18], maxZoom: 10, animate: !reduceMotion })
+    }
+  }
+  const fitToDistrict = () => {
+    fitBoundsOf(featureCollection.features.filter((f) => f.properties.id === area.id))
+  }
+  const fitAllDistricts = () => {
+    fitBoundsOf(featureCollection.features)
+  }
+  const resetView = () => {
+    const map = mapRef.current
+    if (!map) return
+    const target = featureCollection.features.find((f) => f.properties.id === area.id)
+    const bounds = target
+      ? L.geoJSON(target as unknown as GeoJSON.GeoJsonObject).getBounds()
+      : null
+    if (bounds?.isValid()) {
+      map.setView(bounds.getCenter(), 9, { animate: !reduceMotion })
+    } else {
+      fitToDistrict()
+    }
+  }
+
+  const zoom = (delta: number) => {
+    const map = mapRef.current
+    if (!map) return
+    map.setZoom(map.getZoom() + delta)
+  }
+
+  // ---- Fit to selected district on selection change ----
+  useEffect(() => {
+    fitToDistrict()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [area.id])
+
+  // ---- Point-level detections: loaded only when the hotspot layer is active ----
   useEffect(() => {
     if (!showHotspots || !year) {
       setHotspots(null)
@@ -284,7 +388,7 @@ export function MapPanel({
     return () => controller.abort()
   }, [showHotspots, provider, year])
 
-  // Hotspot markers: canvas circle markers, coloured per platform, sized by FRP.
+  // ---- Hotspot markers ----
   useEffect(() => {
     const map = mapRef.current
     const renderer = rendererRef.current
@@ -302,18 +406,24 @@ export function MapPanel({
       for (const record of dataset.records) {
         if (!family.includes(record.platform)) continue
         const color = PLATFORM_COLORS[record.platform] ?? TERRACOTTA
+        const baseRadius = markerRadius(record.frp)
         const marker = L.circleMarker([record.latitude, record.longitude], {
           renderer,
-          radius: markerRadius(record.frp),
-          color: withAlpha('#0A1211', 0.55), // dark stroke separates overlapping points
+          radius: baseRadius,
+          color: withAlpha('#0A1211', 0.55),
           weight: 1,
           opacity: 0.9,
           fillColor: color,
           fillOpacity: 0.82,
         })
+        // Zoom-aware sizing: shrink dots when zoomed out so 18k overlapping
+        // detections read as a density field, grow them when zoomed in so
+        // individual markers distinguish. Canvas redraw is batched.
+        ;(marker as unknown as { _baseRadius: number })._baseRadius = baseRadius
+        marker.on('click', () => hotspotSelectRef.current(record))
         marker.bindPopup(popupHtml(record), {
           className: 'agnidrishti-leaflet-popup',
-          maxWidth: 240,
+          maxWidth: 250,
         })
         marker.bindTooltip(`${record.platform} · ${record.acqDate}`, {
           direction: 'top',
@@ -325,61 +435,19 @@ export function MapPanel({
     }
     group.addTo(map)
     hotspotLayerRef.current = group
-  }, [showHotspots, hotspots, markerFamilyKey, layer])
 
-  // Full-screen mode: Escape to exit, lock body scroll, and make Leaflet
-  // re-measure the container on BOTH enter and exit (toggling a class does
-  // not fire window resize; without this the canvas keeps its expanded size
-  // and covers the panel header after collapsing).
-  useEffect(() => {
-    const invalidate = () => mapRef.current?.invalidateSize({ pan: false })
-    const raf = requestAnimationFrame(() => invalidate())
-    const timeout = window.setTimeout(invalidate, 260)
-
-    if (!expanded) {
-      return () => {
-        cancelAnimationFrame(raf)
-        window.clearTimeout(timeout)
-      }
+    const rescale = () => {
+      const z = map.getZoom()
+      const scale = Math.max(0.55, Math.min(1.15, z / 10))
+      group.eachLayer((layer) => {
+        const m = layer as L.CircleMarker & { _baseRadius?: number }
+        if (m._baseRadius) m.setStyle({ radius: Math.max(1.6, m._baseRadius * scale) })
+      })
     }
-
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setExpanded(false)
-    }
-    document.addEventListener('keydown', onKey)
-    const onResize = () => invalidate()
-    window.addEventListener('resize', onResize)
-    return () => {
-      document.body.style.overflow = previousOverflow
-      document.removeEventListener('keydown', onKey)
-      window.removeEventListener('resize', onResize)
-      cancelAnimationFrame(raf)
-      window.clearTimeout(timeout)
-      // Re-measure once more after unmounting the expanded styles so the
-      // canvas shrinks back to the panel size.
-      requestAnimationFrame(() => invalidate())
-      window.setTimeout(invalidate, 260)
-    }
-  }, [expanded])
-
-  const fitToDistrict = () => {
-    const map = mapRef.current
-    if (!map) return
-    const target = featureCollection.features.find((f) => f.properties.id === area.id)
-    if (!target) return
-    const bounds = L.geoJSON(target as unknown as GeoJSON.GeoJsonObject).getBounds()
-    if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [14, 14], maxZoom: 10, animate: !reduceMotion })
-    }
-  }
-
-  const zoom = (delta: number) => {
-    const map = mapRef.current
-    if (!map) return
-    map.setZoom(map.getZoom() + delta)
-  }
+    rescale()
+    map.on('zoomend', rescale)
+    group.on('remove', () => map.off('zoomend', rescale))
+  }, [showHotspots, hotspots, markerFamily, layer])
 
   const summaryForSelected = districtSummaries?.find((s) => s?.districtId === area.id) ?? null
 
@@ -398,12 +466,393 @@ export function MapPanel({
     return { counts, total }
   }, [hotspots, markerFamily])
 
-  const sectionClasses = expanded
-    ? 'fixed inset-0 z-[1200] flex flex-col bg-ink map-panel-expanded'
-    : 'border border-sand/[0.12] bg-ink-850'
+  const displayedHotspotCount = viewMode === 'district' ? null : (platformLegend?.total ?? null)
+
+  const layerExplanation =
+    viewMode === 'district'
+      ? `District fill intensity aggregates the ${layerLabel} total per district for ${year ?? 'the selected year'} (${provider === 'sp' ? 'Standard Processing' : 'Near Real-Time'}). No hotspot markers are shown in this mode.`
+      : viewMode === 'hotspots'
+        ? 'Each dot is one verified NASA FIRMS hotspot detection, coloured by platform and sized by FRP. A detection is not a unique fire.'
+        : 'District fill intensity aggregates activity per district; the dots are the underlying verified detections. On the harmonized layer the dots are the raw MODIS observations feeding the provisional estimate — harmonized values are never drawn as observed hotspots.'
+
+  // ---- Floating control group ----
+  const controlGroup = (
+    <div className="pointer-events-auto flex flex-col overflow-hidden rounded-xl border border-sand/[0.16] bg-ink-950/[0.2] shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-md">
+      {[
+        { label: 'Zoom map in', icon: <Plus size={15} strokeWidth={1.8} />, action: () => zoom(1) },
+        { label: 'Zoom map out', icon: <Minus size={15} strokeWidth={1.8} />, action: () => zoom(-1) },
+        { label: 'Reset to default view', icon: <Crosshair size={14} strokeWidth={1.8} />, action: resetView },
+        { label: 'Fit all three districts', icon: <Layers size={14} strokeWidth={1.8} />, action: fitAllDistricts },
+        { label: 'Fit map to selected district', icon: <Maximize2 size={13} strokeWidth={1.8} />, action: fitToDistrict },
+      ].map((item, index) => (
+        <button
+          key={item.label}
+          type="button"
+          onClick={item.action}
+          aria-label={item.label}
+          title={item.label}
+          className={`flex h-9 w-9 items-center justify-center text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone ${
+            index > 0 ? 'border-t border-sand/[0.12]' : ''
+          }`}
+        >
+          {item.icon}
+        </button>
+      ))}
+    </div>
+  )
+
+  // ---- Layer-mode segmented control ----
+  const layerModeControl = (
+    <div
+      className="flex overflow-hidden rounded-lg border border-sand/[0.16] bg-ink-950/[0.2] backdrop-blur-md"
+      role="group"
+      aria-label="Map visualization layers"
+    >
+      {viewModes.map((mode) => {
+        const active = viewMode === mode.id
+        return (
+          <button
+            key={mode.id}
+            type="button"
+            aria-pressed={active}
+            onClick={() => setViewMode(mode.id)}
+            className={`px-3 py-1.5 text-[10px] uppercase tracking-[0.1em] transition-colors ${
+              active ? 'bg-ember/20 text-bone' : 'text-ash-light hover:bg-sand/[0.06] hover:text-bone'
+            } ${mode.id !== 'district' ? 'border-l border-sand/[0.12]' : ''}`}
+          >
+            {mode.label}
+          </button>
+        )
+      })}
+    </div>
+  )
+
+  // ---- Legend (expanded) ----
+  const expandedLegend = (
+    <div className="pointer-events-none max-w-[240px] rounded-lg border border-sand/[0.14] bg-ink-950/[0.2] px-3 py-2.5 shadow-lg backdrop-blur-md">
+      <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-light">
+        {layerLabel} · {provider === 'sp' ? 'SP' : 'NRT'} · {year ?? '—'}
+      </p>
+      {(viewMode === 'district' || viewMode === 'both') && (
+        <div className="mt-1.5 flex items-center gap-1.5">
+          {[0.1, 0.35, 0.6, 0.8].map((a) => (
+            <span
+              key={a}
+              className="h-2.5 w-5 border border-sand/10"
+              style={{ background: withAlpha(TERRACOTTA, a) }}
+              aria-hidden="true"
+            />
+          ))}
+          <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+            district total
+          </span>
+        </div>
+      )}
+      {(viewMode === 'hotspots' || viewMode === 'both') && (
+        <div className="mt-1.5">
+          {hotspotsLoading ? (
+            <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">loading detections…</p>
+          ) : platformLegend && platformLegend.total > 0 ? (
+            <div className="space-y-1">
+              {markerFamily
+                .filter((p) => (platformLegend.counts[p] ?? 0) > 0)
+                .map((p) => (
+                  <div key={p} className="flex items-center gap-1.5">
+                    <span
+                      className="h-2.5 w-2.5 rounded-full border border-ink/60"
+                      style={{ background: PLATFORM_COLORS[p] ?? TERRACOTTA }}
+                      aria-hidden="true"
+                    />
+                    <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-light">
+                      {p} · {(platformLegend.counts[p] ?? 0).toLocaleString()}
+                    </span>
+                  </div>
+                ))}
+              <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                dot size = FRP · detections, not fires
+              </p>
+            </div>
+          ) : (
+            <p className="font-mono text-[8px] uppercase leading-relaxed tracking-[0.1em] text-ash-dark">
+              {hotspotsError ? 'point records unavailable' : 'no point records for this selection'}
+            </p>
+          )}
+        </div>
+      )}
+      {layer === 'harmonized' && (viewMode === 'hotspots' || viewMode === 'both') && (
+        <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+          markers = raw MODIS inputs to the estimate
+        </p>
+      )}
+    </div>
+  )
+
+  // ---- Bottom info panel (expanded) ----
+  const coverageText = summaryForSelected
+    ? `${summaryForSelected.weeksWithDetections}/${summaryForSelected.weekCells.length} covered weeks with detections · ${summaryForSelected.observedWeeks} weeks observed`
+    : 'No aggregated coverage for this selection yet'
+
+  const bottomPanel = (
+    <div className="pointer-events-auto mx-2 mb-2 rounded-xl border border-sand/[0.16] bg-ink-950/[0.4] shadow-[0_-6px_24px_rgba(0,0,0,0.45)] backdrop-blur-md sm:mx-3 sm:mb-3">
+      <button
+        type="button"
+        onClick={() => setInfoOpen((v) => !v)}
+        aria-expanded={infoOpen}
+        className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left"
+      >
+        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-0.5">
+          <span className="text-[12px] font-medium text-bone">{area.name}</span>
+          <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-ash-dark">
+            {year ?? '—'} · {provider === 'sp' ? 'SP' : 'NRT'} · {layerLabel}
+          </span>
+          {displayedHotspotCount !== null && (
+            <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-ember">
+              {displayedHotspotCount.toLocaleString()} hotspots shown
+            </span>
+          )}
+        </div>
+        <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+          {infoOpen ? 'Hide details ▾' : 'Details ▴'}
+        </span>
+      </button>
+      {infoOpen && (
+        <div className="max-h-[36vh] overflow-y-auto border-t border-sand/[0.1] px-4 py-3">
+          {selectedHotspot && (
+            <div className="mb-3 rounded-lg border border-ember/30 bg-ember/[0.06] px-3 py-2.5">
+              <p className="font-mono text-[8px] uppercase tracking-[0.14em] text-ember">
+                Selected hotspot · NASA FIRMS
+              </p>
+              <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-3">
+                {[
+                  ['Platform', selectedHotspot.platform],
+                  ['Acquired (UTC)', `${selectedHotspot.acqDate} ${selectedHotspot.acqTime ?? ''}`],
+                  ['Coordinates', `${selectedHotspot.latitude.toFixed(4)}, ${selectedHotspot.longitude.toFixed(4)}`],
+                  ['Brightness (K)', selectedHotspot.brightness.toFixed(1)],
+                  ['FRP (MW)', selectedHotspot.frp !== null ? selectedHotspot.frp.toFixed(1) : null],
+                  ['Confidence', selectedHotspot.confidence !== null ? String(selectedHotspot.confidence) : null],
+                  ['Pass', selectedHotspot.daynight === 'D' ? 'Day' : selectedHotspot.daynight === 'N' ? 'Night' : null],
+                  ['District', selectedHotspot.districtId.replace('NP-', '')],
+                ]
+                  .filter(([, v]) => v !== null)
+                  .map(([label, value]) => (
+                    <div key={label as string}>
+                      <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">{label}</p>
+                      <p className="text-[11px] text-bone">{value}</p>
+                    </div>
+                  ))}
+              </div>
+              <p className="mt-2 text-[10px] leading-relaxed text-ash-dark">
+                One hotspot detection — not a unique fire. Source: NASA FIRMS.
+              </p>
+            </div>
+          )}
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div>
+              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">Coverage</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-ash-light">{coverageText}</p>
+            </div>
+            <div>
+              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">Active layer</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-ash-light">
+                {viewModes.find((m) => m.id === viewMode)?.label} · {layerLabel}
+              </p>
+            </div>
+            <div>
+              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">Boundaries</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-ash-dark">
+                {studyAreaBoundarySource.label} ({studyAreaBoundarySource.license},{' '}
+                {studyAreaBoundarySource.boundaryYear}) · Tiles © OpenStreetMap
+              </p>
+            </div>
+          </div>
+          <p className="mt-3 text-[11px] leading-relaxed text-ash">{layerExplanation}</p>
+          <p className="mt-1.5 text-[10px] leading-relaxed text-ash-dark">
+            Missing observations are never treated as zero; August–December were not requested in the
+            historical acquisition. Detections are hotspot observations, not unique fires.
+          </p>
+        </div>
+      )}
+    </div>
+  )
+
+  // ---- Expanded overlay (portal to body; the Leaflet container is moved in) ----
+  const expandedOverlay = expanded
+    ? createPortal(
+          <div className="fixed inset-0 z-[1200] flex flex-col bg-ink map-panel-expanded">
+            {/* Map host — the Leaflet container is moved in here */}
+            <div ref={expandedHostRef} className="absolute inset-0 overflow-hidden" />
+
+            {/* Floating top bar */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-[1100] p-2 sm:p-3">
+              <div className="pointer-events-auto mx-auto flex max-w-[1300px] flex-wrap items-center gap-2 rounded-xl border border-sand/[0.16] bg-ink-950/[0.2] px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-md">
+                <div className="flex items-center gap-2 pr-1">
+                  <LogoMark className="h-6 w-6 text-sand" />
+                  <span className="hidden font-display text-[15px] leading-none text-bone sm:inline">
+                    Agnidrishti <span className="text-ash-dark">· map</span>
+                  </span>
+                </div>
+
+                {/* Search */}
+                <div className="relative min-w-[150px] flex-1 sm:max-w-[240px]">
+                  <Search
+                    size={14}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-ash-dark"
+                  />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setSearchFocused(true)}
+                    onBlur={() => window.setTimeout(() => setSearchFocused(false), 150)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Escape' && searchQuery) {
+                        e.stopPropagation()
+                        setSearchQuery('')
+                      }
+                      if (e.key === 'Enter' && searchResults.length > 0) {
+                        selectDistrict(searchResults[0].id)
+                      }
+                    }}
+                    placeholder="Search district"
+                    aria-label="Search district or province"
+                    className="h-8 w-full rounded-lg border border-sand/[0.16] bg-ink-900 pl-8 pr-3 text-[12px] text-bone placeholder:text-ash-dark focus:border-ember/60 focus:outline-none"
+                  />
+                  {searchFocused && query.length > 0 && (
+                    <div className="absolute left-0 right-0 top-[36px] overflow-hidden rounded-lg border border-sand/[0.16] bg-ink-950/[0.7] shadow-xl backdrop-blur-md">
+                      {searchResults.length > 0 ? (
+                        searchResults.map((s) => (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onMouseDown={() => selectDistrict(s.id)}
+                            className="flex w-full items-center justify-between px-3 py-2 text-left transition-colors hover:bg-sand/[0.07]"
+                          >
+                            <span>
+                              <span className="block text-[12px] text-bone">{s.name}</span>
+                              <span className="block font-mono text-[9px] uppercase tracking-[0.1em] text-ash-dark">
+                                {s.province} · {s.pcode}
+                              </span>
+                            </span>
+                            <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ember">
+                              select
+                            </span>
+                          </button>
+                        ))
+                      ) : (
+                        <p className="px-3 py-2.5 text-[11px] text-ash-dark">
+                          No district matches “{searchQuery}”. The map covers Banke, Bardiya and
+                          Chitwan.
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Year + provider */}
+                <div className="flex items-center gap-1.5">
+                  <label className="sr-only" htmlFor="map-year-expanded">
+                    Year
+                  </label>
+                  <select
+                    id="map-year-expanded"
+                    value={year ?? ''}
+                    onChange={(e) => onYearChange(e.target.value)}
+                    className="h-8 rounded-lg border border-sand/[0.16] bg-ink-900 px-2 font-mono text-[11px] text-bone focus:border-ember/60 focus:outline-none"
+                    aria-label="Year"
+                  >
+                    {years.map((y) => (
+                      <option key={y} value={y}>
+                        {y}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="sr-only" htmlFor="map-provider-expanded">
+                    Processing type
+                  </label>
+                  <select
+                    id="map-provider-expanded"
+                    value={provider}
+                    onChange={(e) => onProviderChange(e.target.value as ProviderId)}
+                    className="h-8 rounded-lg border border-sand/[0.16] bg-ink-900 px-2 font-mono text-[11px] uppercase text-bone focus:border-ember/60 focus:outline-none"
+                    aria-label="Processing type"
+                  >
+                    <option value="sp">SP</option>
+                    <option value="nrt">NRT</option>
+                  </select>
+                </div>
+
+                {layerModeControl}
+
+                <button
+                  type="button"
+                  onClick={() => setExpanded(false)}
+                  aria-label="Exit expanded map"
+                  title="Exit expanded map (Esc)"
+                  className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-sand/[0.16] bg-ink-950/[0.2] text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
+                >
+                  <X size={15} strokeWidth={1.8} />
+                </button>
+              </div>
+            </div>
+
+            {/* Right floating control group (lower on mobile: the top bar wraps) */}
+            <div className="absolute right-2 top-[118px] z-[1100] sm:right-3 sm:top-[74px]">
+              {controlGroup}
+            </div>
+
+            {/* District quick-select chips */}
+            <div className="absolute left-2 top-[118px] z-[1100] flex flex-col gap-1.5 sm:left-3 sm:top-[74px]">
+              {studyAreas.map((s) => {
+                const active = s.id === area.id
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => onSelectDistrict(s.id)}
+                    className={`pointer-events-auto rounded-lg border px-2.5 py-1 text-left font-mono text-[10px] uppercase tracking-[0.12em] shadow-md backdrop-blur-md transition-colors ${
+                      active
+                        ? 'border-bone/60 bg-ink-950/[0.2] text-bone'
+                        : 'border-sand/[0.16] bg-ink-950/80 text-ash-light hover:text-bone'
+                    }`}
+                  >
+                    {s.name}
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Legend (desktop; the bottom panel covers the explanation on mobile) */}
+            <div className="pointer-events-none absolute bottom-[124px] left-2 z-[1100] hidden max-w-[240px] sm:left-3 sm:block">
+              {expandedLegend}
+            </div>
+
+            {/* Attribution */}
+            <div className="pointer-events-none absolute bottom-[124px] right-2 z-[1100] hidden rounded bg-ink-950/80 px-2 py-0.5 font-mono text-[8px] text-ash-dark sm:right-3 sm:block">
+              ©{' '}
+              <a
+                href="https://www.openstreetmap.org/copyright"
+                target="_blank"
+                rel="noreferrer"
+                className="pointer-events-auto underline decoration-sand/30"
+              >
+                OpenStreetMap
+              </a>{' '}
+              contributors · OCHA COD-AB (HDX)
+            </div>
+
+            {/* Bottom info panel */}
+            <div className="absolute inset-x-0 bottom-0 z-[1100]">{bottomPanel}</div>
+          </div>,
+          document.body,
+        )
+      : null
 
   return (
-    <section aria-labelledby="map-heading" className={sectionClasses}>
+    <section aria-labelledby="map-heading" className="border border-sand/[0.12] bg-ink-850">
+      {expandedOverlay}
       <div className="flex items-start justify-between gap-4 border-b border-sand/10 px-5 py-4">
         <div className="min-w-0">
           <p className="eyebrow text-ash-dark">Selected study area</p>
@@ -418,23 +867,18 @@ export function MapPanel({
           <StatusBadge tone="neutral">Geographic view</StatusBadge>
           <button
             type="button"
-            onClick={() => setExpanded((value) => !value)}
+            onClick={() => setExpanded(true)}
             aria-expanded={expanded}
-            aria-label={expanded ? 'Exit full-screen map' : 'Expand map to full screen'}
-            title={expanded ? 'Exit full screen (Esc)' : 'Expand to full screen'}
+            aria-label="Expand map to full screen"
+            title="Expand to full screen"
             className="flex items-center gap-1.5 border border-sand/[0.14] bg-ink-950/70 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light transition-colors hover:bg-sand/[0.075] hover:text-bone"
           >
-            {expanded ? (
-              <Minimize2 size={12} strokeWidth={1.7} />
-            ) : (
-              <Maximize2 size={12} strokeWidth={1.7} />
-            )}
-            {expanded ? 'Exit full screen' : 'Expand'}
+            <Maximize2 size={12} strokeWidth={1.7} />
+            Expand
           </button>
         </div>
       </div>
 
-      {/* View-mode selector: district choropleth / hotspot markers / both */}
       <div
         className="flex gap-1 border-b border-sand/10 bg-ink-900 px-5 py-2.5"
         role="group"
@@ -458,19 +902,27 @@ export function MapPanel({
         })}
       </div>
 
-      <div className={expanded ? 'relative min-h-0 flex-1' : 'relative'}>
-        <div
-          ref={containerRef}
-          role="application"
-          aria-label={`Geographic map of the Nepal study areas. ${area.name} district is highlighted. District fill intensity shows the ${layerLabel} total for ${year ?? 'the selected year'}; ${
-            viewMode === 'district'
-              ? 'no hotspot markers shown'
-              : 'fire hotspot markers show real NASA FIRMS detections'
-          }. OpenStreetMap tiles; OCHA COD-AB boundaries.`}
-          className={`map-surface w-full ${expanded ? 'h-full' : 'h-[320px] sm:h-[360px]'}`}
-        />
+      {/* Collapsed map host — the Leaflet container lives here when not expanded */}
+      <div className="relative">
+        <div ref={collapsedHostRef} className="relative h-[320px] w-full overflow-hidden sm:h-[360px]">
+          <div
+            ref={containerRef}
+            role="application"
+            aria-label={`Geographic map of the Nepal study areas. ${area.name} district is highlighted. District fill intensity shows the ${layerLabel} total for ${year ?? 'the selected year'}; fire hotspot markers show real NASA FIRMS detections when the Hotspots layer is active. OpenStreetMap tiles; OCHA COD-AB boundaries.`}
+            className="map-surface absolute inset-0 w-full"
+          />
+        </div>
+        {expanded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-ink/85 px-6 text-center">
+            <p className="text-[12px] leading-relaxed text-ash">
+              The map is open in expanded mode. Use{' '}
+              <span className="text-bone">Exit</span> in the top bar (or press Esc) to return here —
+              your district, year, provider and layer selection is preserved.
+            </p>
+          </div>
+        )}
 
-        {/* District quick-select: makes the geographic feature discoverable */}
+        {/* District quick-select chips */}
         <div className="absolute left-3 top-3 z-[500] flex flex-col gap-1">
           {studyAreas.map((s) => {
             const active = s.id === area.id
@@ -492,40 +944,39 @@ export function MapPanel({
           })}
         </div>
 
-        {/* Zoom + fit controls */}
-        <div className="absolute right-3 top-3 z-[500] flex flex-col border border-sand/[0.14] bg-ink-950/85 backdrop-blur-[2px]">
+        {/* Zoom controls */}
+        <div className="absolute right-3 top-3 z-[500] flex flex-col overflow-hidden rounded-xl border border-sand/[0.16] bg-ink-950/[0.2] shadow-md backdrop-blur-md">
           <button
             type="button"
             onClick={() => zoom(1)}
             aria-label="Zoom map in"
-            className="flex h-8 w-8 items-center justify-center text-ash-light transition-colors hover:bg-sand/[0.075] hover:text-bone"
+            className="flex h-9 w-9 items-center justify-center text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
           >
-            <span aria-hidden="true" className="text-[14px] leading-none">+</span>
+            <Plus size={15} strokeWidth={1.8} />
           </button>
           <button
             type="button"
             onClick={() => zoom(-1)}
             aria-label="Zoom map out"
-            className="flex h-8 w-8 items-center justify-center border-t border-sand/[0.14] text-ash-light transition-colors hover:bg-sand/[0.075] hover:text-bone"
+            className="flex h-9 w-9 items-center justify-center border-t border-sand/[0.12] text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
           >
-            <span aria-hidden="true" className="text-[14px] leading-none">−</span>
+            <Minus size={15} strokeWidth={1.8} />
           </button>
           <button
             type="button"
             onClick={fitToDistrict}
             aria-label="Fit map to selected district"
-            className="flex h-8 w-8 items-center justify-center border-t border-sand/[0.14] text-ash-light transition-colors hover:bg-sand/[0.075] hover:text-bone"
+            className="flex h-9 w-9 items-center justify-center border-t border-sand/[0.12] text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
           >
-            <Maximize2 size={13} strokeWidth={1.7} />
+            <Maximize2 size={13} strokeWidth={1.8} />
           </button>
         </div>
 
-        {/* Legend — adapts to the active visualization mode */}
-        <div className="pointer-events-none absolute bottom-8 left-3 z-[500] max-w-[68%] border border-sand/10 bg-ink-950/85 px-2.5 py-2 backdrop-blur-[2px]">
+        {/* Legend */}
+        <div className="pointer-events-none absolute bottom-8 left-3 z-[500] max-w-[68%] rounded-lg border border-sand/[0.14] bg-ink-950/85 px-2.5 py-2 backdrop-blur-md">
           <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-light">
             {layerLabel} · {provider === 'sp' ? 'SP' : 'NRT'} · {year ?? '—'}
           </p>
-
           {(viewMode === 'district' || viewMode === 'both') && (
             <div className="mt-1.5 flex items-center gap-1.5">
               {[0.1, 0.35, 0.6, 0.8].map((a) => (
@@ -541,7 +992,6 @@ export function MapPanel({
               </span>
             </div>
           )}
-
           {(viewMode === 'hotspots' || viewMode === 'both') && (
             <div className="mt-1.5">
               {hotspotsLoading ? (
@@ -551,16 +1001,16 @@ export function MapPanel({
               ) : platformLegend && platformLegend.total > 0 ? (
                 <div className="space-y-1">
                   {markerFamily
-                    .filter((platform) => (platformLegend.counts[platform] ?? 0) > 0)
-                    .map((platform) => (
-                      <div key={platform} className="flex items-center gap-1.5">
+                    .filter((p) => (platformLegend.counts[p] ?? 0) > 0)
+                    .map((p) => (
+                      <div key={p} className="flex items-center gap-1.5">
                         <span
                           className="h-2.5 w-2.5 rounded-full border border-ink/60"
-                          style={{ background: PLATFORM_COLORS[platform] ?? TERRACOTTA }}
+                          style={{ background: PLATFORM_COLORS[p] ?? TERRACOTTA }}
                           aria-hidden="true"
                         />
                         <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-light">
-                          {platform} · {(platformLegend.counts[platform] ?? 0).toLocaleString()}
+                          {p} · {(platformLegend.counts[p] ?? 0).toLocaleString()}
                         </span>
                       </div>
                     ))}
@@ -570,29 +1020,20 @@ export function MapPanel({
                 </div>
               ) : (
                 <p className="font-mono text-[8px] uppercase leading-relaxed tracking-[0.1em] text-ash-dark">
-                  {hotspotsError
-                    ? 'point records unavailable'
-                    : 'no point records for this selection'}
+                  {hotspotsError ? 'point records unavailable' : 'no point records for this selection'}
                 </p>
               )}
             </div>
           )}
-
-          {(viewMode === 'hotspots' || viewMode === 'both') && (
-            <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
-              {layer === 'harmonized'
-                ? 'markers = raw MODIS inputs to the estimate'
-                : 'real NASA FIRMS detections'}
-            </p>
-          )}
+          <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+            {layer === 'harmonized' && (viewMode === 'hotspots' || viewMode === 'both')
+              ? 'markers = raw MODIS inputs to the estimate'
+              : 'real NASA FIRMS detections'}
+          </p>
         </div>
       </div>
 
-      <div
-        className={`space-y-1.5 border-t border-sand/10 px-5 py-3.5 ${
-          expanded ? 'shrink-0 overflow-y-auto' : ''
-        }`}
-      >
+      <div className="space-y-1.5 border-t border-sand/10 px-5 py-3.5">
         <p className="text-[11px] leading-relaxed text-ash">
           {viewMode !== 'district' && (
             <>
@@ -620,16 +1061,10 @@ export function MapPanel({
             ? `${area.name} ${year}: ${summaryForSelected.total.toLocaleString()} total across ${summaryForSelected.weekCells.length} covered weeks.`
             : ''}
         </p>
-        {viewMode !== 'district' && platformLegend && platformLegend.total > 0 && layer === 'viirs' && (
-          <p className="text-[10px] leading-relaxed text-ash-dark">
-            Markers show all VIIRS-family platforms individually ({markerFamily.join(', ')}); the
-            calendar's VIIRS weekly metric uses the Suomi-NPP reference platform.
-          </p>
-        )}
         <p className="text-[10px] leading-relaxed text-ash-dark">
           Boundary geometry: {studyAreaBoundarySource.label} ({studyAreaBoundarySource.license},{' '}
-          {studyAreaBoundarySource.boundaryYear}). Tiles © OpenStreetMap contributors. Click a
-          marker for its verified attributes; press Esc or Exit to leave full screen.
+          {studyAreaBoundarySource.boundaryYear}). Tiles © OpenStreetMap contributors. Expand for
+          the full-screen map with search, hotspot details and the information panel.
         </p>
       </div>
     </section>

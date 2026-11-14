@@ -445,3 +445,11 @@
   font-size: 9.5px;
   color: var(--ash-dark);
 }
+
+.map-panel-expanded .leaflet-tile-pane {
+  filter: brightness(0.62) contrast(1.12) saturate(0.5) hue-rotate(160deg) brightness(0.8);
+}
+
+.map-panel-expanded .map-surface {
+  background: var(--ink-950);
+}

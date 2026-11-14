@@ -225,9 +225,12 @@ export function ExplorerPage() {
                   layerLabel={activeLayer.label}
                   layer={layer}
                   year={year}
+                  years={years}
                   provider={provider}
                   districtSummaries={districtSummaries}
                   onSelectDistrict={setAreaId}
+                  onYearChange={setYear}
+                  onProviderChange={setProvider}
                 />
               </Reveal>
               <Reveal delay={0.12}>

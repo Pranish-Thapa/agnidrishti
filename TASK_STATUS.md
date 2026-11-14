@@ -404,3 +404,20 @@ AGNIDRISHTI_CLAUDE_EVALUATION_IMPLEMENTATION_REPORT.md.
   (0 failed requests, 10 data files loaded, routing + data paths correct on Pages).
 
 ## PROJECT STATUS: TASKS 04B–12 ALL VERIFIED COMPLETE
+
+## TASK 13 — EXPANDED GEOGRAPHIC MAP REDESIGN — VERIFIED COMPLETE (2026-11-14)
+
+- **Full-screen map redesigned as a standalone mapping application** (portal overlay, Leaflet
+  container moved between hosts, invalidateSize + same-view setView on enter/exit — canvas
+  repaint issue diagnosed and fixed).
+- **Floating top bar**: identity, working search (district/province/p-code), functional year +
+  SP/NRT selectors, layer modes, exit.
+- **Floating control group**: zoom in/out, reset view, fit all districts, fit selected district.
+- **Bottom info panel**: collapsible; district/year/provider, genuine hotspot count, coverage,
+  layer explanation; updates on district and hotspot selection.
+- **Hotspot interaction**: popups with verified attributes (platform/date/time/coords/brightness/
+  FRP/confidence/pass/district + NASA FIRMS source); zoom-aware dot sizing; bottom panel updates
+  on marker click (record cross-checked 1:1 against exported dataset).
+- **Desktop + mobile verified**: no overlap, no overflow, controls within reach on mobile,
+  panel collapsible; canvas repaint verified on enter and exit.
+- Verification: 76 pytest + 7 vitest + typecheck + lint + build ✓; console/network clean.
