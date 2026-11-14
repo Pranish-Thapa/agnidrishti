@@ -1,0 +1,40 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:11Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:11Z"
+  },
+  "cases": {
+    "missing_dates_fallback": {
+      "prediction": 10.0,
+      "finite": true,
+      "expected": 10.0
+    },
+    "empty_district": {
+      "prediction": 0.0,
+      "finite": true
+    },
+    "unseen_value_capped": {
+      "prediction": 12.0,
+      "cap": 12.0,
+      "within_cap": true
+    },
+    "unexpected_fields_ignored": {
+      "ok": true,
+      "count": 1
+    },
+    "missing_reference_sensor": {
+      "pair_count": 0,
+      "honest_empty": true
+    },
+    "coverage_change_handled_by_matrices": {
+      "ok": true,
+      "reference": "pipeline.tests.test_historical"
+    }
+  },
+  "all_fail_safe": true
+}

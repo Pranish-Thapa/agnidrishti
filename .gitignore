@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+.venv/
+
+# Build outputs
+dist/
+dist-ssr/
+*.local
+.vite/
+
+# Large / regenerable datasets - re-acquire via the pipeline commands in README.md
+data/raw/
+data/intermediate/
+data/boundaries/source/
+
+# Archived original hero footage (103 MB; kept locally, not distributed)
+media_archive/
+
+# Scratch & caches
+.tmp/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+npm-debug.log*
+*.log

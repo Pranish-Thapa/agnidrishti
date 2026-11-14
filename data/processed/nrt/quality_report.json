@@ -1,0 +1,25 @@
+{
+  "raw_record_count": 949442,
+  "invalid_coordinate_count": 0,
+  "missing_essential_field_count": {},
+  "invalid_timestamp_count": 0,
+  "duplicate_count": 0,
+  "excluded_by_confidence_count": 0,
+  "excluded_by_static_source_mask_count": 0,
+  "valid_record_count": 949442,
+  "outside_study_area_count": 949425,
+  "final_retained_record_count": 17,
+  "unknown_satellite_count": 0,
+  "boundary_touch_count": 0,
+  "frp_missing_count": 0,
+  "duplicate_key": "sensor_id, platform, acq_date, acq_time, latitude, longitude",
+  "deduplication_scope": "within sensor and platform only; MODIS/VIIRS are never merged",
+  "confidence_filtering": "disabled (no threshold applied; all confidence levels retained)",
+  "assigned_by_district": {
+    "NP-BANKE": 6,
+    "NP-BARDIYA": 9,
+    "NP-CHITWAN": 2
+  },
+  "provider": "nrt",
+  "generated_at": "2026-11-13T18:06:20Z"
+}

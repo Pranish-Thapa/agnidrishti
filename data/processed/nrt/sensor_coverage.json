@@ -1,0 +1,149 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T18:06:20Z",
+  "provider": "nrt",
+  "product": "NRT",
+  "sensors": {
+    "modis": {
+      "sensor_id": "modis",
+      "label": "MODIS",
+      "instrument": "MODIS",
+      "platforms": {
+        "Terra": {
+          "reporting": true,
+          "global_records": 29780
+        },
+        "Aqua": {
+          "reporting": true,
+          "global_records": 54360
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "MODIS_NRT",
+      "reporting": true,
+      "unavailable_reason": null,
+      "dates": [
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "first_observation": "2026-11-09",
+      "last_observation": "2026-11-09",
+      "global_records": 84140,
+      "district_records": 1,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "viirs_snpp": {
+      "sensor_id": "viirs_snpp",
+      "label": "VIIRS Suomi-NPP",
+      "instrument": "VIIRS",
+      "platforms": {
+        "Suomi-NPP": {
+          "reporting": false,
+          "global_records": 0
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "VIIRS_SNPP_NRT",
+      "reporting": false,
+      "unavailable_reason": "no records returned by the global snapshot; treated as unavailable, not zero",
+      "dates": [],
+      "first_observation": null,
+      "last_observation": null,
+      "global_records": 0,
+      "district_records": 0,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "viirs_noaa20": {
+      "sensor_id": "viirs_noaa20",
+      "label": "VIIRS NOAA-20",
+      "instrument": "VIIRS",
+      "platforms": {
+        "NOAA-20": {
+          "reporting": true,
+          "global_records": 433945
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "VIIRS_NOAA20_NRT",
+      "reporting": true,
+      "unavailable_reason": null,
+      "dates": [
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "first_observation": "2026-11-07",
+      "last_observation": "2026-11-13",
+      "global_records": 433945,
+      "district_records": 9,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "viirs_noaa21": {
+      "sensor_id": "viirs_noaa21",
+      "label": "VIIRS NOAA-21",
+      "instrument": "VIIRS",
+      "platforms": {
+        "NOAA-21": {
+          "reporting": true,
+          "global_records": 431357
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "VIIRS_NOAA21_NRT",
+      "reporting": true,
+      "unavailable_reason": null,
+      "dates": [
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "first_observation": "2026-11-09",
+      "last_observation": "2026-11-13",
+      "global_records": 431357,
+      "district_records": 7,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "_comparable_period": {
+      "status": "provisional",
+      "basis": "public NRT 7-day snapshot windows",
+      "overlap": {
+        "start": "2026-11-07",
+        "end": "2026-11-13"
+      },
+      "note": "Provisional overlap of NRT snapshot windows; final harmonization period requires standard-processing availability."
+    }
+  }
+}

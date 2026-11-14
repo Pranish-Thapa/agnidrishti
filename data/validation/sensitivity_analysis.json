@@ -1,0 +1,309 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:10Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:10Z"
+  },
+  "note": "Variants test analytical assumptions, not arbitrary parameter sweeps. The NOAA-20 reference is restricted to its shorter record and is reported as such.",
+  "baseline_ranking": [
+    "monthly_shrinkage",
+    "ratio",
+    "quantile_mapping"
+  ],
+  "baseline": {
+    "validation_pairs": 2172,
+    "metrics": {
+      "ratio": {
+        "n": 2172,
+        "mae": 8.3423,
+        "rmse": 30.1445,
+        "mean_bias": 0.7052,
+        "pearson": 0.653,
+        "ccc": 0.6199
+      },
+      "quantile_mapping": {
+        "n": 2172,
+        "mae": 6.4384,
+        "rmse": 23.1821,
+        "mean_bias": -5.245,
+        "pearson": 0.6171,
+        "ccc": 0.5159
+      },
+      "monthly_shrinkage": {
+        "n": 2172,
+        "mae": 8.259,
+        "rmse": 29.7801,
+        "mean_bias": 0.6011,
+        "pearson": 0.6562,
+        "ccc": 0.6247
+      }
+    }
+  },
+  "variants": {
+    "reference_noaa20": {
+      "validation_pairs": 2172,
+      "metrics": {
+        "ratio": {
+          "n": 2172,
+          "mae": 8.3423,
+          "rmse": 30.1445,
+          "mean_bias": 0.7052,
+          "pearson": 0.653,
+          "ccc": 0.6199
+        },
+        "quantile_mapping": {
+          "n": 2172,
+          "mae": 6.4384,
+          "rmse": 23.1821,
+          "mean_bias": -5.245,
+          "pearson": 0.6171,
+          "ccc": 0.5159
+        },
+        "monthly_shrinkage": {
+          "n": 2172,
+          "mae": 8.259,
+          "rmse": 29.7801,
+          "mean_bias": 0.6011,
+          "pearson": 0.6562,
+          "ccc": 0.6247
+        }
+      }
+    },
+    "holdout_2023": {
+      "validation_pairs": 1086,
+      "metrics": {
+        "ratio": {
+          "n": 1086,
+          "mae": 9.1478,
+          "rmse": 26.4926,
+          "mean_bias": -0.9381,
+          "pearson": 0.5894,
+          "ccc": 0.5736
+        },
+        "quantile_mapping": {
+          "n": 1086,
+          "mae": 8.0417,
+          "rmse": 22.6057,
+          "mean_bias": -6.9601,
+          "pearson": 0.5216,
+          "ccc": 0.3905
+        },
+        "monthly_shrinkage": {
+          "n": 1086,
+          "mae": 9.1126,
+          "rmse": 26.335,
+          "mean_bias": -0.9493,
+          "pearson": 0.593,
+          "ccc": 0.5774
+        }
+      }
+    },
+    "holdout_2025": {
+      "validation_pairs": 1086,
+      "metrics": {
+        "ratio": {
+          "n": 1086,
+          "mae": 4.8396,
+          "rmse": 20.5395,
+          "mean_bias": -0.1895,
+          "pearson": 0.6537,
+          "ccc": 0.634
+        },
+        "quantile_mapping": {
+          "n": 1086,
+          "mae": 4.0582,
+          "rmse": 17.2131,
+          "mean_bias": -3.3268,
+          "pearson": 0.5885,
+          "ccc": 0.4929
+        },
+        "monthly_shrinkage": {
+          "n": 1086,
+          "mae": 4.8615,
+          "rmse": 20.5666,
+          "mean_bias": -0.1612,
+          "pearson": 0.6528,
+          "ccc": 0.6331
+        }
+      }
+    },
+    "shrinkage_k_10": {
+      "validation_pairs": 2172,
+      "metrics": {
+        "ratio": {
+          "n": 2172,
+          "mae": 8.3423,
+          "rmse": 30.1445,
+          "mean_bias": 0.7052,
+          "pearson": 0.653,
+          "ccc": 0.6199
+        },
+        "quantile_mapping": {
+          "n": 2172,
+          "mae": 6.4384,
+          "rmse": 23.1821,
+          "mean_bias": -5.245,
+          "pearson": 0.6171,
+          "ccc": 0.5159
+        },
+        "monthly_shrinkage": {
+          "n": 2172,
+          "mae": 8.2812,
+          "rmse": 29.8901,
+          "mean_bias": 0.6324,
+          "pearson": 0.6554,
+          "ccc": 0.6233
+        }
+      }
+    },
+    "shrinkage_k_40": {
+      "validation_pairs": 2172,
+      "metrics": {
+        "ratio": {
+          "n": 2172,
+          "mae": 8.3423,
+          "rmse": 30.1445,
+          "mean_bias": 0.7052,
+          "pearson": 0.653,
+          "ccc": 0.6199
+        },
+        "quantile_mapping": {
+          "n": 2172,
+          "mae": 6.4384,
+          "rmse": 23.1821,
+          "mean_bias": -5.245,
+          "pearson": 0.6171,
+          "ccc": 0.5159
+        },
+        "monthly_shrinkage": {
+          "n": 2172,
+          "mae": 8.2383,
+          "rmse": 29.66,
+          "mean_bias": 0.5709,
+          "pearson": 0.657,
+          "ccc": 0.6261
+        }
+      }
+    },
+    "ratio_min_denominator_20": {
+      "validation_pairs": 2172,
+      "metrics": {
+        "ratio": {
+          "n": 2172,
+          "mae": 8.2082,
+          "rmse": 29.7486,
+          "mean_bias": 0.5342,
+          "pearson": 0.657,
+          "ccc": 0.6255
+        },
+        "quantile_mapping": {
+          "n": 2172,
+          "mae": 6.4384,
+          "rmse": 23.1821,
+          "mean_bias": -5.245,
+          "pearson": 0.6171,
+          "ccc": 0.5159
+        },
+        "monthly_shrinkage": {
+          "n": 2172,
+          "mae": 8.259,
+          "rmse": 29.7801,
+          "mean_bias": 0.6011,
+          "pearson": 0.6562,
+          "ccc": 0.6247
+        }
+      }
+    },
+    "quantile_pooled_only": {
+      "validation_pairs": 2172,
+      "metrics": {
+        "ratio": {
+          "n": 2172,
+          "mae": 8.3423,
+          "rmse": 30.1445,
+          "mean_bias": 0.7052,
+          "pearson": 0.653,
+          "ccc": 0.6199
+        },
+        "quantile_mapping": {
+          "n": 2172,
+          "mae": 6.4384,
+          "rmse": 23.1821,
+          "mean_bias": -5.245,
+          "pearson": 0.6171,
+          "ccc": 0.5159
+        },
+        "monthly_shrinkage": {
+          "n": 2172,
+          "mae": 8.259,
+          "rmse": 29.7801,
+          "mean_bias": 0.6011,
+          "pearson": 0.6562,
+          "ccc": 0.6247
+        }
+      }
+    }
+  },
+  "stability": {
+    "reference_noaa20": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "holdout_2023": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "holdout_2025": {
+      "ranking": [
+        "ratio",
+        "monthly_shrinkage",
+        "quantile_mapping"
+      ],
+      "same_top_method": false
+    },
+    "shrinkage_k_10": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "shrinkage_k_40": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "ratio_min_denominator_20": {
+      "ranking": [
+        "ratio",
+        "monthly_shrinkage",
+        "quantile_mapping"
+      ],
+      "same_top_method": false
+    },
+    "quantile_pooled_only": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    }
+  }
+}

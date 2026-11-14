@@ -1,0 +1,443 @@
+{
+  "method": "monthly_shrinkage",
+  "shrinkage_k": 20,
+  "formulation": "r*_m = lambda_m * r_m + (1 - lambda_m) * r_d; lambda_m = n_m / (n_m + k)",
+  "models": {
+    "NP-BANKE|Aqua": {
+      "district_ratio": 16.59273066169618,
+      "district_modis_sum": 1073.0,
+      "district_reference_sum": 17804.0,
+      "month_models": {
+        "01": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 16.5927,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        },
+        "02": {
+          "lambda": 0.1667,
+          "raw_ratio": 9.0,
+          "shrunk_ratio": 15.3273,
+          "modis_detections": 4.0,
+          "status": "fitted"
+        },
+        "03": {
+          "lambda": 0.7647,
+          "raw_ratio": 19.4,
+          "shrunk_ratio": 18.7395,
+          "modis_detections": 65.0,
+          "status": "fitted"
+        },
+        "04": {
+          "lambda": 0.9764,
+          "raw_ratio": 16.6441,
+          "shrunk_ratio": 16.6429,
+          "modis_detections": 829.0,
+          "status": "fitted"
+        },
+        "05": {
+          "lambda": 0.8883,
+          "raw_ratio": 15.7484,
+          "shrunk_ratio": 15.8428,
+          "modis_detections": 159.0,
+          "status": "fitted"
+        },
+        "06": {
+          "lambda": 0.4444,
+          "raw_ratio": 12.375,
+          "shrunk_ratio": 14.7182,
+          "modis_detections": 16.0,
+          "status": "fitted"
+        },
+        "07": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 16.5927,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        }
+      }
+    },
+    "NP-BANKE|Terra": {
+      "district_ratio": 20.774795799299884,
+      "district_modis_sum": 857.0,
+      "district_reference_sum": 17804.0,
+      "month_models": {
+        "01": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 20.7748,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        },
+        "02": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 20.7748,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        },
+        "03": {
+          "lambda": 0.7403,
+          "raw_ratio": 22.1228,
+          "shrunk_ratio": 21.7727,
+          "modis_detections": 57.0,
+          "status": "fitted"
+        },
+        "04": {
+          "lambda": 0.9709,
+          "raw_ratio": 20.6557,
+          "shrunk_ratio": 20.6592,
+          "modis_detections": 668.0,
+          "status": "fitted"
+        },
+        "05": {
+          "lambda": 0.8571,
+          "raw_ratio": 20.8667,
+          "shrunk_ratio": 20.8535,
+          "modis_detections": 120.0,
+          "status": "fitted"
+        },
+        "06": {
+          "lambda": 0.375,
+          "raw_ratio": 16.5,
+          "shrunk_ratio": 19.1717,
+          "modis_detections": 12.0,
+          "status": "fitted"
+        },
+        "07": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 20.7748,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        }
+      }
+    },
+    "NP-BARDIYA|Aqua": {
+      "district_ratio": 13.334302325581396,
+      "district_modis_sum": 1376.0,
+      "district_reference_sum": 18348.0,
+      "month_models": {
+        "01": {
+          "lambda": 0.5455,
+          "raw_ratio": 3.3333,
+          "shrunk_ratio": 7.8792,
+          "modis_detections": 24.0,
+          "status": "fitted"
+        },
+        "02": {
+          "lambda": 0.7778,
+          "raw_ratio": 4.6714,
+          "shrunk_ratio": 6.5965,
+          "modis_detections": 70.0,
+          "status": "fitted"
+        },
+        "03": {
+          "lambda": 0.8485,
+          "raw_ratio": 8.6071,
+          "shrunk_ratio": 9.3234,
+          "modis_detections": 112.0,
+          "status": "fitted"
+        },
+        "04": {
+          "lambda": 0.9781,
+          "raw_ratio": 14.4022,
+          "shrunk_ratio": 14.3789,
+          "modis_detections": 895.0,
+          "status": "fitted"
+        },
+        "05": {
+          "lambda": 0.9237,
+          "raw_ratio": 14.5041,
+          "shrunk_ratio": 14.4148,
+          "modis_detections": 242.0,
+          "status": "fitted"
+        },
+        "06": {
+          "lambda": 0.6226,
+          "raw_ratio": 17.4848,
+          "shrunk_ratio": 15.9186,
+          "modis_detections": 33.0,
+          "status": "fitted"
+        },
+        "07": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 13.3343,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        }
+      }
+    },
+    "NP-BARDIYA|Terra": {
+      "district_ratio": 18.148367952522253,
+      "district_modis_sum": 1011.0,
+      "district_reference_sum": 18348.0,
+      "month_models": {
+        "01": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 18.1484,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        },
+        "02": {
+          "lambda": 0.3939,
+          "raw_ratio": 25.1538,
+          "shrunk_ratio": 20.9081,
+          "modis_detections": 13.0,
+          "status": "fitted"
+        },
+        "03": {
+          "lambda": 0.759,
+          "raw_ratio": 15.3016,
+          "shrunk_ratio": 15.9876,
+          "modis_detections": 63.0,
+          "status": "fitted"
+        },
+        "04": {
+          "lambda": 0.9738,
+          "raw_ratio": 17.3253,
+          "shrunk_ratio": 17.3468,
+          "modis_detections": 744.0,
+          "status": "fitted"
+        },
+        "05": {
+          "lambda": 0.8953,
+          "raw_ratio": 20.5263,
+          "shrunk_ratio": 20.2773,
+          "modis_detections": 171.0,
+          "status": "fitted"
+        },
+        "06": {
+          "lambda": 0.5,
+          "raw_ratio": 28.85,
+          "shrunk_ratio": 23.4992,
+          "modis_detections": 20.0,
+          "status": "fitted"
+        },
+        "07": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 18.1484,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        }
+      }
+    },
+    "NP-CHITWAN|Aqua": {
+      "district_ratio": 9.465753424657533,
+      "district_modis_sum": 1971.0,
+      "district_reference_sum": 18657.0,
+      "month_models": {
+        "01": {
+          "lambda": 0.7938,
+          "raw_ratio": 2.6753,
+          "shrunk_ratio": 4.0754,
+          "modis_detections": 77.0,
+          "status": "fitted"
+        },
+        "02": {
+          "lambda": 0.9455,
+          "raw_ratio": 3.0317,
+          "shrunk_ratio": 3.3823,
+          "modis_detections": 347.0,
+          "status": "fitted"
+        },
+        "03": {
+          "lambda": 0.9745,
+          "raw_ratio": 7.3194,
+          "shrunk_ratio": 7.3741,
+          "modis_detections": 764.0,
+          "status": "fitted"
+        },
+        "04": {
+          "lambda": 0.9746,
+          "raw_ratio": 14.9115,
+          "shrunk_ratio": 14.7732,
+          "modis_detections": 768.0,
+          "status": "fitted"
+        },
+        "05": {
+          "lambda": 0.4286,
+          "raw_ratio": 22.2667,
+          "shrunk_ratio": 14.9519,
+          "modis_detections": 15.0,
+          "status": "fitted"
+        },
+        "06": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 9.4658,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        },
+        "07": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 9.4658,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        }
+      }
+    },
+    "NP-CHITWAN|Terra": {
+      "district_ratio": 24.776892430278885,
+      "district_modis_sum": 753.0,
+      "district_reference_sum": 18657.0,
+      "month_models": {
+        "01": {
+          "lambda": 0.1304,
+          "raw_ratio": 68.6667,
+          "shrunk_ratio": 30.5016,
+          "modis_detections": 3.0,
+          "status": "fitted"
+        },
+        "02": {
+          "lambda": 0.4595,
+          "raw_ratio": 61.8824,
+          "shrunk_ratio": 41.8253,
+          "modis_detections": 17.0,
+          "status": "fitted"
+        },
+        "03": {
+          "lambda": 0.9203,
+          "raw_ratio": 24.2078,
+          "shrunk_ratio": 24.2531,
+          "modis_detections": 231.0,
+          "status": "fitted"
+        },
+        "04": {
+          "lambda": 0.9609,
+          "raw_ratio": 23.3238,
+          "shrunk_ratio": 23.3807,
+          "modis_detections": 491.0,
+          "status": "fitted"
+        },
+        "05": {
+          "lambda": 0.3548,
+          "raw_ratio": 30.3636,
+          "shrunk_ratio": 26.7593,
+          "modis_detections": 11.0,
+          "status": "fitted"
+        },
+        "06": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 24.7769,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        },
+        "07": {
+          "lambda": 0.0,
+          "raw_ratio": null,
+          "shrunk_ratio": 24.7769,
+          "modis_detections": 0.0,
+          "status": "insufficient_evidence_pooled_ratio_used"
+        }
+      }
+    }
+  },
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-13T21:27:40Z"
+  },
+  "training_pairs": 13854,
+  "training_months": [
+    "2012-01",
+    "2012-02",
+    "2012-03",
+    "2012-04",
+    "2012-05",
+    "2012-06",
+    "2013-01",
+    "2013-02",
+    "2013-03",
+    "2013-04",
+    "2013-05",
+    "2013-06",
+    "2014-01",
+    "2014-02",
+    "2014-03",
+    "2014-04",
+    "2014-05",
+    "2014-06",
+    "2015-01",
+    "2015-02",
+    "2015-03",
+    "2015-04",
+    "2015-05",
+    "2015-06",
+    "2016-01",
+    "2016-02",
+    "2016-03",
+    "2016-04",
+    "2016-05",
+    "2016-06",
+    "2017-01",
+    "2017-02",
+    "2017-03",
+    "2017-04",
+    "2017-05",
+    "2017-06",
+    "2018-01",
+    "2018-02",
+    "2018-03",
+    "2018-04",
+    "2018-05",
+    "2018-06",
+    "2020-01",
+    "2020-02",
+    "2020-03",
+    "2020-04",
+    "2020-05",
+    "2020-06",
+    "2021-01",
+    "2021-02",
+    "2021-03",
+    "2021-04",
+    "2021-05",
+    "2021-06",
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-05",
+    "2024-06",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07"
+  ]
+}

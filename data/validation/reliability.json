@@ -1,0 +1,337 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:11Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:11Z"
+  },
+  "criteria": {
+    "reliable": {
+      "min_stratum_pairs": 30,
+      "min_ccc": 0.5,
+      "bias_ci_must_include_zero": true,
+      "note": "n >= 30 pairs, CCC >= 0.50, bias 90% CI includes 0"
+    },
+    "use_with_caution": {
+      "min_stratum_pairs": 10,
+      "min_ccc": 0.3,
+      "note": "n >= 10 pairs and CCC >= 0.30, or reliable criteria nearly met"
+    },
+    "insufficient_evidence": {
+      "note": "below caution thresholds; no harmonized claim is made"
+    }
+  },
+  "category_counts": {
+    "reliable": 2,
+    "use_with_caution": 4,
+    "insufficient_evidence": 15,
+    "unavailable": 15
+  },
+  "grid": {
+    "NP-BANKE": {
+      "01": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "ccc": null,
+          "mae": null
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "02": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 112,
+        "best_method_metrics": {
+          "ccc": null,
+          "mae": null
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "03": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 2.3258,
+          "rmse": 7.0706,
+          "mean_bias": 0.5516,
+          "pearson": 0.3652,
+          "ccc": 0.2809
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "04": {
+        "category": "reliable",
+        "validation_pairs": 120,
+        "best_method_metrics": {
+          "n": 120,
+          "mae": 41.2991,
+          "rmse": 75.2998,
+          "mean_bias": 0.8533,
+          "pearson": 0.6297,
+          "ccc": 0.5911
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "05": {
+        "category": "use_with_caution",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 8.1851,
+          "rmse": 18.0768,
+          "mean_bias": -2.3956,
+          "pearson": 0.5521,
+          "ccc": 0.4958
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "06": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 120,
+        "best_method_metrics": {
+          "n": 120,
+          "mae": 0.2875,
+          "rmse": 1.5391,
+          "mean_bias": -0.0458,
+          "pearson": 0.2121,
+          "ccc": 0.1742
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "07": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 0
+      },
+      "08": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "09": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "10": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "11": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "12": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      }
+    },
+    "NP-BARDIYA": {
+      "01": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 0.129,
+          "rmse": 0.6734,
+          "mean_bias": 0.0,
+          "pearson": 0.218,
+          "ccc": 0.1725
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "02": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 112,
+        "best_method_metrics": {
+          "n": 112,
+          "mae": 0.4287,
+          "rmse": 1.1185,
+          "mean_bias": -0.1963,
+          "pearson": 0.0025,
+          "ccc": 0.0024
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "03": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 1.1093,
+          "rmse": 2.5885,
+          "mean_bias": -0.1326,
+          "pearson": 0.2561,
+          "ccc": 0.1892
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "04": {
+        "category": "reliable",
+        "validation_pairs": 120,
+        "best_method_metrics": {
+          "n": 120,
+          "mae": 35.7101,
+          "rmse": 58.77,
+          "mean_bias": -9.3167,
+          "pearson": 0.6118,
+          "ccc": 0.6046
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "05": {
+        "category": "use_with_caution",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 30.1006,
+          "rmse": 61.8533,
+          "mean_bias": 11.6108,
+          "pearson": 0.6173,
+          "ccc": 0.4989
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "06": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 120,
+        "best_method_metrics": {
+          "n": 120,
+          "mae": 0.7708,
+          "rmse": 4.7976,
+          "mean_bias": 0.3875,
+          "pearson": 0.0274,
+          "ccc": 0.0068
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "07": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 0
+      },
+      "08": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "09": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "10": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "11": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "12": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      }
+    },
+    "NP-CHITWAN": {
+      "01": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 0.5806,
+          "rmse": 1.344,
+          "mean_bias": -0.3387,
+          "pearson": 0.1928,
+          "ccc": 0.1778
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "02": {
+        "category": "use_with_caution",
+        "validation_pairs": 112,
+        "best_method_metrics": {
+          "n": 112,
+          "mae": 2.5321,
+          "rmse": 5.9944,
+          "mean_bias": 0.062,
+          "pearson": 0.4543,
+          "ccc": 0.3225
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "03": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 5.8621,
+          "rmse": 10.416,
+          "mean_bias": -1.872,
+          "pearson": 0.3075,
+          "ccc": 0.2997
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "04": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 120,
+        "best_method_metrics": {
+          "n": 120,
+          "mae": 4.2414,
+          "rmse": 11.0175,
+          "mean_bias": -0.0919,
+          "pearson": 0.0877,
+          "ccc": 0.0736
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "05": {
+        "category": "use_with_caution",
+        "validation_pairs": 124,
+        "best_method_metrics": {
+          "n": 124,
+          "mae": 6.2808,
+          "rmse": 19.0526,
+          "mean_bias": 0.4482,
+          "pearson": 0.4263,
+          "ccc": 0.3588
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "06": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 120,
+        "best_method_metrics": {
+          "ccc": null,
+          "mae": null
+        },
+        "best_method_ccc_source": "independent recomputation, best of three methods"
+      },
+      "07": {
+        "category": "insufficient_evidence",
+        "validation_pairs": 0
+      },
+      "08": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "09": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "10": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "11": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      },
+      "12": {
+        "category": "unavailable",
+        "validation_pairs": 0
+      }
+    }
+  },
+  "weak_years_from_temporal_audit": [],
+  "note": "Categories express confidence in the VIIRS-equivalent estimate for a stratum, NOT certainty about actual fire activity. Insufficient evidence is never promoted to a value."
+}

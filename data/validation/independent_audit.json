@@ -1,0 +1,69 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:09Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:09Z"
+  },
+  "integrity_checks": {
+    "train_validation_overlap": 0,
+    "training_dates_inside_purge_zone": 0,
+    "validation_years_exact": true,
+    "court_sample_size_matches": true,
+    "validation_pairs_have_observation_dates": true,
+    "recorded_zero_counts": {
+      "modis_zero_days": 1908,
+      "reference_zero_days": 1404,
+      "note": "zeros are recorded observations; they are kept, never filled"
+    },
+    "sensor_identity": {
+      "ratio": {
+        "all_expected_scopes_present": true,
+        "missing_scopes": []
+      },
+      "quantile_mapping": {
+        "all_expected_scopes_present": true,
+        "missing_scopes": []
+      },
+      "monthly_shrinkage": {
+        "all_expected_scopes_present": true,
+        "missing_scopes": []
+      }
+    },
+    "metric_discrepancies": []
+  },
+  "recalculated_metrics": {
+    "ratio": {
+      "n": 2172,
+      "mae": 8.3423,
+      "rmse": 30.1445,
+      "mean_bias": 0.7052,
+      "pearson": 0.653,
+      "ccc": 0.6199
+    },
+    "quantile_mapping": {
+      "n": 2172,
+      "mae": 6.4384,
+      "rmse": 23.1821,
+      "mean_bias": -5.245,
+      "pearson": 0.6171,
+      "ccc": 0.5159
+    },
+    "monthly_shrinkage": {
+      "n": 2172,
+      "mae": 8.259,
+      "rmse": 29.7801,
+      "mean_bias": 0.6011,
+      "pearson": 0.6562,
+      "ccc": 0.6247
+    }
+  },
+  "verdict": {
+    "separation_ok": true,
+    "metrics_match": true,
+    "identity_ok": true
+  }
+}

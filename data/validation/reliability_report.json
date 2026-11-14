@@ -1,0 +1,212 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:11Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:11Z"
+  },
+  "independent_verification": {
+    "passed": true,
+    "details": {
+      "separation_ok": true,
+      "metrics_match": true,
+      "identity_ok": true
+    }
+  },
+  "court_verdict_unchanged": {
+    "reference_noaa20": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "holdout_2023": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "holdout_2025": {
+      "ranking": [
+        "ratio",
+        "monthly_shrinkage",
+        "quantile_mapping"
+      ],
+      "same_top_method": false
+    },
+    "shrinkage_k_10": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "shrinkage_k_40": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    },
+    "ratio_min_denominator_20": {
+      "ranking": [
+        "ratio",
+        "monthly_shrinkage",
+        "quantile_mapping"
+      ],
+      "same_top_method": false
+    },
+    "quantile_pooled_only": {
+      "ranking": [
+        "monthly_shrinkage",
+        "ratio",
+        "quantile_mapping"
+      ],
+      "same_top_method": true
+    }
+  },
+  "temporal_robustness": {
+    "weak_years": [],
+    "fold_summary": {
+      "2012": {
+        "ratio": 0.6572,
+        "quantile_mapping": 0.5364,
+        "monthly_shrinkage": 0.6572
+      },
+      "2013": {
+        "ratio": 0.6313,
+        "quantile_mapping": 0.434,
+        "monthly_shrinkage": 0.6312
+      },
+      "2014": {
+        "ratio": 0.603,
+        "quantile_mapping": 0.3802,
+        "monthly_shrinkage": 0.6027
+      },
+      "2015": {
+        "ratio": 0.4025,
+        "quantile_mapping": 0.2652,
+        "monthly_shrinkage": 0.4463
+      },
+      "2016": {
+        "ratio": 0.6984,
+        "quantile_mapping": 0.5975,
+        "monthly_shrinkage": 0.6991
+      },
+      "2017": {
+        "ratio": 0.709,
+        "quantile_mapping": 0.4818,
+        "monthly_shrinkage": 0.7099
+      },
+      "2018": {
+        "ratio": 0.5802,
+        "quantile_mapping": 0.4027,
+        "monthly_shrinkage": 0.5818
+      },
+      "2019": {
+        "ratio": 0.5853,
+        "quantile_mapping": 0.5499,
+        "monthly_shrinkage": 0.591
+      },
+      "2020": {
+        "ratio": 0.3473,
+        "quantile_mapping": 0.3002,
+        "monthly_shrinkage": 0.3694
+      },
+      "2021": {
+        "ratio": 0.5492,
+        "quantile_mapping": 0.5653,
+        "monthly_shrinkage": 0.5676
+      },
+      "2022": {
+        "ratio": 0.7024,
+        "quantile_mapping": 0.4302,
+        "monthly_shrinkage": 0.7033
+      },
+      "2023": {
+        "ratio": 0.5736,
+        "quantile_mapping": 0.3905,
+        "monthly_shrinkage": 0.5774
+      },
+      "2024": {
+        "ratio": 0.6027,
+        "quantile_mapping": 0.4811,
+        "monthly_shrinkage": 0.6062
+      },
+      "2025": {
+        "ratio": 0.634,
+        "quantile_mapping": 0.4929,
+        "monthly_shrinkage": 0.6331
+      },
+      "2026": {
+        "ratio": 0.5649,
+        "quantile_mapping": 0.429,
+        "monthly_shrinkage": 0.5669
+      }
+    }
+  },
+  "spatial_robustness": {
+    "NP-BANKE": {
+      "validation_pairs": 724,
+      "best_ccc": 0.6189
+    },
+    "NP-BARDIYA": {
+      "validation_pairs": 724,
+      "best_ccc": 0.6316
+    },
+    "NP-CHITWAN": {
+      "validation_pairs": 724,
+      "best_ccc": 0.3368
+    }
+  },
+  "reliability_categories": {
+    "reliable": 2,
+    "use_with_caution": 4,
+    "insufficient_evidence": 15,
+    "unavailable": 15
+  },
+  "reliability_criteria": {
+    "reliable": {
+      "min_stratum_pairs": 30,
+      "min_ccc": 0.5,
+      "bias_ci_must_include_zero": true,
+      "note": "n >= 30 pairs, CCC >= 0.50, bias 90% CI includes 0"
+    },
+    "use_with_caution": {
+      "min_stratum_pairs": 10,
+      "min_ccc": 0.3,
+      "note": "n >= 10 pairs and CCC >= 0.30, or reliable criteria nearly met"
+    },
+    "insufficient_evidence": {
+      "note": "below caution thresholds; no harmonized claim is made"
+    }
+  },
+  "failure_modes_all_fail_safe": true,
+  "conditions_for_use": [
+    "Use harmonized values only as VIIRS-equivalent estimates, never as ground truth.",
+    "Do not use strata classified as insufficient_evidence or unavailable.",
+    "Do not generalize to months outside the acquired record (Aug-Dec).",
+    "Treat Chitwan results with caution; district instability is documented.",
+    "Do not present any method as the validated winner; the court verdict is inconclusive.",
+    "Report uncertainty intervals alongside any harmonized value."
+  ],
+  "conditions_requiring_reanalysis": [
+    "New SP coverage outside Jan-Jul windows becomes available.",
+    "A sensor product version change comparable to 6.03 -> 61.03 occurs.",
+    "District boundaries are revised by OCHA."
+  ],
+  "claims_audit_summary": {
+    "supported": 1,
+    "supported_with_qualification": 1,
+    "must_not_be_made": 8
+  }
+}

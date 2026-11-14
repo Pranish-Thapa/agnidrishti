@@ -1,0 +1,80 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:27:41Z",
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-13T21:27:41Z"
+  },
+  "sample_sizes": {
+    "total_pairs": 16386,
+    "training_pairs": 13854,
+    "validation_pairs": 2172,
+    "purge_pairs": 360,
+    "purge_days": 30,
+    "validation_years": [
+      2019,
+      2022
+    ],
+    "reconciliation_note": "total = training + validation + purge_pairs. Purge pairs are dates inside the 30-day leakage-protection gap after each held-out year (2020-01-01..30, 2023-01-01..30 here); they are excluded from both training and validation by design."
+  },
+  "court_metrics": {
+    "ratio": {
+      "n": 2172,
+      "mae": 8.3423,
+      "rmse": 30.1445,
+      "log_rmse": 1.0274,
+      "mean_bias": 0.7052,
+      "pearson": 0.653,
+      "ccc": 0.6199
+    },
+    "quantile_mapping": {
+      "n": 2172,
+      "mae": 6.4384,
+      "rmse": 23.1821,
+      "log_rmse": 1.0789,
+      "mean_bias": -5.245,
+      "pearson": 0.6171,
+      "ccc": 0.5159
+    },
+    "monthly_shrinkage": {
+      "n": 2172,
+      "mae": 8.259,
+      "rmse": 29.7801,
+      "log_rmse": 1.0288,
+      "mean_bias": 0.6011,
+      "pearson": 0.6562,
+      "ccc": 0.6247
+    }
+  },
+  "decision": {
+    "outcome": "inconclusive",
+    "note": "Top methods are statistically or practically indistinguishable, or performance is unstable. No winner is declared; the evidence does not support forcing one.",
+    "evidence": {
+      "ccc_decisive": false,
+      "mae_decisive": false,
+      "year_ccc_spread": 0.1089,
+      "district_ccc_spread": 0.29480000000000006,
+      "unstable": true
+    }
+  },
+  "raw_scale_gap": {
+    "note": "Mean raw MODIS vs VIIRS reference counts on identical district-days",
+    "modis_terra_mean": 0.4899,
+    "modis_aqua_mean": 0.5847,
+    "reference_mean": 8.2716
+  }
+}

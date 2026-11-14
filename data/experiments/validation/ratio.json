@@ -1,0 +1,286 @@
+{
+  "metrics": {
+    "n": 2172,
+    "mae": 8.3423,
+    "rmse": 30.1445,
+    "log_rmse": 1.0274,
+    "mean_bias": 0.7052,
+    "pearson": 0.653,
+    "ccc": 0.6199
+  },
+  "error_distribution": {
+    "mean": 0.7052,
+    "std": 30.1362,
+    "p05": -19.0,
+    "p25": -1.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "p95": 20.6536,
+    "max_abs": 359.7036
+  },
+  "uncertainty": {
+    "mae": {
+      "point": 8.3423,
+      "ci_lower": 3.2591,
+      "ci_upper": 14.3844,
+      "iterations": 1000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2026
+    },
+    "mean_bias": {
+      "point": 0.7052,
+      "ci_lower": -1.2895,
+      "ci_upper": 3.3088,
+      "iterations": 1000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2027
+    },
+    "ccc": {
+      "point": 0.6199,
+      "ci_lower": 0.5029,
+      "ci_upper": 0.6924,
+      "iterations": 1000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2028
+    }
+  },
+  "by_year": {
+    "2019": {
+      "n": 1086,
+      "mae": 11.8635,
+      "rmse": 38.3085,
+      "log_rmse": 1.1183,
+      "mean_bias": 2.7778,
+      "pearson": 0.6458,
+      "ccc": 0.5881
+    },
+    "2022": {
+      "n": 1086,
+      "mae": 4.8211,
+      "rmse": 18.7041,
+      "log_rmse": 0.9277,
+      "mean_bias": -1.3675,
+      "pearson": 0.7032,
+      "ccc": 0.702
+    }
+  },
+  "by_month": {
+    "2019-01": {
+      "n": 186,
+      "mae": 0.4665,
+      "rmse": 1.1812,
+      "log_rmse": 0.5107,
+      "mean_bias": -0.2217,
+      "pearson": 0.2137,
+      "ccc": 0.2065
+    },
+    "2019-02": {
+      "n": 168,
+      "mae": 1.033,
+      "rmse": 4.4438,
+      "log_rmse": 0.5625,
+      "mean_bias": 0.0457,
+      "pearson": 0.6214,
+      "ccc": 0.4135
+    },
+    "2019-03": {
+      "n": 186,
+      "mae": 4.389,
+      "rmse": 9.459,
+      "log_rmse": 1.2283,
+      "mean_bias": -0.62,
+      "pearson": 0.2598,
+      "ccc": 0.2548
+    },
+    "2019-04": {
+      "n": 180,
+      "mae": 29.8939,
+      "rmse": 64.5271,
+      "log_rmse": 1.5226,
+      "mean_bias": 1.4442,
+      "pearson": 0.6474,
+      "ccc": 0.6224
+    },
+    "2019-05": {
+      "n": 186,
+      "mae": 33.8234,
+      "rmse": 66.3823,
+      "log_rmse": 1.6557,
+      "mean_bias": 15.2719,
+      "pearson": 0.5538,
+      "ccc": 0.3963
+    },
+    "2019-06": {
+      "n": 180,
+      "mae": 0.7503,
+      "rmse": 4.9577,
+      "log_rmse": 0.5195,
+      "mean_bias": 0.3614,
+      "pearson": 0.0589,
+      "ccc": 0.0178
+    },
+    "2022-01": {
+      "n": 186,
+      "mae": 0.0825,
+      "rmse": 0.5596,
+      "log_rmse": 0.2122,
+      "mean_bias": 0.0072,
+      "pearson": 0.0931,
+      "ccc": 0.0724
+    },
+    "2022-02": {
+      "n": 168,
+      "mae": 1.1253,
+      "rmse": 5.0393,
+      "log_rmse": 0.6877,
+      "mean_bias": 0.0201,
+      "pearson": 0.1368,
+      "ccc": 0.082
+    },
+    "2022-03": {
+      "n": 186,
+      "mae": 1.8349,
+      "rmse": 4.6803,
+      "log_rmse": 0.8382,
+      "mean_bias": -0.323,
+      "pearson": 0.5392,
+      "ccc": 0.5064
+    },
+    "2022-04": {
+      "n": 180,
+      "mae": 24.283,
+      "rmse": 44.7295,
+      "log_rmse": 1.8644,
+      "mean_bias": -7.1379,
+      "pearson": 0.6586,
+      "ccc": 0.651
+    },
+    "2022-05": {
+      "n": 186,
+      "mae": 1.6723,
+      "rmse": 7.8243,
+      "log_rmse": 0.6804,
+      "mean_bias": -0.736,
+      "pearson": 0.3767,
+      "ccc": 0.3424
+    },
+    "2022-06": {
+      "n": 180,
+      "mae": 0.0444,
+      "rmse": 0.2582,
+      "log_rmse": 0.1552,
+      "mean_bias": -0.0444,
+      "pearson": null,
+      "ccc": null
+    }
+  },
+  "by_district": {
+    "NP-BANKE": {
+      "n": 724,
+      "mae": 9.9467,
+      "rmse": 36.3077,
+      "log_rmse": 1.0379,
+      "mean_bias": 1.5796,
+      "pearson": 0.6647,
+      "ccc": 0.6189
+    },
+    "NP-BARDIYA": {
+      "n": 724,
+      "mae": 11.5576,
+      "rmse": 35.3833,
+      "log_rmse": 1.0559,
+      "mean_bias": 0.5473,
+      "pearson": 0.6505,
+      "ccc": 0.6293
+    },
+    "NP-CHITWAN": {
+      "n": 724,
+      "mae": 3.5225,
+      "rmse": 12.4837,
+      "log_rmse": 0.9871,
+      "mean_bias": -0.0114,
+      "pearson": 0.3631,
+      "ccc": 0.293
+    }
+  },
+  "by_modis_platform": {
+    "Aqua": {
+      "n": 1086,
+      "mae": 7.5417,
+      "rmse": 24.6267,
+      "log_rmse": 1.0187,
+      "mean_bias": -0.2675,
+      "pearson": 0.6843,
+      "ccc": 0.6784
+    },
+    "Terra": {
+      "n": 1086,
+      "mae": 9.1428,
+      "rmse": 34.798,
+      "log_rmse": 1.0361,
+      "mean_bias": 1.6779,
+      "pearson": 0.646,
+      "ccc": 0.5817
+    }
+  },
+  "by_activity_band": {
+    "high": {
+      "n": 278,
+      "mae": 55.0151,
+      "rmse": 82.8576,
+      "log_rmse": 2.1616,
+      "mean_bias": 3.977,
+      "pearson": 0.4786,
+      "ccc": 0.4305
+    },
+    "low": {
+      "n": 284,
+      "mae": 2.825,
+      "rmse": 7.4445,
+      "log_rmse": 1.0128,
+      "mean_bias": 0.3321,
+      "pearson": 0.0509,
+      "ccc": 0.0065
+    },
+    "moderate": {
+      "n": 206,
+      "mae": 8.8535,
+      "rmse": 14.4333,
+      "log_rmse": 1.731,
+      "mean_bias": 0.6437,
+      "pearson": 0.0491,
+      "ccc": 0.0151
+    },
+    "zero_reference": {
+      "n": 1404,
+      "mae": 0.1418,
+      "rmse": 2.1424,
+      "log_rmse": 0.2463,
+      "mean_bias": 0.1418,
+      "pearson": null,
+      "ccc": null
+    }
+  },
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-13T21:27:41Z"
+  },
+  "validation_pairs": 2172
+}

@@ -1,0 +1,48 @@
+{
+  "config_version": "1.0.0",
+  "reference_sensor": "viirs_snpp",
+  "reference_note": "Suomi-NPP has the longest overlapping record (2012-01 onward). VIIRS is the reference scale, not ground truth.",
+  "modis_platforms": [
+    "Terra",
+    "Aqua"
+  ],
+  "comparison_unit": "district-day counts where both MODIS and VIIRS reference files were delivered (both observing); recorded zeros kept, missing files excluded",
+  "grid_degrees": 0.1,
+  "bbox": "80,27,86,29.5",
+  "districts": [
+    "NP-BANKE",
+    "NP-BARDIYA",
+    "NP-CHITWAN"
+  ],
+  "validation_years": [
+    2019,
+    2022
+  ],
+  "purge_days": 30,
+  "ratio_min_month_denominator": 5,
+  "ratio_min_district_denominator": 5,
+  "quantile_min_month_n": 30,
+  "shrinkage_k": 20,
+  "bootstrap_iterations": 1000,
+  "bootstrap_seed": 2026,
+  "bootstrap_confidence_level": 0.9,
+  "acquisition_note": "Historical record covers Jan-Jun 2012-2026 plus July 2026 only; Aug-Dec is not part of the acquired record and no result may be generalized to those months.",
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-13T21:27:39Z"
+  }
+}

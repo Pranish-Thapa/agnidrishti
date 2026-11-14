@@ -1,0 +1,25 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T18:06:20Z",
+  "provider": "nrt",
+  "product": "NRT",
+  "slug": "nrt",
+  "years": [
+    "2026"
+  ],
+  "districts": [
+    "NP-BANKE",
+    "NP-BARDIYA",
+    "NP-CHITWAN"
+  ],
+  "sensors": [
+    "modis",
+    "viirs_snpp",
+    "viirs_noaa20",
+    "viirs_noaa21"
+  ],
+  "quality_report": "data/processed/nrt/quality_report.json",
+  "sensor_coverage": "data/processed/nrt/sensor_coverage.json",
+  "public_index": "public/data/nrt/index.json",
+  "manifest_version": 1
+}

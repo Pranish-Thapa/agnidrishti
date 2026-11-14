@@ -1,0 +1,579 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:27:41Z",
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-13T21:27:41Z"
+  },
+  "design_note": "Methods are fitted exclusively on training years; validation years are withheld entirely (lights-out). This does not claim that any specific historical event was correctly reconstructed.",
+  "by_method": {
+    "ratio": {
+      "2019": {
+        "overall": {
+          "n": 1086,
+          "mae": 11.8635,
+          "rmse": 38.3085,
+          "log_rmse": 1.1183,
+          "mean_bias": 2.7778,
+          "pearson": 0.6458,
+          "ccc": 0.5881
+        },
+        "monthly_profile": [
+          {
+            "month": "2019-01",
+            "reconstructed_total": 32.76,
+            "reference_total": 74,
+            "relative_bias": -0.5573,
+            "days": 186
+          },
+          {
+            "month": "2019-02",
+            "reconstructed_total": 137.67,
+            "reference_total": 130,
+            "relative_bias": 0.059,
+            "days": 168
+          },
+          {
+            "month": "2019-03",
+            "reconstructed_total": 540.68,
+            "reference_total": 656,
+            "relative_bias": -0.1758,
+            "days": 186
+          },
+          {
+            "month": "2019-04",
+            "reconstructed_total": 6121.95,
+            "reference_total": 5862,
+            "relative_bias": 0.0443,
+            "days": 180
+          },
+          {
+            "month": "2019-05",
+            "reconstructed_total": 7722.57,
+            "reference_total": 4882,
+            "relative_bias": 0.5818,
+            "days": 186
+          },
+          {
+            "month": "2019-06",
+            "reconstructed_total": 103.05,
+            "reference_total": 38,
+            "relative_bias": 1.7118,
+            "days": 180
+          }
+        ],
+        "profile_correlation": 0.9656936063606177,
+        "variation_ratio_pred_over_ref": 1.3073,
+        "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
+      },
+      "2022": {
+        "overall": {
+          "n": 1086,
+          "mae": 4.8211,
+          "rmse": 18.7041,
+          "log_rmse": 0.9277,
+          "mean_bias": -1.3675,
+          "pearson": 0.7032,
+          "ccc": 0.702
+        },
+        "monthly_profile": [
+          {
+            "month": "2022-01",
+            "reconstructed_total": 9.34,
+            "reference_total": 8,
+            "relative_bias": 0.1677,
+            "days": 186
+          },
+          {
+            "month": "2022-02",
+            "reconstructed_total": 121.37,
+            "reference_total": 118,
+            "relative_bias": 0.0286,
+            "days": 168
+          },
+          {
+            "month": "2022-03",
+            "reconstructed_total": 237.92,
+            "reference_total": 298,
+            "relative_bias": -0.2016,
+            "days": 186
+          },
+          {
+            "month": "2022-04",
+            "reconstructed_total": 4307.18,
+            "reference_total": 5592,
+            "relative_bias": -0.2298,
+            "days": 180
+          },
+          {
+            "month": "2022-05",
+            "reconstructed_total": 163.11,
+            "reference_total": 300,
+            "relative_bias": -0.4563,
+            "days": 186
+          },
+          {
+            "month": "2022-06",
+            "reconstructed_total": 0.0,
+            "reference_total": 8,
+            "relative_bias": -1.0,
+            "days": 180
+          }
+        ],
+        "profile_correlation": 0.9998141996687666,
+        "variation_ratio_pred_over_ref": 0.7712,
+        "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
+      }
+    },
+    "quantile_mapping": {
+      "2019": {
+        "overall": {
+          "n": 1086,
+          "mae": 8.213,
+          "rmse": 26.2774,
+          "log_rmse": 1.18,
+          "mean_bias": -6.1447,
+          "pearson": 0.6159,
+          "ccc": 0.5452
+        },
+        "monthly_profile": [
+          {
+            "month": "2019-01",
+            "reconstructed_total": 24.0,
+            "reference_total": 74,
+            "relative_bias": -0.6757,
+            "days": 186
+          },
+          {
+            "month": "2019-02",
+            "reconstructed_total": 129.68,
+            "reference_total": 130,
+            "relative_bias": -0.0025,
+            "days": 168
+          },
+          {
+            "month": "2019-03",
+            "reconstructed_total": 139.85,
+            "reference_total": 656,
+            "relative_bias": -0.7868,
+            "days": 186
+          },
+          {
+            "month": "2019-04",
+            "reconstructed_total": 2301.22,
+            "reference_total": 5862,
+            "relative_bias": -0.6074,
+            "days": 180
+          },
+          {
+            "month": "2019-05",
+            "reconstructed_total": 2367.14,
+            "reference_total": 4882,
+            "relative_bias": -0.5151,
+            "days": 186
+          },
+          {
+            "month": "2019-06",
+            "reconstructed_total": 7.0,
+            "reference_total": 38,
+            "relative_bias": -0.8158,
+            "days": 180
+          }
+        ],
+        "profile_correlation": 0.9892767190589723,
+        "variation_ratio_pred_over_ref": 0.4349,
+        "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
+      },
+      "2022": {
+        "overall": {
+          "n": 1086,
+          "mae": 4.6637,
+          "rmse": 19.6041,
+          "log_rmse": 0.9672,
+          "mean_bias": -4.3453,
+          "pearson": 0.6612,
+          "ccc": 0.4405
+        },
+        "monthly_profile": [
+          {
+            "month": "2022-01",
+            "reconstructed_total": 7.0,
+            "reference_total": 8,
+            "relative_bias": -0.125,
+            "days": 186
+          },
+          {
+            "month": "2022-02",
+            "reconstructed_total": 50.0,
+            "reference_total": 118,
+            "relative_bias": -0.5763,
+            "days": 168
+          },
+          {
+            "month": "2022-03",
+            "reconstructed_total": 91.0,
+            "reference_total": 298,
+            "relative_bias": -0.6946,
+            "days": 186
+          },
+          {
+            "month": "2022-04",
+            "reconstructed_total": 1434.04,
+            "reference_total": 5592,
+            "relative_bias": -0.7436,
+            "days": 180
+          },
+          {
+            "month": "2022-05",
+            "reconstructed_total": 23.0,
+            "reference_total": 300,
+            "relative_bias": -0.9233,
+            "days": 186
+          },
+          {
+            "month": "2022-06",
+            "reconstructed_total": 0.0,
+            "reference_total": 8,
+            "relative_bias": -1.0,
+            "days": 180
+          }
+        ],
+        "profile_correlation": 0.998934270491245,
+        "variation_ratio_pred_over_ref": 0.257,
+        "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
+      }
+    },
+    "monthly_shrinkage": {
+      "2019": {
+        "overall": {
+          "n": 1086,
+          "mae": 11.6985,
+          "rmse": 37.755,
+          "log_rmse": 1.1185,
+          "mean_bias": 2.5687,
+          "pearson": 0.6494,
+          "ccc": 0.594
+        },
+        "monthly_profile": [
+          {
+            "month": "2019-01",
+            "reconstructed_total": 52.71,
+            "reference_total": 74,
+            "relative_bias": -0.2877,
+            "days": 186
+          },
+          {
+            "month": "2019-02",
+            "reconstructed_total": 126.38,
+            "reference_total": 130,
+            "relative_bias": -0.0278,
+            "days": 168
+          },
+          {
+            "month": "2019-03",
+            "reconstructed_total": 542.91,
+            "reference_total": 656,
+            "relative_bias": -0.1724,
+            "days": 186
+          },
+          {
+            "month": "2019-04",
+            "reconstructed_total": 6121.27,
+            "reference_total": 5862,
+            "relative_bias": 0.0442,
+            "days": 180
+          },
+          {
+            "month": "2019-05",
+            "reconstructed_total": 7498.7,
+            "reference_total": 4882,
+            "relative_bias": 0.536,
+            "days": 186
+          },
+          {
+            "month": "2019-06",
+            "reconstructed_total": 89.67,
+            "reference_total": 38,
+            "relative_bias": 1.3597,
+            "days": 180
+          }
+        ],
+        "profile_correlation": 0.9702002353747964,
+        "variation_ratio_pred_over_ref": 1.2824,
+        "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
+      },
+      "2022": {
+        "overall": {
+          "n": 1086,
+          "mae": 4.8195,
+          "rmse": 18.662,
+          "log_rmse": 0.9306,
+          "mean_bias": -1.3665,
+          "pearson": 0.7041,
+          "ccc": 0.7029
+        },
+        "monthly_profile": [
+          {
+            "month": "2022-01",
+            "reconstructed_total": 19.83,
+            "reference_total": 8,
+            "relative_bias": 1.4792,
+            "days": 186
+          },
+          {
+            "month": "2022-02",
+            "reconstructed_total": 112.35,
+            "reference_total": 118,
+            "relative_bias": -0.0479,
+            "days": 168
+          },
+          {
+            "month": "2022-03",
+            "reconstructed_total": 239.7,
+            "reference_total": 298,
+            "relative_bias": -0.1956,
+            "days": 186
+          },
+          {
+            "month": "2022-04",
+            "reconstructed_total": 4306.33,
+            "reference_total": 5592,
+            "relative_bias": -0.2299,
+            "days": 180
+          },
+          {
+            "month": "2022-05",
+            "reconstructed_total": 161.74,
+            "reference_total": 300,
+            "relative_bias": -0.4609,
+            "days": 186
+          },
+          {
+            "month": "2022-06",
+            "reconstructed_total": 0.0,
+            "reference_total": 8,
+            "relative_bias": -1.0,
+            "days": 180
+          }
+        ],
+        "profile_correlation": 0.9998157793931997,
+        "variation_ratio_pred_over_ref": 0.7709,
+        "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
+      }
+    }
+  },
+  "error_vs_coverage": {
+    "ratio": {
+      "by_month": [
+        {
+          "month": "2019-01",
+          "mean_abs_error": 0.4665,
+          "days": 186
+        },
+        {
+          "month": "2019-02",
+          "mean_abs_error": 1.033,
+          "days": 168
+        },
+        {
+          "month": "2019-03",
+          "mean_abs_error": 4.389,
+          "days": 186
+        },
+        {
+          "month": "2019-04",
+          "mean_abs_error": 29.8939,
+          "days": 180
+        },
+        {
+          "month": "2019-05",
+          "mean_abs_error": 33.8234,
+          "days": 186
+        },
+        {
+          "month": "2019-06",
+          "mean_abs_error": 0.7503,
+          "days": 180
+        },
+        {
+          "month": "2022-01",
+          "mean_abs_error": 0.0825,
+          "days": 186
+        },
+        {
+          "month": "2022-02",
+          "mean_abs_error": 1.1253,
+          "days": 168
+        },
+        {
+          "month": "2022-03",
+          "mean_abs_error": 1.8349,
+          "days": 186
+        },
+        {
+          "month": "2022-04",
+          "mean_abs_error": 24.283,
+          "days": 180
+        },
+        {
+          "month": "2022-05",
+          "mean_abs_error": 1.6723,
+          "days": 186
+        },
+        {
+          "month": "2022-06",
+          "mean_abs_error": 0.0444,
+          "days": 180
+        }
+      ],
+      "weak_coverage_mean_abs_error": null,
+      "strong_coverage_mean_abs_error": 8.2832
+    },
+    "quantile_mapping": {
+      "by_month": [
+        {
+          "month": "2019-01",
+          "mean_abs_error": 0.4301,
+          "days": 186
+        },
+        {
+          "month": "2019-02",
+          "mean_abs_error": 1.129,
+          "days": 168
+        },
+        {
+          "month": "2019-03",
+          "mean_abs_error": 3.4723,
+          "days": 186
+        },
+        {
+          "month": "2019-04",
+          "mean_abs_error": 22.8703,
+          "days": 180
+        },
+        {
+          "month": "2019-05",
+          "mean_abs_error": 20.6781,
+          "days": 186
+        },
+        {
+          "month": "2019-06",
+          "mean_abs_error": 0.2278,
+          "days": 180
+        },
+        {
+          "month": "2022-01",
+          "mean_abs_error": 0.0699,
+          "days": 186
+        },
+        {
+          "month": "2022-02",
+          "mean_abs_error": 0.7024,
+          "days": 168
+        },
+        {
+          "month": "2022-03",
+          "mean_abs_error": 1.4355,
+          "days": 186
+        },
+        {
+          "month": "2022-04",
+          "mean_abs_error": 24.2545,
+          "days": 180
+        },
+        {
+          "month": "2022-05",
+          "mean_abs_error": 1.5753,
+          "days": 186
+        },
+        {
+          "month": "2022-06",
+          "mean_abs_error": 0.0444,
+          "days": 180
+        }
+      ],
+      "weak_coverage_mean_abs_error": null,
+      "strong_coverage_mean_abs_error": 6.4075
+    },
+    "monthly_shrinkage": {
+      "by_month": [
+        {
+          "month": "2019-01",
+          "mean_abs_error": 0.5737,
+          "days": 186
+        },
+        {
+          "month": "2019-02",
+          "mean_abs_error": 0.9575,
+          "days": 168
+        },
+        {
+          "month": "2019-03",
+          "mean_abs_error": 4.3987,
+          "days": 186
+        },
+        {
+          "month": "2019-04",
+          "mean_abs_error": 29.8974,
+          "days": 180
+        },
+        {
+          "month": "2019-05",
+          "mean_abs_error": 32.8797,
+          "days": 186
+        },
+        {
+          "month": "2019-06",
+          "mean_abs_error": 0.6759,
+          "days": 180
+        },
+        {
+          "month": "2022-01",
+          "mean_abs_error": 0.1389,
+          "days": 186
+        },
+        {
+          "month": "2022-02",
+          "mean_abs_error": 1.0508,
+          "days": 168
+        },
+        {
+          "month": "2022-03",
+          "mean_abs_error": 1.8438,
+          "days": 186
+        },
+        {
+          "month": "2022-04",
+          "mean_abs_error": 24.2795,
+          "days": 180
+        },
+        {
+          "month": "2022-05",
+          "mean_abs_error": 1.6686,
+          "days": 186
+        },
+        {
+          "month": "2022-06",
+          "mean_abs_error": 0.0444,
+          "days": 180
+        }
+      ],
+      "weak_coverage_mean_abs_error": null,
+      "strong_coverage_mean_abs_error": 8.2007
+    }
+  }
+}

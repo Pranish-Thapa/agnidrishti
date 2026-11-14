@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    /* ---------------------------------------------------------------------
+     * Raw palette — keep in sync with src/lib/palette.ts
+     * ------------------------------------------------------------------- */
+    --ink: #0a1211;
+    --ink-950: #0a1211;
+    --ink-900: #0d1716;
+    --ink-850: #111d1b;
+    --ink-800: #152321;
+    --ink-700: #1b2c29;
+    --ink-600: #243734;
+    --forest-deep: #0f1e1d;
+    --forest: #172b2b;
+    --forest-muted: #34483d;
+    --forest-soft: #3f5648;
+    --terracotta: #a65d3f;
+    --terracotta-soft: #bc7150;
+    --terracotta-deep: #84462e;
+    --amber: #d28a4c;
+    --amber-soft: #e3a56c;
+    --amber-deep: #b06f3a;
+    --sand: #e8d8bd;
+    --ivory: #f2e8d8;
+    --muted-text: #b9b2a5;
+    --ash-light: #d3ccbd;
+    --ash-dark: #938e83;
+
+    /* Channel triplets for translucent layers, gradients and shadows. */
+    --ink-rgb: 10 18 17;
+    --ink-950-rgb: 10 18 17;
+    --ink-900-rgb: 13 23 22;
+    --ink-850-rgb: 17 29 27;
+    --forest-deep-rgb: 15 30 29;
+    --forest-rgb: 23 43 43;
+    --forest-muted-rgb: 52 72 61;
+    --terracotta-rgb: 166 93 63;
+    --terracotta-soft-rgb: 188 113 80;
+    --amber-rgb: 210 138 76;
+    --amber-soft-rgb: 227 165 108;
+    --sand-rgb: 232 216 189;
+    --ivory-rgb: 242 232 216;
+    --bone-rgb: 242 232 216;
+    --ash-dark-rgb: 147 142 131;
+
+    /* ---------------------------------------------------------------------
+     * Semantic tokens — components should reference these, not raw values.
+     * ------------------------------------------------------------------- */
+    --background: var(--ink);
+    --background-secondary: var(--forest);
+    --surface: var(--ink-850);
+    --surface-raised: var(--ink-800);
+    --surface-muted: var(--forest-muted);
+    --text-primary: var(--ivory);
+    --text-secondary: var(--muted-text);
+    --text-tertiary: var(--ash-dark);
+    --accent-primary: var(--terracotta);
+    --accent-highlight: var(--amber);
+    --accent-highlight-hover: var(--amber-soft);
+    --border-subtle: rgb(var(--sand-rgb) / 0.12);
+    --border-strong: rgb(var(--sand-rgb) / 0.24);
+    --border-muted: rgb(var(--sand-rgb) / 0.08);
+    --interactive: var(--amber);
+    --interactive-hover: var(--amber-soft);
+  }
+
+  html {
+    background: var(--background);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply min-w-[320px] bg-ink font-sans text-bone antialiased;
+    margin: 0;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-synthesis: none;
+  }
+
+  ::selection {
+    background: rgb(var(--terracotta-rgb) / 0.42);
+    color: var(--ivory);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--interactive);
+    outline-offset: 3px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ink-700) var(--ink-950);
+  }
+
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--ink-950);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--ink-700);
+    border: 2px solid var(--ink-950);
+    border-radius: 99px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8 md:px-10 xl:px-12;
+  }
+
+  .section-y {
+    @apply py-24 md:py-32 lg:py-36;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[10px] font-normal uppercase tracking-[0.26em] text-ash sm:text-[11px];
+  }
+
+  .display {
+    @apply font-display font-normal;
+    letter-spacing: -0.018em;
+  }
+
+  .body-copy {
+    @apply text-[15px] leading-[1.75] text-ash-light sm:text-base sm:leading-[1.8];
+  }
+
+  .body-copy-strong {
+    @apply text-[15px] leading-[1.75] text-bone/90 sm:text-base sm:leading-[1.8];
+  }
+
+  .panel {
+    @apply border border-sand/10 bg-ink-850;
+  }
+
+  .hairline {
+    @apply border-sand/[0.12];
+  }
+
+  .mono-meta {
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-ash-dark;
+  }
+
+  .link-quiet {
+    @apply text-bone/75 underline decoration-sand/25 underline-offset-4 transition-colors duration-300 hover:text-bone hover:decoration-ember/80;
+  }
+
+  .text-shadow-hero {
+    text-shadow: 0 2px 40px rgb(var(--ink-rgb) / 0.62);
+  }
+
+  /* Selected option in the Explorer selectors. */
+  .state-selected {
+    background-color: rgb(var(--amber-rgb) / 0.09);
+    box-shadow: inset 0 0 0 1px rgb(var(--amber-rgb) / 0.32);
+  }
+}
+
+@layer utilities {
+  /* Section surfaces. Gradients live here so components never repeat colour
+   * values and future Explorer panels can reuse the same system. */
+  .surface-depth {
+    background-color: var(--background);
+    background-image: radial-gradient(
+      120% 90% at 82% -18%,
+      rgb(var(--forest-muted-rgb) / 0.3),
+      transparent 62%
+    );
+  }
+
+  .surface-forest {
+    background-color: var(--forest);
+    background-image: linear-gradient(
+      180deg,
+      var(--forest-deep) 0%,
+      var(--forest) 56%,
+      var(--ink-900) 100%
+    );
+  }
+
+  .surface-header {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(68% 96% at 88% 0%, rgb(var(--terracotta-rgb) / 0.14), transparent 66%),
+      linear-gradient(
+        180deg,
+        rgb(var(--forest-deep-rgb) / 0.9) 0%,
+        rgb(var(--ink-900-rgb) / 0.55) 58%,
+        var(--ink) 100%
+      );
+  }
+
+  .surface-muted-forest {
+    background-color: var(--surface-muted);
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--forest-deep-rgb) / 0.28) 0%,
+      rgb(var(--forest-rgb) / 0.16) 42%,
+      rgb(var(--ink-rgb) / 0.34) 100%
+    );
+  }
+
+  /* Warm earth section: a restrained terracotta wash over charcoal. */
+  .surface-earth {
+    background-color: var(--ink-900);
+    background-image:
+      radial-gradient(78% 84% at 8% -6%, rgb(var(--terracotta-rgb) / 0.11), transparent 62%),
+      linear-gradient(
+        180deg,
+        rgb(var(--ink-850-rgb) / 0.85) 0%,
+        var(--ink-900) 55%,
+        var(--ink-950) 100%
+      );
+  }
+
+  .surface-footer {
+    background-color: var(--ink-950);
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--forest-deep-rgb) / 0.55) 0%,
+      var(--ink-950) 62%
+    );
+  }
+
+  /* Hero media shading: keeps the fire visible while text stays readable. */
+  .hero-shade {
+    background-image:
+      radial-gradient(60% 54% at 74% 80%, rgb(var(--terracotta-rgb) / 0.2), transparent 72%),
+      linear-gradient(
+        180deg,
+        rgb(var(--ink-rgb) / 0.62) 0%,
+        rgb(var(--forest-deep-rgb) / 0.34) 34%,
+        rgb(var(--ink-rgb) / 0.9) 88%,
+        var(--ink) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgb(var(--ink-rgb) / 0.7) 0%,
+        rgb(var(--forest-deep-rgb) / 0.36) 48%,
+        rgb(var(--ink-rgb) / 0.24) 100%
+      );
+  }
+
+  .closing-shade {
+    background-image:
+      radial-gradient(56% 62% at 72% 58%, rgb(var(--terracotta-rgb) / 0.18), transparent 72%),
+      linear-gradient(
+        90deg,
+        rgb(var(--ink-rgb) / 0.97) 0%,
+        rgb(var(--ink-rgb) / 0.9) 38%,
+        rgb(var(--forest-deep-rgb) / 0.58) 72%,
+        rgb(var(--ink-rgb) / 0.72) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(var(--ink-rgb) / 0.72) 0%,
+        transparent 40%,
+        rgb(var(--ink-rgb) / 0.94) 100%
+      );
+  }
+
+  .section-seam {
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(var(--sand-rgb) / 0.22) 22%,
+      rgb(var(--sand-rgb) / 0.16) 78%,
+      transparent 100%
+    );
+  }
+
+  .bg-blueprint {
+    background-image:
+      linear-gradient(rgb(var(--sand-rgb) / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--sand-rgb) / 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .bg-blueprint-fine {
+    background-image:
+      linear-gradient(rgb(var(--sand-rgb) / 0.038) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--sand-rgb) / 0.038) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .bg-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgb(var(--sand-rgb) / 0.07) 0,
+      rgb(var(--sand-rgb) / 0.07) 1px,
+      transparent 1px,
+      transparent 9px
+    );
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-shade {
+    background-image:
+      radial-gradient(54% 64% at 76% 78%, rgb(var(--terracotta-rgb) / 0.22), transparent 72%),
+      linear-gradient(
+        100deg,
+        rgb(var(--ink-rgb) / 0.94) 0%,
+        rgb(var(--forest-deep-rgb) / 0.82) 32%,
+        rgb(var(--forest-rgb) / 0.4) 62%,
+        rgb(var(--ink-rgb) / 0.62) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(var(--ink-rgb) / 0.5) 0%,
+        transparent 28%,
+        rgb(var(--ink-rgb) / 0.94) 100%
+      );
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Leaflet map surface — dark Ember & Earth treatment of OSM tiles.
+ * The filter only restyles basemap pixels; attribution remains legible text.
+ * ------------------------------------------------------------------------ */
+.map-surface {
+  background: var(--ink-900);
+}
+
+.map-surface .leaflet-tile-pane {
+  filter: brightness(0.72) contrast(1.05) saturate(0.55) hue-rotate(160deg) brightness(0.82);
+}
+
+.map-surface .leaflet-container {
+  background: var(--ink-900);
+  font-family: inherit;
+}
+
+.map-attribution,
+.agnidrishti-tooltip,
+.map-surface .leaflet-tooltip {
+  background: rgba(10, 18, 17, 0.9);
+  border: 1px solid rgb(var(--sand-rgb) / 0.2);
+  color: var(--ash-light);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+}
+
+.agnidrishti-tooltip::before,
+.map-surface .leaflet-tooltip::before {
+  display: none;
+}

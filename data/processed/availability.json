@@ -1,0 +1,129 @@
+{
+  "checked_at": "2026-11-13T18:04:40Z",
+  "endpoint_template": "https://firms.modaps.eosdis.nasa.gov/api/data_availability/csv/{map_key}/{sensor}",
+  "required_env_var": "FIRMS_MAP_KEY",
+  "setup_url": "https://firms.modaps.eosdis.nasa.gov/api/map_key/",
+  "status": "queried",
+  "sources": [
+    {
+      "source_identifier": "MODIS_SP",
+      "status": "queried",
+      "raw_path": "data/raw/availability/MODIS_SP_2026-11-13.csv",
+      "row_count": 1,
+      "windows": [
+        {
+          "available_from": "2000-11-01",
+          "available_to": "2026-08-31",
+          "raw": {
+            "data_id": "MODIS_SP",
+            "min_date": "2000-11-01",
+            "max_date": "2026-08-31"
+          }
+        }
+      ],
+      "first_available": "2000-11-01",
+      "last_available": "2026-08-31",
+      "currently_available_within_7_days": false,
+      "coverage_gaps_detected": false,
+      "coverage_gaps_note": "Single contiguous window reported; internal gaps are not exposed by this endpoint."
+    },
+    {
+      "source_identifier": "VIIRS_SNPP_SP",
+      "status": "queried",
+      "raw_path": "data/raw/availability/VIIRS_SNPP_SP_2026-11-13.csv",
+      "row_count": 1,
+      "windows": [
+        {
+          "available_from": "2012-01-20",
+          "available_to": "2026-07-31",
+          "raw": {
+            "data_id": "VIIRS_SNPP_SP",
+            "min_date": "2012-01-20",
+            "max_date": "2026-07-31"
+          }
+        }
+      ],
+      "first_available": "2012-01-20",
+      "last_available": "2026-07-31",
+      "currently_available_within_7_days": false,
+      "coverage_gaps_detected": false,
+      "coverage_gaps_note": "Single contiguous window reported; internal gaps are not exposed by this endpoint."
+    },
+    {
+      "source_identifier": "VIIRS_NOAA20_SP",
+      "status": "queried",
+      "raw_path": "data/raw/availability/VIIRS_NOAA20_SP_2026-11-13.csv",
+      "row_count": 1,
+      "windows": [
+        {
+          "available_from": "2018-04-01",
+          "available_to": "2026-07-31",
+          "raw": {
+            "data_id": "VIIRS_NOAA20_SP",
+            "min_date": "2018-04-01",
+            "max_date": "2026-07-31"
+          }
+        }
+      ],
+      "first_available": "2018-04-01",
+      "last_available": "2026-07-31",
+      "currently_available_within_7_days": false,
+      "coverage_gaps_detected": false,
+      "coverage_gaps_note": "Single contiguous window reported; internal gaps are not exposed by this endpoint."
+    },
+    {
+      "source_identifier": "VIIRS_NOAA21_SP",
+      "status": "queried",
+      "raw_path": "data/raw/availability/VIIRS_NOAA21_SP_2026-11-13.csv",
+      "row_count": 1,
+      "windows": [
+        {
+          "available_from": "2023-03-01",
+          "available_to": "2026-07-31",
+          "raw": {
+            "data_id": "VIIRS_NOAA21_SP",
+            "min_date": "2023-03-01",
+            "max_date": "2026-07-31"
+          }
+        }
+      ],
+      "first_available": "2023-03-01",
+      "last_available": "2026-07-31",
+      "currently_available_within_7_days": false,
+      "coverage_gaps_detected": false,
+      "coverage_gaps_note": "Single contiguous window reported; internal gaps are not exposed by this endpoint."
+    }
+  ],
+  "reference_coverage": [
+    {
+      "source_identifier": "MODIS_SP",
+      "first_available_reference": "2000-11-01",
+      "last_available_reference": null,
+      "reference_note": "MODIS Collection 6.1, temporal coverage 1 November 2000 - present."
+    },
+    {
+      "source_identifier": "VIIRS_SNPP_SP",
+      "first_available_reference": "2012-01-20",
+      "last_available_reference": "2026-11-02",
+      "reference_note": "VIIRS S-NPP 375 m, temporal coverage 20 January 2012 - 2 November 2026 as stated on the FIRMS archive download page."
+    },
+    {
+      "source_identifier": "VIIRS_NOAA20_SP",
+      "first_available_reference": "2018-04-01",
+      "last_available_reference": null,
+      "reference_note": "VIIRS NOAA-20 375 m, temporal coverage 1 April 2018 - present."
+    },
+    {
+      "source_identifier": "VIIRS_NOAA21_SP",
+      "first_available_reference": "2023-03-01",
+      "last_available_reference": null,
+      "reference_note": "VIIRS NOAA-21 375 m, temporal coverage 1 March 2023 - present."
+    }
+  ],
+  "reference_coverage_checked_on": "2026-11-13",
+  "reference_coverage_url": "https://firms.modaps.eosdis.nasa.gov/download/",
+  "notes": [
+    "Archive-page coverage statements are reference points only and are not API-verified.",
+    "The availability endpoint reports a first/last window per source; internal gaps are not exposed."
+  ]
+}

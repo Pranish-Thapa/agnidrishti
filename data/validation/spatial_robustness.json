@@ -1,0 +1,101 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:10Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:10Z"
+  },
+  "districts": {
+    "NP-BANKE": {
+      "validation_pairs": 724,
+      "methods": {
+        "ratio": {
+          "n": 724,
+          "mae": 9.9467,
+          "rmse": 36.3077,
+          "mean_bias": 1.5796,
+          "pearson": 0.6647,
+          "ccc": 0.6189
+        },
+        "quantile_mapping": {
+          "n": 724,
+          "mae": 7.4572,
+          "rmse": 26.1869,
+          "mean_bias": -5.7004,
+          "pearson": 0.6381,
+          "ccc": 0.5601
+        },
+        "monthly_shrinkage": {
+          "n": 724,
+          "mae": 9.9478,
+          "rmse": 36.3216,
+          "mean_bias": 1.582,
+          "pearson": 0.6646,
+          "ccc": 0.6188
+        }
+      }
+    },
+    "NP-BARDIYA": {
+      "validation_pairs": 724,
+      "methods": {
+        "ratio": {
+          "n": 724,
+          "mae": 11.5576,
+          "rmse": 35.3833,
+          "mean_bias": 0.5473,
+          "pearson": 0.6505,
+          "ccc": 0.6293
+        },
+        "quantile_mapping": {
+          "n": 724,
+          "mae": 9.265,
+          "rmse": 29.5159,
+          "mean_bias": -8.2573,
+          "pearson": 0.61,
+          "ccc": 0.4767
+        },
+        "monthly_shrinkage": {
+          "n": 724,
+          "mae": 11.5173,
+          "rmse": 35.1312,
+          "mean_bias": 0.4901,
+          "pearson": 0.6518,
+          "ccc": 0.6316
+        }
+      }
+    },
+    "NP-CHITWAN": {
+      "validation_pairs": 724,
+      "methods": {
+        "ratio": {
+          "n": 724,
+          "mae": 3.5225,
+          "rmse": 12.4837,
+          "mean_bias": -0.0114,
+          "pearson": 0.3631,
+          "ccc": 0.293
+        },
+        "quantile_mapping": {
+          "n": 724,
+          "mae": 2.5929,
+          "rmse": 7.4358,
+          "mean_bias": -1.7773,
+          "pearson": 0.217,
+          "ccc": 0.1911
+        },
+        "monthly_shrinkage": {
+          "n": 724,
+          "mae": 3.3118,
+          "rmse": 10.3493,
+          "mean_bias": -0.2689,
+          "pearson": 0.3755,
+          "ccc": 0.3368
+        }
+      }
+    }
+  },
+  "note": "District performance differs (Chitwan weaker across methods); combined-sample performance must not be read as district-level performance."
+}

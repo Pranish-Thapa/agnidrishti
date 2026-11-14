@@ -1,0 +1,47 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T20:15:47Z",
+  "grid_degrees": 0.1,
+  "bbox": {
+    "modis_cells_with_detections": 89,
+    "viirs_cells_with_detections": 95,
+    "cells_seen_by_both_families": 89,
+    "comparable_cell_days": 3777
+  },
+  "platform_cells_with_detections": {
+    "Aqua": 85,
+    "NOAA-20": 93,
+    "NOAA-21": 93,
+    "Suomi-NPP": 95,
+    "Terra": 81
+  },
+  "districts": {
+    "NP-BANKE": {
+      "modis_cells_with_detections": 24,
+      "viirs_cells_with_detections": 28,
+      "cells_seen_by_both_families": 24,
+      "comparable_cell_days": 1069,
+      "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
+    },
+    "NP-BARDIYA": {
+      "modis_cells_with_detections": 30,
+      "viirs_cells_with_detections": 32,
+      "cells_seen_by_both_families": 30,
+      "comparable_cell_days": 1322,
+      "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
+    },
+    "NP-CHITWAN": {
+      "modis_cells_with_detections": 35,
+      "viirs_cells_with_detections": 35,
+      "cells_seen_by_both_families": 35,
+      "comparable_cell_days": 1386,
+      "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
+    }
+  },
+  "limitations": [
+    "VIIRS 375 m detects far smaller and cooler fires than MODIS 1 km; a shared grid cell does not equalize detection capability.",
+    "Comparable cell-days require detections from both families on the same day in the same cell; overpass timing and cloud cover make this a lower bound on true co-observation.",
+    "MODIS Terra (morning) and Aqua (early afternoon) see different fires; VIIRS afternoon overpasses overlap Aqua timing more closely than Terra.",
+    "Zero detections in a shared cell-day is not zero fire."
+  ]
+}

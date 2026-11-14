@@ -1,0 +1,151 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:27:41Z",
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-13T21:27:41Z"
+  },
+  "purpose": "Diagnostic of observation-scale discontinuities. It does NOT prove that observed changes are caused by sensor transitions.",
+  "scale_step_analysis": [
+    {
+      "district_id": "NP-BANKE",
+      "modis_platform": "Terra",
+      "window_months": [
+        "2012-02",
+        "2012-03",
+        "2012-04"
+      ],
+      "raw_scale_step_viirs_over_modis": 23.197,
+      "scale_step_after_ratio": 1.12,
+      "step_reduction_ratio_percent": 99.5,
+      "scale_step_after_quantile_mapping": 3.491,
+      "step_reduction_quantile_mapping_percent": 88.8,
+      "scale_step_after_monthly_shrinkage": 1.12,
+      "step_reduction_monthly_shrinkage_percent": 99.5
+    },
+    {
+      "district_id": "NP-BANKE",
+      "modis_platform": "Aqua",
+      "window_months": [
+        "2012-02",
+        "2012-03",
+        "2012-04"
+      ],
+      "raw_scale_step_viirs_over_modis": 18.099,
+      "scale_step_after_ratio": 1.085,
+      "step_reduction_ratio_percent": 99.5,
+      "scale_step_after_quantile_mapping": 2.698,
+      "step_reduction_quantile_mapping_percent": 90.1,
+      "scale_step_after_monthly_shrinkage": 1.086,
+      "step_reduction_monthly_shrinkage_percent": 99.5
+    },
+    {
+      "district_id": "NP-BARDIYA",
+      "modis_platform": "Terra",
+      "window_months": [
+        "2012-02",
+        "2012-03",
+        "2012-04"
+      ],
+      "raw_scale_step_viirs_over_modis": 14.008,
+      "scale_step_after_ratio": 0.806,
+      "step_reduction_ratio_percent": 98.5,
+      "scale_step_after_quantile_mapping": 2.334,
+      "step_reduction_quantile_mapping_percent": 89.7,
+      "scale_step_after_monthly_shrinkage": 0.807,
+      "step_reduction_monthly_shrinkage_percent": 98.5
+    },
+    {
+      "district_id": "NP-BARDIYA",
+      "modis_platform": "Aqua",
+      "window_months": [
+        "2012-02",
+        "2012-03",
+        "2012-04"
+      ],
+      "raw_scale_step_viirs_over_modis": 11.926,
+      "scale_step_after_ratio": 0.863,
+      "step_reduction_ratio_percent": 98.7,
+      "scale_step_after_quantile_mapping": 2.285,
+      "step_reduction_quantile_mapping_percent": 88.2,
+      "scale_step_after_monthly_shrinkage": 0.858,
+      "step_reduction_monthly_shrinkage_percent": 98.7
+    },
+    {
+      "district_id": "NP-CHITWAN",
+      "modis_platform": "Terra",
+      "window_months": [
+        "2012-02",
+        "2012-03",
+        "2012-04"
+      ],
+      "raw_scale_step_viirs_over_modis": 49.857,
+      "scale_step_after_ratio": 2.101,
+      "step_reduction_ratio_percent": 97.7,
+      "scale_step_after_quantile_mapping": 14.851,
+      "step_reduction_quantile_mapping_percent": 71.6,
+      "scale_step_after_monthly_shrinkage": 2.096,
+      "step_reduction_monthly_shrinkage_percent": 97.8
+    },
+    {
+      "district_id": "NP-CHITWAN",
+      "modis_platform": "Aqua",
+      "window_months": [
+        "2012-02",
+        "2012-03",
+        "2012-04"
+      ],
+      "raw_scale_step_viirs_over_modis": 8.41,
+      "scale_step_after_ratio": 0.921,
+      "step_reduction_ratio_percent": 98.9,
+      "scale_step_after_quantile_mapping": 1.626,
+      "step_reduction_quantile_mapping_percent": 91.6,
+      "scale_step_after_monthly_shrinkage": 0.916,
+      "step_reduction_monthly_shrinkage_percent": 98.9
+    }
+  ],
+  "modis_version_eras": {
+    "Aqua|6.03": {
+      "first_day": "2012-01-26",
+      "last_day": "2022-05-18",
+      "days": 625
+    },
+    "Aqua|61.03": {
+      "first_day": "2023-01-05",
+      "last_day": "2026-05-28",
+      "days": 247
+    },
+    "Terra|6.03": {
+      "first_day": "2012-02-28",
+      "last_day": "2022-05-04",
+      "days": 357
+    },
+    "Terra|61.03": {
+      "first_day": "2023-02-12",
+      "last_day": "2026-06-14",
+      "days": 121
+    }
+  },
+  "confounds": [
+    "Real fire activity changes between years",
+    "Weather and environmental conditions",
+    "Overpass frequency and timing differences",
+    "Cloud cover and detection limitations",
+    "Product version and algorithm changes within a single mission"
+  ],
+  "record_limitation": "The acquired record starts at 2012-01-20, when VIIRS SP data begins; the pre-VIIRS MODIS-only era is outside the acquired data and cannot be audited here."
+}

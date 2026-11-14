@@ -1,0 +1,83 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:11Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:11Z"
+  },
+  "claims": [
+    {
+      "claim": "A change in satellite sensors can make historical fire activity appear to increase or decrease even when the underlying activity has not changed proportionally.",
+      "location": "landing page framing",
+      "supported_by": "Task 05 raw scale gap: VIIRS reference mean 8.27 vs MODIS Terra 0.49 / Aqua 0.58 per district-day.",
+      "verdict": "supported",
+      "required_qualification": "detections are observations, not fire counts"
+    },
+    {
+      "claim": "Harmonization transforms MODIS observations to a VIIRS-equivalent scale.",
+      "location": "methodology",
+      "supported_by": "Court CCC 0.52-0.63; residual bias reported per method.",
+      "verdict": "supported_with_qualification",
+      "required_qualification": "VIIRS-equivalent estimate only; VIIRS is not ground truth; agreement is partial (CCC ~0.5-0.63) and district-dependent."
+    },
+    {
+      "claim": "The winning harmonization method is [method X].",
+      "location": "none",
+      "supported_by": "Court decision: inconclusive (overlapping CIs, district instability).",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "No method may be presented as validated winner."
+    },
+    {
+      "claim": "Harmonization removes sensor bias.",
+      "location": "none (must never appear unqualified)",
+      "supported_by": "Seam audit residual steps 0.8-2.1 after correction.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "reduces a documented scale mismatch; residual differences remain."
+    },
+    {
+      "claim": "Fire detections are unique fires.",
+      "location": "none",
+      "supported_by": "FIRMS documentation; multiple detections can belong to one fire.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "always describe as detections/hotspot observations."
+    },
+    {
+      "claim": "Missing observations mean no fire.",
+      "location": "none",
+      "supported_by": "Pipeline status vocabulary keeps observed_zero, missing, unavailable distinct.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "missing/unavailable is never zero-filled."
+    },
+    {
+      "claim": "District-level results are equally reliable everywhere.",
+      "location": "none",
+      "supported_by": "Spatial robustness: Chitwan CCC 0.19-0.34 vs Banke/Bardiya ~0.6.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "Chitwan harmonized results are use-with-caution or insufficient at stratum level."
+    },
+    {
+      "claim": "A satellite transition caused an observed change in fire activity.",
+      "location": "none",
+      "supported_by": "Seam audit is diagnostic only.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "never state causality from the seam diagnostic."
+    },
+    {
+      "claim": "Agnidrishti predicts fires.",
+      "location": "none",
+      "supported_by": "No forecasting component exists in the project.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "the project harmonizes historical observations; it does not predict fires."
+    },
+    {
+      "claim": "NASA endorsement or partnership.",
+      "location": "none",
+      "supported_by": "Project is an independent Space Apps Challenge entry using public NASA data.",
+      "verdict": "unsupported_must_not_be_made",
+      "required_qualification": "attribute data to NASA FIRMS/LANCE; never imply endorsement."
+    }
+  ]
+}

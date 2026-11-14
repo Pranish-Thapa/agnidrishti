@@ -1,0 +1,67 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T21:55:11Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-13T21:55:11Z"
+  },
+  "validation_cell_days": 3342,
+  "cells_with_validation_activity": 180,
+  "top_error_cells": [
+    {
+      "cell": "NP-BANKE|Terra|281_818",
+      "n": 43,
+      "mean_abs_error": 20.3812
+    },
+    {
+      "cell": "NP-BANKE|Terra|281_819",
+      "n": 38,
+      "mean_abs_error": 19.7532
+    },
+    {
+      "cell": "NP-BARDIYA|Terra|283_815",
+      "n": 44,
+      "mean_abs_error": 19.2869
+    },
+    {
+      "cell": "NP-CHITWAN|Terra|275_839",
+      "n": 9,
+      "mean_abs_error": 17.9506
+    },
+    {
+      "cell": "NP-CHITWAN|Aqua|275_839",
+      "n": 9,
+      "mean_abs_error": 17.8235
+    },
+    {
+      "cell": "NP-BANKE|Aqua|281_819",
+      "n": 37,
+      "mean_abs_error": 16.5587
+    },
+    {
+      "cell": "NP-BANKE|Terra|282_817",
+      "n": 42,
+      "mean_abs_error": 16.3798
+    },
+    {
+      "cell": "NP-BANKE|Aqua|278_818",
+      "n": 1,
+      "mean_abs_error": 15.6429
+    },
+    {
+      "cell": "NP-BARDIYA|Terra|284_815",
+      "n": 44,
+      "mean_abs_error": 15.1455
+    },
+    {
+      "cell": "NP-BARDIYA|Terra|285_812",
+      "n": 35,
+      "mean_abs_error": 14.6547
+    }
+  ],
+  "cells_with_insufficient_validation": 72,
+  "note": "Cell-level errors concentrate in high-activity cells; cells with few validation days carry insufficient evidence and are listed as such."
+}

@@ -1,0 +1,25 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T20:15:48Z",
+  "provider": "area-api",
+  "product": "SP",
+  "record_count": 124506,
+  "outputs": [
+    "inventory.json",
+    "data_quality.json",
+    "sensor_overlap.json",
+    "spatial_comparability.json",
+    "coverage_matrices.json",
+    "calibration_readiness.json"
+  ],
+  "sources": {
+    "download_manifest": "data/manifests/download_manifest.json",
+    "availability": "data/processed/availability.json",
+    "boundaries": "data/boundaries/study_areas.geojson"
+  },
+  "grid": {
+    "degrees": 0.1,
+    "definition": "floor(lat/0.1), floor(lon/0.1)"
+  },
+  "provenance": "OCHA COD-AB Nepal boundaries; NASA FIRMS SP active fire products"
+}
