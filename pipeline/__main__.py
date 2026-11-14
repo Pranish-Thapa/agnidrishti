@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from . import availability, boundaries, config, download, experiments, historical, manifests, process, validation
+from . import availability, boundaries, config, download, experiments, historical, manifests, points, process, validation
 
 
 def main() -> None:
@@ -58,6 +58,11 @@ def main() -> None:
     sub.add_parser(
         "export-frontend",
         help="Export harmonization factors for the frontend calendar",
+    )
+
+    sub.add_parser(
+        "export-points",
+        help="Export verified point-level hotspot detections for the map",
     )
 
     p_proc = sub.add_parser("process", help="Process downloaded raw data")
@@ -129,6 +134,10 @@ def main() -> None:
 
     elif args.command == "export-frontend":
         result = experiments.export_frontend_artifacts()
+        print(json.dumps(result, indent=2, default=str))
+
+    elif args.command == "export-points":
+        result = points.run_point_export()
         print(json.dumps(result, indent=2, default=str))
 
     elif args.command == "process":

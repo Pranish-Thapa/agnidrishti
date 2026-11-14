@@ -202,6 +202,7 @@ export function ExplorerPage() {
                 <MapPanel
                   area={area}
                   layerLabel={activeLayer.label}
+                  layer={layer}
                   year={year}
                   provider={provider}
                   districtSummaries={districtSummaries}

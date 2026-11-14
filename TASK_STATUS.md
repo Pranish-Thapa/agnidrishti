@@ -351,3 +351,25 @@ Full report: FINAL_FEATURE_IMPROVEMENT_REPORT.md.
   methodology charts, zero overflow, zero failed requests).
 
 ## PROJECT STATUS: TASKS 04B–10 ALL VERIFIED COMPLETE
+
+## TASK 11 — GEOGRAPHIC FIRE MAP IMPROVEMENT — VERIFIED COMPLETE (2026-11-14)
+
+- **Full-screen map**: expand button → fixed overlay (Escape/Exit to close), body scroll lock,
+  Leaflet invalidateSize on enter AND exit (canvas resize bug found & fixed: the pre-existing
+  expanded-size canvas covered the header after collapsing).
+- **Real hotspot markers**: new pipeline export `pipeline/points.py` (CLI `export-points`) publishes
+  verified point-level FIRMS detections (lat/lon/date/time/platform/brightness/FRP/confidence/
+  day-night) per provider/district/year → public/data/points/ (124,506 SP + 17 NRT records, 48
+  files, 18 MB). Markers rendered on a Leaflet canvas renderer, coloured per platform, sized by
+  FRP, popups with verified attributes (popup record cross-checked 1:1 against exported data).
+- **Layer modes**: District activity / Hotspots / Both with dynamic legend; markers respect
+  provider/year/layer; harmonized estimates never drawn as observed hotspots (raw MODIS inputs
+  shown instead, labelled).
+- **Fixes during verification**: canvas default 0.1 padding escaped the container clip and covered
+  panel controls (removed padding + enforced overflow clipping); hotspot canvas intercepted
+  district-polygon clicks (map click + point-in-polygon district selection implemented).
+- Verification: 76/76 pytest · typecheck ✓ · lint ✓ · build ✓ · browser-verified (markers render,
+  popup matches dataset exactly, full-screen cycle, NRT vs SP separation incl. honest NOAA-20/21-only
+  window, district click selection, mobile 390 no overlap/overflow).
+
+## PROJECT STATUS: TASKS 04B–11 ALL VERIFIED COMPLETE

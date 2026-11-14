@@ -371,6 +371,9 @@
  * ------------------------------------------------------------------------ */
 .map-surface {
   background: var(--ink-900);
+  overflow: hidden;
+  /* Keep the basemap beneath overlay panes and page chrome. */
+  isolation: isolate;
 }
 
 .map-surface .leaflet-tile-pane {
@@ -396,4 +399,49 @@
 .agnidrishti-tooltip::before,
 .map-surface .leaflet-tooltip::before {
   display: none;
+}
+
+.agnidrishti-leaflet-popup .leaflet-popup-content-wrapper {
+  background: rgba(10, 18, 17, 0.94);
+  border: 1px solid rgb(var(--sand-rgb) / 0.22);
+  border-radius: 2px;
+  color: var(--ash-light);
+  box-shadow: none;
+}
+
+.agnidrishti-leaflet-popup .leaflet-popup-tip {
+  background: rgba(10, 18, 17, 0.94);
+  border: 1px solid rgb(var(--sand-rgb) / 0.22);
+  box-shadow: none;
+}
+
+.agnidrishti-leaflet-popup .leaflet-popup-content {
+  margin: 10px 14px;
+  font-family: var(--body-font, inherit);
+  line-height: 1.45;
+}
+
+.agnidrishti-popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 11px;
+  padding: 1.5px 0;
+}
+
+.agnidrishti-popup-row span {
+  color: var(--ash-dark);
+}
+
+.agnidrishti-popup-row strong {
+  color: var(--bone, #f2e8d8);
+  font-weight: 500;
+}
+
+.agnidrishti-popup-note {
+  margin-top: 6px;
+  border-top: 1px solid rgb(var(--sand-rgb) / 0.12);
+  padding-top: 4px;
+  font-size: 9.5px;
+  color: var(--ash-dark);
 }
