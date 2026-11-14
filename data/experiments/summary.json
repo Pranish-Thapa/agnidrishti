@@ -1,0 +1,1300 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-14T05:33:26Z",
+  "provenance": {
+    "audit_version": "1.0.0",
+    "task": "06 independent scientific validation",
+    "reference_sensor": "viirs_snpp",
+    "independent_metric_implementation": true,
+    "generated_at": "2026-11-14T05:33:26Z"
+  },
+  "court": {
+    "ranking": [
+      "constant_ratio",
+      "monthly_shrinkage",
+      "ratio",
+      "quantile_mapping",
+      "seasonal_climatology"
+    ],
+    "decision": {
+      "outcome": "inconclusive",
+      "note": "Top methods are statistically or practically indistinguishable, or performance is unstable. No winner is declared; the evidence does not support forcing one.",
+      "evidence": {
+        "ccc_decisive": false,
+        "mae_decisive": false,
+        "year_ccc_spread": 0.1089,
+        "district_ccc_spread": 0.29480000000000006,
+        "unstable": true,
+        "method_beats_baseline": {
+          "comparison": "monthly_shrinkage_minus_constant_ratio",
+          "difference": -0.0282,
+          "ci": [
+            -0.0484,
+            0.0434
+          ],
+          "robust": false
+        },
+        "best_baseline": "constant_ratio"
+      }
+    },
+    "metrics": {
+      "ratio": {
+        "n": 2172,
+        "mae": 8.3423,
+        "rmse": 30.1445,
+        "log_rmse": 1.0274,
+        "mean_bias": 0.7052,
+        "pearson": 0.653,
+        "ccc": 0.6199
+      },
+      "quantile_mapping": {
+        "n": 2172,
+        "mae": 6.4384,
+        "rmse": 23.1821,
+        "log_rmse": 1.0789,
+        "mean_bias": -5.245,
+        "pearson": 0.6171,
+        "ccc": 0.5159
+      },
+      "monthly_shrinkage": {
+        "n": 2172,
+        "mae": 8.259,
+        "rmse": 29.7801,
+        "log_rmse": 1.0288,
+        "mean_bias": 0.6011,
+        "pearson": 0.6562,
+        "ccc": 0.6247
+      },
+      "constant_ratio": {
+        "n": 2172,
+        "mae": 7.9822,
+        "rmse": 26.3603,
+        "log_rmse": 1.0526,
+        "mean_bias": 0.0932,
+        "pearson": 0.6638,
+        "ccc": 0.6529
+      },
+      "seasonal_climatology": {
+        "n": 2172,
+        "mae": 10.484,
+        "rmse": 26.4933,
+        "log_rmse": 1.4175,
+        "mean_bias": -0.4993,
+        "pearson": 0.3802,
+        "ccc": 0.2598
+      }
+    },
+    "by_district": {
+      "ratio": {
+        "NP-BANKE": {
+          "n": 724,
+          "mae": 9.9467,
+          "rmse": 36.3077,
+          "log_rmse": 1.0379,
+          "mean_bias": 1.5796,
+          "pearson": 0.6647,
+          "ccc": 0.6189
+        },
+        "NP-BARDIYA": {
+          "n": 724,
+          "mae": 11.5576,
+          "rmse": 35.3833,
+          "log_rmse": 1.0559,
+          "mean_bias": 0.5473,
+          "pearson": 0.6505,
+          "ccc": 0.6293
+        },
+        "NP-CHITWAN": {
+          "n": 724,
+          "mae": 3.5225,
+          "rmse": 12.4837,
+          "log_rmse": 0.9871,
+          "mean_bias": -0.0114,
+          "pearson": 0.3631,
+          "ccc": 0.293
+        }
+      },
+      "quantile_mapping": {
+        "NP-BANKE": {
+          "n": 724,
+          "mae": 7.4572,
+          "rmse": 26.1869,
+          "log_rmse": 1.0873,
+          "mean_bias": -5.7004,
+          "pearson": 0.6381,
+          "ccc": 0.5601
+        },
+        "NP-BARDIYA": {
+          "n": 724,
+          "mae": 9.265,
+          "rmse": 29.5159,
+          "log_rmse": 1.1523,
+          "mean_bias": -8.2573,
+          "pearson": 0.61,
+          "ccc": 0.4767
+        },
+        "NP-CHITWAN": {
+          "n": 724,
+          "mae": 2.5929,
+          "rmse": 7.4358,
+          "log_rmse": 0.9908,
+          "mean_bias": -1.7773,
+          "pearson": 0.217,
+          "ccc": 0.1911
+        }
+      },
+      "monthly_shrinkage": {
+        "NP-BANKE": {
+          "n": 724,
+          "mae": 9.9478,
+          "rmse": 36.3216,
+          "log_rmse": 1.038,
+          "mean_bias": 1.582,
+          "pearson": 0.6646,
+          "ccc": 0.6188
+        },
+        "NP-BARDIYA": {
+          "n": 724,
+          "mae": 11.5173,
+          "rmse": 35.1312,
+          "log_rmse": 1.0599,
+          "mean_bias": 0.4901,
+          "pearson": 0.6518,
+          "ccc": 0.6316
+        },
+        "NP-CHITWAN": {
+          "n": 724,
+          "mae": 3.3118,
+          "rmse": 10.3493,
+          "log_rmse": 0.9873,
+          "mean_bias": -0.2689,
+          "pearson": 0.3755,
+          "ccc": 0.3368
+        }
+      },
+      "constant_ratio": {
+        "NP-BANKE": {
+          "n": 724,
+          "mae": 8.8033,
+          "rmse": 30.4277,
+          "log_rmse": 1.0261,
+          "mean_bias": -0.249,
+          "pearson": 0.6729,
+          "ccc": 0.6603
+        },
+        "NP-BARDIYA": {
+          "n": 724,
+          "mae": 10.6632,
+          "rmse": 31.31,
+          "log_rmse": 1.0694,
+          "mean_bias": -0.3345,
+          "pearson": 0.6755,
+          "ccc": 0.6682
+        },
+        "NP-CHITWAN": {
+          "n": 724,
+          "mae": 4.4801,
+          "rmse": 13.3583,
+          "log_rmse": 1.0618,
+          "mean_bias": 0.8632,
+          "pearson": 0.2995,
+          "ccc": 0.236
+        }
+      },
+      "seasonal_climatology": {
+        "NP-BANKE": {
+          "n": 724,
+          "mae": 10.5592,
+          "rmse": 28.9442,
+          "log_rmse": 1.3059,
+          "mean_bias": -1.9597,
+          "pearson": 0.5266,
+          "ccc": 0.3206
+        },
+        "NP-BARDIYA": {
+          "n": 724,
+          "mae": 13.0193,
+          "rmse": 32.7983,
+          "log_rmse": 1.3724,
+          "mean_bias": -4.7332,
+          "pearson": 0.4179,
+          "ccc": 0.2379
+        },
+        "NP-CHITWAN": {
+          "n": 724,
+          "mae": 7.8735,
+          "rmse": 13.863,
+          "log_rmse": 1.5618,
+          "mean_bias": 5.195,
+          "pearson": 0.0519,
+          "ccc": 0.0394
+        }
+      }
+    },
+    "metric_explanations": {
+      "mae": "Mean absolute error of harmonized counts vs the VIIRS reference on identical days.",
+      "rmse": "Root mean squared error; penalizes large misses more than MAE.",
+      "log_rmse": "RMSE on log(1+count); emphasizes relative accuracy at low counts.",
+      "mean_bias": "Mean (harmonized - reference); negative = under-estimation.",
+      "pearson": "Linear correlation; high values alone do NOT prove agreement.",
+      "ccc": "Lin's concordance; penalizes scale and offset bias in addition to correlation."
+    }
+  },
+  "reliability": {
+    "criteria": {
+      "reliable": {
+        "min_stratum_pairs": 30,
+        "min_ccc": 0.5,
+        "bias_ci_must_include_zero": true,
+        "note": "n >= 30 pairs, CCC >= 0.50, bias 90% CI includes 0"
+      },
+      "use_with_caution": {
+        "min_stratum_pairs": 10,
+        "min_ccc": 0.3,
+        "note": "n >= 10 pairs and CCC >= 0.30, or reliable criteria nearly met"
+      },
+      "insufficient_evidence": {
+        "note": "below caution thresholds; no harmonized claim is made"
+      }
+    },
+    "category_counts": {
+      "reliable": 7,
+      "use_with_caution": 6,
+      "insufficient_evidence": 8,
+      "unavailable": 15
+    },
+    "grid": {
+      "NP-BANKE": {
+        "01": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 892,
+          "best_method_metrics": {
+            "ccc": null,
+            "mae": null,
+            "method": null
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": null
+        },
+        "02": {
+          "category": "use_with_caution",
+          "validation_pairs": 848,
+          "best_method_metrics": {
+            "n": 848,
+            "mae": 0.0814,
+            "rmse": 0.4248,
+            "mean_bias": -0.0696,
+            "pearson": 0.4173,
+            "ccc": 0.3899,
+            "method": "quantile_mapping"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 0.0814,
+            "p90_abs_error": 0.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "03": {
+          "category": "reliable",
+          "validation_pairs": 930,
+          "best_method_metrics": {
+            "n": 930,
+            "mae": 3.2428,
+            "rmse": 11.039,
+            "mean_bias": -0.0507,
+            "pearson": 0.6169,
+            "ccc": 0.5877,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 3.2428,
+            "p90_abs_error": 8.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "04": {
+          "category": "reliable",
+          "validation_pairs": 900,
+          "best_method_metrics": {
+            "n": 900,
+            "mae": 32.8895,
+            "rmse": 65.7523,
+            "mean_bias": 0.2925,
+            "pearson": 0.6276,
+            "ccc": 0.5969,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 32.8895,
+            "p90_abs_error": 97.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "05": {
+          "category": "use_with_caution",
+          "validation_pairs": 930,
+          "best_method_metrics": {
+            "n": 930,
+            "mae": 7.7593,
+            "rmse": 25.3962,
+            "mean_bias": 0.3214,
+            "pearson": 0.5327,
+            "ccc": 0.4678,
+            "method": "ratio"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 7.7593,
+            "p90_abs_error": 20.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "06": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 900,
+          "best_method_metrics": {
+            "n": 900,
+            "mae": 0.7835,
+            "rmse": 5.4621,
+            "mean_bias": 0.0332,
+            "pearson": 0.2579,
+            "ccc": 0.211,
+            "method": "ratio"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 0.7835,
+            "p90_abs_error": 1.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "07": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 62,
+          "best_method_metrics": {
+            "ccc": null,
+            "mae": null,
+            "method": null
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": null
+        },
+        "08": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "09": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "10": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "11": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "12": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        }
+      },
+      "NP-BARDIYA": {
+        "01": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 892,
+          "best_method_metrics": {
+            "n": 892,
+            "mae": 0.2528,
+            "rmse": 1.1254,
+            "mean_bias": -0.144,
+            "pearson": 0.2412,
+            "ccc": 0.238,
+            "method": "quantile_mapping"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 0.2528,
+            "p90_abs_error": 1.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "02": {
+          "category": "use_with_caution",
+          "validation_pairs": 848,
+          "best_method_metrics": {
+            "n": 848,
+            "mae": 0.7913,
+            "rmse": 2.2075,
+            "mean_bias": -0.5413,
+            "pearson": 0.4039,
+            "ccc": 0.3809,
+            "method": "quantile_mapping"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 0.7913,
+            "p90_abs_error": 2.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "03": {
+          "category": "use_with_caution",
+          "validation_pairs": 930,
+          "best_method_metrics": {
+            "n": 930,
+            "mae": 3.0482,
+            "rmse": 11.4157,
+            "mean_bias": 0.5754,
+            "pearson": 0.5928,
+            "ccc": 0.488,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 3.0482,
+            "p90_abs_error": 7.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "04": {
+          "category": "reliable",
+          "validation_pairs": 900,
+          "best_method_metrics": {
+            "n": 900,
+            "mae": 29.7717,
+            "rmse": 57.0647,
+            "mean_bias": 0.4359,
+            "pearson": 0.6527,
+            "ccc": 0.6236,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 29.7717,
+            "p90_abs_error": 87.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "05": {
+          "category": "reliable",
+          "validation_pairs": 930,
+          "best_method_metrics": {
+            "n": 930,
+            "mae": 11.1652,
+            "rmse": 31.2961,
+            "mean_bias": 0.7592,
+            "pearson": 0.6295,
+            "ccc": 0.5845,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 11.1652,
+            "p90_abs_error": 30.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "06": {
+          "category": "reliable",
+          "validation_pairs": 900,
+          "best_method_metrics": {
+            "n": 900,
+            "mae": 1.4748,
+            "rmse": 8.9812,
+            "mean_bias": -0.1568,
+            "pearson": 0.5766,
+            "ccc": 0.507,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 1.4748,
+            "p90_abs_error": 2.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "07": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 62,
+          "best_method_metrics": {
+            "ccc": null,
+            "mae": null,
+            "method": null
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": null
+        },
+        "08": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "09": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "10": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "11": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "12": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        }
+      },
+      "NP-CHITWAN": {
+        "01": {
+          "category": "use_with_caution",
+          "validation_pairs": 892,
+          "best_method_metrics": {
+            "n": 892,
+            "mae": 0.693,
+            "rmse": 2.1984,
+            "mean_bias": -0.2891,
+            "pearson": 0.3396,
+            "ccc": 0.3148,
+            "method": "quantile_mapping"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 0.693,
+            "p90_abs_error": 2.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "02": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 848,
+          "best_method_metrics": {
+            "n": 848,
+            "mae": 3.142,
+            "rmse": 6.326,
+            "mean_bias": -1.0113,
+            "pearson": 0.3025,
+            "ccc": 0.2685,
+            "method": "quantile_mapping"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 3.142,
+            "p90_abs_error": 8.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "03": {
+          "category": "reliable",
+          "validation_pairs": 930,
+          "best_method_metrics": {
+            "n": 930,
+            "mae": 13.512,
+            "rmse": 31.5668,
+            "mean_bias": 0.1448,
+            "pearson": 0.53,
+            "ccc": 0.5046,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 13.512,
+            "p90_abs_error": 35.2105,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "04": {
+          "category": "reliable",
+          "validation_pairs": 900,
+          "best_method_metrics": {
+            "n": 900,
+            "mae": 26.6837,
+            "rmse": 55.1395,
+            "mean_bias": 0.1256,
+            "pearson": 0.5563,
+            "ccc": 0.5282,
+            "method": "ratio"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 26.6837,
+            "p90_abs_error": 79.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "05": {
+          "category": "use_with_caution",
+          "validation_pairs": 930,
+          "best_method_metrics": {
+            "n": 930,
+            "mae": 1.6663,
+            "rmse": 7.847,
+            "mean_bias": -0.1041,
+            "pearson": 0.461,
+            "ccc": 0.4082,
+            "method": "monthly_shrinkage"
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": {
+            "mae": 1.6663,
+            "p90_abs_error": 3.0,
+            "note": "Typical absolute error of the harmonized estimate vs the VIIRS reference on out-of-fold district-days in this stratum; applies to daily counts, not weekly sums."
+          }
+        },
+        "06": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 900,
+          "best_method_metrics": {
+            "ccc": null,
+            "mae": null,
+            "method": null
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": null
+        },
+        "07": {
+          "category": "insufficient_evidence",
+          "validation_pairs": 62,
+          "best_method_metrics": {
+            "ccc": null,
+            "mae": null,
+            "method": null
+          },
+          "best_method_ccc_source": "pooled out-of-fold predictions (leave-one-year-out), best of three methods",
+          "interval": null
+        },
+        "08": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "09": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "10": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "11": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        },
+        "12": {
+          "category": "unavailable",
+          "validation_pairs": 0
+        }
+      }
+    },
+    "weak_years": [],
+    "grading_basis": "pooled out-of-fold predictions from the leave-one-year-out audit"
+  },
+  "weekly_validation": {
+    "ratio": {
+      "weekly_buckets": 318,
+      "overall": {
+        "n": 318,
+        "mae": 26.7606,
+        "rmse": 79.2418,
+        "log_rmse": 1.2914,
+        "mean_bias": 4.8164,
+        "pearson": 0.893,
+        "ccc": 0.8817
+      },
+      "by_modis_platform": {
+        "Terra": {
+          "n": 159,
+          "mae": 31.493,
+          "rmse": 98.3226,
+          "log_rmse": 1.3666,
+          "mean_bias": 11.4601,
+          "pearson": 0.8799,
+          "ccc": 0.844
+        },
+        "Aqua": {
+          "n": 159,
+          "mae": 22.0282,
+          "rmse": 53.77,
+          "log_rmse": 1.2115,
+          "mean_bias": -1.8274,
+          "pearson": 0.9347,
+          "ccc": 0.9345
+        }
+      }
+    },
+    "quantile_mapping": {
+      "weekly_buckets": 318,
+      "overall": {
+        "n": 318,
+        "mae": 37.2367,
+        "rmse": 104.2847,
+        "log_rmse": 1.4801,
+        "mean_bias": -35.8241,
+        "pearson": 0.8772,
+        "ccc": 0.6098
+      },
+      "by_modis_platform": {
+        "Terra": {
+          "n": 159,
+          "mae": 37.2353,
+          "rmse": 104.7015,
+          "log_rmse": 1.5853,
+          "mean_bias": -36.489,
+          "pearson": 0.8502,
+          "ccc": 0.6147
+        },
+        "Aqua": {
+          "n": 159,
+          "mae": 37.238,
+          "rmse": 103.8662,
+          "log_rmse": 1.3667,
+          "mean_bias": -35.1592,
+          "pearson": 0.912,
+          "ccc": 0.6046
+        }
+      }
+    },
+    "monthly_shrinkage": {
+      "weekly_buckets": 318,
+      "overall": {
+        "n": 318,
+        "mae": 26.2289,
+        "rmse": 78.0813,
+        "log_rmse": 1.2955,
+        "mean_bias": 4.1056,
+        "pearson": 0.8948,
+        "ccc": 0.8844
+      },
+      "by_modis_platform": {
+        "Terra": {
+          "n": 159,
+          "mae": 30.5579,
+          "rmse": 96.9469,
+          "log_rmse": 1.3585,
+          "mean_bias": 10.5462,
+          "pearson": 0.8816,
+          "ccc": 0.8472
+        },
+        "Aqua": {
+          "n": 159,
+          "mae": 21.9,
+          "rmse": 52.8646,
+          "log_rmse": 1.2292,
+          "mean_bias": -2.3349,
+          "pearson": 0.9367,
+          "ccc": 0.9364
+        }
+      }
+    }
+  },
+  "validation": {
+    "total_pairs": 16386,
+    "training_pairs": 13854,
+    "validation_pairs": 2172,
+    "purge_pairs": 360,
+    "validation_years": [
+      2019,
+      2022
+    ],
+    "purge_days": 30,
+    "reconciliation_note": "total = training + validation + purge_pairs; purge pairs are leakage-gap dates excluded from both training and validation."
+  },
+  "seam_audit": {
+    "scale_step_analysis": [
+      {
+        "district_id": "NP-BANKE",
+        "modis_platform": "Terra",
+        "window_months": [
+          "2012-02",
+          "2012-03",
+          "2012-04"
+        ],
+        "raw_scale_step_viirs_over_modis": 23.197,
+        "scale_step_after_ratio": 1.12,
+        "step_reduction_ratio_percent": 99.5,
+        "log_reduction_ratio_percent": 96.4,
+        "scale_step_after_quantile_mapping": 3.491,
+        "step_reduction_quantile_mapping_percent": 88.8,
+        "log_reduction_quantile_mapping_percent": 60.2,
+        "scale_step_after_monthly_shrinkage": 1.12,
+        "step_reduction_monthly_shrinkage_percent": 99.5,
+        "log_reduction_monthly_shrinkage_percent": 96.4,
+        "out_of_sample": true,
+        "oos_scale_step_after_ratio": 1.134,
+        "oos_step_reduction_ratio_percent": 99.4,
+        "oos_log_reduction_ratio_percent": 96.0,
+        "oos_scale_step_after_quantile_mapping": 3.375,
+        "oos_step_reduction_quantile_mapping_percent": 89.3,
+        "oos_log_reduction_quantile_mapping_percent": 61.3,
+        "oos_scale_step_after_monthly_shrinkage": 1.134,
+        "oos_step_reduction_monthly_shrinkage_percent": 99.4,
+        "oos_log_reduction_monthly_shrinkage_percent": 96.0
+      },
+      {
+        "district_id": "NP-BANKE",
+        "modis_platform": "Aqua",
+        "window_months": [
+          "2012-02",
+          "2012-03",
+          "2012-04"
+        ],
+        "raw_scale_step_viirs_over_modis": 18.099,
+        "scale_step_after_ratio": 1.085,
+        "step_reduction_ratio_percent": 99.5,
+        "log_reduction_ratio_percent": 97.2,
+        "scale_step_after_quantile_mapping": 2.698,
+        "step_reduction_quantile_mapping_percent": 90.1,
+        "log_reduction_quantile_mapping_percent": 65.7,
+        "scale_step_after_monthly_shrinkage": 1.086,
+        "step_reduction_monthly_shrinkage_percent": 99.5,
+        "log_reduction_monthly_shrinkage_percent": 97.2,
+        "out_of_sample": true,
+        "oos_scale_step_after_ratio": 1.091,
+        "oos_step_reduction_ratio_percent": 99.5,
+        "oos_log_reduction_ratio_percent": 97.0,
+        "oos_scale_step_after_quantile_mapping": 2.604,
+        "oos_step_reduction_quantile_mapping_percent": 90.6,
+        "oos_log_reduction_quantile_mapping_percent": 67.0,
+        "oos_scale_step_after_monthly_shrinkage": 1.092,
+        "oos_step_reduction_monthly_shrinkage_percent": 99.5,
+        "oos_log_reduction_monthly_shrinkage_percent": 97.0
+      },
+      {
+        "district_id": "NP-BARDIYA",
+        "modis_platform": "Terra",
+        "window_months": [
+          "2012-02",
+          "2012-03",
+          "2012-04"
+        ],
+        "raw_scale_step_viirs_over_modis": 14.008,
+        "scale_step_after_ratio": 0.806,
+        "step_reduction_ratio_percent": 98.5,
+        "log_reduction_ratio_percent": 108.2,
+        "scale_step_after_quantile_mapping": 2.334,
+        "step_reduction_quantile_mapping_percent": 89.7,
+        "log_reduction_quantile_mapping_percent": 67.9,
+        "scale_step_after_monthly_shrinkage": 0.807,
+        "step_reduction_monthly_shrinkage_percent": 98.5,
+        "log_reduction_monthly_shrinkage_percent": 108.1,
+        "out_of_sample": true,
+        "oos_scale_step_after_ratio": 0.775,
+        "oos_step_reduction_ratio_percent": 98.3,
+        "oos_log_reduction_ratio_percent": 109.7,
+        "oos_scale_step_after_quantile_mapping": 2.278,
+        "oos_step_reduction_quantile_mapping_percent": 90.2,
+        "oos_log_reduction_quantile_mapping_percent": 68.8,
+        "oos_scale_step_after_monthly_shrinkage": 0.775,
+        "oos_step_reduction_monthly_shrinkage_percent": 98.3,
+        "oos_log_reduction_monthly_shrinkage_percent": 109.7
+      },
+      {
+        "district_id": "NP-BARDIYA",
+        "modis_platform": "Aqua",
+        "window_months": [
+          "2012-02",
+          "2012-03",
+          "2012-04"
+        ],
+        "raw_scale_step_viirs_over_modis": 11.926,
+        "scale_step_after_ratio": 0.863,
+        "step_reduction_ratio_percent": 98.7,
+        "log_reduction_ratio_percent": 106.0,
+        "scale_step_after_quantile_mapping": 2.285,
+        "step_reduction_quantile_mapping_percent": 88.2,
+        "log_reduction_quantile_mapping_percent": 66.7,
+        "scale_step_after_monthly_shrinkage": 0.858,
+        "step_reduction_monthly_shrinkage_percent": 98.7,
+        "log_reduction_monthly_shrinkage_percent": 106.2,
+        "out_of_sample": true,
+        "oos_scale_step_after_ratio": 0.843,
+        "oos_step_reduction_ratio_percent": 98.6,
+        "oos_log_reduction_ratio_percent": 106.9,
+        "oos_scale_step_after_quantile_mapping": 2.301,
+        "oos_step_reduction_quantile_mapping_percent": 88.1,
+        "oos_log_reduction_quantile_mapping_percent": 66.4,
+        "oos_scale_step_after_monthly_shrinkage": 0.839,
+        "oos_step_reduction_monthly_shrinkage_percent": 98.5,
+        "oos_log_reduction_monthly_shrinkage_percent": 107.1
+      },
+      {
+        "district_id": "NP-CHITWAN",
+        "modis_platform": "Terra",
+        "window_months": [
+          "2012-02",
+          "2012-03",
+          "2012-04"
+        ],
+        "raw_scale_step_viirs_over_modis": 49.857,
+        "scale_step_after_ratio": 2.101,
+        "step_reduction_ratio_percent": 97.7,
+        "log_reduction_ratio_percent": 81.0,
+        "scale_step_after_quantile_mapping": 14.851,
+        "step_reduction_quantile_mapping_percent": 71.6,
+        "log_reduction_quantile_mapping_percent": 31.0,
+        "scale_step_after_monthly_shrinkage": 2.096,
+        "step_reduction_monthly_shrinkage_percent": 97.8,
+        "log_reduction_monthly_shrinkage_percent": 81.1,
+        "out_of_sample": true,
+        "oos_scale_step_after_ratio": 2.167,
+        "oos_step_reduction_ratio_percent": 97.6,
+        "oos_log_reduction_ratio_percent": 80.2,
+        "oos_scale_step_after_quantile_mapping": 14.851,
+        "oos_step_reduction_quantile_mapping_percent": 71.6,
+        "oos_log_reduction_quantile_mapping_percent": 31.0,
+        "oos_scale_step_after_monthly_shrinkage": 2.165,
+        "oos_step_reduction_monthly_shrinkage_percent": 97.6,
+        "oos_log_reduction_monthly_shrinkage_percent": 80.2
+      },
+      {
+        "district_id": "NP-CHITWAN",
+        "modis_platform": "Aqua",
+        "window_months": [
+          "2012-02",
+          "2012-03",
+          "2012-04"
+        ],
+        "raw_scale_step_viirs_over_modis": 8.41,
+        "scale_step_after_ratio": 0.921,
+        "step_reduction_ratio_percent": 98.9,
+        "log_reduction_ratio_percent": 103.8,
+        "scale_step_after_quantile_mapping": 1.626,
+        "step_reduction_quantile_mapping_percent": 91.6,
+        "log_reduction_quantile_mapping_percent": 77.2,
+        "scale_step_after_monthly_shrinkage": 0.916,
+        "step_reduction_monthly_shrinkage_percent": 98.9,
+        "log_reduction_monthly_shrinkage_percent": 104.1,
+        "out_of_sample": true,
+        "oos_scale_step_after_ratio": 0.914,
+        "oos_step_reduction_ratio_percent": 98.8,
+        "oos_log_reduction_ratio_percent": 104.2,
+        "oos_scale_step_after_quantile_mapping": 1.655,
+        "oos_step_reduction_quantile_mapping_percent": 91.2,
+        "oos_log_reduction_quantile_mapping_percent": 76.3,
+        "oos_scale_step_after_monthly_shrinkage": 0.908,
+        "oos_step_reduction_monthly_shrinkage_percent": 98.8,
+        "oos_log_reduction_monthly_shrinkage_percent": 104.5
+      }
+    ],
+    "modis_version_eras": {
+      "Aqua|6.03": {
+        "first_day": "2012-01-26",
+        "last_day": "2022-05-18",
+        "days": 625
+      },
+      "Aqua|61.03": {
+        "first_day": "2023-01-05",
+        "last_day": "2026-05-28",
+        "days": 247
+      },
+      "Terra|6.03": {
+        "first_day": "2012-02-28",
+        "last_day": "2022-05-04",
+        "days": 357
+      },
+      "Terra|61.03": {
+        "first_day": "2023-02-12",
+        "last_day": "2026-06-14",
+        "days": 121
+      }
+    },
+    "confounds": [
+      "Real fire activity changes between years",
+      "Weather and environmental conditions",
+      "Overpass frequency and timing differences",
+      "Cloud cover and detection limitations",
+      "Product version and algorithm changes within a single mission"
+    ],
+    "record_limitation": "The acquired record starts at 2012-01-20, when VIIRS SP data begins; the pre-VIIRS MODIS-only era is outside the acquired data and cannot be audited here."
+  },
+  "lights_out": {
+    "by_method": {
+      "ratio": {
+        "2019": {
+          "overall": {
+            "n": 1086,
+            "mae": 11.8635,
+            "rmse": 38.3085,
+            "log_rmse": 1.1183,
+            "mean_bias": 2.7778,
+            "pearson": 0.6458,
+            "ccc": 0.5881
+          },
+          "profile_correlation": 0.9656936063606177,
+          "variation_ratio_pred_over_ref": 1.3073,
+          "monthly_profile": [
+            {
+              "month": "2019-01",
+              "reconstructed_total": 32.76,
+              "reference_total": 74
+            },
+            {
+              "month": "2019-02",
+              "reconstructed_total": 137.67,
+              "reference_total": 130
+            },
+            {
+              "month": "2019-03",
+              "reconstructed_total": 540.68,
+              "reference_total": 656
+            },
+            {
+              "month": "2019-04",
+              "reconstructed_total": 6121.95,
+              "reference_total": 5862
+            },
+            {
+              "month": "2019-05",
+              "reconstructed_total": 7722.57,
+              "reference_total": 4882
+            },
+            {
+              "month": "2019-06",
+              "reconstructed_total": 103.05,
+              "reference_total": 38
+            }
+          ]
+        },
+        "2022": {
+          "overall": {
+            "n": 1086,
+            "mae": 4.8211,
+            "rmse": 18.7041,
+            "log_rmse": 0.9277,
+            "mean_bias": -1.3675,
+            "pearson": 0.7032,
+            "ccc": 0.702
+          },
+          "profile_correlation": 0.9998141996687666,
+          "variation_ratio_pred_over_ref": 0.7712,
+          "monthly_profile": [
+            {
+              "month": "2022-01",
+              "reconstructed_total": 9.34,
+              "reference_total": 8
+            },
+            {
+              "month": "2022-02",
+              "reconstructed_total": 121.37,
+              "reference_total": 118
+            },
+            {
+              "month": "2022-03",
+              "reconstructed_total": 237.92,
+              "reference_total": 298
+            },
+            {
+              "month": "2022-04",
+              "reconstructed_total": 4307.18,
+              "reference_total": 5592
+            },
+            {
+              "month": "2022-05",
+              "reconstructed_total": 163.11,
+              "reference_total": 300
+            },
+            {
+              "month": "2022-06",
+              "reconstructed_total": 0.0,
+              "reference_total": 8
+            }
+          ]
+        }
+      },
+      "quantile_mapping": {
+        "2019": {
+          "overall": {
+            "n": 1086,
+            "mae": 8.213,
+            "rmse": 26.2774,
+            "log_rmse": 1.18,
+            "mean_bias": -6.1447,
+            "pearson": 0.6159,
+            "ccc": 0.5452
+          },
+          "profile_correlation": 0.9892767190589723,
+          "variation_ratio_pred_over_ref": 0.4349,
+          "monthly_profile": [
+            {
+              "month": "2019-01",
+              "reconstructed_total": 24.0,
+              "reference_total": 74
+            },
+            {
+              "month": "2019-02",
+              "reconstructed_total": 129.68,
+              "reference_total": 130
+            },
+            {
+              "month": "2019-03",
+              "reconstructed_total": 139.85,
+              "reference_total": 656
+            },
+            {
+              "month": "2019-04",
+              "reconstructed_total": 2301.22,
+              "reference_total": 5862
+            },
+            {
+              "month": "2019-05",
+              "reconstructed_total": 2367.14,
+              "reference_total": 4882
+            },
+            {
+              "month": "2019-06",
+              "reconstructed_total": 7.0,
+              "reference_total": 38
+            }
+          ]
+        },
+        "2022": {
+          "overall": {
+            "n": 1086,
+            "mae": 4.6637,
+            "rmse": 19.6041,
+            "log_rmse": 0.9672,
+            "mean_bias": -4.3453,
+            "pearson": 0.6612,
+            "ccc": 0.4405
+          },
+          "profile_correlation": 0.998934270491245,
+          "variation_ratio_pred_over_ref": 0.257,
+          "monthly_profile": [
+            {
+              "month": "2022-01",
+              "reconstructed_total": 7.0,
+              "reference_total": 8
+            },
+            {
+              "month": "2022-02",
+              "reconstructed_total": 50.0,
+              "reference_total": 118
+            },
+            {
+              "month": "2022-03",
+              "reconstructed_total": 91.0,
+              "reference_total": 298
+            },
+            {
+              "month": "2022-04",
+              "reconstructed_total": 1434.04,
+              "reference_total": 5592
+            },
+            {
+              "month": "2022-05",
+              "reconstructed_total": 23.0,
+              "reference_total": 300
+            },
+            {
+              "month": "2022-06",
+              "reconstructed_total": 0.0,
+              "reference_total": 8
+            }
+          ]
+        }
+      },
+      "monthly_shrinkage": {
+        "2019": {
+          "overall": {
+            "n": 1086,
+            "mae": 11.6985,
+            "rmse": 37.755,
+            "log_rmse": 1.1185,
+            "mean_bias": 2.5687,
+            "pearson": 0.6494,
+            "ccc": 0.594
+          },
+          "profile_correlation": 0.9702002353747964,
+          "variation_ratio_pred_over_ref": 1.2824,
+          "monthly_profile": [
+            {
+              "month": "2019-01",
+              "reconstructed_total": 52.71,
+              "reference_total": 74
+            },
+            {
+              "month": "2019-02",
+              "reconstructed_total": 126.38,
+              "reference_total": 130
+            },
+            {
+              "month": "2019-03",
+              "reconstructed_total": 542.91,
+              "reference_total": 656
+            },
+            {
+              "month": "2019-04",
+              "reconstructed_total": 6121.27,
+              "reference_total": 5862
+            },
+            {
+              "month": "2019-05",
+              "reconstructed_total": 7498.7,
+              "reference_total": 4882
+            },
+            {
+              "month": "2019-06",
+              "reconstructed_total": 89.67,
+              "reference_total": 38
+            }
+          ]
+        },
+        "2022": {
+          "overall": {
+            "n": 1086,
+            "mae": 4.8195,
+            "rmse": 18.662,
+            "log_rmse": 0.9306,
+            "mean_bias": -1.3665,
+            "pearson": 0.7041,
+            "ccc": 0.7029
+          },
+          "profile_correlation": 0.9998157793931997,
+          "variation_ratio_pred_over_ref": 0.7709,
+          "monthly_profile": [
+            {
+              "month": "2022-01",
+              "reconstructed_total": 19.83,
+              "reference_total": 8
+            },
+            {
+              "month": "2022-02",
+              "reconstructed_total": 112.35,
+              "reference_total": 118
+            },
+            {
+              "month": "2022-03",
+              "reconstructed_total": 239.7,
+              "reference_total": 298
+            },
+            {
+              "month": "2022-04",
+              "reconstructed_total": 4306.33,
+              "reference_total": 5592
+            },
+            {
+              "month": "2022-05",
+              "reconstructed_total": 161.74,
+              "reference_total": 300
+            },
+            {
+              "month": "2022-06",
+              "reconstructed_total": 0.0,
+              "reference_total": 8
+            }
+          ]
+        }
+      }
+    }
+  },
+  "limitations": [
+    "VIIRS is the reference scale, not ground truth.",
+    "No winning method is declared; the court verdict is inconclusive.",
+    "Aug-Dec is outside the acquired record.",
+    "District reliability differs; see the reliability grid."
+  ]
+}

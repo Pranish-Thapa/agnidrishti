@@ -1,0 +1,195 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-13T20:13:03Z",
+  "provider": {
+    "id": "area-api",
+    "product": "SP"
+  },
+  "study_areas": [
+    {
+      "district_id": "NP-BANKE",
+      "name": "Banke",
+      "province": "Lumbini Province",
+      "pcode": "NP0557",
+      "years": [
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "bbox": [
+        81.498535,
+        27.85365,
+        82.194063,
+        28.337813
+      ]
+    },
+    {
+      "district_id": "NP-BARDIYA",
+      "name": "Bardiya",
+      "province": "Lumbini Province",
+      "pcode": "NP0558",
+      "years": [
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "bbox": [
+        81.059084,
+        28.068852,
+        81.766594,
+        28.674673
+      ]
+    },
+    {
+      "district_id": "NP-CHITWAN",
+      "name": "Chitwan",
+      "province": "Bagmati Province",
+      "pcode": "NP0335",
+      "years": [
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "bbox": [
+        83.918656,
+        27.354966,
+        84.796554,
+        27.880467
+      ]
+    }
+  ],
+  "sensors": [
+    {
+      "sensor_id": "modis",
+      "label": "MODIS",
+      "instrument": "MODIS",
+      "platforms": [
+        "Terra",
+        "Aqua"
+      ],
+      "confidence_kind": "numeric",
+      "confidence_scale": "MODIS numeric confidence 0-100 (not comparable to VIIRS categories)",
+      "brightness_fields": [
+        "brightness",
+        "bright_t31"
+      ]
+    },
+    {
+      "sensor_id": "viirs_snpp",
+      "label": "VIIRS Suomi-NPP",
+      "instrument": "VIIRS",
+      "platforms": [
+        "Suomi-NPP"
+      ],
+      "confidence_kind": "categorical",
+      "confidence_scale": "VIIRS categorical confidence (low / nominal / high)",
+      "brightness_fields": [
+        "bright_ti4",
+        "bright_ti5"
+      ]
+    },
+    {
+      "sensor_id": "viirs_noaa20",
+      "label": "VIIRS NOAA-20",
+      "instrument": "VIIRS",
+      "platforms": [
+        "NOAA-20"
+      ],
+      "confidence_kind": "categorical",
+      "confidence_scale": "VIIRS categorical confidence (low / nominal / high)",
+      "brightness_fields": [
+        "bright_ti4",
+        "bright_ti5"
+      ]
+    },
+    {
+      "sensor_id": "viirs_noaa21",
+      "label": "VIIRS NOAA-21",
+      "instrument": "VIIRS",
+      "platforms": [
+        "NOAA-21"
+      ],
+      "confidence_kind": "categorical",
+      "confidence_scale": "VIIRS categorical confidence (low / nominal / high)",
+      "brightness_fields": [
+        "bright_ti4",
+        "bright_ti5"
+      ]
+    }
+  ],
+  "years": [
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "paths": {
+    "district_year": "data/{district_id}/{year}.json",
+    "metadata": "data/{district_id}/metadata.json"
+  },
+  "quality_summary": {
+    "raw_record_count": 1019718,
+    "valid_record_count": 1019121,
+    "final_retained_record_count": 124506,
+    "outside_study_area_count": 894615,
+    "duplicate_count": 597
+  },
+  "limitations": [
+    "Near real-time (NRT) 7-day global snapshot; not standard processing (SP).",
+    "No ground truth; detections are not burned area.",
+    "Missing observations are marked unavailable/missing, never zero-filled."
+  ],
+  "citations": [
+    "NASA FIRMS (Fire Information for Resource Management System), NASA LANCE/EOSDIS.",
+    "Giglio, L., Schroeder, W., Hall, J.V. (MODIS Collection 6.1 active fire product).",
+    "Schroeder, W., Oliva, P., Giglio, L., Csiszar, I.A. (VIIRS 375 m active fire product).",
+    "OCHA COD-AB Nepal administrative boundaries, distributed by HDX (CC BY-IGO)."
+  ]
+}
