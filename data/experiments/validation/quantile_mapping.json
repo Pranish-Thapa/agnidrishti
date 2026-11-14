@@ -264,6 +264,38 @@
       "ccc": null
     }
   },
+  "weekly": {
+    "weekly_buckets": 318,
+    "overall": {
+      "n": 318,
+      "mae": 37.2367,
+      "rmse": 104.2847,
+      "log_rmse": 1.4801,
+      "mean_bias": -35.8241,
+      "pearson": 0.8772,
+      "ccc": 0.6098
+    },
+    "by_modis_platform": {
+      "Terra": {
+        "n": 159,
+        "mae": 37.2353,
+        "rmse": 104.7015,
+        "log_rmse": 1.5853,
+        "mean_bias": -36.489,
+        "pearson": 0.8502,
+        "ccc": 0.6147
+      },
+      "Aqua": {
+        "n": 159,
+        "mae": 37.238,
+        "rmse": 103.8662,
+        "log_rmse": 1.3667,
+        "mean_bias": -35.1592,
+        "pearson": 0.912,
+        "ccc": 0.6046
+      }
+    }
+  },
   "provenance": {
     "experiment_config_version": "1.0.0",
     "reference_sensor": "viirs_snpp",
@@ -280,7 +312,7 @@
       "data/processed/historical/inventory.json"
     ],
     "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
-    "generated_at": "2026-11-13T21:27:41Z"
+    "generated_at": "2026-11-14T05:53:41Z"
   },
   "validation_pairs": 2172
 }

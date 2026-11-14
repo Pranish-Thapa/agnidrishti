@@ -7,6 +7,8 @@ import { CalendarPanel } from '../components/explorer/CalendarPanel'
 import { CriticalPeriodsPanel } from '../components/explorer/CriticalPeriodsPanel'
 import { MapPanel } from '../components/explorer/MapPanel'
 import { ReadinessPanel } from '../components/explorer/ReadinessPanel'
+import { ComparisonChart } from '../components/explorer/ComparisonChart'
+import { DistrictSmallMultiples } from '../components/explorer/DistrictSmallMultiples'
 import { layers, type LayerId, type ProviderId } from '../lib/explorer'
 import { aggregateDistrictYear, type DistrictYearSummary } from '../lib/layers'
 import { defaultStudyAreaId, getStudyArea, studyAreas, type StudyAreaId } from '../lib/regions'
@@ -192,8 +194,27 @@ export function ExplorerPage() {
                   loading={indexLoading || datasetLoading}
                 />
               </Reveal>
+              {dataset && (
+                <Reveal delay={0.04}>
+                  <ComparisonChart
+                    dataset={dataset}
+                    districtName={area.name}
+                    layer={layer}
+                    factors={factors}
+                    reliabilityGrid={reliabilityGrid}
+                  />
+                </Reveal>
+              )}
               <Reveal delay={0.06}>
                 <CriticalPeriodsPanel dataset={dataset} />
+              </Reveal>
+              <Reveal delay={0.08}>
+                <DistrictSmallMultiples
+                  summaries={districtSummaries}
+                  layerLabel={activeLayer.label}
+                  year={year}
+                  provider={provider}
+                />
               </Reveal>
             </div>
 

@@ -4,7 +4,7 @@ import { withAlpha, palette } from '../../lib/palette'
 const TERRACOTTA = palette.terracotta.DEFAULT
 const AMBER = palette.amber.DEFAULT
 import type { HarmonizationFactors, ReliabilityGrid } from '../../lib/experiments'
-import { computeWeekCell, type WeekCell } from '../../lib/layers'
+import { computeWeekCell, weekStratum, type WeekCell } from '../../lib/layers'
 import { months } from '../../lib/content'
 import { StatusBadge } from '../ui/StatusBadge'
 import type { LayerId } from '../../lib/explorer'
@@ -47,6 +47,25 @@ export function CalendarPanel({
     if (!dataset) return []
     return dataset.weeks.map((week) => computeWeekCell(week, layer, dataset.district_id, factors))
   }, [dataset, layer, factors])
+
+  // Reliability stratum per cell (midpoint month lookup — fixes late-December
+  // ISO weeks mapping onto the unavailable Aug-Dec strata).
+  const strataByStart = useMemo(() => {
+    const map: Record<
+      string,
+      {
+        category: string
+        validationPairs?: number
+        interval?: { mae: number | null; p90_abs_error: number | null; note?: string } | null
+      }
+    > = {}
+    if (!dataset || !reliabilityGrid) return map
+    for (const week of dataset.weeks) {
+      const s = weekStratum(reliabilityGrid, dataset.district_id, week)
+      if (s) map[week.week_start] = s
+    }
+    return map
+  }, [dataset, reliabilityGrid])
 
   const maxValue = useMemo(
     () => Math.max(1, ...cells.map((cell) => cell.value ?? 0)),
@@ -136,7 +155,12 @@ export function CalendarPanel({
                       aria-label={
                         `Week of ${cell.week.week_start}: ` +
                         (cell.value !== null
-                          ? `${layer === 'harmonized' ? 'VIIRS-equivalent estimate' : 'detections'} ${Math.round(cell.value * 100) / 100}`
+                          ? `${layer === 'harmonized' ? 'VIIRS-equivalent estimate' : 'detections'} ${Math.round(cell.value * 100) / 100}${
+                              cell.kind === 'estimate' &&
+                              strataByStart[cell.week.week_start]?.category === 'insufficient_evidence'
+                                ? ' (low evidence)'
+                                : ''
+                            }`
                           : cell.kind === 'no_co_observation'
                             ? 'no co-observation; no estimate'
                             : 'not observed')
@@ -151,6 +175,11 @@ export function CalendarPanel({
                           (cell.kind === 'no_co_observation'
                             ? 'rgba(232, 216, 189, 0.05)'
                             : 'rgba(232, 216, 189, 0.03)'),
+                        opacity:
+                          cell.kind === 'estimate' &&
+                          strataByStart[cell.week.week_start]?.category === 'insufficient_evidence'
+                            ? 0.45
+                            : undefined,
                       }}
                     >
                       <span
@@ -163,6 +192,14 @@ export function CalendarPanel({
                               : undefined,
                         }}
                       />
+                      {cell.kind === 'estimate' &&
+                        strataByStart[cell.week.week_start]?.category === 'insufficient_evidence' && (
+                          <span
+                            aria-hidden="true"
+                            className="absolute right-0.5 top-0.5 h-1.5 w-1.5 rounded-full border border-sand/50"
+                            title="Low-evidence week"
+                          />
+                        )}
                     </button>
                   )
                 })}
@@ -292,6 +329,52 @@ export function CalendarPanel({
                 }
               />
             </div>
+            {(() => {
+              const stratum = strataByStart[selected.week.week_start]
+              const interval = stratum?.interval
+              if (!interval || interval.mae === null || interval.mae === undefined) return null
+              return (
+                <div className="border-t border-sand/10 px-4 py-3">
+                  <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">
+                    Typical held-out error in this stratum
+                  </p>
+                  <p className="mt-1.5 text-[11px] leading-relaxed text-ash-light">
+                    ±{Math.round(interval.mae * 10) / 10} detections on a typical day
+                    {interval.p90_abs_error !== null && interval.p90_abs_error !== undefined
+                      ? `; 9 of 10 days fall within ±${Math.round(interval.p90_abs_error * 10) / 10}`
+                      : ''}
+                    , measured against the VIIRS reference on out-of-fold district-days in this
+                    district-month.
+                  </p>
+                </div>
+              )
+            })()}
+            {selected.kind === 'estimate' && selected.platformEstimates && (
+              <div className="border-t border-sand/10 px-4 py-3">
+                <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">
+                  How this estimate is built
+                </p>
+                {selected.platformEstimates.map((e) => (
+                  <div
+                    key={e.platform}
+                    className="mt-1.5 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-ash-light"
+                  >
+                    <span>
+                      {e.platform}: {e.detections.toLocaleString()} × {e.factor.toFixed(2)}{' '}
+                      <span className="text-ash-dark">
+                        ({e.factorSource === 'fitted' ? 'monthly factor' : 'district fallback'})
+                      </span>
+                    </span>
+                    <span>= {Math.round(e.estimate * 10) / 10}</span>
+                  </div>
+                ))}
+                <p className="mt-1.5 font-mono text-[10px] text-ash-dark">
+                  Averaged across {selected.estimateBasis} MODIS platform
+                  {selected.estimateBasis === 1 ? '' : 's'} → {Math.round((selected.value ?? 0) * 10) / 10}{' '}
+                  VIIRS-equivalent
+                </p>
+              </div>
+            )}
             <p className="border-t border-sand/10 px-4 py-3 text-[10px] leading-relaxed text-ash-dark">
               Values are satellite hotspot detections recorded inside the district — not unique
               fires and not burned area. Missing observations are never treated as zero. Harmonized
@@ -316,7 +399,10 @@ function selectedReliability(
   districtId: string,
   weekStart: string,
 ): string | null {
-  const month = weekStart.slice(5, 7)
+  // Midpoint month: a week starting 29-31 December belongs mostly to January.
+  const start = new Date(weekStart)
+  const mid = new Date(start.getTime() + 3.5 * 24 * 3600 * 1000)
+  const month = String(mid.getUTCMonth() + 1).padStart(2, '0')
   const stratum = grid?.[districtId]?.[month]
   return stratum ? stratum.category : null
 }

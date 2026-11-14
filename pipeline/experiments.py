@@ -20,6 +20,7 @@ Scientific contract (binding for every function in this module):
 from __future__ import annotations
 
 import json
+import math
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -497,8 +498,132 @@ METHODS = {
 
 
 # ---------------------------------------------------------------------------
+# Baselines (added after the independent evaluation, A4): the simplest
+# sufficient corrections the original court omitted. They are compared in the
+# same court with the same held-out sample, but can never be "selected" as a
+# harmonization method — their role is to show whether the extra machinery
+# (months, districts, distributions) is justified by the data at all.
+# ---------------------------------------------------------------------------
+
+def fit_constant(train: list[dict[str, Any]]) -> dict[str, Any]:
+    """One constant multiplier for everything: sum(V) / sum(M) over all
+    comparable training days. No months, no districts, no distributions."""
+
+    total_modis = sum(pair["modis_count"] for pair in train)
+    total_ref = sum(pair["reference_count"] for pair in train)
+    ratio = total_ref / total_modis if total_modis > 0 else None
+    return {
+        "method": "constant_ratio_baseline",
+        "is_baseline": True,
+        "global_ratio": ratio,
+        "global_modis_sum": total_modis,
+        "global_reference_sum": total_ref,
+        "training_pairs": len(train),
+    }
+
+
+def apply_constant(model: dict[str, Any], pairs: list[dict[str, Any]]) -> np.ndarray:
+    out = np.empty(len(pairs))
+    ratio = model.get("global_ratio")
+    if ratio is None:
+        ratio = 1.0
+    for i, pair in enumerate(pairs):
+        out[i] = pair["modis_count"] * ratio
+    return out
+
+
+def fit_seasonal(train: list[dict[str, Any]]) -> dict[str, Any]:
+    """Seasonal climatology of the VIIRS reference itself: the mean VIIRS count
+    per calendar month over comparable training days, with NO MODIS input. A
+    judge's question "does MODIS add anything beyond the season?" is answered
+    by comparing against this predictor."""
+
+    sums: dict[str, list[float]] = defaultdict(lambda: [0.0, 0.0])
+    for pair in train:
+        month = pair["month_of_year"]
+        sums[month][0] += pair["reference_count"]
+        sums[month][1] += 1
+    month_means = {
+        month: s[0] / s[1] for month, s in sorted(sums.items()) if s[1] > 0
+    }
+    overall = (
+        sum(s[0] for s in sums.values()) / sum(s[1] for s in sums.values())
+        if sums
+        else None
+    )
+    return {
+        "method": "seasonal_climatology_baseline",
+        "is_baseline": True,
+        "month_means": {k: round(v, 4) for k, v in month_means.items()},
+        "overall_mean": round(overall, 4) if overall is not None else None,
+        "training_pairs": len(train),
+    }
+
+
+def apply_seasonal(model: dict[str, Any], pairs: list[dict[str, Any]]) -> np.ndarray:
+    out = np.empty(len(pairs))
+    means = model.get("month_means", {})
+    overall = model.get("overall_mean")
+    for i, pair in enumerate(pairs):
+        value = means.get(pair["month_of_year"])
+        if value is None:
+            value = overall if overall is not None else 0.0
+        out[i] = value
+    return out
+
+
+BASELINES = {
+    "constant_ratio": (fit_constant, apply_constant),
+    "seasonal_climatology": (fit_seasonal, apply_seasonal),
+}
+
+
+# ---------------------------------------------------------------------------
 # Evaluation
 # ---------------------------------------------------------------------------
+
+
+def evaluate_weekly(
+    pairs: list[dict[str, Any]],
+    predictions: dict[str, np.ndarray],
+) -> dict[str, Any]:
+    """Weekly-scale validation (B2): the product is a weekly calendar, so
+    agreement must also be reported on the weekly aggregates. Validation
+    district-day pairs are summed into ISO district-weeks per platform and
+    evaluated there. Weekly aggregation removes the zero-inflation noise that
+    dominates daily MAE and CCC.
+    """
+
+    import datetime as _dt
+
+    def week_key(day: str) -> str:
+        d = _dt.date.fromisoformat(day)
+        iso = d.isocalendar()
+        return f"{iso[0]}-W{iso[1]:02d}"
+
+    results: dict[str, Any] = {}
+    for method, pred in predictions.items():
+        # Aggregate per (district, modis_platform, week).
+        buckets: dict[tuple[str, str, str], list[float]] = defaultdict(lambda: [0.0, 0.0])
+        for i, pair in enumerate(pairs):
+            key = (pair["district_id"], pair["modis_platform"], week_key(pair["date"]))
+            buckets[key][0] += pred[i]
+            buckets[key][1] += pair["reference_count"]
+        week_rows = [(k, v[0], v[1]) for k, v in sorted(buckets.items())]
+        pred_w = np.asarray([p_sum for _, p_sum, _ in week_rows])
+        ref_w = np.asarray([r_sum for _, _, r_sum in week_rows])
+        overall = metrics.all_metrics(pred_w, ref_w)
+        per_platform: dict[str, dict[str, Any]] = {}
+        for platform in ("Terra", "Aqua"):
+            idx = [i for i, (k, _, _) in enumerate(week_rows) if k[1] == platform]
+            if idx:
+                per_platform[platform] = metrics.all_metrics(pred_w[idx], ref_w[idx])
+        results[method] = {
+            "weekly_buckets": len(week_rows),
+            "overall": overall,
+            "by_modis_platform": per_platform,
+        }
+    return results
 
 
 def evaluate_pairs(
@@ -588,6 +713,7 @@ def run_method_court(
     validation_pairs: list[dict[str, Any]],
     validation_predictions: dict[str, np.ndarray],
     fitted_models: dict[str, dict[str, Any]],
+    baseline_predictions: dict[str, np.ndarray] | None = None,
 ) -> dict[str, Any]:
     """Compare all methods on the identical validation sample.
 
@@ -601,18 +727,60 @@ def run_method_court(
     results: dict[str, Any] = {}
     for method, pred in validation_predictions.items():
         results[method] = evaluate_pairs(validation_pairs, pred)
+        results[method]["is_baseline"] = False
+
+    # Baselines (A4): the simplest sufficient corrections, evaluated on the
+    # identical held-out sample. They can never be "selected".
+    if baseline_predictions:
+        for name, pred in baseline_predictions.items():
+            results[name] = evaluate_pairs(validation_pairs, pred)
+            results[name]["is_baseline"] = True
 
     ranking = sorted(
         results.items(),
         key=lambda kv: (-(kv[1]["metrics"]["ccc"] or -1.0), kv[1]["metrics"]["mae"]),
     )
 
+    # Split ranking: the three candidate methods vs the baselines (A4). Only
+    # methods can be "selected"; baselines answer "is the machinery justified?".
+    method_ranking = [(m, r) for m, r in ranking if not r.get("is_baseline")]
+    baseline_ranking = [(m, r) for m, r in ranking if r.get("is_baseline")]
+
+    # Paired block bootstrap of CCC differences between the top candidates and
+    # against the baselines (A4): interval-overlap comparisons are conservative;
+    # paired differences on identical resampled blocks are the right test.
+    months = np.asarray([p["month"] for p in validation_pairs])
+    all_predictions: dict[str, np.ndarray] = {**validation_predictions}
+    if baseline_predictions:
+        all_predictions.update(baseline_predictions)
+    paired_comparisons: dict[str, Any] = {}
+    if len(method_ranking) >= 1:
+        best_method, best = method_ranking[0]
+        for other_method, _other in method_ranking[1:3]:
+            paired_comparisons[f"{best_method}_minus_{other_method}"] = (
+                metrics.paired_block_bootstrap_diff(
+                    all_predictions[best_method],
+                    all_predictions[other_method],
+                    np.asarray([p["reference_count"] for p in validation_pairs]),
+                    months,
+                )
+            )
+        for name, _pred in baseline_ranking:
+            paired_comparisons[f"{best_method}_minus_{name}"] = (
+                metrics.paired_block_bootstrap_diff(
+                    all_predictions[best_method],
+                    all_predictions[name],
+                    np.asarray([p["reference_count"] for p in validation_pairs]),
+                    months,
+                )
+            )
+
     decision: dict[str, Any]
-    if len(ranking) < 2:
+    if len(method_ranking) < 2:
         decision = {"outcome": "insufficient_methods", "note": "Need >= 2 methods to compare."}
     else:
-        best_method, best = ranking[0]
-        second_method, second = ranking[1]
+        best_method, best = method_ranking[0]
+        second_method, second = method_ranking[1]
         best_ccc_ci = best["uncertainty"]["ccc"]
         second_ccc_ci = second["uncertainty"]["ccc"]
         best_mae_ci = best["uncertainty"]["mae"]
@@ -636,7 +804,23 @@ def run_method_court(
             district_spread is not None and district_spread > 0.25
         )
 
-        if ccc_decisive and mae_decisive and not unstable:
+        # Baseline comparison: does the best non-baseline method beat the
+        # simplest sufficient correction at all?
+        method_best = method_ranking[0][0] if method_ranking else None
+        baseline_best = baseline_ranking[0][0] if baseline_ranking else None
+        method_beats_baseline = None
+        if method_best and baseline_best:
+            pair_key = f"{method_best}_minus_{baseline_best}"
+            if pair_key in paired_comparisons:
+                interval = paired_comparisons[pair_key]
+                method_beats_baseline = {
+                    "comparison": pair_key,
+                    "difference": interval["point"],
+                    "ci": [interval["ci_lower"], interval["ci_upper"]],
+                    "robust": not (interval["ci_lower"] <= 0 <= interval["ci_upper"]),
+                }
+
+        if ccc_decisive and mae_decisive and not unstable and method_best == best_method:
             decision = {
                 "outcome": "selected",
                 "selected_method": best_method,
@@ -662,6 +846,8 @@ def run_method_court(
                     "year_ccc_spread": year_spread,
                     "district_ccc_spread": district_spread,
                     "unstable": unstable,
+                    "method_beats_baseline": method_beats_baseline,
+                    "best_baseline": baseline_best,
                 },
             }
 
@@ -672,6 +858,7 @@ def run_method_court(
         "validation_sample_size": len(validation_pairs),
         "methods": results,
         "ranking": [method for method, _ in ranking],
+        "paired_comparisons": paired_comparisons,
         "decision": decision,
         "metric_explanations": {
             "mae": "Mean absolute error of harmonized counts vs the VIIRS reference on identical days.",
@@ -693,6 +880,8 @@ def run_seam_audit(
     records: list[dict[str, Any]],
     requested_by_sensor: dict[str, set[str]],
     predictions_by_method: dict[str, Callable[[list[dict[str, Any]]], np.ndarray]],
+    *,
+    out_of_sample_predictions: dict[str, Callable[[list[dict[str, Any]]], np.ndarray]] | None = None,
 ) -> dict[str, Any]:
     """Diagnostic (not causal) investigation of observation-scale
     discontinuities around the VIIRS record start (2012-01-20) and the MODIS
@@ -762,6 +951,39 @@ def run_seam_audit(
                 row[f"step_reduction_{method_name}_percent"] = round(
                     100.0 * (1.0 - deviation_after / deviation_before), 1
                 ) if deviation_before > 1e-9 else None
+                # Log-scale reduction: the honest figure. The linear "% closed"
+                # flatters corrections when the step is large (a 50x step halved
+                # linearly reads 50% closed while remaining 25x).
+                if deviation_before > 1e-9 and raw_step > 1:
+                    log_before = math.log(raw_step)
+                    log_after = math.log(harm_step) if harm_step > 0 else None
+                    row[f"log_reduction_{method_name}_percent"] = round(
+                        100.0 * (1.0 - log_after / log_before), 1
+                    ) if log_after is not None and log_before > 1e-9 else None
+                else:
+                    row[f"log_reduction_{method_name}_percent"] = None
+
+            # Out-of-sample refit (A5): the in-sample figures above use factors
+            # fitted on training data that includes the 2012 audit window.
+            # Refitting with 2012 excluded makes the audit a genuine
+            # prediction test.
+            if out_of_sample_predictions:
+                row["out_of_sample"] = True
+                for method_name, predict in out_of_sample_predictions.items():
+                    harmonized = predict(month_pairs)
+                    harm_step = float(np.mean(ref)) / max(float(np.mean(harmonized)), 1e-9)
+                    row[f"oos_scale_step_after_{method_name}"] = round(harm_step, 3)
+                    deviation_before = abs(raw_step - 1.0)
+                    deviation_after = abs(harm_step - 1.0)
+                    row[f"oos_step_reduction_{method_name}_percent"] = round(
+                        100.0 * (1.0 - deviation_after / deviation_before), 1
+                    ) if deviation_before > 1e-9 else None
+                    if deviation_before > 1e-9 and raw_step > 1:
+                        log_before = math.log(raw_step)
+                        log_after = math.log(harm_step) if harm_step > 0 else None
+                        row[f"oos_log_reduction_{method_name}_percent"] = round(
+                            100.0 * (1.0 - log_after / log_before), 1
+                        ) if log_after is not None and log_before > 1e-9 else None
             step_rows.append(row)
 
     # 2. MODIS product-version eras inside the acquired record.
@@ -847,6 +1069,14 @@ def run_lights_out(
                 )
             profile_pred = np.asarray([r["reconstructed_total"] for r in monthly_rows])
             profile_ref = np.asarray([r["reference_total"] for r in monthly_rows], dtype=float)
+            # Raw uncorrected MODIS profile: Pearson is scale-free, so a
+            # constant multiple of raw MODIS scores identically to any
+            # harmonized series. Report it beside the harmonized correlation
+            # so the "0.97-1.00" figure cannot be read as a correction effect.
+            raw_modis_profile = np.asarray([
+                sum(p["modis_count"] for p in year_pairs if p["month"] == month)
+                for month in months
+            ], dtype=float)
             variation_ratio = (
                 float(np.std(profile_pred) / np.std(profile_ref))
                 if float(np.std(profile_ref)) > 0
@@ -856,6 +1086,7 @@ def run_lights_out(
                 "overall": metrics.all_metrics(year_pred, year_ref),
                 "monthly_profile": monthly_rows,
                 "profile_correlation": metrics.pearson(profile_pred, profile_ref),
+                "raw_modis_profile_correlation": metrics.pearson(raw_modis_profile, profile_ref),
                 "variation_ratio_pred_over_ref": (
                     round(variation_ratio, 4) if variation_ratio is not None else None
                 ),
@@ -916,7 +1147,29 @@ def run_lights_out(
 # ---------------------------------------------------------------------------
 
 
-def run_experiments() -> dict[str, Any]:
+def load_pairs_csv(path: Path) -> list[dict[str, Any]]:
+    import csv as _csv
+
+    pairs: list[dict[str, Any]] = []
+    with open(path, encoding="utf-8") as handle:
+        for row in _csv.DictReader(handle):
+            pairs.append(
+                {
+                    "district_id": row["district_id"],
+                    "modis_platform": row["modis_platform"],
+                    "reference_platform": row["reference_platform"],
+                    "date": row["date"],
+                    "month": row["month"],
+                    "month_of_year": row["month_of_year"],
+                    "year": int(row["year"]),
+                    "modis_count": float(row["modis_count"]),
+                    "reference_count": float(row["reference_count"]),
+                }
+            )
+    return pairs
+
+
+def run_experiments(*, from_pairs: Path | None = None) -> dict[str, Any]:
     """Full Task 05 experiment: fit, validate, Method Court, Seam Audit,
     Lights-Out. Writes machine-readable outputs with provenance."""
 
@@ -926,14 +1179,19 @@ def run_experiments() -> dict[str, Any]:
     ):
         (EXPERIMENTS_DIR / sub).mkdir(parents=True, exist_ok=True)
 
-    grouped = historical.load_area_entries()
-    requested_by_sensor = {
-        sensor_id: historical.requested_dates(entries)
-        for sensor_id, entries in grouped.items()
-    }
-    records, qc_report, spatial_summary = historical.load_historical_records()
-
-    pairs = build_pairs(records, requested_by_sensor=requested_by_sensor)
+    from_pairs_mode = from_pairs is not None
+    requested_by_sensor: dict[str, set[str]] = {}
+    records: list[dict[str, Any]] = []
+    if from_pairs_mode:
+        pairs = load_pairs_csv(from_pairs)  # type: ignore[arg-type]
+    else:
+        grouped = historical.load_area_entries()
+        requested_by_sensor = {
+            sensor_id: historical.requested_dates(entries)
+            for sensor_id, entries in grouped.items()
+        }
+        records, qc_report, spatial_summary = historical.load_historical_records()
+        pairs = build_pairs(records, requested_by_sensor=requested_by_sensor)
     train, validation = train_validation_split(pairs)
 
     json.dump(
@@ -957,28 +1215,60 @@ def run_experiments() -> dict[str, Any]:
         model_out["training_months"] = sorted({p["month"] for p in train})
         json.dump(model_out, open(EXPERIMENTS_DIR / "fitted_models" / f"{method}.json", "w", encoding="utf-8"), indent=2)
 
-    court = run_method_court(validation, validation_predictions, fitted)
+    # Baselines (A4): the simplest sufficient corrections, fitted on the same
+    # training sample and evaluated on the identical held-out sample.
+    baseline_predictions: dict[str, np.ndarray] = {}
+    for name, (fit_fn, apply_fn) in BASELINES.items():
+        baseline_model = fit_fn(train)
+        baseline_predictions[name] = apply_fn(baseline_model, validation)
+        model_out = {k: v for k, v in baseline_model.items()}
+        model_out["provenance"] = _provenance()
+        json.dump(model_out, open(EXPERIMENTS_DIR / "fitted_models" / f"{name}.json", "w", encoding="utf-8"), indent=2)
+
+    # Weekly-scale validation (B2): the product is a weekly calendar.
+    weekly = evaluate_weekly(validation, validation_predictions)
+
+    court = run_method_court(validation, validation_predictions, fitted, baseline_predictions)
     json.dump(court, open(EXPERIMENTS_DIR / "method_comparison" / "method_court.json", "w", encoding="utf-8"), indent=2)
 
-    # Per-method validation detail.
+    # Per-method validation detail (daily + weekly scale).
     for method, pred in validation_predictions.items():
         detail = evaluate_pairs(validation, pred)
+        detail["weekly"] = weekly.get(method)
         json.dump(
             {**detail, "provenance": _provenance(), "validation_pairs": len(validation)},
             open(EXPERIMENTS_DIR / "validation" / f"{method}.json", "w", encoding="utf-8"), indent=2,
         )
 
-    # Seam audit needs a predictor closure per method.
+    # Seam audit needs a predictor closure per method — in-sample and, for the
+    # honest out-of-sample variant, refits that exclude the 2012 audit window.
     def _predictor(method_name: str) -> Callable[[list[dict[str, Any]]], np.ndarray]:
         model = fitted[method_name]
         apply_fn = METHODS[method_name][1]
         return lambda pairs_in: apply_fn(model, pairs_in)
 
-    seam = run_seam_audit(
-        records,
-        requested_by_sensor,
-        {method: _predictor(method) for method in METHODS},
-    )
+    fitted_oos: dict[str, dict[str, Any]] = {}
+    train_oos = [p for p in train if p["year"] != 2012]
+    for method in METHODS:
+        fitted_oos[method] = METHODS[method][0](train_oos)
+
+    def _predictor_oos(method_name: str) -> Callable[[list[dict[str, Any]]], np.ndarray]:
+        model = fitted_oos[method_name]
+        apply_fn = METHODS[method_name][1]
+        return lambda pairs_in: apply_fn(model, pairs_in)
+
+    if from_pairs_mode:
+        seam = {
+            "skipped": True,
+            "note": "seam audit needs raw records; run the full pipeline for this output",
+        }
+    else:
+        seam = run_seam_audit(
+            records,
+            requested_by_sensor,
+            {method: _predictor(method) for method in METHODS},
+            out_of_sample_predictions={method: _predictor_oos(method) for method in METHODS},
+        )
     json.dump(seam, open(EXPERIMENTS_DIR / "seam_audit" / "seam_audit.json", "w", encoding="utf-8"), indent=2)
 
     lights = run_lights_out(train, validation, validation_predictions)
@@ -988,7 +1278,10 @@ def run_experiments() -> dict[str, Any]:
     summary = {
         "contract_version": config.CONTRACT_VERSION,
         "generated_at": _utc_now(),
-        "provenance": _provenance(),
+        "provenance": {
+            **_provenance(),
+            **({"from_pairs": str(from_pairs)} if from_pairs_mode else {}),
+        },
         "sample_sizes": {
             "total_pairs": len(pairs),
             "training_pairs": len(train),
@@ -1006,6 +1299,8 @@ def run_experiments() -> dict[str, Any]:
         "court_metrics": {
             method: results["metrics"] for method, results in court["methods"].items()
         },
+        "weekly_validation": weekly,
+        "paired_comparisons": court.get("paired_comparisons", {}),
         "decision": court["decision"],
         "raw_scale_gap": {
             "note": "Mean raw MODIS vs VIIRS reference counts on identical district-days",
@@ -1015,6 +1310,33 @@ def run_experiments() -> dict[str, Any]:
         },
     }
     json.dump(summary, open(EXPERIMENTS_DIR / "metrics" / "summary.json", "w", encoding="utf-8"), indent=2)
+
+    # Pair table (B7): commit-friendly CSV so the court reproduces from a clone.
+    if not from_pairs_mode:
+        split_of = {}
+        for pair in train:
+            split_of[pair["date"] + pair["district_id"] + pair["modis_platform"]] = "train"
+        for pair in validation:
+            split_of[pair["date"] + pair["district_id"] + pair["modis_platform"]] = "validation"
+        rows = [
+            "district_id,modis_platform,reference_platform,date,month,month_of_year,year,"
+            "modis_count,reference_count,split"
+        ]
+        for pair in pairs:
+            key = pair["date"] + pair["district_id"] + pair["modis_platform"]
+            rows.append(
+                ",".join(
+                    [
+                        pair["district_id"], pair["modis_platform"], pair["reference_platform"],
+                        pair["date"], pair["month"], pair["month_of_year"], str(pair["year"]),
+                        str(pair["modis_count"]), str(pair["reference_count"]),
+                        split_of.get(key, "purge"),
+                    ]
+                )
+            )
+        (EXPERIMENTS_DIR / "config" / "pairs.csv").write_text(
+            chr(10).join(rows) + chr(10), encoding="utf-8"
+        )
 
     _write_report(court, seam, lights, summary)
 
@@ -1052,10 +1374,28 @@ def _write_report(
     lines.append("| Method | MAE | RMSE | log-RMSE | Bias | Pearson | CCC |")
     lines.append("| --- | --- | --- | --- | --- | --- | --- |")
     for method, m in summary["court_metrics"].items():
+        label = method + (" (baseline)" if m.get("is_baseline") else "")
         lines.append(
-            f"| {method} | {m['mae']} | {m['rmse']} | {m['log_rmse']} | "
+            f"| {label} | {m['mae']} | {m['rmse']} | {m['log_rmse']} | "
             f"{m['mean_bias']} | {m['pearson']} | {m['ccc']} |"
         )
+    weekly = summary.get("weekly_validation", {})
+    if weekly:
+        lines.append("")
+        lines.append("### Weekly-scale validation (held-out)")
+        lines.append("")
+        lines.append("| Method | weekly MAE | weekly RMSE | weekly CCC |")
+        lines.append("| --- | --- | --- | --- |")
+        for method, block in weekly.items():
+            o = block["overall"]
+            lines.append(f"| {method} | {o['mae']} | {o['rmse']} | {o['ccc']} |")
+    paired = summary.get("paired_comparisons", {})
+    if paired:
+        lines.append("")
+        lines.append("### Paired CCC differences (moving-block bootstrap, 90% CI)")
+        lines.append("")
+        for name, block in paired.items():
+            lines.append(f"- {name}: {block['point']} (CI {block['ci_lower']} to {block['ci_upper']})")
     lines.append("")
     decision = summary["decision"]
     lines.append(f"**Court decision: {decision['outcome']}** — {decision.get('note', decision.get('justification', ''))}")

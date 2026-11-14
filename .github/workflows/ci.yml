@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python dependencies
+        run: pip install shapely numpy pytest
+      - name: Run Python tests
+        run: python -m pytest pipeline/tests -q
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Frontend tests
+        run: npx vitest run
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Production build
+        run: npm run build
+      - name: Reproduce the Method Court from the committed pair table
+        run: python -m pipeline experiments --from-pairs data/experiments/config/pairs.csv
+      - name: Verify no metric drift
+        run: |
+          python - <<'EOF'
+          import json
+          court = json.load(open('data/experiments/method_comparison/method_court.json'))
+          ccc = {m: r['metrics']['ccc'] for m, r in court['methods'].items()}
+          expected = {'monthly_shrinkage': 0.6247, 'ratio': 0.6199, 'quantile_mapping': 0.5159}
+          for method, value in expected.items():
+              assert abs(ccc[method] - value) < 0.01, f"{method} drifted: {ccc[method]} vs {value}"
+          print('no metric drift:', ccc)
+          EOF

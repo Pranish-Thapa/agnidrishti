@@ -373,3 +373,34 @@ Full report: FINAL_FEATURE_IMPROVEMENT_REPORT.md.
   window, district click selection, mobile 390 no overlap/overflow).
 
 ## PROJECT STATUS: TASKS 04B–11 ALL VERIFIED COMPLETE
+
+## TASK 12 — CLAUDE EVALUATION IMPLEMENTATION — VERIFIED COMPLETE (2026-11-14)
+
+Independent evaluation findings verified first-hand, then implemented per
+AGNIDRISHTI_CLAUDE_EVALUATION_IMPLEMENTATION_PLAN.md. Full report:
+AGNIDRISHTI_CLAUDE_EVALUATION_IMPLEMENTATION_REPORT.md.
+
+- **A1 fixed**: Harmonized layer now AVERAGES per-platform estimates (was 1.99x VIIRS, now 0.995x
+  over 1,206 co-observed weeks). 7 vitest regression tests added.
+- **A2 fixed**: low-evidence stratum cells dimmed with a marker; late-December ISO weeks use the
+  midpoint month; wording corrected everywhere.
+- **A3 fixed**: NOAA-20 sensitivity variant rebuilt for real (pairs rebuilt against NOAA-20).
+- **A4 added**: constant-ratio + seasonal-climatology baselines in the Method Court with paired
+  block-bootstrap CCC differences. Verified result: the constant baseline (CCC 0.653) is NOT beaten
+  by any method (shrinkage diff -0.028, CI [-0.048, +0.043]) — the court now says exactly that.
+- **A5 fixed**: seam audit out-of-sample (2012 excluded from refit) + log-scale reduction reported.
+- **B2 added**: weekly-scale validation (shrinkage 0.884 / ratio 0.882; Terra 0.847 / Aqua 0.936) —
+  now the headline beside the daily figures.
+- **B4/B5**: reliability regraded from pooled out-of-fold predictions (7 reliable / 6 caution /
+  8 insufficient / 15 unavailable) + per-stratum held-out error intervals shown in the weekly detail.
+- **B3/C6/C1/C3**: comparison overlay chart, show-the-arithmetic panel, weekly CSV download,
+  district small multiples.
+- **B7/B1**: pairs.csv committed + --from-pairs reproduces the court from a bare clone; CI workflow;
+  **live URL deployed**: https://pranish-thapa.github.io/agnidrishti/ (verified in browser).
+- **D1/D2/A6**: plain-language labels, docs/ tidy, MIT LICENSE, AI disclosure, all claim mismatches
+  corrected (5-of-7, 98%-closed, under-represented, 0.1° role, never-displayed).
+- Deferred (documented): B6 extension, C2 seasonal percentile, C4 Chitwan diagnostic, C7 scatter.
+- Verification: 76 pytest + 7 vitest + typecheck + lint + build + live-site browser checks
+  (0 failed requests, 10 data files loaded, routing + data paths correct on Pages).
+
+## PROJECT STATUS: TASKS 04B–12 ALL VERIFIED COMPLETE

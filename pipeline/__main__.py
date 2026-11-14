@@ -45,9 +45,15 @@ def main() -> None:
         help="Task 04B: inventory, quality, overlap, comparability, coverage, readiness",
     )
 
-    sub.add_parser(
+    p_exp = sub.add_parser(
         "experiments",
         help="Task 05: harmonization experiments, Method Court, Seam Audit, Lights-Out",
+    )
+    p_exp.add_argument(
+        "--from-pairs",
+        type=Path,
+        default=None,
+        help="Run from a committed pair table CSV instead of raw FIRMS data",
     )
 
     sub.add_parser(
@@ -125,7 +131,7 @@ def main() -> None:
             print(f"  {path}")
 
     elif args.command == "experiments":
-        result = experiments.run_experiments()
+        result = experiments.run_experiments(from_pairs=args.from_pairs)
         print(json.dumps(result, indent=2, default=str))
 
     elif args.command == "validate":

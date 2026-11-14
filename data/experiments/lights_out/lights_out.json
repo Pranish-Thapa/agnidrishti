@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T21:27:41Z",
+  "generated_at": "2026-11-14T05:53:41Z",
   "provenance": {
     "experiment_config_version": "1.0.0",
     "reference_sensor": "viirs_snpp",
@@ -17,7 +17,7 @@
       "data/processed/historical/inventory.json"
     ],
     "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
-    "generated_at": "2026-11-13T21:27:41Z"
+    "generated_at": "2026-11-14T05:53:41Z"
   },
   "design_note": "Methods are fitted exclusively on training years; validation years are withheld entirely (lights-out). This does not claim that any specific historical event was correctly reconstructed.",
   "by_method": {
@@ -77,6 +77,7 @@
           }
         ],
         "profile_correlation": 0.9656936063606177,
+        "raw_modis_profile_correlation": 0.9750068774196277,
         "variation_ratio_pred_over_ref": 1.3073,
         "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
       },
@@ -135,6 +136,7 @@
           }
         ],
         "profile_correlation": 0.9998141996687666,
+        "raw_modis_profile_correlation": 0.9971627693696481,
         "variation_ratio_pred_over_ref": 0.7712,
         "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
       }
@@ -195,6 +197,7 @@
           }
         ],
         "profile_correlation": 0.9892767190589723,
+        "raw_modis_profile_correlation": 0.9750068774196277,
         "variation_ratio_pred_over_ref": 0.4349,
         "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
       },
@@ -253,6 +256,7 @@
           }
         ],
         "profile_correlation": 0.998934270491245,
+        "raw_modis_profile_correlation": 0.9971627693696481,
         "variation_ratio_pred_over_ref": 0.257,
         "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
       }
@@ -313,6 +317,7 @@
           }
         ],
         "profile_correlation": 0.9702002353747964,
+        "raw_modis_profile_correlation": 0.9750068774196277,
         "variation_ratio_pred_over_ref": 1.2824,
         "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
       },
@@ -371,6 +376,7 @@
           }
         ],
         "profile_correlation": 0.9998157793931997,
+        "raw_modis_profile_correlation": 0.9971627693696481,
         "variation_ratio_pred_over_ref": 0.7709,
         "variation_note": "variation_ratio well below 1 indicates over-smoothing of real month-to-month variation; well above 1 indicates amplified variation."
       }

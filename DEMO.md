@@ -45,7 +45,8 @@
   training/validation separation, leakage and sensor-identity checks all pass; tamper detection
   is itself tested.
 - **Seam audit:** raw VIIRS/MODIS scale step at the record start is 8–50×; after harmonization
-  0.8–2.1. Reduced, never eliminated, and explicitly *diagnostic* — the page lists the confounds
+  (refitted *without* the audit window — out-of-sample) 0.8–2.2, which is 81–97% closed on the log
+  scale. Reduced, never eliminated, and explicitly *diagnostic* — the page lists the confounds
   (real fire change, weather, overpasses, clouds, product versions — including the MODIS
   6.03→61.03 version seam we found inside the record).
 - **Lights-out backtest:** withheld years are reconstructed from MODIS alone; monthly fire-season

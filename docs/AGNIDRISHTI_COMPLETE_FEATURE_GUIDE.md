@@ -3,6 +3,17 @@
 *How the entire application works, from the user interface down to the satellite data pipeline.*
 *Every figure in this document was verified against the project's generated output files on 2026-11-14.*
 
+
+> **Post-evaluation correction (2026-11-14):** an independent evaluation found the original
+> Harmonized layer summed Terra and Aqua estimates (each fitted to the full VIIRS count), reading
+> ~1.99× the reference; this is now fixed by averaging. The Method Court now includes a
+> constant-ratio baseline and a seasonal climatology (the constant beats all three methods — the
+> verdict is 'no method beats the baseline'); the NOAA-20 sensitivity variant was rebuilt for
+> real; the Seam Audit is reported out-of-sample on the log scale; reliability strata are graded
+> from pooled out-of-fold predictions (7 reliable / 6 caution / 8 insufficient / 15 unavailable);
+> and weekly-scale validation is now the headline (Terra 0.847 / Aqua 0.936). Figures in this
+> document predate these corrections where they conflict.
+
 ---
 
 # PART 1 — PROJECT OVERVIEW

@@ -1,12 +1,12 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T21:55:10Z",
+  "generated_at": "2026-11-14T05:33:25Z",
   "provenance": {
     "audit_version": "1.0.0",
     "task": "06 independent scientific validation",
     "reference_sensor": "viirs_snpp",
     "independent_metric_implementation": true,
-    "generated_at": "2026-11-13T21:55:10Z"
+    "generated_at": "2026-11-14T05:33:25Z"
   },
   "note": "Variants test analytical assumptions, not arbitrary parameter sweeps. The NOAA-20 reference is restricted to its shorter record and is reported as such.",
   "baseline_ranking": [
@@ -49,29 +49,30 @@
       "metrics": {
         "ratio": {
           "n": 2172,
-          "mae": 8.3423,
-          "rmse": 30.1445,
-          "mean_bias": 0.7052,
-          "pearson": 0.653,
-          "ccc": 0.6199
+          "mae": 8.3278,
+          "rmse": 31.1108,
+          "mean_bias": 0.4005,
+          "pearson": 0.6617,
+          "ccc": 0.632
         },
         "quantile_mapping": {
           "n": 2172,
-          "mae": 6.4384,
-          "rmse": 23.1821,
-          "mean_bias": -5.245,
-          "pearson": 0.6171,
-          "ccc": 0.5159
+          "mae": 6.8764,
+          "rmse": 24.8056,
+          "mean_bias": -5.7668,
+          "pearson": 0.6154,
+          "ccc": 0.4943
         },
         "monthly_shrinkage": {
           "n": 2172,
-          "mae": 8.259,
-          "rmse": 29.7801,
-          "mean_bias": 0.6011,
-          "pearson": 0.6562,
-          "ccc": 0.6247
+          "mae": 8.1212,
+          "rmse": 30.14,
+          "mean_bias": 0.1515,
+          "pearson": 0.6646,
+          "ccc": 0.6404
         }
-      }
+      },
+      "note": "Pairs rebuilt against VIIRS NOAA-20 (record starts 2018-04); sample is smaller and the reference scale differs."
     },
     "holdout_2023": {
       "validation_pairs": 1086,

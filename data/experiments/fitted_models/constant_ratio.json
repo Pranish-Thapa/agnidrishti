@@ -1,0 +1,26 @@
+{
+  "method": "constant_ratio_baseline",
+  "is_baseline": true,
+  "global_ratio": 15.568527197841215,
+  "global_modis_sum": 7041.0,
+  "global_reference_sum": 109618.0,
+  "training_pairs": 13854,
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-14T05:53:36Z"
+  }
+}

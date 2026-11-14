@@ -20,8 +20,8 @@ const metricHeaders: Array<[keyof CourtMetrics, string]> = [
   ['ccc', 'CCC'],
 ]
 
-function formatMetric(value: number | null | undefined): string {
-  if (value === null || value === undefined) return '—'
+function formatMetric(value: number | boolean | null | undefined): string {
+  if (value === null || value === undefined || typeof value !== 'number') return '—'
   return Number(value).toFixed(3)
 }
 
@@ -47,6 +47,7 @@ export function ResultsSection() {
   }
 
   const { court, validation, reliability } = summary
+  const weekly = summary.weekly_validation ?? null
   const decision = court.decision
 
   return (
@@ -54,27 +55,29 @@ export function ResultsSection() {
       {/* Method Court */}
       <div>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="font-display text-xl text-bone">Method Court — validation metrics</h3>
+          <h3 className="font-display text-xl text-bone">
+            Method Court — validation metrics <span className="text-ash-dark">(daily scale)</span>
+          </h3>
           <StatusBadge tone={decision.outcome === 'selected' ? 'active' : 'neutral'}>
             {decision.outcome === 'inconclusive' ? 'Verdict: inconclusive' : decision.outcome}
           </StatusBadge>
         </div>
         <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-ash">
-          All three methods were fitted on identical training years ({validation.validation_years.join(', ')}{' '}
-          held out with a {validation.purge_days}-day purge) and evaluated on the identical
-          validation sample of {validation.validation_pairs.toLocaleString()} district-days. The
-          remaining {validation.purge_pairs?.toLocaleString() ?? '360'} of{' '}
-          {validation.total_pairs?.toLocaleString() ?? '16,386'} pairs are purge-gap days
-          excluded from both phases to prevent temporal leakage. No winner is declared: the
-          confidence intervals of the leading methods overlap and performance is unstable across
-          districts.
+          All three correction methods and two simple baselines were fitted on identical training
+          years ({validation.validation_years.join(', ')} held out with a {validation.purge_days}-day
+          purge) and evaluated on the identical validation sample of{' '}
+          {validation.validation_pairs.toLocaleString()} district-days. The remaining{' '}
+          {validation.purge_pairs?.toLocaleString() ?? '360'} of{' '}
+          {validation.total_pairs?.toLocaleString() ?? '16,386'} pairs are purge-gap days excluded
+          from both phases to prevent temporal leakage. Baselines can never be selected as the
+          harmonization method — they answer whether the extra machinery is justified at all.
         </p>
         <div className="mt-4 overflow-x-auto border border-sand/10" role="region" aria-label="Method Court metrics table" tabIndex={0}>
           <table className="w-full min-w-[620px] border-collapse text-left">
             <thead>
               <tr className="border-b border-sand/10 bg-sand/[0.03]">
                 <th className="px-4 py-3 font-mono text-[9px] font-normal uppercase tracking-[0.14em] text-ash-dark">
-                  Method
+                  Predictor
                 </th>
                 {metricHeaders.map(([key, label]) => (
                   <th key={key} className="px-4 py-3 font-mono text-[9px] font-normal uppercase tracking-[0.14em] text-ash-dark">
@@ -89,11 +92,17 @@ export function ResultsSection() {
             <tbody className="divide-y divide-sand/[0.08] text-[12px]">
               {court.ranking.map((method, rank) => {
                 const metrics = court.metrics[method]
+                const isBaseline = metrics.is_baseline ?? false
                 return (
                   <tr key={method}>
                     <th className="px-4 py-3.5 text-left font-normal text-ash-light">
                       <span className="font-mono text-[9px] text-ash-dark">{rank + 1}.</span>{' '}
                       {methodLabels[method] ?? method}
+                      {isBaseline && (
+                        <span className="ml-2 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                          baseline
+                        </span>
+                      )}
                     </th>
                     {metricHeaders.map(([key]) => (
                       <td key={key} className="px-4 py-3.5 font-mono text-[11px] text-ash-light">
@@ -107,6 +116,72 @@ export function ResultsSection() {
             </tbody>
           </table>
         </div>
+
+        {court.paired_comparisons && Object.keys(court.paired_comparisons).length > 0 && (
+          <div className="mt-4 border border-sand/[0.08] bg-ink-900 px-4 py-3">
+            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+              Paired agreement differences (moving-block bootstrap, 90% CI)
+            </p>
+            <ul className="mt-2 space-y-1">
+              {Object.entries(court.paired_comparisons).map(([name, block]) => {
+                const robust = !(block.ci_lower <= 0 && block.ci_upper >= 0)
+                return (
+                  <li key={name} className="font-mono text-[10px] text-ash-light">
+                    {name.replace(/_minus_/g, ' − ')}: {block.point >= 0 ? '+' : ''}
+                    {block.point} (CI {block.ci_lower} to {block.ci_upper}){' '}
+                    <span className={robust ? 'text-ember' : 'text-ash-dark'}>
+                      {robust ? '· robust' : '· indistinguishable'}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+            <p className="mt-2 text-[11px] leading-relaxed text-ash-dark">
+              Reading: a difference whose interval spans 0 means the two predictors are
+              statistically indistinguishable on this data. The seasonal average (no MODIS input)
+              comparison is the important one — it shows whether MODIS adds information beyond the
+              season.
+            </p>
+          </div>
+        )}
+
+        {weekly && (
+          <div className="mt-4 border border-sand/[0.08] bg-ink-900 px-4 py-3">
+            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+              Weekly scale — the product is a weekly calendar
+            </p>
+            <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {court.ranking
+                .filter((m) => weekly[m])
+                .slice(0, 4)
+                .map((method) => {
+                  const block = weekly[method]
+                  return (
+                    <div key={method}>
+                      <p className="text-[11px] text-ash">{methodLabels[method] ?? method}</p>
+                      <p className="mt-1 font-display text-xl text-bone">
+                        {block.overall.ccc !== null && block.overall.ccc !== undefined
+                          ? block.overall.ccc.toFixed(3)
+                          : '—'}
+                      </p>
+                      <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                        weekly agreement · {block.weekly_buckets} weeks
+                      </p>
+                    </div>
+                  )
+                })}
+            </div>
+            <p className="mt-2 text-[11px] leading-relaxed text-ash-dark">
+              Daily agreement is the hardest scale: most district-days record zero on both sides.
+              Weekly aggregation removes that noise — on held-out weeks the corrected Terra series
+              reaches{' '}
+              {weekly.monthly_shrinkage?.by_modis_platform?.Terra?.ccc?.toFixed(2) ?? '—'} and Aqua{' '}
+              {weekly.monthly_shrinkage?.by_modis_platform?.Aqua?.ccc?.toFixed(2) ?? '—'}. Report
+              both scales; the weekly one is what the calendar shows.
+            </p>
+          </div>
+        )}
+
         <p className="mt-3 text-[11px] leading-relaxed text-ash-dark">
           {decision.note ?? decision.justification}
         </p>
@@ -116,8 +191,11 @@ export function ResultsSection() {
       <div>
         <h3 className="font-display text-xl text-bone">Reliability strata (district × month)</h3>
         <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-ash">
-          Derived from documented criteria (sample size, agreement, bias), not arbitrary labels. A
-          stratum marked insufficient is never displayed as a value in the explorer.
+          Graded from pooled <strong className="text-ash-light">out-of-fold predictions</strong> of
+          the leave-one-year-out audit (every district-week predicted by a model trained without its
+          year), using documented criteria (sample size, agreement, bias) — not arbitrary labels.
+          Estimates in low-evidence strata are still shown in the explorer, but drawn dimmed with a
+          low-evidence marker and their typical held-out error.
         </p>
         <div className="mt-4 grid grid-cols-2 gap-px border border-sand/10 bg-sand/10 sm:grid-cols-4">
           {(
@@ -164,15 +242,17 @@ export function ResultsSection() {
             At the very start of the joint record (Feb–Apr 2012), VIIRS recorded{' '}
             <strong className="text-ash-light">many times more detections</strong> than MODIS in the
             same districts. Each pair of bars shows one district's MODIS platform: the long bar is
-            the raw VIIRS/MODIS scale step; the short bar is what remains after harmonization.
+            the raw VIIRS/MODIS scale step; the short bar is what remains after harmonization,
+            refitted <strong className="text-ash-light">without 2012</strong> so the audit is a
+            genuine prediction test, measured on the log scale.
           </p>
           <div className="mt-4 space-y-2">
             {summary.seam_audit.scale_step_analysis.map((row) => {
               const afterEntry = Object.entries(row).find(([k]) => k.startsWith('scale_step_after_'))
               const after = (afterEntry?.[1] ?? null) as number | null
               const methodName = afterEntry?.[0]?.replace('scale_step_after_', '')
-              const reductionEntry = Object.entries(row).find(([k]) => k.startsWith('step_reduction_'))
-              const reduction = (reductionEntry?.[1] ?? null) as number | null
+              const logEntry = Object.entries(row).find(([k]) => k.startsWith('log_reduction_'))
+              const logRed = (logEntry?.[1] ?? null) as number | null
               const raw = row.raw_scale_step_viirs_over_modis
               const widthRaw = Math.min(100, (raw / 50) * 100)
               const widthAfter = after ? Math.min(100, (after / 50) * 100) : 0
@@ -187,8 +267,8 @@ export function ResultsSection() {
                     </p>
                     <p className="font-mono text-[9px] text-ash-dark">
                       raw {raw.toFixed(1)}x → {after?.toFixed(2)}x after {methodName ?? 'harmonization'}
-                      {reduction !== null && reduction !== undefined
-                        ? ` · ${reduction.toFixed(1)}% of the gap closed`
+                      {logRed !== null && logRed !== undefined
+                        ? ` · ${logRed.toFixed(0)}% closed on the log scale`
                         : ''}
                     </p>
                   </div>
@@ -212,12 +292,13 @@ export function ResultsSection() {
           </div>
           <div className="mt-3 border-l border-sand/50 pl-4">
             <p className="text-[12px] leading-relaxed text-ash">
-              A residual step of roughly 0.8–2.1 remains even after the best correction: harmonization
-              reduces the observation gap, it does not eliminate sensor differences. Weather, real fire
-              change, overpass timing, clouds and product versions are alternative contributors — this
-              audit can never prove that a satellite transition caused a recorded change. In the
-              acquired record the MODIS product version itself also changes (6.03 → 61.03, 2022→2023),
-              a second seam inside a single mission.
+              A residual step remains even after the best correction: harmonization reduces the
+              observation gap, it does not eliminate sensor differences — the leftover factor is
+              evidence that correction factors are not perfectly stable across years. Weather, real
+              fire change, overpass timing, clouds and product versions are alternative contributors
+              — this audit can never prove that a satellite transition caused a recorded change. In
+              the acquired record the MODIS product version itself also changes (6.03 → 61.03,
+              2022→2023), a second seam inside a single mission.
             </p>
           </div>
         </div>
@@ -236,7 +317,9 @@ export function ResultsSection() {
             The methods were fitted with <strong className="text-ash-light">no access to 2019 and
             2022</strong>, then asked to rebuild those years from MODIS alone. The paired bars show
             the reference VIIRS monthly totals (amber) against the reconstruction (terracotta) for
-            the top-ranked method, per held-out year.
+            the top-ranked method, per held-out year. Note: profile correlation is scale-free, so
+            the raw uncorrected MODIS series scores the same — the informative part is the variation
+            ratio, not the correlation alone.
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {Object.entries(summary.lights_out.by_method[summary.court.ranking[0]] ?? {}).map(
@@ -271,8 +354,9 @@ export function ResultsSection() {
                         </div>
                       ))}
                     </div>
-                    <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
-                      profile r = {block.profile_correlation?.toFixed(3)} · variation ratio{' '}
+                    <p className="mt-2 font-mono text-[8px] uppercase leading-relaxed tracking-[0.1em] text-ash-dark">
+                      profile r = {block.profile_correlation?.toFixed(3)} (raw uncorrected MODIS:{' '}
+                      {block.raw_modis_profile_correlation?.toFixed(3)}) · variation ratio{' '}
                       {block.variation_ratio_pred_over_ref?.toFixed(2)} (≈1 preserves real swings;
                       far below 1 = over-smoothed)
                     </p>

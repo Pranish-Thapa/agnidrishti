@@ -105,7 +105,7 @@ export async function loadHotspots(
     const datasets = await Promise.all(
       studyAreas.map(async (area): Promise<HotspotDataset | null> => {
         const response = await fetch(
-          `/data/points/${provider}/${area.id}/${year}.json`,
+          `${import.meta.env.BASE_URL}data/points/${provider}/${area.id}/${year}.json`,
           { signal },
         )
         if (response.status === 404) return null

@@ -13,7 +13,7 @@ export const capabilities = [
     title: 'Seam Audit',
     question: 'Did the satellite transition create an artificial jump?',
     description:
-      'A diagnostic analysis compares raw MODIS, raw VIIRS and harmonized series around the VIIRS record start. Raw scale steps of 8–50× shrink to roughly 0.8–2.1 after harmonization — reduced, never eliminated. The audit is diagnostic; it cannot prove causality.',
+      'A diagnostic analysis compares raw MODIS, raw VIIRS and harmonized series at the start of the joint record, refitted without the audit window so it is a genuine prediction test. Raw scale steps of 8–50× shrink to roughly 0.8–2.2 — 81–97% closed on the log scale — reduced, never eliminated. The audit is diagnostic; it cannot prove causality.',
     status: 'Implemented · diagnostic' as PhaseStatus,
     schematic: 'seam',
   },
@@ -22,8 +22,8 @@ export const capabilities = [
     title: 'Method Court',
     question: 'Do different correction methods tell the same story?',
     description:
-      'Three harmonization approaches were fitted on identical training years and evaluated on identical held-out samples, with bootstrap uncertainty. The verdict: inconclusive — the evidence does not distinguish them, so no winner is declared.',
-    status: 'Computed · inconclusive' as PhaseStatus,
+      'Three harmonization approaches were fitted on identical training years and evaluated on identical held-out samples, with bootstrap uncertainty. Independent review added two baselines: a single constant multiplier does as well as month- or district-specific machinery (paired CCC difference −0.03, indistinguishable), while MODIS adds real information beyond the season (0.26 → 0.63). No winner is declared.',
+    status: 'Computed · no method beats the baseline' as PhaseStatus,
     schematic: 'methods',
   },
   {
@@ -81,7 +81,7 @@ export const methods = [
     id: 'ratio',
     index: '01',
     name: 'Ratio-based correction',
-    status: 'Computed · inconclusive' as PhaseStatus,
+    status: 'Computed · no method beats the baseline' as PhaseStatus,
     summary:
       'Estimate the ratio between MODIS and VIIRS detections during the overlap period, then apply a scaled correction to earlier MODIS observations.',
     formula: 'H\u209C = D\u209C × (V\u2092 / M\u2092)',
@@ -94,7 +94,7 @@ export const methods = [
     id: 'quantile',
     index: '02',
     name: 'Quantile mapping',
-    status: 'Computed · inconclusive' as PhaseStatus,
+    status: 'Computed · no method beats the baseline' as PhaseStatus,
     summary:
       'Match the distribution of MODIS detections to the VIIRS reference distribution observed during the overlap, then apply that mapping to the historical record.',
     formula: 'H\u209C = F\u1D65\u207B\u00B9( F\u2098(D\u209C) )',
@@ -107,7 +107,7 @@ export const methods = [
     id: 'shrinkage',
     index: '03',
     name: 'Monthly shrinkage',
-    status: 'Computed · inconclusive' as PhaseStatus,
+    status: 'Computed · no method beats the baseline' as PhaseStatus,
     summary:
       'Estimate monthly correction factors and shrink unstable estimates toward a longer-period baseline, weighted by sample size and uncertainty.',
     formula: 'r\u2098* = λ\u2098r\u2098 + (1 − λ\u2098)r\u0304',

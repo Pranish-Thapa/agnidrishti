@@ -130,3 +130,58 @@ def error_distribution(pred: np.ndarray, ref: np.ndarray) -> dict[str, Any]:
         "p95": round(float(np.quantile(errors, 0.95)), 4),
         "max_abs": round(float(np.max(np.abs(errors))), 4),
     }
+
+def paired_block_bootstrap_diff(
+    pred_a: np.ndarray,
+    pred_b: np.ndarray,
+    ref: np.ndarray,
+    blocks: np.ndarray,
+    *,
+    statistic=None,
+    iterations: int = 2000,
+    seed: int = 2026,
+    ci: float = 0.90,
+) -> dict[str, Any]:
+    """Paired moving-block bootstrap of a statistic DIFFERENCE between two
+    predictions against the same reference (e.g. CCC of method A minus CCC of
+    method B). Whole month blocks are resampled so both predictions are
+    evaluated on identical resampled samples — the paired design removes the
+    sample-composition noise that interval-overlap comparisons suffer from.
+    """
+
+    if statistic is None:
+        statistic = ccc_diff_statistic
+    rng = np.random.default_rng(seed)
+    unique_blocks = np.unique(blocks)
+    block_indices = {block: np.where(blocks == block)[0] for block in unique_blocks}
+    point = statistic(pred_a, pred_b, ref)
+
+    samples = np.empty(iterations)
+    n_blocks = len(unique_blocks)
+    for i in range(iterations):
+        chosen = rng.choice(n_blocks, size=n_blocks, replace=True)
+        indices = np.concatenate([block_indices[unique_blocks[j]] for j in chosen])
+        samples[i] = statistic(pred_a[indices], pred_b[indices], ref[indices])
+
+    alpha = (1.0 - ci) / 2.0
+    return {
+        "point": round(float(point), 4),
+        "ci_lower": round(float(np.quantile(samples, alpha)), 4),
+        "ci_upper": round(float(np.quantile(samples, 1.0 - alpha)), 4),
+        "iterations": iterations,
+        "confidence_level": ci,
+        "blocks": int(n_blocks),
+        "seed": seed,
+        "interpretation": (
+            "Interval excluding 0 means the statistic difference is robust to "
+            "block resampling; an interval spanning 0 means indistinguishable."
+        ),
+    }
+
+
+def ccc_diff_statistic(pred_a: np.ndarray, pred_b: np.ndarray, ref: np.ndarray) -> float:
+    a = lin_ccc(pred_a, ref)
+    b = lin_ccc(pred_b, ref)
+    if a is None or b is None:
+        return 0.0
+    return float(a - b)

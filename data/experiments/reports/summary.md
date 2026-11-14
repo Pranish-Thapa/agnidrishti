@@ -1,6 +1,6 @@
 # Task 05 — Harmonization experiment report
 
-Generated: 2026-11-13T21:27:41Z
+Generated: 2026-11-14T05:53:35Z
 
 ## Data and fairness
 
@@ -16,6 +16,23 @@ Generated: 2026-11-13T21:27:41Z
 | ratio | 8.3423 | 30.1445 | 1.0274 | 0.7052 | 0.653 | 0.6199 |
 | quantile_mapping | 6.4384 | 23.1821 | 1.0789 | -5.245 | 0.6171 | 0.5159 |
 | monthly_shrinkage | 8.259 | 29.7801 | 1.0288 | 0.6011 | 0.6562 | 0.6247 |
+| constant_ratio | 7.9822 | 26.3603 | 1.0526 | 0.0932 | 0.6638 | 0.6529 |
+| seasonal_climatology | 10.484 | 26.4933 | 1.4175 | -0.4993 | 0.3802 | 0.2598 |
+
+### Weekly-scale validation (held-out)
+
+| Method | weekly MAE | weekly RMSE | weekly CCC |
+| --- | --- | --- | --- |
+| ratio | 26.7606 | 79.2418 | 0.8817 |
+| quantile_mapping | 37.2367 | 104.2847 | 0.6098 |
+| monthly_shrinkage | 26.2289 | 78.0813 | 0.8844 |
+
+### Paired CCC differences (moving-block bootstrap, 90% CI)
+
+- monthly_shrinkage_minus_ratio: 0.0048 (CI 0.0002 to 0.0104)
+- monthly_shrinkage_minus_quantile_mapping: 0.1088 (CI -0.0089 to 0.2599)
+- monthly_shrinkage_minus_constant_ratio: -0.0282 (CI -0.0484 to 0.0434)
+- monthly_shrinkage_minus_seasonal_climatology: 0.3649 (CI 0.3134 to 0.4386)
 
 **Court decision: inconclusive** — Top methods are statistically or practically indistinguishable, or performance is unstable. No winner is declared; the evidence does not support forcing one.
 

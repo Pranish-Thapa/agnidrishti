@@ -15,6 +15,25 @@ export type CourtMetrics = {
   mean_bias: number | null
   pearson: number | null
   ccc: number | null
+  /** Baselines (constant ratio, seasonal climatology) can never be selected. */
+  is_baseline?: boolean
+}
+
+export type PairedComparison = {
+  point: number
+  ci_lower: number
+  ci_upper: number
+  iterations: number
+  confidence_level: number
+  blocks: number
+  seed: number
+  interpretation?: string
+}
+
+export type WeeklyValidationBlock = {
+  weekly_buckets: number
+  overall: CourtMetrics
+  by_modis_platform: Record<string, CourtMetrics>
 }
 
 export type CourtDecision = {
@@ -35,6 +54,12 @@ export type ReliabilityStratum = {
   category: ReliabilityCategory
   validation_pairs: number
   best_method_metrics?: CourtMetrics
+  /** B5: typical out-of-fold error for this stratum (daily counts). */
+  interval?: {
+    mae: number | null
+    p90_abs_error: number | null
+    note?: string
+  } | null
 }
 
 export type ReliabilityGrid = Record<string, Record<string, ReliabilityStratum>>
@@ -44,7 +69,9 @@ export type SeamAuditRow = {
   modis_platform: string
   window_months: string[]
   raw_scale_step_viirs_over_modis: number
-  // Dynamic keys: scale_step_after_<method>, step_reduction_<method>_percent
+  // Dynamic keys: scale_step_after_<method>, step_reduction_<method>_percent,
+  // log_reduction_<method>_percent, oos_scale_step_after_<method>,
+  // oos_step_reduction_<method>_percent, oos_log_reduction_<method>_percent
   [key: string]: unknown
 }
 
@@ -58,6 +85,7 @@ export type SeamAuditSummary = {
 export type LightsOutYear = {
   overall: CourtMetrics
   profile_correlation: number | null
+  raw_modis_profile_correlation?: number | null
   variation_ratio_pred_over_ref: number | null
   monthly_profile: Array<{
     month: string
@@ -78,13 +106,16 @@ export type ExperimentSummary = {
     decision: CourtDecision
     metrics: Record<string, CourtMetrics>
     by_district?: Record<string, Record<string, CourtMetrics>>
+    paired_comparisons?: Record<string, PairedComparison>
     metric_explanations: Record<string, string>
   }
+  weekly_validation?: Record<string, WeeklyValidationBlock> | null
   reliability: {
     criteria: Record<string, { note?: string; min_stratum_pairs?: number; min_ccc?: number }>
     category_counts: Record<string, number>
     grid: ReliabilityGrid
     weak_years: string[]
+    grading_basis?: string
   }
   seam_audit?: SeamAuditSummary | null
   lights_out?: LightsOutSummary | null
@@ -164,11 +195,11 @@ async function loadJson<T>(
 }
 
 export function loadExperimentSummary(signal?: AbortSignal): Promise<ExperimentSummary | null> {
-  return loadJson('/data/experiments/summary.json', isExperimentSummary, signal)
+  return loadJson(`${import.meta.env.BASE_URL}data/experiments/summary.json`, isExperimentSummary, signal)
 }
 
 export function loadHarmonizationFactors(signal?: AbortSignal): Promise<HarmonizationFactors | null> {
-  return loadJson('/data/experiments/harmonization_factors.json', isHarmonizationFactors, signal)
+  return loadJson(`${import.meta.env.BASE_URL}data/experiments/harmonization_factors.json`, isHarmonizationFactors, signal)
 }
 
 /**

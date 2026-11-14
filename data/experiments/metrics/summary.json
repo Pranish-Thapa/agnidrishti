@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T21:27:41Z",
+  "generated_at": "2026-11-14T05:53:41Z",
   "provenance": {
     "experiment_config_version": "1.0.0",
     "reference_sensor": "viirs_snpp",
@@ -17,7 +17,8 @@
       "data/processed/historical/inventory.json"
     ],
     "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
-    "generated_at": "2026-11-13T21:27:41Z"
+    "generated_at": "2026-11-14T05:53:41Z",
+    "from_pairs": "data\\experiments\\config\\pairs.csv"
   },
   "sample_sizes": {
     "total_pairs": 16386,
@@ -58,6 +59,164 @@
       "mean_bias": 0.6011,
       "pearson": 0.6562,
       "ccc": 0.6247
+    },
+    "constant_ratio": {
+      "n": 2172,
+      "mae": 7.9822,
+      "rmse": 26.3603,
+      "log_rmse": 1.0526,
+      "mean_bias": 0.0932,
+      "pearson": 0.6638,
+      "ccc": 0.6529
+    },
+    "seasonal_climatology": {
+      "n": 2172,
+      "mae": 10.484,
+      "rmse": 26.4933,
+      "log_rmse": 1.4175,
+      "mean_bias": -0.4993,
+      "pearson": 0.3802,
+      "ccc": 0.2598
+    }
+  },
+  "weekly_validation": {
+    "ratio": {
+      "weekly_buckets": 318,
+      "overall": {
+        "n": 318,
+        "mae": 26.7606,
+        "rmse": 79.2418,
+        "log_rmse": 1.2914,
+        "mean_bias": 4.8164,
+        "pearson": 0.893,
+        "ccc": 0.8817
+      },
+      "by_modis_platform": {
+        "Terra": {
+          "n": 159,
+          "mae": 31.493,
+          "rmse": 98.3226,
+          "log_rmse": 1.3666,
+          "mean_bias": 11.4601,
+          "pearson": 0.8799,
+          "ccc": 0.844
+        },
+        "Aqua": {
+          "n": 159,
+          "mae": 22.0282,
+          "rmse": 53.77,
+          "log_rmse": 1.2115,
+          "mean_bias": -1.8274,
+          "pearson": 0.9347,
+          "ccc": 0.9345
+        }
+      }
+    },
+    "quantile_mapping": {
+      "weekly_buckets": 318,
+      "overall": {
+        "n": 318,
+        "mae": 37.2367,
+        "rmse": 104.2847,
+        "log_rmse": 1.4801,
+        "mean_bias": -35.8241,
+        "pearson": 0.8772,
+        "ccc": 0.6098
+      },
+      "by_modis_platform": {
+        "Terra": {
+          "n": 159,
+          "mae": 37.2353,
+          "rmse": 104.7015,
+          "log_rmse": 1.5853,
+          "mean_bias": -36.489,
+          "pearson": 0.8502,
+          "ccc": 0.6147
+        },
+        "Aqua": {
+          "n": 159,
+          "mae": 37.238,
+          "rmse": 103.8662,
+          "log_rmse": 1.3667,
+          "mean_bias": -35.1592,
+          "pearson": 0.912,
+          "ccc": 0.6046
+        }
+      }
+    },
+    "monthly_shrinkage": {
+      "weekly_buckets": 318,
+      "overall": {
+        "n": 318,
+        "mae": 26.2289,
+        "rmse": 78.0813,
+        "log_rmse": 1.2955,
+        "mean_bias": 4.1056,
+        "pearson": 0.8948,
+        "ccc": 0.8844
+      },
+      "by_modis_platform": {
+        "Terra": {
+          "n": 159,
+          "mae": 30.5579,
+          "rmse": 96.9469,
+          "log_rmse": 1.3585,
+          "mean_bias": 10.5462,
+          "pearson": 0.8816,
+          "ccc": 0.8472
+        },
+        "Aqua": {
+          "n": 159,
+          "mae": 21.9,
+          "rmse": 52.8646,
+          "log_rmse": 1.2292,
+          "mean_bias": -2.3349,
+          "pearson": 0.9367,
+          "ccc": 0.9364
+        }
+      }
+    }
+  },
+  "paired_comparisons": {
+    "monthly_shrinkage_minus_ratio": {
+      "point": 0.0048,
+      "ci_lower": 0.0002,
+      "ci_upper": 0.0104,
+      "iterations": 2000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2026,
+      "interpretation": "Interval excluding 0 means the statistic difference is robust to block resampling; an interval spanning 0 means indistinguishable."
+    },
+    "monthly_shrinkage_minus_quantile_mapping": {
+      "point": 0.1088,
+      "ci_lower": -0.0089,
+      "ci_upper": 0.2599,
+      "iterations": 2000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2026,
+      "interpretation": "Interval excluding 0 means the statistic difference is robust to block resampling; an interval spanning 0 means indistinguishable."
+    },
+    "monthly_shrinkage_minus_constant_ratio": {
+      "point": -0.0282,
+      "ci_lower": -0.0484,
+      "ci_upper": 0.0434,
+      "iterations": 2000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2026,
+      "interpretation": "Interval excluding 0 means the statistic difference is robust to block resampling; an interval spanning 0 means indistinguishable."
+    },
+    "monthly_shrinkage_minus_seasonal_climatology": {
+      "point": 0.3649,
+      "ci_lower": 0.3134,
+      "ci_upper": 0.4386,
+      "iterations": 2000,
+      "confidence_level": 0.9,
+      "blocks": 12,
+      "seed": 2026,
+      "interpretation": "Interval excluding 0 means the statistic difference is robust to block resampling; an interval spanning 0 means indistinguishable."
     }
   },
   "decision": {
@@ -68,7 +227,17 @@
       "mae_decisive": false,
       "year_ccc_spread": 0.1089,
       "district_ccc_spread": 0.29480000000000006,
-      "unstable": true
+      "unstable": true,
+      "method_beats_baseline": {
+        "comparison": "monthly_shrinkage_minus_constant_ratio",
+        "difference": -0.0282,
+        "ci": [
+          -0.0484,
+          0.0434
+        ],
+        "robust": false
+      },
+      "best_baseline": "constant_ratio"
     }
   },
   "raw_scale_gap": {

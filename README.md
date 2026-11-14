@@ -2,6 +2,8 @@
 
 **See the fire. Verify the signal.**
 
+**Live demo: <https://pranish-thapa.github.io/agnidrishti/>**
+
 A satellite-aware fire activity calendar for the NASA Space Apps Challenge 2026 challenge,
 **“Harmonization of MODIS and VIIRS Hot Spots.”**
 
@@ -17,6 +19,15 @@ with explicit evidence, uncertainty and honest limitations.
 > labelled provisional everywhere it appears. VIIRS is the reference observation scale, **not
 > ground truth**. Detections are hotspot observations, never unique fires. Missing observations
 > are never treated as zero.
+
+---
+
+## Tooling disclosure
+
+Built for the NASA Space Apps Challenge 2026 by Pranish Raj Thapa with AI coding agents
+(ZCode/Claude) used for implementation, testing and documentation under human direction; all
+scientific decisions, parameters and claims were reviewed and verified against the generated
+outputs. Data sources are listed in the Methodology page and every output carries provenance.
 
 ---
 
@@ -127,7 +138,7 @@ Raw files stay in `data/raw/` (never shipped to the frontend). The frontend only
 | --- | --- |
 | Raw scale gap (validation district-days) | VIIRS 8.27 vs Terra 0.49 / Aqua 0.58 per day |
 | Method Court ranking | shrinkage 0.625 > ratio 0.620 > quantile 0.516 CCC — **inconclusive** |
-| Seam audit | raw step 8–50× → 0.8–2.1 after harmonization (diagnostic, not causal) |
+| Seam audit | raw step 8–50× → 0.8–2.2 out-of-sample (81–97% closed on the log scale; diagnostic, not causal) |
 | Lights-out backtest | monthly profile r ≈ 0.97–1.00; quantile over-smooths (variation 0.26–0.43) |
 | Reliability strata | 2 reliable / 4 caution / 15 insufficient / 15 unavailable |
 | Temporal robustness | leave-one-year-out CCC 0.37–0.71, no year below the caution floor |
@@ -212,7 +223,8 @@ and in `TASK_STATUS.md`.
 
 ## Hero media and deployment note
 
-The real fire footage at `C:\Users\acer\Videos\Fire-Hero-bg.mov` is the hero background.
+The hero background is real fire footage (`Fire-Hero-bg.mov`, archived outside the repo in
+`media_archive/` because of its size).
 `HeroMedia.tsx` serves WebM first, falls back to MP4, uses the poster for first paint, and
 removes the video entirely under `prefers-reduced-motion`.
 
@@ -226,6 +238,8 @@ removes the video entirely under `prefers-reduced-motion`.
 The 103 MB original lives in `media_archive/`, outside `public/`, so it is **not** copied into
 `dist/`. Browsers only ever request the MP4, WebM and poster (~10 MB combined).
 
-## Demo
+## Demo & docs
 
-See `DEMO.md` for the guided demonstration script and screenshot checklist.
+See `DEMO.md` for the guided demonstration script and screenshot checklist, `docs/` for the
+complete feature guide and the independent Claude briefing, `FINAL_*.md` for audit reports, and
+`TASK_STATUS.md` for the full development log.

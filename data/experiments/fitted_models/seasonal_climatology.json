@@ -1,0 +1,33 @@
+{
+  "method": "seasonal_climatology_baseline",
+  "is_baseline": true,
+  "month_means": {
+    "01": 0.3014,
+    "02": 1.2817,
+    "03": 6.4657,
+    "04": 32.5983,
+    "05": 5.2506,
+    "06": 0.6803,
+    "07": 0.0
+  },
+  "overall_mean": 7.9124,
+  "training_pairs": 13854,
+  "provenance": {
+    "experiment_config_version": "1.0.0",
+    "reference_sensor": "viirs_snpp",
+    "reference_platform": "Suomi-NPP",
+    "grid_degrees": 0.1,
+    "districts": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN"
+    ],
+    "source_datasets": [
+      "data/raw/modis/MODIS_SP",
+      "data/raw/viirs_snpp/VIIRS_SNPP_SP",
+      "data/processed/historical/inventory.json"
+    ],
+    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+    "generated_at": "2026-11-14T05:53:36Z"
+  }
+}

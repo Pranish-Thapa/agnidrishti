@@ -264,38 +264,56 @@ def _evaluate_configuration(
         experiments.EXPERIMENT_CONFIG.update(saved_config)
 
 
-def run_sensitivity_analysis(pairs: list[dict[str, Any]]) -> dict[str, Any]:
+def run_sensitivity_analysis(
+    records: list[dict[str, Any]],
+    requested_by_sensor: dict[str, set[str]],
+) -> dict[str, Any]:
     """Baseline vs perturbed configurations. Each variant is reported with
     its sample size, metrics, change from baseline and conclusion stability."""
 
-    baseline = _evaluate_configuration(pairs, {})
+    baseline_pairs = experiments.build_pairs(
+        records, requested_by_sensor=requested_by_sensor
+    )
+    baseline = _evaluate_configuration(baseline_pairs, {})
 
     variants: dict[str, dict[str, Any]] = {}
 
-    # Different reference platform: NOAA-20 (record starts 2018-04).
+    # Different reference platform: NOAA-20 (record starts 2018-04). The pairs
+    # are REBUILT against the NOAA-20 reference — the original implementation
+    # reused the Suomi-NPP pairs here, making the variant a no-op (caught by
+    # the independent evaluation).
     saved_ref = experiments.REFERENCE_SENSOR
     try:
         experiments.REFERENCE_SENSOR = "viirs_noaa20"
+        pairs_noaa = experiments.build_pairs(
+            records,
+            requested_by_sensor=requested_by_sensor,
+            reference_sensor="viirs_noaa20",
+        )
         variants["reference_noaa20"] = _evaluate_configuration(
-            pairs,
+            pairs_noaa,
             {"validation_years": [2019, 2022]},
             reference_sensor="viirs_noaa20",
+        )
+        variants["reference_noaa20"]["note"] = (
+            "Pairs rebuilt against VIIRS NOAA-20 (record starts 2018-04); "
+            "sample is smaller and the reference scale differs."
         )
     finally:
         experiments.REFERENCE_SENSOR = saved_ref
 
     # Different held-out year (2023) to test temporal luck.
     variants["holdout_2023"] = _evaluate_configuration(
-        pairs, {"validation_years": [2023]}
+        baseline_pairs, {"validation_years": [2023]}
     )
     # Later held-out year (2025).
     variants["holdout_2025"] = _evaluate_configuration(
-        pairs, {"validation_years": [2025]}
+        baseline_pairs, {"validation_years": [2025]}
     )
 
     # Stronger / weaker shrinkage constant.
-    variants["shrinkage_k_10"] = _evaluate_configuration(pairs, {"shrinkage_k": 10})
-    variants["shrinkage_k_40"] = _evaluate_configuration(pairs, {"shrinkage_k": 40})
+    variants["shrinkage_k_10"] = _evaluate_configuration(baseline_pairs, {"shrinkage_k": 10})
+    variants["shrinkage_k_40"] = _evaluate_configuration(baseline_pairs, {"shrinkage_k": 40})
 
     # Confidence filtering: drop MODIS confidence < 30 where the field is
     # numeric (VIIRS categorical counts are untouched).
@@ -304,12 +322,12 @@ def run_sensitivity_analysis(pairs: list[dict[str, Any]]) -> dict[str, Any]:
 
     # Higher ratio denominator floor.
     variants["ratio_min_denominator_20"] = _evaluate_configuration(
-        pairs, {"ratio_min_month_denominator": 20, "ratio_min_district_denominator": 20}
+        baseline_pairs, {"ratio_min_month_denominator": 20, "ratio_min_district_denominator": 20}
     )
 
     # Quantile mapping restricted to pooled mappings (no monthly mappings).
     variants["quantile_pooled_only"] = _evaluate_configuration(
-        pairs, {"quantile_min_month_n": 10**9}
+        baseline_pairs, {"quantile_min_month_n": 10**9}
     )
 
     report: dict[str, Any] = {
@@ -365,6 +383,10 @@ def run_temporal_robustness(pairs: list[dict[str, Any]]) -> dict[str, Any]:
     years = sorted({p["year"] for p in pairs})
     purge = experiments.EXPERIMENT_CONFIG["purge_days"]
     folds: dict[str, Any] = {}
+    # Out-of-fold predictions (B4): each record below was predicted by a model
+    # trained WITHOUT its year — pooling them gives ~15x the evidence of the
+    # two validation years alone, with no leakage, for reliability grading.
+    oof_records: list[dict[str, Any]] = []
     for year in years:
         train, validation = [], []
         purge_zone: set[str] = set()
@@ -380,11 +402,27 @@ def run_temporal_robustness(pairs: list[dict[str, Any]]) -> dict[str, Any]:
                 train.append(pair)
         fold: dict[str, Any] = {"validation_pairs": len(validation), "methods": {}}
         if validation:
+            fold_preds: dict[str, list[float]] = {}
             for method, (fit_fn, apply_fn) in experiments.METHODS.items():
                 model = fit_fn(train)
                 pred = [float(v) for v in apply_fn(model, validation)]
+                fold_preds[method] = pred
                 ref = [float(p["reference_count"]) for p in validation]
                 fold["methods"][method] = independent_metrics(pred, ref)
+            for i, pair in enumerate(validation):
+                oof_records.append(
+                    {
+                        "district_id": pair["district_id"],
+                        "modis_platform": pair["modis_platform"],
+                        "year": pair["year"],
+                        "month": pair["month"],
+                        "month_of_year": pair["month_of_year"],
+                        "reference_count": float(pair["reference_count"]),
+                        "predictions": {
+                            method: fold_preds[method][i] for method in experiments.METHODS
+                        },
+                    }
+                )
         folds[str(year)] = fold
 
     # Identify years where no method reaches cautious agreement.
@@ -402,6 +440,7 @@ def run_temporal_robustness(pairs: list[dict[str, Any]]) -> dict[str, Any]:
         "provenance": _provenance(),
         "design": "leave-one-year-out with 30-day purge; every method refitted per fold",
         "folds": folds,
+        "out_of_fold_records": oof_records,
         "weak_years": weak_years,
         "note": (
             "Per-year performance varies with fire intensity and season "
@@ -578,21 +617,24 @@ def run_cell_error_analysis(
 
 
 def classify_reliability(
-    pairs: list[dict[str, Any]],
-    fitted: dict[str, dict[str, Any]],
+    oof_records: list[dict[str, Any]],
     temporal: dict[str, Any],
+    *,
+    training_months_by_district: dict[str, set[str]] | None = None,
 ) -> dict[str, Any]:
-    """Classify district × month-of-year strata using documented criteria.
+    """Classify district × month-of-year strata using documented criteria,
+    graded on POOLED OUT-OF-FOLD predictions from the leave-one-year-out audit
+    (B4). Each out-of-fold record was predicted by a model trained without its
+    year, so pooling across all 15 folds multiplies the per-stratum evidence
+    (~15x two held-out years) with no leakage. Thresholds are unchanged.
 
     Categories: reliable / use_with_caution / insufficient_evidence /
     unavailable (no comparable observations at all).
     """
 
-    train, validation = experiments.train_validation_split(pairs)
-
     strata: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for pair in validation:
-        strata[(pair["district_id"], pair["month_of_year"])].append(pair)
+    for record in oof_records:
+        strata[(record["district_id"], record["month_of_year"])].append(record)
 
     grid: dict[str, Any] = {}
     counts = {"reliable": 0, "use_with_caution": 0, "insufficient_evidence": 0, "unavailable": 0}
@@ -600,14 +642,9 @@ def classify_reliability(
     for district_id in config.DISTRICT_ORDER:
         district_rows: dict[str, Any] = {}
         for month in [f"{m:02d}" for m in range(1, 13)]:
-            stratum_pairs = strata.get((district_id, month), [])
-            if not stratum_pairs:
-                # Availability check: does the training record contain this
-                # district-month at all?
-                has_training = any(
-                    p["district_id"] == district_id and p["month_of_year"] == month
-                    for p in train
-                )
+            stratum_records = strata.get((district_id, month), [])
+            if not stratum_records:
+                has_training = month in (training_months_by_district or {}).get(district_id, set())
                 district_rows[month] = {
                     "category": "unavailable" if not has_training else "insufficient_evidence",
                     "validation_pairs": 0,
@@ -615,15 +652,15 @@ def classify_reliability(
                 counts["unavailable" if not has_training else "insufficient_evidence"] += 1
                 continue
 
-            best = {"ccc": None, "mae": None}
-            for method, model in fitted.items():
-                pred = [float(v) for v in experiments.METHODS[method][1](model, stratum_pairs)]
-                ref = [float(p["reference_count"]) for p in stratum_pairs]
+            best = {"ccc": None, "mae": None, "method": None}
+            for method in experiments.METHODS:
+                pred = [float(r["predictions"][method]) for r in stratum_records]
+                ref = [float(r["reference_count"]) for r in stratum_records]
                 m = independent_metrics(pred, ref)
                 if m["ccc"] is not None and (best["ccc"] is None or m["ccc"] > best["ccc"]):
-                    best = m
+                    best = {**m, "method": method}
 
-            n = len(stratum_pairs)
+            n = len(stratum_records)
             criteria = RELIABILITY_CRITERIA
             if (
                 n >= criteria["reliable"]["min_stratum_pairs"]
@@ -641,11 +678,40 @@ def classify_reliability(
             else:
                 category = "insufficient_evidence"
             counts[category] += 1
+
+            # B5: per-stratum interval from out-of-fold errors of the best
+            # method — an honest "typical held-out error" for this stratum.
+            errors: list[float] = []
+            if best.get("method"):
+                errors = [
+                    float(r["predictions"][best["method"]]) - float(r["reference_count"])
+                    for r in stratum_records
+                ]
+            mae = sum(abs(e) for e in errors) / len(errors) if errors else None
+            p90 = (
+                sorted(abs(e) for e in errors)[int(0.9 * (len(errors) - 1))]
+                if errors
+                else None
+            )
             district_rows[month] = {
                 "category": category,
                 "validation_pairs": n,
                 "best_method_metrics": best,
-                "best_method_ccc_source": "independent recomputation, best of three methods",
+                "best_method_ccc_source": (
+                    "pooled out-of-fold predictions (leave-one-year-out), "
+                    "best of three methods"
+                ),
+                "interval": {
+                    "mae": round(mae, 4) if mae is not None else None,
+                    "p90_abs_error": round(p90, 4) if p90 is not None else None,
+                    "note": (
+                        "Typical absolute error of the harmonized estimate vs "
+                        "the VIIRS reference on out-of-fold district-days in "
+                        "this stratum; applies to daily counts, not weekly sums."
+                    ),
+                }
+                if mae is not None
+                else None,
             }
         grid[district_id] = district_rows
 
@@ -883,7 +949,7 @@ def run_validation() -> dict[str, Any]:
     audit = run_independent_audit(pairs, train, validation, fitted, court)
     json.dump(audit, open(VALIDATION_DIR / "independent_audit.json", "w", encoding="utf-8"), indent=2)
 
-    sensitivity = run_sensitivity_analysis(pairs)
+    sensitivity = run_sensitivity_analysis(records, requested_by_sensor)
     json.dump(sensitivity, open(VALIDATION_DIR / "sensitivity_analysis.json", "w", encoding="utf-8"), indent=2)
 
     temporal = run_temporal_robustness(pairs)
@@ -897,7 +963,15 @@ def run_validation() -> dict[str, Any]:
     )
     json.dump(cell_errors, open(VALIDATION_DIR / "cell_error_analysis.json", "w", encoding="utf-8"), indent=2)
 
-    reliability = classify_reliability(pairs, fitted, temporal)
+    training_months: dict[str, set[str]] = defaultdict(set)
+    for pair in train:
+        training_months[pair["district_id"]].add(pair["month_of_year"])
+
+    reliability = classify_reliability(
+        temporal.get("out_of_fold_records", []),
+        temporal,
+        training_months_by_district={k: set(v) for k, v in training_months.items()},
+    )
     json.dump(reliability, open(VALIDATION_DIR / "reliability.json", "w", encoding="utf-8"), indent=2)
 
     failure_modes = run_failure_modes()
@@ -1026,7 +1100,15 @@ def run_validation() -> dict[str, Any]:
             "category_counts": reliability["category_counts"],
             "grid": reliability["grid"],
             "weak_years": temporal.get("weak_years", []),
+            "grading_basis": "pooled out-of-fold predictions from the leave-one-year-out audit",
         },
+        "weekly_validation": (
+            json.loads(
+                (experiments.EXPERIMENTS_DIR / "metrics" / "summary.json").read_text(encoding="utf-8")
+            ).get("weekly_validation")
+            if (experiments.EXPERIMENTS_DIR / "metrics" / "summary.json").exists()
+            else None
+        ),
         "validation": {
             "total_pairs": len(pairs),
             "training_pairs": len(train),

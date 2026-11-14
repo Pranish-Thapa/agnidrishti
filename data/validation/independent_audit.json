@@ -1,12 +1,12 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T21:55:09Z",
+  "generated_at": "2026-11-14T05:33:24Z",
   "provenance": {
     "audit_version": "1.0.0",
     "task": "06 independent scientific validation",
     "reference_sensor": "viirs_snpp",
     "independent_metric_implementation": true,
-    "generated_at": "2026-11-13T21:55:09Z"
+    "generated_at": "2026-11-14T05:33:24Z"
   },
   "integrity_checks": {
     "train_validation_overlap": 0,

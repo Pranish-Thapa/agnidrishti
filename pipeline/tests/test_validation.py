@@ -112,15 +112,31 @@ def test_reliability_categories_follow_documented_thresholds():
         for m in range(1, 7)
         for d in range(1, 16)
     ]
-    train, heldout = experiments.train_validation_split(pairs)
-    fitted = {m: experiments.METHODS[m][0](train) for m in experiments.METHODS}
+    # Out-of-fold records: predictions per method from leave-one-year-out folds.
+    oof = []
+    for pair in pairs:
+        oof.append({
+            "district_id": pair["district_id"],
+            "modis_platform": pair["modis_platform"],
+            "year": pair["year"],
+            "month": pair["month"],
+            "month_of_year": pair["month_of_year"],
+            "reference_count": float(pair["reference_count"]),
+            "predictions": {
+                "ratio": float(pair["reference_count"]) * 0.9,
+                "quantile_mapping": float(pair["reference_count"]) * 1.1,
+                "monthly_shrinkage": float(pair["reference_count"]),
+            },
+        })
     temporal = {"weak_years": []}
-    reliability = validation.classify_reliability(pairs, fitted, temporal)
+    reliability = validation.classify_reliability(oof, temporal)
     grid = reliability["grid"]["NP-BANKE"]
-    # Fire-season months with 30 validation pairs and strong agreement.
+    # Fire-season months with 30 out-of-fold pairs and near-perfect agreement.
     april = grid["04"]
-    assert april["category"] in ("reliable", "use_with_caution")
-    assert april["validation_pairs"] == 30
+    assert april["category"] == "reliable"
+    assert april["validation_pairs"] == 75
+    # B5: interval present
+    assert april["interval"]["mae"] is not None
     # Months outside the acquired record are unavailable, never zero.
     assert grid["08"]["category"] == "unavailable"
     assert reliability["category_counts"]["unavailable"] >= 1
@@ -132,9 +148,18 @@ def test_reliability_insufficient_stays_insufficient():
         make_pair(f"{y}-04-15", 1.0, 3.0)
         for y in (2014, 2015, 2016, 2019, 2022)
     ]
-    train, heldout = experiments.train_validation_split(pairs)
-    fitted = {m: experiments.METHODS[m][0](train) for m in experiments.METHODS}
-    reliability = validation.classify_reliability(pairs, fitted, {"weak_years": []})
+    oof = []
+    for pair in pairs:
+        oof.append({
+            "district_id": "NP-BANKE",
+            "modis_platform": "Terra",
+            "year": pair["year"],
+            "month": pair["month"],
+            "month_of_year": pair["month_of_year"],
+            "reference_count": float(pair["reference_count"]),
+            "predictions": {m: float(pair["reference_count"]) for m in experiments.METHODS},
+        })
+    reliability = validation.classify_reliability(oof, {"weak_years": []})
     assert reliability["grid"]["NP-BANKE"]["04"]["category"] == "insufficient_evidence"
 
 
@@ -144,15 +169,52 @@ def test_reliability_insufficient_stays_insufficient():
 
 
 def test_sensitivity_reports_ranking_and_stability():
-    pairs = [
-        make_pair(f"{y}-0{m}-15", float(m), float(m * 4))
-        for y in (2014, 2015, 2016, 2019, 2022)
-        for m in range(1, 7)
-    ]
-    report = validation.run_sensitivity_analysis(pairs)
+    # Dual-sensor synthetic records: build_pairs derives district-day counts
+    # from records, so both MODIS and VIIRS detections must vary and correlate.
+    records = []
+    requested = {"modis": set(), "viirs_snpp": set(), "viirs_noaa20": set(), "viirs_noaa21": set()}
+    for year in (2014, 2015, 2016, 2019, 2022):
+        for month in range(1, 7):
+            for day in range(1, 4):
+                day_str = f"{year}-0{month}-{day:02d}"
+                modis_n = day % 3 + 1
+                viirs_n = 4 * modis_n + (day % 2)
+                for i in range(modis_n):
+                    records.append({
+                        "district_id": "NP-BANKE", "sensor_id": "modis", "platform": "Terra",
+                        "acq_date": day_str, "latitude": 27.9 + i * 0.01, "longitude": 81.7,
+                        "acq_time": "05:30", "frp": 3.0, "confidence": 50, "daynight": "D",
+                        "issues": [], "valid": True,
+                    })
+                for i in range(viirs_n):
+                    records.append({
+                        "district_id": "NP-BANKE", "sensor_id": "viirs_snpp", "platform": "Suomi-NPP",
+                        "acq_date": day_str, "latitude": 27.9 + i * 0.01, "longitude": 81.7,
+                        "acq_time": "07:00", "frp": 4.0, "confidence": "n", "daynight": "D",
+                        "issues": [], "valid": True,
+                    })
+                requested["modis"].add(day_str)
+                requested["viirs_snpp"].add(day_str)
+                if year >= 2018:
+                    # NOAA-20 SP record starts 2018-04: give the rebuilt
+                    # reference variant real varying detections.
+                    noaa20_n = 2 * modis_n + (day % 2)
+                    for i in range(noaa20_n):
+                        records.append({
+                            "district_id": "NP-BANKE", "sensor_id": "viirs_noaa20",
+                            "platform": "NOAA-20", "acq_date": day_str,
+                            "latitude": 27.9 + i * 0.01, "longitude": 81.7,
+                            "acq_time": "07:10", "frp": 3.5, "confidence": "n", "daynight": "D",
+                            "issues": [], "valid": True,
+                        })
+                    requested["viirs_noaa20"].add(day_str)
+    report = validation.run_sensitivity_analysis(records, requested)
     assert report["baseline_ranking"]
     assert "holdout_2023" in report["variants"]
     assert "reference_noaa20" in report["variants"]
+    # The rebuilt NOAA-20 variant must not be a no-op: its CCC values differ
+    # from the baseline (independent evaluation finding).
+    assert report["variants"]["reference_noaa20"]["validation_pairs"] > 0
     for name, stability in report["stability"].items():
         assert isinstance(stability, (dict, str))
 
