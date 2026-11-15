@@ -999,7 +999,7 @@ export function MapPanel({
 
       {/* Collapsed map host — the Leaflet container lives here when not expanded */}
       <div className="relative">
-        <div ref={collapsedHostRef} className="relative h-[320px] w-full overflow-hidden sm:h-[360px]">
+        <div ref={collapsedHostRef} className="relative h-[380px] w-full overflow-hidden sm:h-[420px] lg:h-[440px] xl:h-[480px]">
           <div
             ref={containerRef}
             role="application"

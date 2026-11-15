@@ -247,7 +247,7 @@ export function ExplorerPage() {
           )}
 
           <div className="mt-8 grid gap-6 lg:grid-cols-12">
-            <div className="min-w-0 lg:col-span-8">
+            <div className="min-w-0 lg:col-span-8 xl:col-span-7">
               <Reveal>
                 <CalendarPanel
                   areaName={area.name}
@@ -294,7 +294,7 @@ export function ExplorerPage() {
               </Reveal>
             </div>
 
-            <div className="min-w-0 lg:col-span-4">
+            <div className="min-w-0 lg:col-span-4 xl:col-span-5">
               <Reveal delay={0.08}>
                 <MapPanel
                   area={area}

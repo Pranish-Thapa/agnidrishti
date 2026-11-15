@@ -229,7 +229,7 @@ export function CalendarPanel({
             <p className="mb-2 text-support text-ash-dark sm:hidden">
               Scroll sideways to see the full season.
             </p>
-            <div className="min-w-[720px]">
+            <div className="min-w-[600px]">
               <div
                 aria-hidden="true"
                 className="grid gap-1.5"
