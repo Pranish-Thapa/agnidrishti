@@ -1,13 +1,17 @@
 {
   "contract_version": "1.0.0",
   "district_id": "NP-BARDIYA",
+  "region_id": "NP-BARDIYA",
   "district": {
     "name": "Bardiya",
+    "full_name": "Bardiya District",
+    "country": "Nepal",
+    "admin_level_label": "District",
     "province": "Lumbini Province",
     "pcode": "NP0558"
   },
   "year": "2026",
-  "generated_at": "2026-11-13T18:06:20Z",
+  "generated_at": "2026-11-14T17:39:28Z",
   "provider": "nrt",
   "product": "NRT",
   "sensors": [
@@ -385,19 +389,6 @@
       "days_in_week": 2,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_noaa21": {
-          "platforms": {
-            "NOAA-21": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 2
-            }
-          }
-        },
         "modis": {
           "platforms": {
             "Terra": {
@@ -438,6 +429,19 @@
               "days_observed": 2
             }
           }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 2
+            }
+          }
         }
       }
     },
@@ -449,25 +453,6 @@
       "days_in_week": 5,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_noaa21": {
-          "platforms": {
-            "NOAA-21": {
-              "status": "observed",
-              "detections": 4,
-              "cells": null,
-              "cell_days": 4,
-              "occupied_cells": 3,
-              "frp": {
-                "n": 4,
-                "sum": 13.87,
-                "mean": 3.4675,
-                "min": 2.62,
-                "max": 4.49
-              },
-              "days_observed": 5
-            }
-          }
-        },
         "modis": {
           "platforms": {
             "Terra": {
@@ -504,6 +489,25 @@
                 "mean": 2.5233,
                 "min": 1.53,
                 "max": 3.02
+              },
+              "days_observed": 5
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed",
+              "detections": 4,
+              "cells": null,
+              "cell_days": 4,
+              "occupied_cells": 3,
+              "frp": {
+                "n": 4,
+                "sum": 13.87,
+                "mean": 3.4675,
+                "min": 2.62,
+                "max": 4.49
               },
               "days_observed": 5
             }

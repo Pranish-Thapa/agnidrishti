@@ -1,0 +1,211 @@
+{
+  "contract_version": "1.0.0",
+  "district_id": "ID-RIAU",
+  "region_id": "ID-RIAU",
+  "name": "Riau",
+  "full_name": "Riau Province",
+  "country": "Indonesia",
+  "country_code": "IDN",
+  "admin_level": 1,
+  "admin_level_label": "Province",
+  "province": "Indonesia",
+  "pcode": "30024224B70649796263296",
+  "scale_class": "province",
+  "area_km2": 90203.5,
+  "description": "A large central Sumatran province dominated by peatland and plantation landscapes, where drained peat fires can smoulder for weeks. Selected as a high-fire study area.",
+  "processing_status": {
+    "status": "available",
+    "records": 6
+  },
+  "generated_at": "2026-11-14T17:39:28Z",
+  "provider": "nrt",
+  "product": "NRT",
+  "boundary": {
+    "source": "geoBoundaries gbHumanitarian ADM1 (OCHA COD-AB derived), Indonesia",
+    "dataset_url": "https://www.geoboundaries.org/",
+    "license": "CC BY 3.0 IGO",
+    "boundary_year": 2017,
+    "publisher": "geoBoundaries / OCHA",
+    "pcode": "30024224B70649796263296",
+    "admin_level": 1,
+    "area_km2": 90203.5,
+    "crs": "OGC CRS84 / WGS84 longitude-latitude",
+    "simplified": false,
+    "bbox": [
+      100.02494,
+      -1.122273,
+      103.814611,
+      2.883904
+    ],
+    "archive_sha256": null,
+    "member_sha256": null,
+    "retrieved_at": "2026-11-14T17:36:15Z"
+  },
+  "record_counts": {
+    "assigned_records": 6
+  },
+  "sensor_coverage": {
+    "modis": {
+      "sensor_id": "modis",
+      "label": "MODIS",
+      "instrument": "MODIS",
+      "platforms": {
+        "Terra": {
+          "reporting": true,
+          "global_records": 29780
+        },
+        "Aqua": {
+          "reporting": true,
+          "global_records": 54360
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "MODIS_NRT",
+      "reporting": true,
+      "unavailable_reason": null,
+      "dates": [
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "first_observation": "2026-11-06",
+      "last_observation": "2026-11-09",
+      "global_records": 84140,
+      "district_records": 3,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "viirs_snpp": {
+      "sensor_id": "viirs_snpp",
+      "label": "VIIRS Suomi-NPP",
+      "instrument": "VIIRS",
+      "platforms": {
+        "Suomi-NPP": {
+          "reporting": false,
+          "global_records": 0
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "VIIRS_SNPP_NRT",
+      "reporting": false,
+      "unavailable_reason": "no records returned by the global snapshot; treated as unavailable, not zero",
+      "dates": [],
+      "first_observation": null,
+      "last_observation": null,
+      "global_records": 0,
+      "district_records": 0,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "viirs_noaa20": {
+      "sensor_id": "viirs_noaa20",
+      "label": "VIIRS NOAA-20",
+      "instrument": "VIIRS",
+      "platforms": {
+        "NOAA-20": {
+          "reporting": true,
+          "global_records": 433945
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "VIIRS_NOAA20_NRT",
+      "reporting": true,
+      "unavailable_reason": null,
+      "dates": [
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "first_observation": "2026-11-06",
+      "last_observation": "2026-11-13",
+      "global_records": 433945,
+      "district_records": 20,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "viirs_noaa21": {
+      "sensor_id": "viirs_noaa21",
+      "label": "VIIRS NOAA-21",
+      "instrument": "VIIRS",
+      "platforms": {
+        "NOAA-21": {
+          "reporting": true,
+          "global_records": 431357
+        }
+      },
+      "product": "NRT",
+      "source_identifier": "VIIRS_NOAA21_NRT",
+      "reporting": true,
+      "unavailable_reason": null,
+      "dates": [
+        "2026-11-07",
+        "2026-11-08",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13"
+      ],
+      "first_observation": "2026-11-06",
+      "last_observation": "2026-11-13",
+      "global_records": 431357,
+      "district_records": 23,
+      "windows": [
+        {
+          "start": "2026-11-07",
+          "end": "2026-11-13"
+        }
+      ]
+    },
+    "_comparable_period": {
+      "status": "provisional",
+      "basis": "public NRT 7-day snapshot windows",
+      "overlap": {
+        "start": "2026-11-07",
+        "end": "2026-11-13"
+      },
+      "note": "Provisional overlap of NRT snapshot windows; final harmonization period requires standard-processing availability."
+    }
+  },
+  "quality_summary": {
+    "raw_record_count": 949442,
+    "valid_record_count": 949442,
+    "final_retained_record_count": 46,
+    "outside_study_area_count": 949396,
+    "duplicate_count": 0,
+    "invalid_coordinate_count": 0,
+    "invalid_timestamp_count": 0
+  },
+  "limitations": [
+    "Near real-time (NRT) 7-day global snapshot; not standard processing (SP).",
+    "No ground truth; counts are satellite detections, not burned area.",
+    "Missing observations are marked unavailable/missing, never zero-filled.",
+    "Sensors are reported separately; MODIS and VIIRS are never combined."
+  ],
+  "citations": [
+    "NASA FIRMS (Fire Information for Resource Management System), NASA LANCE/EOSDIS.",
+    "Giglio, L., Schroeder, W., Hall, J.V. (MODIS Collection 6.1 active fire product).",
+    "Schroeder, W., Oliva, P., Giglio, L., Csiszar, I.A. (VIIRS 375 m active fire product).",
+    "OCHA COD-AB Nepal administrative boundaries, distributed by HDX (CC BY-IGO)."
+  ]
+}

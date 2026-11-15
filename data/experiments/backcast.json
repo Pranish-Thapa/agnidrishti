@@ -1,0 +1,2240 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-15T07:56:35Z",
+  "calibration_version": "2012-overlap-v1",
+  "calibration_period": {
+    "start": "2012-01-20",
+    "end": "2026-07-31",
+    "note": "Only post-2012 overlap observations are used to fit or test the MODIS-to-VIIRS relationship. Pre-2012 records are never training data."
+  },
+  "method": "monthly_shrinkage",
+  "court_verdict": "inconclusive",
+  "reference": "VIIRS Suomi-NPP (reference scale, not ground truth)",
+  "terminology": "A 'MODIS-derived VIIRS-equivalent estimate' is a transformed MODIS count. It is not a VIIRS detection.",
+  "regions": {
+    "NP-BANKE": {
+      "Terra": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "03",
+          "04"
+        ],
+        "limited_months": [
+          "05",
+          "06"
+        ],
+        "months": {
+          "01": {
+            "status": "unsupported",
+            "factor": 19.8983,
+            "validation_pairs": 446,
+            "reason": "Held-out predictions are constant or uncorrelated in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.0224,
+                "ci_lower": 0.0108,
+                "ci_upper": 0.0366,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "unsupported",
+            "factor": 19.8983,
+            "validation_pairs": 424,
+            "reason": "Held-out predictions are constant or uncorrelated in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.0849,
+                "ci_lower": 0.05,
+                "ci_upper": 0.1294,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 20.5173,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 3.0224,
+                "ci_lower": 1.4104,
+                "ci_upper": 4.9077,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 20.5221,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 32.3563,
+                "ci_lower": 23.7909,
+                "ci_upper": 41.252,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "limited",
+            "factor": 17.035,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 8.1551,
+                "ci_lower": 4.0051,
+                "ci_upper": 12.6351,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "limited",
+            "factor": 18.3929,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.8211,
+                "ci_lower": 0.1882,
+                "ci_upper": 1.6507,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.6533,
+          "backward_ccc": 0.6593
+        }
+      },
+      "Aqua": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "03",
+          "04"
+        ],
+        "limited_months": [
+          "02",
+          "05"
+        ],
+        "months": {
+          "01": {
+            "status": "unsupported",
+            "factor": 16.4211,
+            "validation_pairs": 446,
+            "reason": "Held-out predictions are constant or uncorrelated in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.0224,
+                "ci_lower": 0.0108,
+                "ci_upper": 0.0366,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "limited",
+            "factor": 15.1842,
+            "validation_pairs": 424,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.2032,
+                "ci_lower": 0.0662,
+                "ci_upper": 0.3557,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 19.0275,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 3.4937,
+                "ci_lower": 1.58,
+                "ci_upper": 5.8087,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 16.6339,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 33.4229,
+                "ci_lower": 24.1959,
+                "ci_upper": 43.1507,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "limited",
+            "factor": 14.7574,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 7.494,
+                "ci_lower": 3.7208,
+                "ci_upper": 11.6356,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "unsupported",
+            "factor": 14.9284,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.8412,
+                "ci_lower": 0.0821,
+                "ci_upper": 1.8126,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.5416,
+          "backward_ccc": 0.671
+        }
+      }
+    },
+    "NP-BARDIYA": {
+      "Terra": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "04",
+          "05",
+          "06"
+        ],
+        "limited_months": [
+          "03"
+        ],
+        "months": {
+          "01": {
+            "status": "unsupported",
+            "factor": 17.541,
+            "validation_pairs": 446,
+            "reason": "Held-out predictions are constant or uncorrelated in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.2265,
+                "ci_lower": 0.129,
+                "ci_upper": 0.3372,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "unsupported",
+            "factor": 21.0855,
+            "validation_pairs": 424,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.2695,
+                "ci_lower": 0.743,
+                "ci_upper": 1.85,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "limited",
+            "factor": 16.2002,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 3.4995,
+                "ci_lower": 1.0235,
+                "ci_upper": 7.7395,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 17.6683,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 30.5775,
+                "ci_lower": 20.7341,
+                "ci_upper": 40.7109,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 16.3694,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 11.8737,
+                "ci_lower": 5.3357,
+                "ci_upper": 20.165,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "supported",
+            "factor": 21.8563,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.3236,
+                "ci_lower": 0.2695,
+                "ci_upper": 2.6478,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.6125,
+          "backward_ccc": 0.6342
+        }
+      },
+      "Aqua": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "03",
+          "04",
+          "05"
+        ],
+        "limited_months": [
+          "02",
+          "06"
+        ],
+        "months": {
+          "01": {
+            "status": "unsupported",
+            "factor": 7.5626,
+            "validation_pairs": 446,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.6667,
+                "ci_lower": 0.2971,
+                "ci_upper": 1.1913,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "limited",
+            "factor": 6.6896,
+            "validation_pairs": 424,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.3631,
+                "ci_lower": 0.9435,
+                "ci_upper": 1.7691,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 9.1938,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 2.6093,
+                "ci_lower": 1.5046,
+                "ci_upper": 4.0458,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 15.1729,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 28.9655,
+                "ci_lower": 20.7991,
+                "ci_upper": 37.4965,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 14.1881,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 10.4564,
+                "ci_lower": 5.1999,
+                "ci_upper": 16.7803,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "limited",
+            "factor": 16.3421,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.6251,
+                "ci_lower": 0.2771,
+                "ci_upper": 3.4271,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.6766,
+          "backward_ccc": 0.6827
+        }
+      }
+    },
+    "NP-CHITWAN": {
+      "Terra": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "04"
+        ],
+        "limited_months": [
+          "03",
+          "05"
+        ],
+        "months": {
+          "01": {
+            "status": "unsupported",
+            "factor": 33.1472,
+            "validation_pairs": 446,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.7472,
+                "ci_lower": 0.4843,
+                "ci_upper": 1.0513,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "unsupported",
+            "factor": 42.6509,
+            "validation_pairs": 424,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 4.343,
+                "ci_lower": 3.3667,
+                "ci_upper": 5.4515,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "limited",
+            "factor": 25.3834,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 15.1392,
+                "ci_lower": 8.8439,
+                "ci_upper": 21.8404,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 23.5455,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 27.5478,
+                "ci_lower": 19.5504,
+                "ci_upper": 36.4106,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "limited",
+            "factor": 24.7693,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.7301,
+                "ci_lower": 0.7619,
+                "ci_upper": 3.2248,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "unsupported",
+            "factor": 25.2693,
+            "validation_pairs": 450,
+            "reason": "Held-out predictions are constant or uncorrelated in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.0467,
+                "ci_lower": 0.0067,
+                "ci_upper": 0.1089,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.531,
+          "backward_ccc": 0.5666
+        }
+      },
+      "Aqua": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "03",
+          "04"
+        ],
+        "limited_months": [
+          "01",
+          "02",
+          "05"
+        ],
+        "months": {
+          "01": {
+            "status": "limited",
+            "factor": 3.9518,
+            "validation_pairs": 446,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.0118,
+                "ci_lower": 0.7266,
+                "ci_upper": 1.2864,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "limited",
+            "factor": 3.3012,
+            "validation_pairs": 424,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 2.9096,
+                "ci_lower": 2.5044,
+                "ci_upper": 3.3268,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 7.2948,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 11.8988,
+                "ci_lower": 8.873,
+                "ci_upper": 14.9898,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 14.6915,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 25.7192,
+                "ci_lower": 19.5606,
+                "ci_upper": 32.0058,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "limited",
+            "factor": 15.7616,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.6022,
+                "ci_lower": 0.6233,
+                "ci_upper": 2.9992,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "unsupported",
+            "factor": 9.2802,
+            "validation_pairs": 450,
+            "reason": "Held-out predictions are constant or uncorrelated in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.0467,
+                "ci_lower": 0.0067,
+                "ci_upper": 0.1089,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.6414,
+          "backward_ccc": 0.5381
+        }
+      }
+    },
+    "TH-CHIANG-MAI": {
+      "Terra": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "02",
+          "03",
+          "04",
+          "05"
+        ],
+        "limited_months": [
+          "01"
+        ],
+        "months": {
+          "01": {
+            "status": "limited",
+            "factor": 32.4381,
+            "validation_pairs": 446,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 22.3243,
+                "ci_lower": 14.6254,
+                "ci_upper": 30.3928,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "supported",
+            "factor": 36.3499,
+            "validation_pairs": 424,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 82.181,
+                "ci_lower": 59.2557,
+                "ci_upper": 110.3587,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 29.2272,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 187.6627,
+                "ci_lower": 149.7026,
+                "ci_upper": 229.9861,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 22.1193,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 103.8948,
+                "ci_lower": 78.5002,
+                "ci_upper": 134.1105,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 39.1362,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 21.7035,
+                "ci_lower": 14.1517,
+                "ci_upper": 30.3913,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "unsupported",
+            "factor": 20.971,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.3083,
+                "ci_lower": 0.6901,
+                "ci_upper": 2.1518,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.6548,
+          "backward_ccc": 0.6845
+        }
+      },
+      "Aqua": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "02",
+          "05"
+        ],
+        "limited_months": [
+          "01",
+          "03",
+          "04"
+        ],
+        "months": {
+          "01": {
+            "status": "limited",
+            "factor": 10.1951,
+            "validation_pairs": 446,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 21.0666,
+                "ci_lower": 13.8487,
+                "ci_upper": 28.9726,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "supported",
+            "factor": 10.7162,
+            "validation_pairs": 424,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 86.5795,
+                "ci_lower": 54.515,
+                "ci_upper": 128.111,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "limited",
+            "factor": 9.8532,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 242.0239,
+                "ci_lower": 183.979,
+                "ci_upper": 303.3954,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "limited",
+            "factor": 12.4091,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 136.5379,
+                "ci_lower": 94.7688,
+                "ci_upper": 184.2374,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 14.4579,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 19.0271,
+                "ci_lower": 12.3351,
+                "ci_upper": 27.0245,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "unsupported",
+            "factor": 14.7802,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement is too weak to support a VIIRS-equivalent estimate in this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 0.7362,
+                "ci_lower": 0.419,
+                "ci_upper": 1.1634,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.511,
+          "backward_ccc": 0.522
+        }
+      }
+    },
+    "ID-RIAU": {
+      "Terra": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "06"
+        ],
+        "limited_months": [
+          "05"
+        ],
+        "months": {
+          "01": {
+            "status": "supported",
+            "factor": 10.1525,
+            "validation_pairs": 446,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 16.2188,
+                "ci_lower": 9.4519,
+                "ci_upper": 24.2718,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "supported",
+            "factor": 9.0834,
+            "validation_pairs": 424,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 69.6352,
+                "ci_lower": 18.8114,
+                "ci_upper": 157.5883,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 9.27,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 96.5651,
+                "ci_lower": 26.1616,
+                "ci_upper": 223.5073,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 5.6802,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 17.156,
+                "ci_lower": 13.1553,
+                "ci_upper": 22.2515,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "limited",
+            "factor": 5.4905,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 13.418,
+                "ci_lower": 8.7599,
+                "ci_upper": 18.2846,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "supported",
+            "factor": 10.3463,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 104.3047,
+                "ci_lower": 29.8775,
+                "ci_upper": 204.1218,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.5756,
+          "backward_ccc": 0.7402
+        }
+      },
+      "Aqua": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06"
+        ],
+        "limited_months": [],
+        "months": {
+          "01": {
+            "status": "supported",
+            "factor": 6.8293,
+            "validation_pairs": 446,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 13.9861,
+                "ci_lower": 8.761,
+                "ci_upper": 20.0517,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "supported",
+            "factor": 8.2118,
+            "validation_pairs": 424,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 77.5875,
+                "ci_lower": 24.3826,
+                "ci_upper": 170.5015,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 8.309,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 99.1827,
+                "ci_lower": 34.0484,
+                "ci_upper": 212.1135,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 5.3094,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 17.1721,
+                "ci_lower": 12.8647,
+                "ci_upper": 22.4216,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 3.9498,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 12.3961,
+                "ci_lower": 7.5963,
+                "ci_upper": 17.7752,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "supported",
+            "factor": 8.7346,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 113.7526,
+                "ci_lower": 26.7174,
+                "ci_upper": 220.3243,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.4873,
+          "backward_ccc": 0.6697
+        }
+      }
+    },
+    "MM-SHAN": {
+      "Terra": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05"
+        ],
+        "limited_months": [
+          "06"
+        ],
+        "months": {
+          "01": {
+            "status": "supported",
+            "factor": 32.1008,
+            "validation_pairs": 446,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 113.573,
+                "ci_lower": 81.6599,
+                "ci_upper": 149.0221,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "supported",
+            "factor": 30.0634,
+            "validation_pairs": 424,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 412.9563,
+                "ci_lower": 348.0412,
+                "ci_upper": 477.1865,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "supported",
+            "factor": 27.4796,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 1197.8382,
+                "ci_lower": 1050.774,
+                "ci_upper": 1321.4463,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 24.1827,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 550.3229,
+                "ci_lower": 474.1741,
+                "ci_upper": 632.4199,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 20.5194,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 41.9523,
+                "ci_lower": 28.6321,
+                "ci_upper": 60.5207,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "limited",
+            "factor": 10.7272,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 2.5209,
+                "ci_lower": 1.9343,
+                "ci_upper": 3.1831,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.7523,
+          "backward_ccc": 0.7418
+        }
+      },
+      "Aqua": {
+        "decision": "LIMITED",
+        "reason": "Evidence supports VIIRS-equivalent estimates only in the months listed as supported or limited. Months without overlap evidence remain raw MODIS.",
+        "years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "validation_pairs": 2731,
+        "confident_winner": false,
+        "best_method": null,
+        "method_statement": "No single harmonization method can be confidently identified as the most reliable for this region.",
+        "supported_months": [
+          "01",
+          "02",
+          "04",
+          "05"
+        ],
+        "limited_months": [
+          "03",
+          "06"
+        ],
+        "months": {
+          "01": {
+            "status": "supported",
+            "factor": 7.4231,
+            "validation_pairs": 446,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 113.8295,
+                "ci_lower": 81.4777,
+                "ci_upper": 149.306,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "02": {
+            "status": "supported",
+            "factor": 7.8591,
+            "validation_pairs": 424,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 485.9427,
+                "ci_lower": 411.4261,
+                "ci_upper": 556.1738,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "03": {
+            "status": "limited",
+            "factor": 7.0396,
+            "validation_pairs": 465,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1407.8357,
+                "ci_lower": 1228.7789,
+                "ci_upper": 1596.9895,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "04": {
+            "status": "supported",
+            "factor": 7.8446,
+            "validation_pairs": 450,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 732.8538,
+                "ci_lower": 633.596,
+                "ci_upper": 837.6099,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "05": {
+            "status": "supported",
+            "factor": 12.1727,
+            "validation_pairs": 465,
+            "reason": "Held-out CCC and bias meet the pre-registered support thresholds for this month.",
+            "uncertainty": {
+              "mae": {
+                "point": 52.1583,
+                "ci_lower": 30.656,
+                "ci_upper": 80.1089,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "06": {
+            "status": "limited",
+            "factor": 7.2589,
+            "validation_pairs": 450,
+            "reason": "Held-out agreement exists but is below the support threshold or has a material bias; estimates may be shown only with the limitation stated.",
+            "uncertainty": {
+              "mae": {
+                "point": 1.8383,
+                "ci_lower": 1.4833,
+                "ci_upper": 2.2027,
+                "iterations": 600,
+                "confidence_level": 0.9,
+                "blocks": 15,
+                "seed": 2030
+              }
+            }
+          },
+          "07": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 31,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "08": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "09": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "10": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "11": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          },
+          "12": {
+            "status": "unsupported",
+            "factor": null,
+            "validation_pairs": 0,
+            "reason": "No post-2012 overlap evidence across at least two years for this calendar month in this region/platform; a VIIRS-equivalent estimate cannot be supported.",
+            "uncertainty": null
+          }
+        },
+        "transferability": {
+          "forward_ccc": 0.7113,
+          "backward_ccc": 0.6795
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The post-2012 reference record covers January-June (plus July 2026) only, so July-December backcasting has no overlap calibration and is unsupported.",
+    "VIIRS is a reference scale, not ground truth; no burned-area validation exists.",
+    "2000-2001 has Terra only; no Aqua calibration is applied where Aqua did not observe.",
+    "Raw MODIS detections are preserved and never overwritten by estimates."
+  ]
+}

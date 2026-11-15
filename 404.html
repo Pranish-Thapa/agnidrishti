@@ -3,36 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A1211" />
-    <link rel="icon" type="image/svg+xml" href="/agnidrishti/favicon.svg" />
+    <!--
+      GitHub Pages serves this file for unknown paths. The app is a client-side
+      React SPA, so send visitors back to the application root instead of
+      rendering a stale asset manifest. <base> keeps every relative URL
+      anchored to the project site even when the path is several segments deep.
+    -->
+    <base href="/agnidrishti/" />
     <title>Agnidrishti — See the fire. Verify the signal.</title>
-    <meta
-      name="description"
-      content="Agnidrishti is a satellite-aware fire activity calendar that separates real fire trends from changes in satellite observation. Built for the NASA Space Apps Challenge 2026."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Agnidrishti — See the fire. Verify the signal." />
-    <meta
-      property="og:description"
-      content="Did the fires increase, or did the satellites get better? Explore a fire record that accounts for the satellites observing it."
-    />
-    <meta property="og:image" content="/videos/fire-hero-poster.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Agnidrishti — See the fire. Verify the signal." />
-    <meta
-      name="twitter:description"
-      content="A satellite-aware fire activity calendar for testing whether fire trends are real or an artifact of changing observations."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module" crossorigin src="/agnidrishti/assets/index-BulHTiM5.js"></script>
-    <link rel="stylesheet" crossorigin href="/agnidrishti/assets/index-7hwlBb9C.css">
+    <meta name="description" content="Agnidrishti is a satellite-aware fire activity calendar that separates real fire trends from changes in satellite observation." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta http-equiv="refresh" content="0; url=./" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0a1211;
+        color: #e8e4da;
+        font: 16px/1.6 "IBM Plex Sans", system-ui, sans-serif;
+        text-align: center;
+        padding: 2rem;
+      }
+      a { color: #f0a868; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div>
+      <p>That route does not exist.</p>
+      <p><a href="./">Go to Agnidrishti</a>.</p>
+    </div>
+    <script>
+      // Redirect after the fallback link, so the target does not depend on the meta tag alone.
+      if (!window.location.pathname.replace(/\/+$/, "").endsWith("/agnidrishti")) {
+        window.location.replace("./");
+      }
+    </script>
   </body>
 </html>

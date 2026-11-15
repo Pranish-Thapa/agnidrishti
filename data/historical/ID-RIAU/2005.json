@@ -1,0 +1,139 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-15T09:28:30Z",
+  "region_id": "ID-RIAU",
+  "year": "2005",
+  "calibration_version": "2012-overlap-v1",
+  "calibration_period": {
+    "start": "2012-01-20",
+    "end": "2026-07-31",
+    "note": "Only post-2012 overlap observations are used to fit or test the MODIS-to-VIIRS relationship. Pre-2012 records are never training data."
+  },
+  "method": "monthly_shrinkage",
+  "label": "MODIS-derived VIIRS-equivalent estimate",
+  "years_with_aqua": true,
+  "months": {
+    "01": {
+      "status": "supported",
+      "raw_modis": {
+        "Terra": 1985,
+        "Aqua": 2218
+      },
+      "estimate": 17650.05,
+      "observed_days": 31,
+      "estimate_days": 31
+    },
+    "02": {
+      "status": "supported",
+      "raw_modis": {
+        "Terra": 3953,
+        "Aqua": 5081
+      },
+      "estimate": 38815.42,
+      "observed_days": 28,
+      "estimate_days": 28
+    },
+    "03": {
+      "status": "supported",
+      "raw_modis": {
+        "Terra": 2731,
+        "Aqua": 3110
+      },
+      "estimate": 25578.68,
+      "observed_days": 31,
+      "estimate_days": 31
+    },
+    "04": {
+      "status": "supported",
+      "raw_modis": {
+        "Terra": 249,
+        "Aqua": 406
+      },
+      "estimate": 1784.99,
+      "observed_days": 30,
+      "estimate_days": 30
+    },
+    "05": {
+      "status": "supported",
+      "raw_modis": {
+        "Terra": 135,
+        "Aqua": 291
+      },
+      "estimate": 945.3,
+      "observed_days": 31,
+      "estimate_days": 31
+    },
+    "06": {
+      "status": "supported",
+      "raw_modis": {
+        "Terra": 968,
+        "Aqua": 1595
+      },
+      "estimate": 11973.45,
+      "observed_days": 30,
+      "estimate_days": 30
+    },
+    "07": {
+      "status": "unsupported",
+      "raw_modis": {
+        "Terra": 359,
+        "Aqua": 566
+      },
+      "estimate": null,
+      "observed_days": 31,
+      "estimate_days": 0
+    },
+    "08": {
+      "status": "unsupported",
+      "raw_modis": {
+        "Terra": 1700,
+        "Aqua": 2974
+      },
+      "estimate": null,
+      "observed_days": 31,
+      "estimate_days": 0
+    },
+    "09": {
+      "status": "unsupported",
+      "raw_modis": {
+        "Terra": 443,
+        "Aqua": 813
+      },
+      "estimate": null,
+      "observed_days": 30,
+      "estimate_days": 0
+    },
+    "10": {
+      "status": "unsupported",
+      "raw_modis": {
+        "Terra": 67,
+        "Aqua": 88
+      },
+      "estimate": null,
+      "observed_days": 31,
+      "estimate_days": 0
+    },
+    "11": {
+      "status": "unsupported",
+      "raw_modis": {
+        "Terra": 30,
+        "Aqua": 80
+      },
+      "estimate": null,
+      "observed_days": 30,
+      "estimate_days": 0
+    },
+    "12": {
+      "status": "unsupported",
+      "raw_modis": {
+        "Terra": 62,
+        "Aqua": 116
+      },
+      "estimate": null,
+      "observed_days": 31,
+      "estimate_days": 0
+    }
+  },
+  "annual_estimate": 96747.89,
+  "note": "Estimates exist only where the regional backcast decision supports them. Raw MODIS counts are preserved. Months marked unsupported remain raw MODIS only and are never zero-filled."
+}

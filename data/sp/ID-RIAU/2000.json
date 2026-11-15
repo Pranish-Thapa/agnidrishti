@@ -1,0 +1,1866 @@
+{
+  "contract_version": "1.0.0",
+  "district_id": "ID-RIAU",
+  "region_id": "ID-RIAU",
+  "district": {
+    "name": "Riau",
+    "full_name": "Riau Province",
+    "country": "Indonesia",
+    "admin_level_label": "Province",
+    "province": "Indonesia",
+    "pcode": "30024224B70649796263296"
+  },
+  "year": "2000",
+  "generated_at": "2026-11-15T09:23:34Z",
+  "provider": "area-api",
+  "product": "SP",
+  "sensors": [
+    "modis",
+    "viirs_snpp",
+    "viirs_noaa20",
+    "viirs_noaa21"
+  ],
+  "days": [
+    {
+      "date": "2000-11-01",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 32,
+              "cells": 13,
+              "cell_days": 13,
+              "frp": {
+                "n": 32,
+                "sum": 1161.2,
+                "mean": 36.2875,
+                "min": 3.8,
+                "max": 186.0
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-02",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 7,
+              "cells": 6,
+              "cell_days": 6,
+              "frp": {
+                "n": 7,
+                "sum": 70.1,
+                "mean": 10.0143,
+                "min": 7.9,
+                "max": 12.8
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-03",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-04",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 4,
+              "cells": 4,
+              "cell_days": 4,
+              "frp": {
+                "n": 4,
+                "sum": 38.6,
+                "mean": 9.65,
+                "min": 4.1,
+                "max": 12.5
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-05",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-06",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 4,
+              "cells": 3,
+              "cell_days": 3,
+              "frp": {
+                "n": 4,
+                "sum": 41.7,
+                "mean": 10.425,
+                "min": 7.0,
+                "max": 14.6
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-07",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-08",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 1,
+                "sum": 5.8,
+                "mean": 5.8,
+                "min": 5.8,
+                "max": 5.8
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-09",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-10",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 1,
+                "sum": 7.8,
+                "mean": 7.8,
+                "min": 7.8,
+                "max": 7.8
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-11",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 8,
+              "cells": 8,
+              "cell_days": 8,
+              "frp": {
+                "n": 8,
+                "sum": 128.0,
+                "mean": 16.0,
+                "min": 7.9,
+                "max": 37.6
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-12",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-13",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 1,
+                "sum": 6.0,
+                "mean": 6.0,
+                "min": 6.0,
+                "max": 6.0
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-14",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 1,
+                "sum": 57.8,
+                "mean": 57.8,
+                "min": 57.8,
+                "max": 57.8
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-15",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-16",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-17",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-18",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-19",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-20",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 2,
+              "cells": 2,
+              "cell_days": 2,
+              "frp": {
+                "n": 2,
+                "sum": 15.6,
+                "mean": 7.8,
+                "min": 5.1,
+                "max": 10.5
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-21",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-22",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-23",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-24",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-25",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-26",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-27",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-28",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-29",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-11-30",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-01",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 4,
+              "cells": 4,
+              "cell_days": 4,
+              "frp": {
+                "n": 4,
+                "sum": 81.4,
+                "mean": 20.35,
+                "min": 9.1,
+                "max": 38.2
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-02",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 5,
+              "cells": 4,
+              "cell_days": 4,
+              "frp": {
+                "n": 5,
+                "sum": 112.1,
+                "mean": 22.42,
+                "min": 8.9,
+                "max": 29.9
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-03",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-04",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 8,
+              "cells": 3,
+              "cell_days": 3,
+              "frp": {
+                "n": 8,
+                "sum": 290.2,
+                "mean": 36.275,
+                "min": 8.1,
+                "max": 111.8
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-05",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-06",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 35,
+              "cells": 23,
+              "cell_days": 23,
+              "frp": {
+                "n": 35,
+                "sum": 965.5,
+                "mean": 27.5857,
+                "min": 4.3,
+                "max": 410.1
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-07",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 2,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 2,
+                "sum": 53.8,
+                "mean": 26.9,
+                "min": 23.2,
+                "max": 30.6
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-08",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 20,
+              "cells": 15,
+              "cell_days": 15,
+              "frp": {
+                "n": 20,
+                "sum": 315.8,
+                "mean": 15.79,
+                "min": 4.9,
+                "max": 49.2
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-09",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 1,
+                "sum": 12.8,
+                "mean": 12.8,
+                "min": 12.8,
+                "max": 12.8
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-10",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 25,
+              "cells": 12,
+              "cell_days": 12,
+              "frp": {
+                "n": 25,
+                "sum": 458.8,
+                "mean": 18.352,
+                "min": 3.6,
+                "max": 52.6
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-11",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-12",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 7,
+              "cells": 4,
+              "cell_days": 4,
+              "frp": {
+                "n": 7,
+                "sum": 160.3,
+                "mean": 22.9,
+                "min": 9.0,
+                "max": 48.5
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-13",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 6,
+              "cells": 3,
+              "cell_days": 3,
+              "frp": {
+                "n": 6,
+                "sum": 50.0,
+                "mean": 8.3333,
+                "min": 6.3,
+                "max": 12.6
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-14",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-15",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-16",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-17",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 2,
+              "cells": 2,
+              "cell_days": 2,
+              "frp": {
+                "n": 2,
+                "sum": 20.1,
+                "mean": 10.05,
+                "min": 9.4,
+                "max": 10.7
+              }
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-18",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-19",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-20",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-21",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-22",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-23",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-24",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-25",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-26",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-27",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-28",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-29",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-30",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2000-12-31",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "unavailable",
+              "detections": null,
+              "cells": null,
+              "cell_days": null,
+              "frp": null
+            }
+          }
+        }
+      }
+    }
+  ],
+  "weeks": [
+    {
+      "iso_year": 2000,
+      "iso_week": 44,
+      "week_start": "2000-10-30",
+      "week_end": "2000-11-05",
+      "days_in_week": 5,
+      "status": "incomplete",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 43,
+              "cells": null,
+              "cell_days": 23,
+              "occupied_cells": 21,
+              "frp": {
+                "n": 43,
+                "sum": 1269.9,
+                "mean": 29.5326,
+                "min": 3.8,
+                "max": 186.0
+              },
+              "days_observed": 5
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 45,
+      "week_start": "2000-11-06",
+      "week_end": "2000-11-12",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 14,
+              "cells": null,
+              "cell_days": 13,
+              "occupied_cells": 11,
+              "frp": {
+                "n": 14,
+                "sum": 183.3,
+                "mean": 13.0929,
+                "min": 5.8,
+                "max": 37.6
+              },
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 46,
+      "week_start": "2000-11-13",
+      "week_end": "2000-11-19",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 2,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 2,
+                "sum": 63.8,
+                "mean": 31.9,
+                "min": 6.0,
+                "max": 57.8
+              },
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 47,
+      "week_start": "2000-11-20",
+      "week_end": "2000-11-26",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 2,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 2,
+                "sum": 15.6,
+                "mean": 7.8,
+                "min": 5.1,
+                "max": 10.5
+              },
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 48,
+      "week_start": "2000-11-27",
+      "week_end": "2000-12-03",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 9,
+              "cells": null,
+              "cell_days": 8,
+              "occupied_cells": 8,
+              "frp": {
+                "n": 9,
+                "sum": 193.5,
+                "mean": 21.5,
+                "min": 8.9,
+                "max": 38.2
+              },
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 49,
+      "week_start": "2000-12-04",
+      "week_end": "2000-12-10",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 91,
+              "cells": null,
+              "cell_days": 55,
+              "occupied_cells": 43,
+              "frp": {
+                "n": 91,
+                "sum": 2096.9,
+                "mean": 23.0429,
+                "min": 3.6,
+                "max": 410.1
+              },
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 50,
+      "week_start": "2000-12-11",
+      "week_end": "2000-12-17",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 15,
+              "cells": null,
+              "cell_days": 9,
+              "occupied_cells": 9,
+              "frp": {
+                "n": 15,
+                "sum": 230.4,
+                "mean": 15.36,
+                "min": 6.3,
+                "max": 48.5
+              },
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 51,
+      "week_start": "2000-12-18",
+      "week_end": "2000-12-24",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2000,
+      "iso_week": 52,
+      "week_start": "2000-12-25",
+      "week_end": "2000-12-31",
+      "days_in_week": 7,
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        }
+      }
+    }
+  ]
+}

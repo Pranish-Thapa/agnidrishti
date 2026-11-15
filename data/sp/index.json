@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T20:13:03Z",
+  "generated_at": "2026-11-15T09:23:34Z",
   "provider": {
     "id": "area-api",
     "product": "SP"
@@ -8,10 +8,30 @@
   "study_areas": [
     {
       "district_id": "NP-BANKE",
+      "region_id": "NP-BANKE",
       "name": "Banke",
+      "full_name": "Banke District",
+      "country": "Nepal",
+      "country_code": "NPL",
+      "admin_level": 2,
+      "admin_level_label": "District",
       "province": "Lumbini Province",
       "pcode": "NP0557",
+      "scale_class": "district",
+      "area_km2": 1883.4,
       "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
         "2012",
         "2013",
         "2014",
@@ -33,14 +53,36 @@
         27.85365,
         82.194063,
         28.337813
-      ]
+      ],
+      "status": "available",
+      "status_reason": null
     },
     {
       "district_id": "NP-BARDIYA",
+      "region_id": "NP-BARDIYA",
       "name": "Bardiya",
+      "full_name": "Bardiya District",
+      "country": "Nepal",
+      "country_code": "NPL",
+      "admin_level": 2,
+      "admin_level_label": "District",
       "province": "Lumbini Province",
       "pcode": "NP0558",
+      "scale_class": "district",
+      "area_km2": 2003.6,
       "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
         "2012",
         "2013",
         "2014",
@@ -62,14 +104,36 @@
         28.068852,
         81.766594,
         28.674673
-      ]
+      ],
+      "status": "available",
+      "status_reason": null
     },
     {
       "district_id": "NP-CHITWAN",
+      "region_id": "NP-CHITWAN",
       "name": "Chitwan",
+      "full_name": "Chitwan District",
+      "country": "Nepal",
+      "country_code": "NPL",
+      "admin_level": 2,
+      "admin_level_label": "District",
       "province": "Bagmati Province",
       "pcode": "NP0335",
+      "scale_class": "district",
+      "area_km2": 2243.6,
       "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
         "2012",
         "2013",
         "2014",
@@ -91,9 +155,198 @@
         27.354966,
         84.796554,
         27.880467
-      ]
+      ],
+      "status": "available",
+      "status_reason": null
+    },
+    {
+      "district_id": "TH-CHIANG-MAI",
+      "region_id": "TH-CHIANG-MAI",
+      "name": "Chiang Mai",
+      "full_name": "Chiang Mai Province",
+      "country": "Thailand",
+      "country_code": "THA",
+      "admin_level": 1,
+      "admin_level_label": "Province",
+      "province": "Thailand",
+      "pcode": "26819535B4595205640770",
+      "scale_class": "province",
+      "area_km2": 22245.7,
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "bbox": [
+        98.008039,
+        17.242449,
+        99.572913,
+        20.147434
+      ],
+      "status": "available",
+      "status_reason": null
+    },
+    {
+      "district_id": "ID-RIAU",
+      "region_id": "ID-RIAU",
+      "name": "Riau",
+      "full_name": "Riau Province",
+      "country": "Indonesia",
+      "country_code": "IDN",
+      "admin_level": 1,
+      "admin_level_label": "Province",
+      "province": "Indonesia",
+      "pcode": "30024224B70649796263296",
+      "scale_class": "province",
+      "area_km2": 90203.5,
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "bbox": [
+        100.02494,
+        -1.122273,
+        103.814611,
+        2.883904
+      ],
+      "status": "available",
+      "status_reason": null
+    },
+    {
+      "district_id": "MM-SHAN",
+      "region_id": "MM-SHAN",
+      "name": "Shan",
+      "full_name": "Shan State",
+      "country": "Myanmar",
+      "country_code": "MMR",
+      "admin_level": 1,
+      "admin_level_label": "State",
+      "province": "Myanmar",
+      "pcode": "20573499B82952573339616",
+      "scale_class": "state",
+      "area_km2": 156130.7,
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "bbox": [
+        96.151069,
+        19.299318,
+        101.169892,
+        24.159067
+      ],
+      "status": "available",
+      "status_reason": null
     }
   ],
+  "regions": [
+    "NP-BANKE",
+    "NP-BARDIYA",
+    "NP-CHITWAN",
+    "TH-CHIANG-MAI",
+    "ID-RIAU",
+    "MM-SHAN"
+  ],
+  "region_status": {
+    "NP-BANKE": {
+      "status": "available",
+      "records": 41554
+    },
+    "NP-BARDIYA": {
+      "status": "available",
+      "records": 46373
+    },
+    "NP-CHITWAN": {
+      "status": "available",
+      "records": 40783
+    },
+    "TH-CHIANG-MAI": {
+      "status": "available",
+      "records": 468717
+    },
+    "ID-RIAU": {
+      "status": "available",
+      "records": 441767
+    },
+    "MM-SHAN": {
+      "status": "available",
+      "records": 3897413
+    }
+  },
   "sensors": [
     {
       "sensor_id": "modis",
@@ -154,6 +407,18 @@
     }
   ],
   "years": [
+    "2000",
+    "2001",
+    "2002",
+    "2003",
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
     "2012",
     "2013",
     "2014",
@@ -175,11 +440,11 @@
     "metadata": "data/{district_id}/metadata.json"
   },
   "quality_summary": {
-    "raw_record_count": 1019718,
-    "valid_record_count": 1019121,
-    "final_retained_record_count": 124506,
-    "outside_study_area_count": 894615,
-    "duplicate_count": 597
+    "raw_record_count": 8045235,
+    "valid_record_count": 8044625,
+    "final_retained_record_count": 4936607,
+    "outside_study_area_count": 3108018,
+    "duplicate_count": 610
   },
   "limitations": [
     "Near real-time (NRT) 7-day global snapshot; not standard processing (SP).",
@@ -190,6 +455,7 @@
     "NASA FIRMS (Fire Information for Resource Management System), NASA LANCE/EOSDIS.",
     "Giglio, L., Schroeder, W., Hall, J.V. (MODIS Collection 6.1 active fire product).",
     "Schroeder, W., Oliva, P., Giglio, L., Csiszar, I.A. (VIIRS 375 m active fire product).",
-    "OCHA COD-AB Nepal administrative boundaries, distributed by HDX (CC BY-IGO)."
+    "OCHA COD-AB Nepal administrative boundaries, distributed by HDX (CC BY-IGO).",
+    "geoBoundaries ADM1 boundaries for Thailand, Indonesia and Myanmar (CC BY 3.0 IGO / CC BY 4.0)."
   ]
 }

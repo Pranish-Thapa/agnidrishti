@@ -1,0 +1,60 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-15T11:46:01Z",
+  "districts": [
+    {
+      "district_id": "NP-BANKE",
+      "name": "Banke",
+      "province": "Lumbini Province",
+      "generated_at": "2026-11-15T11:46:01Z",
+      "outlook_status": "not_validated",
+      "nrt_records": 6,
+      "fwi_category": "moderate"
+    },
+    {
+      "district_id": "NP-BARDIYA",
+      "name": "Bardiya",
+      "province": "Lumbini Province",
+      "generated_at": "2026-11-15T11:46:01Z",
+      "outlook_status": "not_validated",
+      "nrt_records": 9,
+      "fwi_category": "moderate"
+    },
+    {
+      "district_id": "NP-CHITWAN",
+      "name": "Chitwan",
+      "province": "Bagmati Province",
+      "generated_at": "2026-11-15T11:46:01Z",
+      "outlook_status": "not_validated",
+      "nrt_records": 2,
+      "fwi_category": "moderate"
+    },
+    {
+      "district_id": "TH-CHIANG-MAI",
+      "name": "Chiang Mai",
+      "province": "Thailand",
+      "generated_at": "2026-11-15T11:46:01Z",
+      "outlook_status": "not_validated",
+      "nrt_records": 3,
+      "fwi_category": "low"
+    },
+    {
+      "district_id": "ID-RIAU",
+      "name": "Riau",
+      "province": "Indonesia",
+      "generated_at": "2026-11-15T11:46:01Z",
+      "outlook_status": "not_validated",
+      "nrt_records": 6,
+      "fwi_category": "low"
+    },
+    {
+      "district_id": "MM-SHAN",
+      "name": "Shan",
+      "province": "Myanmar",
+      "generated_at": "2026-11-15T11:46:01Z",
+      "outlook_status": "not_validated",
+      "nrt_records": 20,
+      "fwi_category": "low"
+    }
+  ]
+}

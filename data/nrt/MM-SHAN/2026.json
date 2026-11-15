@@ -1,0 +1,507 @@
+{
+  "contract_version": "1.0.0",
+  "district_id": "MM-SHAN",
+  "region_id": "MM-SHAN",
+  "district": {
+    "name": "Shan",
+    "full_name": "Shan State",
+    "country": "Myanmar",
+    "admin_level_label": "State",
+    "province": "Myanmar",
+    "pcode": "20573499B82952573339616"
+  },
+  "year": "2026",
+  "generated_at": "2026-11-14T17:39:28Z",
+  "provider": "nrt",
+  "product": "NRT",
+  "sensors": [
+    "modis",
+    "viirs_snpp",
+    "viirs_noaa20",
+    "viirs_noaa21"
+  ],
+  "days": [
+    {
+      "date": "2026-11-07",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 1,
+                "sum": 3.68,
+                "mean": 3.68,
+                "min": 3.68,
+                "max": 3.68
+              }
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed",
+              "detections": 2,
+              "cells": 1,
+              "cell_days": 1,
+              "frp": {
+                "n": 2,
+                "sum": 5.66,
+                "mean": 2.83,
+                "min": 2.43,
+                "max": 3.23
+              }
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed",
+              "detections": 3,
+              "cells": 2,
+              "cell_days": 2,
+              "frp": {
+                "n": 3,
+                "sum": 17.5,
+                "mean": 5.8333,
+                "min": 4.92,
+                "max": 6.47
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-11-08",
+      "status": "observed",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed",
+              "detections": 3,
+              "cells": 3,
+              "cell_days": 3,
+              "frp": {
+                "n": 3,
+                "sum": 8.52,
+                "mean": 2.84,
+                "min": 1.95,
+                "max": 3.47
+              }
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-11-09",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-11-10",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-11-12",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-11-13",
+      "status": "observed_zero",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": 0,
+              "cell_days": 0,
+              "frp": null
+            }
+          }
+        }
+      }
+    }
+  ],
+  "weeks": [
+    {
+      "iso_year": 2026,
+      "iso_week": 45,
+      "week_start": "2026-11-02",
+      "week_end": "2026-11-08",
+      "days_in_week": 2,
+      "status": "incomplete",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": null,
+              "cell_days": 1,
+              "occupied_cells": 1,
+              "frp": {
+                "n": 1,
+                "sum": 3.68,
+                "mean": 3.68,
+                "min": 3.68,
+                "max": 3.68
+              },
+              "days_observed": 2
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 2
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed",
+              "detections": 5,
+              "cells": null,
+              "cell_days": 4,
+              "occupied_cells": 4,
+              "frp": {
+                "n": 5,
+                "sum": 14.18,
+                "mean": 2.836,
+                "min": 1.95,
+                "max": 3.47
+              },
+              "days_observed": 2
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed",
+              "detections": 3,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 3,
+                "sum": 17.5,
+                "mean": 5.8333,
+                "min": 4.92,
+                "max": 6.47
+              },
+              "days_observed": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "iso_year": 2026,
+      "iso_week": 46,
+      "week_start": "2026-11-09",
+      "week_end": "2026-11-15",
+      "days_in_week": 5,
+      "status": "incomplete",
+      "by_sensor": {
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 5
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 5
+            }
+          }
+        },
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 5
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 5
+            }
+          }
+        }
+      }
+    }
+  ]
+}

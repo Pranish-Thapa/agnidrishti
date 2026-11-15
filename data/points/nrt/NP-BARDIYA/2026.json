@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-14T04:37:21Z",
+  "generated_at": "2026-11-15T09:41:42Z",
   "provider": "nrt",
   "product": "NRT",
   "district_id": "NP-BARDIYA",
@@ -25,6 +25,9 @@
     "NOAA-21": 4
   },
   "record_count": 9,
+  "displayed_count": 9,
+  "display_cap": 5000,
+  "display_note": "All 9 recorded detections for this region-year are shown.",
   "provenance": {
     "source": "NASA FIRMS active fire products (MOD14/MYD14 C6.1; VNP14IMG family)",
     "processing": "normalize -> qc -> exact district polygon assignment",

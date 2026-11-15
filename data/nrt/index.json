@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T18:06:20Z",
+  "generated_at": "2026-11-14T17:39:28Z",
   "provider": {
     "id": "nrt",
     "product": "NRT"
@@ -8,9 +8,17 @@
   "study_areas": [
     {
       "district_id": "NP-BANKE",
+      "region_id": "NP-BANKE",
       "name": "Banke",
+      "full_name": "Banke District",
+      "country": "Nepal",
+      "country_code": "NPL",
+      "admin_level": 2,
+      "admin_level_label": "District",
       "province": "Lumbini Province",
       "pcode": "NP0557",
+      "scale_class": "district",
+      "area_km2": 1883.4,
       "years": [
         "2026"
       ],
@@ -19,13 +27,23 @@
         27.85365,
         82.194063,
         28.337813
-      ]
+      ],
+      "status": "available",
+      "status_reason": null
     },
     {
       "district_id": "NP-BARDIYA",
+      "region_id": "NP-BARDIYA",
       "name": "Bardiya",
+      "full_name": "Bardiya District",
+      "country": "Nepal",
+      "country_code": "NPL",
+      "admin_level": 2,
+      "admin_level_label": "District",
       "province": "Lumbini Province",
       "pcode": "NP0558",
+      "scale_class": "district",
+      "area_km2": 2003.6,
       "years": [
         "2026"
       ],
@@ -34,13 +52,23 @@
         28.068852,
         81.766594,
         28.674673
-      ]
+      ],
+      "status": "available",
+      "status_reason": null
     },
     {
       "district_id": "NP-CHITWAN",
+      "region_id": "NP-CHITWAN",
       "name": "Chitwan",
+      "full_name": "Chitwan District",
+      "country": "Nepal",
+      "country_code": "NPL",
+      "admin_level": 2,
+      "admin_level_label": "District",
       "province": "Bagmati Province",
       "pcode": "NP0335",
+      "scale_class": "district",
+      "area_km2": 2243.6,
       "years": [
         "2026"
       ],
@@ -49,9 +77,120 @@
         27.354966,
         84.796554,
         27.880467
-      ]
+      ],
+      "status": "available",
+      "status_reason": null
+    },
+    {
+      "district_id": "TH-CHIANG-MAI",
+      "region_id": "TH-CHIANG-MAI",
+      "name": "Chiang Mai",
+      "full_name": "Chiang Mai Province",
+      "country": "Thailand",
+      "country_code": "THA",
+      "admin_level": 1,
+      "admin_level_label": "Province",
+      "province": "Thailand",
+      "pcode": "26819535B4595205640770",
+      "scale_class": "province",
+      "area_km2": 22245.7,
+      "years": [
+        "2026"
+      ],
+      "bbox": [
+        98.008039,
+        17.242449,
+        99.572913,
+        20.147434
+      ],
+      "status": "available",
+      "status_reason": null
+    },
+    {
+      "district_id": "ID-RIAU",
+      "region_id": "ID-RIAU",
+      "name": "Riau",
+      "full_name": "Riau Province",
+      "country": "Indonesia",
+      "country_code": "IDN",
+      "admin_level": 1,
+      "admin_level_label": "Province",
+      "province": "Indonesia",
+      "pcode": "30024224B70649796263296",
+      "scale_class": "province",
+      "area_km2": 90203.5,
+      "years": [
+        "2026"
+      ],
+      "bbox": [
+        100.02494,
+        -1.122273,
+        103.814611,
+        2.883904
+      ],
+      "status": "available",
+      "status_reason": null
+    },
+    {
+      "district_id": "MM-SHAN",
+      "region_id": "MM-SHAN",
+      "name": "Shan",
+      "full_name": "Shan State",
+      "country": "Myanmar",
+      "country_code": "MMR",
+      "admin_level": 1,
+      "admin_level_label": "State",
+      "province": "Myanmar",
+      "pcode": "20573499B82952573339616",
+      "scale_class": "state",
+      "area_km2": 156130.7,
+      "years": [
+        "2026"
+      ],
+      "bbox": [
+        96.151069,
+        19.299318,
+        101.169892,
+        24.159067
+      ],
+      "status": "available",
+      "status_reason": null
     }
   ],
+  "regions": [
+    "NP-BANKE",
+    "NP-BARDIYA",
+    "NP-CHITWAN",
+    "TH-CHIANG-MAI",
+    "ID-RIAU",
+    "MM-SHAN"
+  ],
+  "region_status": {
+    "NP-BANKE": {
+      "status": "available",
+      "records": 6
+    },
+    "NP-BARDIYA": {
+      "status": "available",
+      "records": 9
+    },
+    "NP-CHITWAN": {
+      "status": "available",
+      "records": 2
+    },
+    "TH-CHIANG-MAI": {
+      "status": "available",
+      "records": 3
+    },
+    "ID-RIAU": {
+      "status": "available",
+      "records": 6
+    },
+    "MM-SHAN": {
+      "status": "available",
+      "records": 20
+    }
+  },
   "sensors": [
     {
       "sensor_id": "modis",
@@ -121,8 +260,8 @@
   "quality_summary": {
     "raw_record_count": 949442,
     "valid_record_count": 949442,
-    "final_retained_record_count": 17,
-    "outside_study_area_count": 949425,
+    "final_retained_record_count": 46,
+    "outside_study_area_count": 949396,
     "duplicate_count": 0
   },
   "limitations": [
