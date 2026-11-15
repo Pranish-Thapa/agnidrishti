@@ -1,13 +1,17 @@
 {
   "contract_version": "1.0.0",
   "district_id": "NP-CHITWAN",
+  "region_id": "NP-CHITWAN",
   "district": {
     "name": "Chitwan",
+    "full_name": "Chitwan District",
+    "country": "Nepal",
+    "admin_level_label": "District",
     "province": "Bagmati Province",
     "pcode": "NP0335"
   },
   "year": "2026",
-  "generated_at": "2026-11-13T20:13:03Z",
+  "generated_at": "2026-11-15T09:23:34Z",
   "provider": "area-api",
   "product": "SP",
   "sensors": [
@@ -13446,22 +13450,9 @@
       "iso_week": 1,
       "week_start": "2025-12-29",
       "week_end": "2026-01-04",
-      "days_in_week": 4,
+      "days_in_week": 7,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 4
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -13475,18 +13466,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 4
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -13509,6 +13491,28 @@
               "days_observed": 4
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 4
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 4
+            }
+          }
         }
       }
     },
@@ -13520,19 +13524,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -13546,24 +13537,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 1,
-              "cells": null,
-              "cell_days": 1,
-              "occupied_cells": 1,
-              "frp": {
-                "n": 1,
-                "sum": 6.7,
-                "mean": 6.7,
-                "min": 6.7,
-                "max": 6.7
-              },
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -13592,6 +13568,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 1,
+              "cells": null,
+              "cell_days": 1,
+              "occupied_cells": 1,
+              "frp": {
+                "n": 1,
+                "sum": 6.7,
+                "mean": 6.7,
+                "min": 6.7,
+                "max": 6.7
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -13603,19 +13607,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -13635,24 +13626,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 2,
-              "cells": null,
-              "cell_days": 2,
-              "occupied_cells": 2,
-              "frp": {
-                "n": 2,
-                "sum": 14.6,
-                "mean": 7.3,
-                "min": 7.2,
-                "max": 7.4
-              },
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -13681,6 +13657,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 2,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 2,
+                "sum": 14.6,
+                "mean": 7.3,
+                "min": 7.2,
+                "max": 7.4
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -13692,25 +13696,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 4,
-              "cells": null,
-              "cell_days": 2,
-              "occupied_cells": 2,
-              "frp": {
-                "n": 4,
-                "sum": 13.04,
-                "mean": 3.26,
-                "min": 1.59,
-                "max": 6.85
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -13730,30 +13715,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 2,
+              "detections": 4,
               "cells": null,
               "cell_days": 2,
               "occupied_cells": 2,
               "frp": {
-                "n": 2,
-                "sum": 33.8,
-                "mean": 16.9,
-                "min": 7.3,
-                "max": 26.5
+                "n": 4,
+                "sum": 13.04,
+                "mean": 3.26,
+                "min": 1.59,
+                "max": 6.85
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -13776,6 +13752,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 2,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 2,
+                "sum": 33.8,
+                "mean": 16.9,
+                "min": 7.3,
+                "max": 26.5
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -13787,25 +13791,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 3,
-              "cells": null,
-              "cell_days": 3,
-              "occupied_cells": 3,
-              "frp": {
-                "n": 3,
-                "sum": 21.3,
-                "mean": 7.1,
-                "min": 4.06,
-                "max": 10.29
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -13825,30 +13810,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 1,
+              "detections": 3,
               "cells": null,
-              "cell_days": 1,
-              "occupied_cells": 1,
+              "cell_days": 3,
+              "occupied_cells": 3,
               "frp": {
-                "n": 1,
-                "sum": 7.7,
-                "mean": 7.7,
-                "min": 7.7,
-                "max": 7.7
+                "n": 3,
+                "sum": 21.3,
+                "mean": 7.1,
+                "min": 4.06,
+                "max": 10.29
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -13865,6 +13841,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 1,
+              "cells": null,
+              "cell_days": 1,
+              "occupied_cells": 1,
+              "frp": {
+                "n": 1,
+                "sum": 7.7,
+                "mean": 7.7,
+                "min": 7.7,
+                "max": 7.7
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -13876,25 +13880,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 7,
-              "cells": null,
-              "cell_days": 3,
-              "occupied_cells": 3,
-              "frp": {
-                "n": 7,
-                "sum": 31.07,
-                "mean": 4.4386,
-                "min": 2.03,
-                "max": 6.43
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -13914,30 +13899,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 4,
+              "detections": 7,
               "cells": null,
               "cell_days": 3,
-              "occupied_cells": 2,
+              "occupied_cells": 3,
               "frp": {
-                "n": 4,
-                "sum": 178.2,
-                "mean": 44.55,
-                "min": 5.8,
-                "max": 67.8
+                "n": 7,
+                "sum": 31.07,
+                "mean": 4.4386,
+                "min": 2.03,
+                "max": 6.43
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -13960,6 +13936,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 4,
+              "cells": null,
+              "cell_days": 3,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 4,
+                "sum": 178.2,
+                "mean": 44.55,
+                "min": 5.8,
+                "max": 67.8
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -13971,25 +13975,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 7,
-              "cells": null,
-              "cell_days": 5,
-              "occupied_cells": 4,
-              "frp": {
-                "n": 7,
-                "sum": 38.93,
-                "mean": 5.5614,
-                "min": 1.31,
-                "max": 10.64
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14009,30 +13994,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
               "detections": 7,
               "cells": null,
-              "cell_days": 4,
+              "cell_days": 5,
               "occupied_cells": 4,
               "frp": {
                 "n": 7,
-                "sum": 242.1,
-                "mean": 34.5857,
-                "min": 8.4,
-                "max": 61.2
+                "sum": 38.93,
+                "mean": 5.5614,
+                "min": 1.31,
+                "max": 10.64
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14055,6 +14031,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 7,
+              "cells": null,
+              "cell_days": 4,
+              "occupied_cells": 4,
+              "frp": {
+                "n": 7,
+                "sum": 242.1,
+                "mean": 34.5857,
+                "min": 8.4,
+                "max": 61.2
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14066,25 +14070,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 33,
-              "cells": null,
-              "cell_days": 13,
-              "occupied_cells": 8,
-              "frp": {
-                "n": 33,
-                "sum": 484.75,
-                "mean": 14.6894,
-                "min": 1.71,
-                "max": 54.87
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14104,30 +14089,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 9,
+              "detections": 33,
               "cells": null,
-              "cell_days": 7,
-              "occupied_cells": 4,
+              "cell_days": 13,
+              "occupied_cells": 8,
               "frp": {
-                "n": 9,
-                "sum": 151.9,
-                "mean": 16.8778,
-                "min": 5.9,
-                "max": 35.9
+                "n": 33,
+                "sum": 484.75,
+                "mean": 14.6894,
+                "min": 1.71,
+                "max": 54.87
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14150,6 +14126,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 9,
+              "cells": null,
+              "cell_days": 7,
+              "occupied_cells": 4,
+              "frp": {
+                "n": 9,
+                "sum": 151.9,
+                "mean": 16.8778,
+                "min": 5.9,
+                "max": 35.9
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14161,25 +14165,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 32,
-              "cells": null,
-              "cell_days": 15,
-              "occupied_cells": 6,
-              "frp": {
-                "n": 32,
-                "sum": 347.13,
-                "mean": 10.8478,
-                "min": 0.64,
-                "max": 58.17
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14199,35 +14184,20 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 12,
+              "detections": 32,
               "cells": null,
-              "cell_days": 8,
+              "cell_days": 15,
               "occupied_cells": 6,
               "frp": {
-                "n": 12,
-                "sum": 380.3,
-                "mean": 31.6917,
-                "min": 7.8,
-                "max": 87.5
-              },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed",
-              "detections": 2,
-              "cells": null,
-              "cell_days": 2,
-              "occupied_cells": 2,
-              "frp": {
-                "n": 2,
-                "sum": 11.4,
-                "mean": 5.7,
-                "min": 5.0,
-                "max": 6.4
+                "n": 32,
+                "sum": 347.13,
+                "mean": 10.8478,
+                "min": 0.64,
+                "max": 58.17
               },
               "days_observed": 7
             }
@@ -14251,6 +14221,40 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 2,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 2,
+                "sum": 11.4,
+                "mean": 5.7,
+                "min": 5.0,
+                "max": 6.4
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 12,
+              "cells": null,
+              "cell_days": 8,
+              "occupied_cells": 6,
+              "frp": {
+                "n": 12,
+                "sum": 380.3,
+                "mean": 31.6917,
+                "min": 7.8,
+                "max": 87.5
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14262,25 +14266,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 46,
-              "cells": null,
-              "cell_days": 17,
-              "occupied_cells": 8,
-              "frp": {
-                "n": 46,
-                "sum": 407.97,
-                "mean": 8.8689,
-                "min": 1.6,
-                "max": 31.96
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14300,30 +14285,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 12,
+              "detections": 46,
               "cells": null,
-              "cell_days": 7,
-              "occupied_cells": 5,
+              "cell_days": 17,
+              "occupied_cells": 8,
               "frp": {
-                "n": 12,
-                "sum": 208.8,
-                "mean": 17.4,
-                "min": 4.5,
-                "max": 27.9
+                "n": 46,
+                "sum": 407.97,
+                "mean": 8.8689,
+                "min": 1.6,
+                "max": 31.96
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14346,6 +14322,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 12,
+              "cells": null,
+              "cell_days": 7,
+              "occupied_cells": 5,
+              "frp": {
+                "n": 12,
+                "sum": 208.8,
+                "mean": 17.4,
+                "min": 4.5,
+                "max": 27.9
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14357,19 +14361,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14389,24 +14380,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 2,
-              "cells": null,
-              "cell_days": 1,
-              "occupied_cells": 1,
-              "frp": {
-                "n": 2,
-                "sum": 10.7,
-                "mean": 5.35,
-                "min": 4.8,
-                "max": 5.9
-              },
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -14435,6 +14411,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 2,
+              "cells": null,
+              "cell_days": 1,
+              "occupied_cells": 1,
+              "frp": {
+                "n": 2,
+                "sum": 10.7,
+                "mean": 5.35,
+                "min": 4.8,
+                "max": 5.9
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14446,25 +14450,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 11,
-              "cells": null,
-              "cell_days": 6,
-              "occupied_cells": 5,
-              "frp": {
-                "n": 11,
-                "sum": 55.31,
-                "mean": 5.0282,
-                "min": 0.52,
-                "max": 10.95
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14484,30 +14469,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 5,
+              "detections": 11,
               "cells": null,
-              "cell_days": 4,
-              "occupied_cells": 4,
+              "cell_days": 6,
+              "occupied_cells": 5,
               "frp": {
-                "n": 5,
-                "sum": 92.8,
-                "mean": 18.56,
-                "min": 6.4,
-                "max": 35.8
+                "n": 11,
+                "sum": 55.31,
+                "mean": 5.0282,
+                "min": 0.52,
+                "max": 10.95
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14530,6 +14506,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 5,
+              "cells": null,
+              "cell_days": 4,
+              "occupied_cells": 4,
+              "frp": {
+                "n": 5,
+                "sum": 92.8,
+                "mean": 18.56,
+                "min": 6.4,
+                "max": 35.8
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14541,25 +14545,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 14,
-              "cells": null,
-              "cell_days": 10,
-              "occupied_cells": 6,
-              "frp": {
-                "n": 14,
-                "sum": 72.29,
-                "mean": 5.1636,
-                "min": 2.14,
-                "max": 16.73
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14579,30 +14564,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 7,
+              "detections": 14,
               "cells": null,
-              "cell_days": 4,
-              "occupied_cells": 4,
+              "cell_days": 10,
+              "occupied_cells": 6,
               "frp": {
-                "n": 7,
-                "sum": 92.7,
-                "mean": 13.2429,
-                "min": 7.2,
-                "max": 32.3
+                "n": 14,
+                "sum": 72.29,
+                "mean": 5.1636,
+                "min": 2.14,
+                "max": 16.73
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14625,6 +14601,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 7,
+              "cells": null,
+              "cell_days": 4,
+              "occupied_cells": 4,
+              "frp": {
+                "n": 7,
+                "sum": 92.7,
+                "mean": 13.2429,
+                "min": 7.2,
+                "max": 32.3
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14636,25 +14640,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 23,
-              "cells": null,
-              "cell_days": 11,
-              "occupied_cells": 9,
-              "frp": {
-                "n": 23,
-                "sum": 135.58,
-                "mean": 5.8948,
-                "min": 1.74,
-                "max": 11.55
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14674,35 +14659,20 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 8,
+              "detections": 23,
               "cells": null,
-              "cell_days": 3,
-              "occupied_cells": 3,
+              "cell_days": 11,
+              "occupied_cells": 9,
               "frp": {
-                "n": 8,
-                "sum": 262.1,
-                "mean": 32.7625,
-                "min": 8.0,
-                "max": 65.5
-              },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed",
-              "detections": 1,
-              "cells": null,
-              "cell_days": 1,
-              "occupied_cells": 1,
-              "frp": {
-                "n": 1,
-                "sum": 6.2,
-                "mean": 6.2,
-                "min": 6.2,
-                "max": 6.2
+                "n": 23,
+                "sum": 135.58,
+                "mean": 5.8948,
+                "min": 1.74,
+                "max": 11.55
               },
               "days_observed": 7
             }
@@ -14726,6 +14696,40 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 1,
+              "cells": null,
+              "cell_days": 1,
+              "occupied_cells": 1,
+              "frp": {
+                "n": 1,
+                "sum": 6.2,
+                "mean": 6.2,
+                "min": 6.2,
+                "max": 6.2
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 8,
+              "cells": null,
+              "cell_days": 3,
+              "occupied_cells": 3,
+              "frp": {
+                "n": 8,
+                "sum": 262.1,
+                "mean": 32.7625,
+                "min": 8.0,
+                "max": 65.5
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14737,25 +14741,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 64,
-              "cells": null,
-              "cell_days": 30,
-              "occupied_cells": 16,
-              "frp": {
-                "n": 64,
-                "sum": 350.96,
-                "mean": 5.4838,
-                "min": 0.35,
-                "max": 37.59
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14775,30 +14760,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 12,
+              "detections": 64,
               "cells": null,
-              "cell_days": 8,
-              "occupied_cells": 7,
+              "cell_days": 30,
+              "occupied_cells": 16,
               "frp": {
-                "n": 12,
-                "sum": 170.2,
-                "mean": 14.1833,
-                "min": 5.9,
-                "max": 35.6
+                "n": 64,
+                "sum": 350.96,
+                "mean": 5.4838,
+                "min": 0.35,
+                "max": 37.59
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14821,6 +14797,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 12,
+              "cells": null,
+              "cell_days": 8,
+              "occupied_cells": 7,
+              "frp": {
+                "n": 12,
+                "sum": 170.2,
+                "mean": 14.1833,
+                "min": 5.9,
+                "max": 35.6
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14832,25 +14836,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 28,
-              "cells": null,
-              "cell_days": 19,
-              "occupied_cells": 11,
-              "frp": {
-                "n": 28,
-                "sum": 155.22,
-                "mean": 5.5436,
-                "min": 0.87,
-                "max": 23.56
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14870,30 +14855,21 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 9,
+              "detections": 28,
               "cells": null,
-              "cell_days": 7,
-              "occupied_cells": 6,
+              "cell_days": 19,
+              "occupied_cells": 11,
               "frp": {
-                "n": 9,
-                "sum": 123.7,
-                "mean": 13.7444,
-                "min": 7.3,
-                "max": 32.5
+                "n": 28,
+                "sum": 155.22,
+                "mean": 5.5436,
+                "min": 0.87,
+                "max": 23.56
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -14916,6 +14892,34 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 9,
+              "cells": null,
+              "cell_days": 7,
+              "occupied_cells": 6,
+              "frp": {
+                "n": 9,
+                "sum": 123.7,
+                "mean": 13.7444,
+                "min": 7.3,
+                "max": 32.5
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -14927,25 +14931,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 301,
-              "cells": null,
-              "cell_days": 41,
-              "occupied_cells": 21,
-              "frp": {
-                "n": 301,
-                "sum": 1102.32,
-                "mean": 3.6622,
-                "min": 0.58,
-                "max": 44.12
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -14965,35 +14950,20 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 22,
+              "detections": 301,
               "cells": null,
-              "cell_days": 9,
-              "occupied_cells": 7,
+              "cell_days": 41,
+              "occupied_cells": 21,
               "frp": {
-                "n": 22,
-                "sum": 771.2,
-                "mean": 35.0545,
-                "min": 7.2,
-                "max": 168.4
-              },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed",
-              "detections": 8,
-              "cells": null,
-              "cell_days": 7,
-              "occupied_cells": 3,
-              "frp": {
-                "n": 8,
-                "sum": 123.3,
-                "mean": 15.4125,
-                "min": 4.8,
-                "max": 26.9
+                "n": 301,
+                "sum": 1102.32,
+                "mean": 3.6622,
+                "min": 0.58,
+                "max": 44.12
               },
               "days_observed": 7
             }
@@ -15017,6 +14987,40 @@
               "days_observed": 7
             }
           }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed",
+              "detections": 8,
+              "cells": null,
+              "cell_days": 7,
+              "occupied_cells": 3,
+              "frp": {
+                "n": 8,
+                "sum": 123.3,
+                "mean": 15.4125,
+                "min": 4.8,
+                "max": 26.9
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 22,
+              "cells": null,
+              "cell_days": 9,
+              "occupied_cells": 7,
+              "frp": {
+                "n": 22,
+                "sum": 771.2,
+                "mean": 35.0545,
+                "min": 7.2,
+                "max": 168.4
+              },
+              "days_observed": 7
+            }
+          }
         }
       }
     },
@@ -15028,19 +15032,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15060,18 +15051,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15085,6 +15067,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15105,19 +15109,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15131,18 +15122,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15156,6 +15138,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15176,19 +15180,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15202,18 +15193,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15227,6 +15209,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15247,25 +15251,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 2,
-              "cells": null,
-              "cell_days": 1,
-              "occupied_cells": 1,
-              "frp": {
-                "n": 2,
-                "sum": 13.32,
-                "mean": 6.66,
-                "min": 6.66,
-                "max": 6.66
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15285,18 +15270,28 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 2,
               "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
+              "cell_days": 1,
+              "occupied_cells": 1,
+              "frp": {
+                "n": 2,
+                "sum": 13.32,
+                "mean": 6.66,
+                "min": 6.66,
+                "max": 6.66
+              },
               "days_observed": 7
-            },
-            "Terra": {
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15307,9 +15302,18 @@
             }
           }
         },
-        "viirs_noaa21": {
+        "modis": {
           "platforms": {
-            "NOAA-21": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15330,19 +15334,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15356,18 +15347,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15381,6 +15363,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15401,6 +15405,19 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
+        "viirs_noaa20": {
+          "platforms": {
+            "NOAA-20": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "viirs_snpp": {
           "platforms": {
             "Suomi-NPP": {
@@ -15420,9 +15437,9 @@
             }
           }
         },
-        "viirs_noaa20": {
+        "viirs_noaa21": {
           "platforms": {
-            "NOAA-20": {
+            "NOAA-21": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15435,15 +15452,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed_zero",
               "detections": 0,
@@ -15452,12 +15460,8 @@
               "occupied_cells": 0,
               "frp": null,
               "days_observed": 7
-            }
-          }
-        },
-        "viirs_noaa21": {
-          "platforms": {
-            "NOAA-21": {
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15478,19 +15482,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15504,18 +15495,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15529,6 +15511,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15549,19 +15553,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15575,18 +15566,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15600,6 +15582,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15620,19 +15624,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15652,18 +15643,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15677,6 +15659,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15697,19 +15701,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15723,18 +15714,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15748,6 +15730,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15768,19 +15772,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15794,18 +15785,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15819,6 +15801,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15839,19 +15843,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15865,18 +15856,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15890,6 +15872,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15910,19 +15914,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -15936,18 +15927,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15961,6 +15943,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -15981,19 +15985,6 @@
       "days_in_week": 5,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 5
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -16007,18 +15998,9 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 5
-            },
-            "Terra": {
+            "Suomi-NPP": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -16032,6 +16014,28 @@
         "viirs_noaa21": {
           "platforms": {
             "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 5
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 5
+            },
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,

@@ -31,7 +31,7 @@ export function ProblemSection() {
               <h2 className="display mt-7 text-[clamp(2.7rem,5.2vw,4.8rem)] leading-[0.98] text-bone">
                 One planet.
                 <br />
-                <em className="italic text-sand/85">Different eyes.</em>
+                <span className="text-observation-soft">Different eyes.</span>
               </h2>
             </Reveal>
 
@@ -49,17 +49,23 @@ export function ProblemSection() {
               </div>
             </Reveal>
 
-            <div className="mt-10 border-t border-sand/[0.12]">
+            <div className="mt-10 space-y-2">
               {sensors.map((sensor, index) => (
                 <Reveal key={sensor.name} delay={0.06 * index}>
-                  <div className="grid grid-cols-[82px_1fr] gap-4 border-b border-sand/[0.12] py-5 sm:grid-cols-[104px_1fr] sm:gap-6">
+                  <div className="grid grid-cols-[82px_1fr] gap-4 rounded-xl border border-sand/[0.09] bg-ink-900/45 px-4 py-4 transition-colors hover:border-sand/[0.16] sm:grid-cols-[112px_1fr] sm:gap-6 sm:px-5">
                     <div>
-                      <p className="font-mono text-[12px] tracking-[0.1em] text-bone">{sensor.name}</p>
-                      <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-sand/80">
+                      <span
+                        className={`mb-2.5 block h-0.5 w-6 ${
+                          sensor.name === 'MODIS' ? 'bg-terracotta-soft' : 'bg-observation'
+                        }`}
+                        aria-hidden="true"
+                      />
+                      <p className="font-mono text-support tracking-[0.06em] text-bone">{sensor.name}</p>
+                      <p className="mt-1.5 text-meta leading-[1.4] text-sand/80">
                         {sensor.scale}
                       </p>
                     </div>
-                    <p className="text-[13px] leading-relaxed text-ash">{sensor.description}</p>
+                    <p className="text-body-sm leading-relaxed text-ash">{sensor.description}</p>
                   </div>
                 </Reveal>
               ))}
@@ -71,7 +77,7 @@ export function ProblemSection() {
               <ResolutionDiagram />
             </Reveal>
             <Reveal delay={0.16}>
-              <p className="mt-5 max-w-[560px] text-[12px] leading-relaxed text-ash-dark">
+              <p className="mt-5 max-w-[560px] text-support leading-relaxed text-ash-dark">
                 A finer pixel is not simply a better photograph. It changes the probability that a
                 small, cool or short-lived fire will be detected at all.
               </p>
@@ -89,7 +95,7 @@ export function ProblemSection() {
                 A sudden increase in detected hotspots after a satellite transition does not
                 automatically mean fire activity increased.
               </p>
-              <p className="mt-5 max-w-[620px] text-[13px] leading-relaxed text-ash sm:text-sm">
+              <p className="mt-5 max-w-[620px] text-body-sm leading-relaxed text-ash sm:text-sm">
                 Finer pixels, greater sensitivity or a different retrieval algorithm can all lift
                 the count without a single extra fire on the ground. The question is not whether
                 the count changed. It is whether the change belongs to the fire or to the eyes

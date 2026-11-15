@@ -7,28 +7,28 @@ import { site } from '../lib/site'
 
 const roadmap = [
   {
-    phase: 'Now',
-    title: 'Foundation',
+    phase: '01 · Foundation',
+    title: 'Product and documentation',
     status: 'Complete',
     tone: 'active' as const,
     description:
-      'Brand, landing page, application shell and methodology documentation are in place.',
+      'Landing page, application shell, historical explorer and methodology documentation ship together.',
   },
   {
-    phase: 'Next',
-    title: 'Data connection',
-    status: 'Planned',
-    tone: 'planned' as const,
+    phase: '02 · Data pipeline',
+    title: 'Acquisition to comparison series',
+    status: 'Complete',
+    tone: 'active' as const,
     description:
-      'Ingest separate MODIS and VIIRS hot spot records with product versions and provenance intact.',
+      'Historical Standard Processing 2000-2026 (MODIS before 2012; MODIS and VIIRS after), normalization, QC, exact boundary assignment, ISO weeks, three fitted correction methods and blocked pre-2012 transferability tests.',
   },
   {
-    phase: 'Then',
-    title: 'Harmonization and validation',
-    status: 'Planned',
-    tone: 'planned' as const,
+    phase: '03 · Validation',
+    title: 'Independent audit',
+    status: 'Audited',
+    tone: 'neutral' as const,
     description:
-      'Test three correction methods, overlap holdouts, seam behaviour and lights-out reconstruction.',
+      'Method Court, seam audit, lights-out backtest and reliability strata published as machine-readable outputs.',
   },
 ] as const
 
@@ -40,7 +40,7 @@ export function AboutPage() {
         label="About the project"
         title={
           <>
-            A clearer signal from a <em className="italic text-sand/85">changing record.</em>
+            A clearer signal from a <span className="text-amber-soft">changing record.</span>
           </>
         }
         intro={
@@ -51,10 +51,10 @@ export function AboutPage() {
           </p>
         }
         aside={
-          <div className="w-full max-w-[300px] border border-sand/[0.12] bg-sand/[0.03] p-5">
-            <p className="eyebrow text-ash-dark">Challenge</p>
+          <div className="card w-full max-w-[300px] p-5">
+            <p className="eyebrow text-ash">Challenge</p>
             <p className="mt-4 font-display text-2xl leading-snug text-bone">{site.challenge}</p>
-            <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.13em] text-sand/80">
+            <p className="mt-3 font-mono text-meta tracking-[0.02em] text-sand/80">
               NASA Space Apps Challenge 2026
             </p>
           </div>
@@ -94,21 +94,21 @@ export function AboutPage() {
 
             <div className="lg:col-span-5">
               <Reveal delay={0.1}>
-                <div className="border border-sand/[0.12] bg-ink-850">
-                  <div className="border-b border-sand/10 px-5 py-4">
-                    <p className="eyebrow text-ash-dark">The scientific question</p>
+                <div className="card">
+                  <div className="border-b border-sand/[0.08] px-5 py-4">
+                    <p className="eyebrow text-ash">The scientific question</p>
                   </div>
                   <div className="p-5 sm:p-7">
                     <p className="font-display text-[2rem] leading-[1.2] text-bone">
                       “Did the fires increase, or did the satellites get better?”
                     </p>
-                    <p className="mt-5 text-[12px] leading-relaxed text-ash">
+                    <p className="mt-5 text-support leading-relaxed text-ash">
                       The question is not whether a count changed. It is whether the change belongs
                       to the landscape or to the observation system.
                     </p>
                   </div>
-                  <div className="border-t border-sand/10 px-5 py-4">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-sand/80">
+                  <div className="border-t border-sand/[0.08] px-5 py-4">
+                    <p className="font-mono text-meta tracking-[0.02em] text-sand/80">
                       See the fire. Verify the signal.
                     </p>
                   </div>
@@ -127,7 +127,7 @@ export function AboutPage() {
                   Harmonization of MODIS and VIIRS Hot Spots asks how two observation records can
                   be made comparable without pretending their differences do not exist.
                 </p>
-                <p className="mt-5 max-w-[650px] text-[13px] leading-[1.8] text-ash">
+                <p className="mt-5 max-w-[650px] text-body-sm leading-[1.8] text-ash">
                   Agnidrishti responds with a transparent workflow: keep the raw records separate,
                   learn from the overlap, compare multiple correction methods, and test whether the
                   harmonized signal survives the places where it is most fragile.
@@ -142,21 +142,21 @@ export function AboutPage() {
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="display mt-6 max-w-[650px] text-[clamp(2.2rem,4.2vw,3.6rem)] leading-[1.05] text-bone">
-                Built in the open, <em className="italic text-sand/85">stage by stage.</em>
+                Built in the open, <span className="text-observation-soft">verified in stages.</span>
               </h2>
             </Reveal>
 
-            <div className="mt-10 grid gap-px border border-sand/10 bg-sand/10 md:grid-cols-3">
+            <div className="mt-10 grid gap-px overflow-hidden rounded-panel border border-sand/[0.1] bg-sand/10 md:grid-cols-3">
               {roadmap.map((step) => (
                 <article key={step.title} className="bg-ink-850 p-6">
                   <div className="flex items-center justify-between gap-4">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-ember">
+                    <p className="font-mono text-meta tracking-[0.02em] text-ember">
                       {step.phase}
                     </p>
                     <StatusBadge tone={step.tone}>{step.status}</StatusBadge>
                   </div>
                   <h3 className="mt-4 font-display text-2xl text-bone">{step.title}</h3>
-                  <p className="mt-3 text-[12px] leading-relaxed text-ash">{step.description}</p>
+                  <p className="mt-3 text-support leading-relaxed text-ash">{step.description}</p>
                 </article>
               ))}
             </div>
@@ -165,8 +165,8 @@ export function AboutPage() {
           <div className="mt-20 grid gap-10 border-t border-sand/[0.12] pt-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <Reveal>
-                <p className="eyebrow text-ash-dark">Independence and attribution</p>
-                <p className="mt-5 max-w-[420px] text-[13px] leading-[1.8] text-ash">
+                <p className="eyebrow text-ash">Independence and attribution</p>
+                <p className="mt-5 max-w-[420px] text-body-sm leading-[1.8] text-ash">
                   Agnidrishti is an independent project created for the NASA Space Apps Challenge
                   2026. It is not affiliated with or endorsed by NASA. No team members or
                   institutional affiliations are listed until they are confirmed.
@@ -175,7 +175,7 @@ export function AboutPage() {
             </div>
             <div className="lg:col-span-7">
               <Reveal delay={0.08}>
-                <div className="border-l border-ember/60 pl-5">
+                <div className="rounded-r-xl border-l-2 border-ember/50 pl-5">
                   <p className="max-w-[620px] font-display text-[clamp(1.6rem,2.6vw,2.2rem)] leading-[1.25] text-bone/90">
                     The aim is not to make the past look certain. It is to make the uncertainty
                     legible enough to act on.

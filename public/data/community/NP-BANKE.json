@@ -1,0 +1,1224 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-15T11:46:01Z",
+  "district_id": "NP-BANKE",
+  "district": {
+    "name": "Banke",
+    "province": "Lumbini Province",
+    "pcode": "NP0557",
+    "centroid": {
+      "latitude": 28.0871,
+      "longitude": 81.8222
+    }
+  },
+  "historical": {
+    "monthly_climatology": [
+      {
+        "month": 1,
+        "label": "Jan",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 0.022,
+        "years_supporting": 15,
+        "observed_days": 446,
+        "detection_days": 9,
+        "above_overall_mean": false
+      },
+      {
+        "month": 2,
+        "label": "Feb",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 0.085,
+        "years_supporting": 15,
+        "observed_days": 424,
+        "detection_days": 24,
+        "above_overall_mean": false
+      },
+      {
+        "month": 3,
+        "label": "Mar",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 2.886,
+        "years_supporting": 15,
+        "observed_days": 465,
+        "detection_days": 141,
+        "above_overall_mean": false
+      },
+      {
+        "month": 4,
+        "label": "Apr",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 37.196,
+        "years_supporting": 15,
+        "observed_days": 450,
+        "detection_days": 327,
+        "above_overall_mean": true
+      },
+      {
+        "month": 5,
+        "label": "May",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 6.434,
+        "years_supporting": 15,
+        "observed_days": 465,
+        "detection_days": 190,
+        "above_overall_mean": false
+      },
+      {
+        "month": 6,
+        "label": "Jun",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 0.464,
+        "years_supporting": 15,
+        "observed_days": 450,
+        "detection_days": 46,
+        "above_overall_mean": false
+      },
+      {
+        "month": 7,
+        "label": "Jul",
+        "status": "observed",
+        "snpp_detections_per_observed_day": 0.0,
+        "years_supporting": 1,
+        "observed_days": 31,
+        "detection_days": 0,
+        "above_overall_mean": false
+      },
+      {
+        "month": 8,
+        "label": "Aug",
+        "status": "not_observed",
+        "snpp_detections_per_observed_day": null,
+        "years_supporting": 0,
+        "observed_days": 0,
+        "detection_days": 0
+      },
+      {
+        "month": 9,
+        "label": "Sep",
+        "status": "not_observed",
+        "snpp_detections_per_observed_day": null,
+        "years_supporting": 0,
+        "observed_days": 0,
+        "detection_days": 0
+      },
+      {
+        "month": 10,
+        "label": "Oct",
+        "status": "not_observed",
+        "snpp_detections_per_observed_day": null,
+        "years_supporting": 0,
+        "observed_days": 0,
+        "detection_days": 0
+      },
+      {
+        "month": 11,
+        "label": "Nov",
+        "status": "not_observed",
+        "snpp_detections_per_observed_day": null,
+        "years_supporting": 0,
+        "observed_days": 0,
+        "detection_days": 0
+      },
+      {
+        "month": 12,
+        "label": "Dec",
+        "status": "not_observed",
+        "snpp_detections_per_observed_day": null,
+        "years_supporting": 0,
+        "observed_days": 0,
+        "detection_days": 0
+      }
+    ],
+    "peak_month": {
+      "month": 4,
+      "label": "Apr",
+      "status": "observed",
+      "snpp_detections_per_observed_day": 37.196,
+      "years_supporting": 15,
+      "observed_days": 450,
+      "detection_days": 327,
+      "above_overall_mean": true
+    },
+    "low_month": {
+      "month": 7,
+      "label": "Jul",
+      "status": "observed",
+      "snpp_detections_per_observed_day": 0.0,
+      "years_supporting": 1,
+      "observed_days": 31,
+      "detection_days": 0,
+      "above_overall_mean": false
+    },
+    "overall_rate_per_observed_day": 7.809,
+    "year_totals": [
+      {
+        "year": "2012",
+        "snpp_detections": 2103,
+        "observed_days": 163,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2013",
+        "snpp_detections": 1182,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2014",
+        "snpp_detections": 1562,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2015",
+        "snpp_detections": 459,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2016",
+        "snpp_detections": 2773,
+        "observed_days": 182,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2017",
+        "snpp_detections": 1807,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2018",
+        "snpp_detections": 321,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2019",
+        "snpp_detections": 2172,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2020",
+        "snpp_detections": 57,
+        "observed_days": 182,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2021",
+        "snpp_detections": 2173,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2022",
+        "snpp_detections": 1351,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2023",
+        "snpp_detections": 1644,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2024",
+        "snpp_detections": 1855,
+        "observed_days": 182,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2025",
+        "snpp_detections": 456,
+        "observed_days": 181,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      },
+      {
+        "year": "2026",
+        "snpp_detections": 1412,
+        "observed_days": 212,
+        "note": "Suomi-NPP detections within the acquired Jan-Jul record; year totals are not comparable to post-2018 totals that include NOAA-20/NOAA-21"
+      }
+    ],
+    "basis": {
+      "platform": "VIIRS Suomi-NPP",
+      "reason": "the only platform with a full 2012-2026 record; NOAA-20 starts 2018 and NOAA-21 starts 2023, so pooling platforms would bias month-to-month comparisons",
+      "record_note": "Acquired record covers January-June each year plus July 2026; other months are not requested and are excluded, never zero-filled"
+    }
+  },
+  "historical_modis_long_term": {
+    "period": {
+      "start": "2000-11-01",
+      "end": "2011-12-31"
+    },
+    "monthly": [
+      {
+        "month": 1,
+        "label": "Jan",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 341,
+        "aqua_observed_days": 279,
+        "years_supporting": 11
+      },
+      {
+        "month": 2,
+        "label": "Feb",
+        "terra_detections_per_observed_day": 0.003,
+        "aqua_detections_per_observed_day": 0.02,
+        "terra_observed_days": 310,
+        "aqua_observed_days": 254,
+        "years_supporting": 11
+      },
+      {
+        "month": 3,
+        "label": "Mar",
+        "terra_detections_per_observed_day": 0.1,
+        "aqua_detections_per_observed_day": 0.254,
+        "terra_observed_days": 341,
+        "aqua_observed_days": 279,
+        "years_supporting": 11
+      },
+      {
+        "month": 4,
+        "label": "Apr",
+        "terra_detections_per_observed_day": 0.827,
+        "aqua_detections_per_observed_day": 1.622,
+        "terra_observed_days": 330,
+        "aqua_observed_days": 270,
+        "years_supporting": 11
+      },
+      {
+        "month": 5,
+        "label": "May",
+        "terra_detections_per_observed_day": 0.015,
+        "aqua_detections_per_observed_day": 0.029,
+        "terra_observed_days": 341,
+        "aqua_observed_days": 307,
+        "years_supporting": 11
+      },
+      {
+        "month": 6,
+        "label": "Jun",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.007,
+        "terra_observed_days": 330,
+        "aqua_observed_days": 300,
+        "years_supporting": 11
+      },
+      {
+        "month": 7,
+        "label": "Jul",
+        "terra_detections_per_observed_day": 0.003,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 341,
+        "aqua_observed_days": 310,
+        "years_supporting": 11
+      },
+      {
+        "month": 8,
+        "label": "Aug",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 341,
+        "aqua_observed_days": 310,
+        "years_supporting": 11
+      },
+      {
+        "month": 9,
+        "label": "Sep",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 330,
+        "aqua_observed_days": 300,
+        "years_supporting": 11
+      },
+      {
+        "month": 10,
+        "label": "Oct",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 341,
+        "aqua_observed_days": 310,
+        "years_supporting": 11
+      },
+      {
+        "month": 11,
+        "label": "Nov",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 360,
+        "aqua_observed_days": 300,
+        "years_supporting": 12
+      },
+      {
+        "month": 12,
+        "label": "Dec",
+        "terra_detections_per_observed_day": 0.0,
+        "aqua_detections_per_observed_day": 0.0,
+        "terra_observed_days": 372,
+        "aqua_observed_days": 310,
+        "years_supporting": 12
+      }
+    ],
+    "peak_month_terra": {
+      "month": 4,
+      "label": "Apr",
+      "terra_detections_per_observed_day": 0.827,
+      "aqua_detections_per_observed_day": 1.622,
+      "terra_observed_days": 330,
+      "aqua_observed_days": 270,
+      "years_supporting": 11
+    },
+    "peak_month_aqua": {
+      "month": 4,
+      "label": "Apr",
+      "terra_detections_per_observed_day": 0.827,
+      "aqua_detections_per_observed_day": 1.622,
+      "terra_observed_days": 330,
+      "aqua_observed_days": 270,
+      "years_supporting": 11
+    },
+    "basis": {
+      "platforms": "MODIS Terra and MODIS Aqua, reported separately",
+      "reason": "The VIIRS baseline starts on 20 January 2012, so it cannot describe 2000-2011. This is the pre-VIIRS MODIS record on its own native scale; it is not converted to a VIIRS-equivalent value and is not comparable to the Suomi-NPP rates above.",
+      "record_note": "Terra begins 1 November 2000 and Aqua begins 4 May 2002, so 2000-2001 is Terra-only and early 2002 has no Aqua days. Rates are detections per observed day; months without observations are null, never zero."
+    }
+  },
+  "current_observations": {
+    "nrt_records": [
+      {
+        "latitude": 28.052,
+        "longitude": 81.559,
+        "acq_date": "2026-11-11",
+        "acq_time": "07:43",
+        "platform": "NOAA-20",
+        "brightness": 330.5,
+        "frp": 1.7,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.0011,
+        "longitude": 81.65,
+        "acq_date": "2026-11-12",
+        "acq_time": "07:26",
+        "platform": "NOAA-20",
+        "brightness": 340.3,
+        "frp": 10.7,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.0292,
+        "longitude": 81.5912,
+        "acq_date": "2026-11-12",
+        "acq_time": "07:26",
+        "platform": "NOAA-20",
+        "brightness": 325.1,
+        "frp": 1.5,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 27.9422,
+        "longitude": 81.7695,
+        "acq_date": "2026-11-13",
+        "acq_time": "07:50",
+        "platform": "NOAA-21",
+        "brightness": 330.1,
+        "frp": 1.8,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.1138,
+        "longitude": 81.6355,
+        "acq_date": "2026-11-13",
+        "acq_time": "07:50",
+        "platform": "NOAA-21",
+        "brightness": 332.8,
+        "frp": 3.7,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.1125,
+        "longitude": 81.6325,
+        "acq_date": "2026-11-13",
+        "acq_time": "07:50",
+        "platform": "NOAA-21",
+        "brightness": 326.3,
+        "frp": 3.4,
+        "confidence": "low",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      }
+    ],
+    "recent_week_records": [
+      {
+        "latitude": 28.052,
+        "longitude": 81.559,
+        "acq_date": "2026-11-11",
+        "acq_time": "07:43",
+        "platform": "NOAA-20",
+        "brightness": 330.5,
+        "frp": 1.7,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.0011,
+        "longitude": 81.65,
+        "acq_date": "2026-11-12",
+        "acq_time": "07:26",
+        "platform": "NOAA-20",
+        "brightness": 340.3,
+        "frp": 10.7,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.0292,
+        "longitude": 81.5912,
+        "acq_date": "2026-11-12",
+        "acq_time": "07:26",
+        "platform": "NOAA-20",
+        "brightness": 325.1,
+        "frp": 1.5,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 27.9422,
+        "longitude": 81.7695,
+        "acq_date": "2026-11-13",
+        "acq_time": "07:50",
+        "platform": "NOAA-21",
+        "brightness": 330.1,
+        "frp": 1.8,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.1138,
+        "longitude": 81.6355,
+        "acq_date": "2026-11-13",
+        "acq_time": "07:50",
+        "platform": "NOAA-21",
+        "brightness": 332.8,
+        "frp": 3.7,
+        "confidence": "nominal",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      },
+      {
+        "latitude": 28.1125,
+        "longitude": 81.6325,
+        "acq_date": "2026-11-13",
+        "acq_time": "07:50",
+        "platform": "NOAA-21",
+        "brightness": 326.3,
+        "frp": 3.4,
+        "confidence": "low",
+        "daynight": "D",
+        "district_id": "NP-BANKE"
+      }
+    ],
+    "recent_week_detections": 6,
+    "recent_week_active_days": 3,
+    "observation_freshness": "2026-11-15T11:46:01Z",
+    "note": "Near-real-time window acquired from NASA FIRMS; detections are thermal-anomaly observations, not confirmed ground fires"
+  },
+  "weather_recent_30d": [
+    {
+      "date": "2026-10-24",
+      "temperature_2m_max": 27.4,
+      "temperature_2m_min": 17.2,
+      "relative_humidity_2m_mean": 76,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 7.8
+    },
+    {
+      "date": "2026-10-25",
+      "temperature_2m_max": 28.2,
+      "temperature_2m_min": 17.0,
+      "relative_humidity_2m_mean": 76,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 9.3
+    },
+    {
+      "date": "2026-10-26",
+      "temperature_2m_max": 29.1,
+      "temperature_2m_min": 16.7,
+      "relative_humidity_2m_mean": 71,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 6.1
+    },
+    {
+      "date": "2026-10-27",
+      "temperature_2m_max": 29.5,
+      "temperature_2m_min": 16.2,
+      "relative_humidity_2m_mean": 70,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.8
+    },
+    {
+      "date": "2026-10-28",
+      "temperature_2m_max": 29.6,
+      "temperature_2m_min": 17.0,
+      "relative_humidity_2m_mean": 71,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 7.1
+    },
+    {
+      "date": "2026-10-29",
+      "temperature_2m_max": 29.1,
+      "temperature_2m_min": 18.5,
+      "relative_humidity_2m_mean": 69,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 9.2
+    },
+    {
+      "date": "2026-10-30",
+      "temperature_2m_max": 26.0,
+      "temperature_2m_min": 19.9,
+      "relative_humidity_2m_mean": 89,
+      "precipitation_sum": 21.4,
+      "wind_speed_10m_max": 8.0
+    },
+    {
+      "date": "2026-10-31",
+      "temperature_2m_max": 25.2,
+      "temperature_2m_min": 19.1,
+      "relative_humidity_2m_mean": 85,
+      "precipitation_sum": 1.4,
+      "wind_speed_10m_max": 5.8
+    },
+    {
+      "date": "2026-11-01",
+      "temperature_2m_max": 26.2,
+      "temperature_2m_min": 18.8,
+      "relative_humidity_2m_mean": 82,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 5.6
+    },
+    {
+      "date": "2026-11-02",
+      "temperature_2m_max": 27.4,
+      "temperature_2m_min": 19.7,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.7,
+      "wind_speed_10m_max": 5.8
+    },
+    {
+      "date": "2026-11-03",
+      "temperature_2m_max": 28.1,
+      "temperature_2m_min": 18.4,
+      "relative_humidity_2m_mean": 79,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 10.6
+    },
+    {
+      "date": "2026-11-04",
+      "temperature_2m_max": 27.8,
+      "temperature_2m_min": 18.2,
+      "relative_humidity_2m_mean": 78,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 7.2
+    },
+    {
+      "date": "2026-11-05",
+      "temperature_2m_max": 27.5,
+      "temperature_2m_min": 17.5,
+      "relative_humidity_2m_mean": 75,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.8
+    },
+    {
+      "date": "2026-11-06",
+      "temperature_2m_max": 26.8,
+      "temperature_2m_min": 16.4,
+      "relative_humidity_2m_mean": 78,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.9
+    },
+    {
+      "date": "2026-11-07",
+      "temperature_2m_max": 26.9,
+      "temperature_2m_min": 16.1,
+      "relative_humidity_2m_mean": 79,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 7.1
+    },
+    {
+      "date": "2026-11-08",
+      "temperature_2m_max": 27.5,
+      "temperature_2m_min": 16.5,
+      "relative_humidity_2m_mean": 78,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 6.8
+    },
+    {
+      "date": "2026-11-09",
+      "temperature_2m_max": 28.1,
+      "temperature_2m_min": 15.3,
+      "relative_humidity_2m_mean": 75,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 7.6
+    },
+    {
+      "date": "2026-11-10",
+      "temperature_2m_max": 27.7,
+      "temperature_2m_min": 14.8,
+      "relative_humidity_2m_mean": 80,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.9
+    },
+    {
+      "date": "2026-11-11",
+      "temperature_2m_max": 27.5,
+      "temperature_2m_min": 15.6,
+      "relative_humidity_2m_mean": 74,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 6.7
+    },
+    {
+      "date": "2026-11-12",
+      "temperature_2m_max": 26.9,
+      "temperature_2m_min": 15.5,
+      "relative_humidity_2m_mean": 76,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 9.4
+    },
+    {
+      "date": "2026-11-13",
+      "temperature_2m_max": 26.2,
+      "temperature_2m_min": 15.0,
+      "relative_humidity_2m_mean": 79,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 6.8
+    },
+    {
+      "date": "2026-11-14",
+      "temperature_2m_max": 25.7,
+      "temperature_2m_min": 15.3,
+      "relative_humidity_2m_mean": 79,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 5.8
+    },
+    {
+      "date": "2026-11-15",
+      "temperature_2m_max": 25.2,
+      "temperature_2m_min": 15.1,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 8.5
+    },
+    {
+      "date": "2026-11-15",
+      "temperature_2m_max": 25.2,
+      "temperature_2m_min": 15.2,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 8.5
+    },
+    {
+      "date": "2026-11-16",
+      "temperature_2m_max": 24.7,
+      "temperature_2m_min": 13.3,
+      "relative_humidity_2m_mean": 75,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 11.2
+    },
+    {
+      "date": "2026-11-17",
+      "temperature_2m_max": 23.6,
+      "temperature_2m_min": 12.4,
+      "relative_humidity_2m_mean": 80,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 5.6
+    },
+    {
+      "date": "2026-11-18",
+      "temperature_2m_max": 24.2,
+      "temperature_2m_min": 13.1,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.5
+    },
+    {
+      "date": "2026-11-19",
+      "temperature_2m_max": 24.2,
+      "temperature_2m_min": 12.7,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 5.9
+    },
+    {
+      "date": "2026-11-20",
+      "temperature_2m_max": 24.6,
+      "temperature_2m_min": 14.0,
+      "relative_humidity_2m_mean": 83,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.4
+    },
+    {
+      "date": "2026-11-21",
+      "temperature_2m_max": 23.9,
+      "temperature_2m_min": 13.9,
+      "relative_humidity_2m_mean": 84,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.7
+    }
+  ],
+  "weather_forecast_7d": [
+    {
+      "date": "2026-11-15",
+      "temperature_2m_max": 25.2,
+      "temperature_2m_min": 15.2,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 8.5
+    },
+    {
+      "date": "2026-11-16",
+      "temperature_2m_max": 24.7,
+      "temperature_2m_min": 13.3,
+      "relative_humidity_2m_mean": 75,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 11.2
+    },
+    {
+      "date": "2026-11-17",
+      "temperature_2m_max": 23.6,
+      "temperature_2m_min": 12.4,
+      "relative_humidity_2m_mean": 80,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 5.6
+    },
+    {
+      "date": "2026-11-18",
+      "temperature_2m_max": 24.2,
+      "temperature_2m_min": 13.1,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.5
+    },
+    {
+      "date": "2026-11-19",
+      "temperature_2m_max": 24.2,
+      "temperature_2m_min": 12.7,
+      "relative_humidity_2m_mean": 81,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 5.9
+    },
+    {
+      "date": "2026-11-20",
+      "temperature_2m_max": 24.6,
+      "temperature_2m_min": 14.0,
+      "relative_humidity_2m_mean": 83,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.4
+    },
+    {
+      "date": "2026-11-21",
+      "temperature_2m_max": 23.9,
+      "temperature_2m_min": 13.9,
+      "relative_humidity_2m_mean": 84,
+      "precipitation_sum": 0.0,
+      "wind_speed_10m_max": 4.7
+    }
+  ],
+  "fwi": {
+    "current": {
+      "date": "2026-11-15",
+      "ffmc": 83.82,
+      "dmc": 26.08,
+      "dc": 184.27,
+      "isi": 2.75,
+      "bui": 38.53,
+      "fwi": 6.85,
+      "fwi_category": "moderate",
+      "state_reset_after_gap": false
+    },
+    "forecast_7d": [
+      {
+        "date": "2026-11-15",
+        "ffmc": 83.82,
+        "dmc": 26.08,
+        "dc": 184.27,
+        "isi": 2.75,
+        "bui": 38.53,
+        "fwi": 6.85,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      },
+      {
+        "date": "2026-11-16",
+        "ffmc": 83.82,
+        "dmc": 27.07,
+        "dc": 188.42,
+        "isi": 3.15,
+        "bui": 39.84,
+        "fwi": 7.91,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      },
+      {
+        "date": "2026-11-17",
+        "ffmc": 83.82,
+        "dmc": 27.83,
+        "dc": 192.37,
+        "isi": 2.38,
+        "bui": 40.88,
+        "fwi": 6.21,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      },
+      {
+        "date": "2026-11-18",
+        "ffmc": 83.68,
+        "dmc": 28.57,
+        "dc": 196.43,
+        "isi": 2.21,
+        "bui": 41.9,
+        "fwi": 5.89,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      },
+      {
+        "date": "2026-11-19",
+        "ffmc": 83.66,
+        "dmc": 29.3,
+        "dc": 200.49,
+        "isi": 2.37,
+        "bui": 42.92,
+        "fwi": 6.38,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      },
+      {
+        "date": "2026-11-20",
+        "ffmc": 83.24,
+        "dmc": 29.98,
+        "dc": 204.62,
+        "isi": 2.08,
+        "bui": 43.88,
+        "fwi": 5.72,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      },
+      {
+        "date": "2026-11-21",
+        "ffmc": 82.84,
+        "dmc": 30.59,
+        "dc": 208.63,
+        "isi": 2.0,
+        "bui": 44.77,
+        "fwi": 5.59,
+        "fwi_category": "moderate",
+        "state_reset_after_gap": false
+      }
+    ],
+    "approximations": [
+      "daily max temperature instead of the noon temperature",
+      "daily mean relative humidity instead of the afternoon value",
+      "daily max wind instead of the noon wind"
+    ],
+    "calibration": "Canadian FWI formulas (Van Wagner 1987) uncalibrated for Nepal; the index describes weather-driven danger, not ignition probability"
+  },
+  "outlook": {
+    "status": "not_validated",
+    "season_note": "The validated record covers January-July only; an outlook for other months would be an unvalidated extrapolation and is not shown.",
+    "feature_names": [
+      "temperature_max",
+      "relative_humidity_mean",
+      "wind_max",
+      "rain_24h",
+      "rain_7d",
+      "rain_30d",
+      "fwi",
+      "ffmc",
+      "dc",
+      "doy_sin",
+      "doy_cos"
+    ],
+    "training_days": 2731,
+    "validation_years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "folds": [
+      {
+        "held_out_year": 2012,
+        "pairs": 163,
+        "active_days": 77,
+        "auc": 0.6104,
+        "climatology_auc": 0.8942,
+        "brier": 0.3681,
+        "climatology_brier": 0.1669
+      },
+      {
+        "held_out_year": 2013,
+        "pairs": 181,
+        "active_days": 43,
+        "auc": 0.6163,
+        "climatology_auc": 0.9237,
+        "brier": 0.1823,
+        "climatology_brier": 0.1066
+      },
+      {
+        "held_out_year": 2014,
+        "pairs": 181,
+        "active_days": 51,
+        "auc": 0.7804,
+        "climatology_auc": 0.9564,
+        "brier": 0.2983,
+        "climatology_brier": 0.099
+      },
+      {
+        "held_out_year": 2015,
+        "pairs": 181,
+        "active_days": 37,
+        "auc": 0.4965,
+        "climatology_auc": 0.7023,
+        "brier": 0.2099,
+        "climatology_brier": 0.2079
+      },
+      {
+        "held_out_year": 2016,
+        "pairs": 182,
+        "active_days": 60,
+        "auc": 0.5083,
+        "climatology_auc": 0.8303,
+        "brier": 0.3242,
+        "climatology_brier": 0.1434
+      },
+      {
+        "held_out_year": 2017,
+        "pairs": 181,
+        "active_days": 51,
+        "auc": 0.7477,
+        "climatology_auc": 0.8915,
+        "brier": 0.3536,
+        "climatology_brier": 0.1173
+      },
+      {
+        "held_out_year": 2018,
+        "pairs": 181,
+        "active_days": 39,
+        "auc": 0.6103,
+        "climatology_auc": 0.8492,
+        "brier": 0.5967,
+        "climatology_brier": 0.132
+      },
+      {
+        "held_out_year": 2019,
+        "pairs": 181,
+        "active_days": 88,
+        "auc": 0.5,
+        "climatology_auc": 0.901,
+        "brier": 0.4862,
+        "climatology_brier": 0.1793
+      },
+      {
+        "held_out_year": 2020,
+        "pairs": 182,
+        "active_days": 30,
+        "auc": 0.8009,
+        "climatology_auc": 0.806,
+        "brier": 0.1538,
+        "climatology_brier": 0.1521
+      },
+      {
+        "held_out_year": 2021,
+        "pairs": 181,
+        "active_days": 74,
+        "auc": 0.5,
+        "climatology_auc": 0.8083,
+        "brier": 0.4088,
+        "climatology_brier": 0.1802
+      },
+      {
+        "held_out_year": 2022,
+        "pairs": 181,
+        "active_days": 41,
+        "auc": 0.5,
+        "climatology_auc": 0.8949,
+        "brier": 0.2265,
+        "climatology_brier": 0.1112
+      },
+      {
+        "held_out_year": 2023,
+        "pairs": 181,
+        "active_days": 75,
+        "auc": 0.7985,
+        "climatology_auc": 0.8008,
+        "brier": 0.2155,
+        "climatology_brier": 0.2059
+      },
+      {
+        "held_out_year": 2024,
+        "pairs": 182,
+        "active_days": 71,
+        "auc": 0.507,
+        "climatology_auc": 0.8783,
+        "brier": 0.3846,
+        "climatology_brier": 0.1421
+      },
+      {
+        "held_out_year": 2025,
+        "pairs": 181,
+        "active_days": 56,
+        "auc": 0.5,
+        "climatology_auc": 0.7421,
+        "brier": 0.3094,
+        "climatology_brier": 0.1905
+      }
+    ],
+    "metrics": {
+      "mean_auc": 0.6054,
+      "mean_climatology_auc": 0.8485,
+      "skill_over_climatology": -0.243,
+      "validated_thresholds": {
+        "auc_min": 0.65,
+        "skill_min": 0.05
+      }
+    },
+    "outlook_days": [],
+    "model": "L2-regularized logistic regression (numpy, interpretable; no black-box dependency)",
+    "target": "district-day with >= 1 VIIRS-family hotspot detection (Suomi-NPP + NOAA-20 + NOAA-21; platforms identified per observation elsewhere)",
+    "caveats": [
+      "VIIRS-family counts mix platforms from 2018 onward; the model target is detection presence, not fire count.",
+      "A detection is a thermal anomaly observation, not a confirmed ground fire.",
+      "Weather features are district-centroid daily values (max temperature, mean RH, max wind), not point-fire conditions.",
+      "The model tests interpolation across held-out years inside the 2012-2026 record; it does not test extrapolation to unacquired months.",
+      "Pre-set skill thresholds were documented before the evaluation was run."
+    ]
+  },
+  "explanations": [
+    {
+      "topic": "historical_pattern",
+      "text": "Historical satellite observations (Suomi-NPP, 15 years supporting) show that Banke typically records more hotspot detections during Apr (about 37.196 detections per observed day) than during Jul (0.0).",
+      "evidence": {
+        "source": "Suomi-NPP monthly climatology from the processed SP record",
+        "peak_month": "Apr",
+        "peak_rate": 37.196,
+        "observed_days_supporting": 450
+      }
+    },
+    {
+      "topic": "recent_observations",
+      "text": "Over the most recent 7-day NRT window, satellites recorded 6 hotspot detections across 3 day(s) in Banke. These are thermal-anomaly observations, not confirmed ground fires.",
+      "evidence": {
+        "source": "NASA FIRMS near-real-time detections (points export)",
+        "detections": 6,
+        "active_days": 3
+      }
+    },
+    {
+      "topic": "current_weather",
+      "text": "Recent weather data shows moderate humidity (mean 81%) and rainfall (0.0 mm over the last 7 days).",
+      "evidence": {
+        "source": "Open-Meteo ERA5 archive (district centroid)",
+        "mean_rh_last_7d": 80.7,
+        "rain_last_7d_mm": 0.0
+      }
+    },
+    {
+      "topic": "fire_weather_index",
+      "text": "The computed Fire Weather Index for Banke is 6.85 (moderate on the Canadian scale). This index describes how weather conditions would support fire spread — it is not a prediction that a fire will start, and it is not calibrated for Nepal.",
+      "evidence": {
+        "source": "Canadian FWI formulas (Van Wagner 1987) on Open-Meteo forecast weather",
+        "fwi": 6.85,
+        "category": "moderate",
+        "approximations": [
+          "daily max temperature instead of noon temperature",
+          "daily mean RH instead of afternoon RH",
+          "daily max wind instead of noon wind"
+        ]
+      }
+    },
+    {
+      "topic": "outlook",
+      "text": "The weather-driven activity model did not demonstrate skill beyond the seasonal climatology baseline in leave-one-year-out validation, so no fire-activity outlook is shown. The Fire Weather Index assessment remains available as a weather-based danger indicator.",
+      "evidence": {
+        "metrics": {
+          "mean_auc": 0.6054,
+          "mean_climatology_auc": 0.8485,
+          "skill_over_climatology": -0.243,
+          "validated_thresholds": {
+            "auc_min": 0.65,
+            "skill_min": 0.05
+          }
+        }
+      }
+    }
+  ],
+  "safety_sources": [
+    {
+      "name": "BIPAD — National Disaster Risk Reduction and Management Authority",
+      "url": "https://bipad.gov.np/",
+      "note": "Government of Nepal disaster-information portal; official incident reports and alerts.",
+      "kind": "official_portal",
+      "verified_reachable": true
+    },
+    {
+      "name": "SERVIR-HKH Forest Fire Detection and Monitoring System (ICIMOD)",
+      "url": "https://rds.icimod.org/",
+      "note": "ICIMOD's regional fire-detection system for the Hindu Kush Himalaya.",
+      "kind": "official_portal",
+      "verified_reachable": false
+    },
+    {
+      "name": "NASA FIRMS (Fire Information for Resource Management System)",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "note": "Global near-real-time hotspot map — the upstream source of Agnidrishti detections.",
+      "kind": "data_source",
+      "verified_reachable": true
+    },
+    {
+      "name": "Nepal National Emergency Number",
+      "url": null,
+      "note": "Call 112 for national emergencies. Follow instructions from local authorities and district disaster-management committees.",
+      "kind": "emergency_contact",
+      "verified_reachable": null
+    }
+  ],
+  "limitations": [
+    "Fire-weather index is uncalibrated for Nepal and uses daily-value approximations.",
+    "Fire-activity outlook is validated only inside the January-July acquired season.",
+    "Satellite detections are thermal-anomaly observations, not confirmed ground fires.",
+    "Centroid weather may differ from conditions elsewhere in Banke.",
+    "No official evacuation-centre or route dataset was available for integration; follow local authorities."
+  ],
+  "provenance": {
+    "observations": "NASA FIRMS SP/NRT (see data/manifests)",
+    "weather": "Open-Meteo ERA5 archive + forecast APIs (CC-BY 4.0), centroid daily values",
+    "boundaries": "Banke (NP0557)"
+  }
+}

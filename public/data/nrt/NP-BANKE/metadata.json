@@ -1,20 +1,34 @@
 {
   "contract_version": "1.0.0",
   "district_id": "NP-BANKE",
+  "region_id": "NP-BANKE",
   "name": "Banke",
+  "full_name": "Banke District",
+  "country": "Nepal",
+  "country_code": "NPL",
+  "admin_level": 2,
+  "admin_level_label": "District",
   "province": "Lumbini Province",
   "pcode": "NP0557",
-  "description": "Terai district in Lumbini Province, bordering Bardiya to the west.",
-  "generated_at": "2026-11-13T18:06:20Z",
+  "scale_class": "district",
+  "area_km2": 1883.4,
+  "description": "A Terai district in Lumbini Province, bordering Bardiya to the west. Selected as a high-fire study area.",
+  "processing_status": {
+    "status": "available",
+    "records": 6
+  },
+  "generated_at": "2026-11-14T17:39:28Z",
   "provider": "nrt",
   "product": "NRT",
   "boundary": {
-    "source": "OCHA COD-AB Nepal, administrative level 2 (npl_admin2.geojson)",
+    "source": "OCHA COD-AB Nepal, administrative level 2",
     "dataset_url": "https://data.humdata.org/dataset/cod-ab-npl",
     "license": "CC BY-IGO",
     "boundary_year": 2024,
     "publisher": "OCHA / HDX",
     "pcode": "NP0557",
+    "admin_level": 2,
+    "area_km2": 1883.4,
     "crs": "OGC CRS84 / WGS84 longitude-latitude",
     "simplified": false,
     "bbox": [
@@ -23,9 +37,9 @@
       82.194063,
       28.337813
     ],
-    "archive_sha256": "9f6713c41d65396f611ddce5879faecf8e2d494edbd1d6611612445ad46b6707",
-    "member_sha256": "81b69b5f9077b4e4fa23bb16d2fa77a30cbc8635bfb54b538d1d74bdd56681e4",
-    "retrieved_at": "2026-11-13T17:32:41Z"
+    "archive_sha256": null,
+    "member_sha256": null,
+    "retrieved_at": "2026-11-14T17:36:15Z"
   },
   "record_counts": {
     "assigned_records": 6
@@ -58,10 +72,10 @@
         "2026-11-12",
         "2026-11-13"
       ],
-      "first_observation": "2026-11-09",
+      "first_observation": "2026-11-06",
       "last_observation": "2026-11-09",
       "global_records": 84140,
-      "district_records": 1,
+      "district_records": 3,
       "windows": [
         {
           "start": "2026-11-07",
@@ -118,10 +132,10 @@
         "2026-11-12",
         "2026-11-13"
       ],
-      "first_observation": "2026-11-07",
+      "first_observation": "2026-11-06",
       "last_observation": "2026-11-13",
       "global_records": 433945,
-      "district_records": 9,
+      "district_records": 20,
       "windows": [
         {
           "start": "2026-11-07",
@@ -152,10 +166,10 @@
         "2026-11-12",
         "2026-11-13"
       ],
-      "first_observation": "2026-11-09",
+      "first_observation": "2026-11-06",
       "last_observation": "2026-11-13",
       "global_records": 431357,
-      "district_records": 7,
+      "district_records": 23,
       "windows": [
         {
           "start": "2026-11-07",
@@ -176,8 +190,8 @@
   "quality_summary": {
     "raw_record_count": 949442,
     "valid_record_count": 949442,
-    "final_retained_record_count": 17,
-    "outside_study_area_count": 949425,
+    "final_retained_record_count": 46,
+    "outside_study_area_count": 949396,
     "duplicate_count": 0,
     "invalid_coordinate_count": 0,
     "invalid_timestamp_count": 0

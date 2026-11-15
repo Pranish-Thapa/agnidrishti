@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-14T04:36:38Z",
+  "generated_at": "2026-11-15T09:37:11Z",
   "provider": "sp",
   "product": "SP",
   "district_id": "NP-CHITWAN",
@@ -26,6 +26,9 @@
     "Terra": 7
   },
   "record_count": 262,
+  "displayed_count": 262,
+  "display_cap": 5000,
+  "display_note": "All 262 recorded detections for this region-year are shown.",
   "provenance": {
     "source": "NASA FIRMS active fire products (MOD14/MYD14 C6.1; VNP14IMG family)",
     "processing": "normalize -> qc -> exact district polygon assignment",

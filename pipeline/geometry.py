@@ -22,7 +22,7 @@ class Boundary:
     district_id: str
     name: str
     province: str
-    pcode: str
+    pcode: str | None
     source_name: str
     geometry: object
     bounds: tuple[float, float, float, float]
@@ -82,10 +82,11 @@ def _parse_feature_collection(payload: object, source_path: Path) -> list[Bounda
         if not isinstance(feature, dict) or feature.get("type") != "Feature":
             continue
         props = _feature_properties(feature)
-        district_id = props.get("district_id")
+        district_id = props.get("region_id") or props.get("district_id") or props.get("regionId") or props.get("id")
         if not district_id:
             continue
-        if district_id not in config.DISTRICTS:
+        district_id = str(district_id)
+        if district_id not in config.REGIONS:
             continue
         geometry = feature.get("geometry")
         if not geometry:
@@ -93,7 +94,7 @@ def _parse_feature_collection(payload: object, source_path: Path) -> list[Bounda
         geom = shape(geometry)
         if geom.is_empty:
             continue
-        definition = config.DISTRICTS[district_id]
+        definition = config.REGIONS[district_id]
         provenance = props.get("provenance") or props.get("boundary_provenance") or {}
         simplified = bool(props.get("simplified", False))
         bounds = tuple(float(value) for value in geom.bounds)

@@ -93,7 +93,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
           y="26"
           fill={accent}
           fontFamily={mono}
-          fontSize="10"
+          fontSize="13"
           letterSpacing="1"
           variants={fade}
           transition={{ duration: 0.4, delay: 0.4 }}
@@ -141,7 +141,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
           y="30"
           fill={raw}
           fontFamily={mono}
-          fontSize="10"
+          fontSize="13"
           letterSpacing="0.8"
           variants={fade}
           transition={{ duration: 0.4, delay: 0.9 }}
@@ -153,7 +153,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
           y="64"
           fill={adjusted}
           fontFamily={mono}
-          fontSize="10"
+          fontSize="13"
           letterSpacing="0.8"
           variants={fade}
           transition={{ duration: 0.4, delay: 1.04 }}
@@ -211,7 +211,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
                 y={base - 8}
                 fill={ash}
                 fontFamily={mono}
-                fontSize="10"
+                fontSize="13"
                 letterSpacing="0.8"
               >
                 {['RATIO', 'QUANTILE', 'SHRINKAGE'][row]}
@@ -225,7 +225,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
           y="138"
           fill={accent}
           fontFamily={mono}
-          fontSize="10"
+          fontSize="13"
           letterSpacing="0.8"
           variants={fade}
           transition={{ duration: 0.5, delay: 0.58 }}
@@ -325,7 +325,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
         y="48"
         fill={accent}
         fontFamily={mono}
-        fontSize="10"
+        fontSize="13"
         letterSpacing="1"
         variants={fade}
         transition={{ duration: 0.45, delay: 0.62 }}
@@ -337,7 +337,7 @@ export function CapabilitySchematic({ variant }: CapabilitySchematicProps) {
         y="92"
         fill={raw}
         fontFamily={mono}
-        fontSize="10"
+        fontSize="13"
         letterSpacing="0.8"
         variants={fade}
         transition={{ duration: 0.45, delay: 0.95 }}

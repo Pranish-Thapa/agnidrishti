@@ -7,8 +7,8 @@
   "excluded_by_confidence_count": 0,
   "excluded_by_static_source_mask_count": 0,
   "valid_record_count": 949442,
-  "outside_study_area_count": 949425,
-  "final_retained_record_count": 17,
+  "outside_study_area_count": 949396,
+  "final_retained_record_count": 46,
   "unknown_satellite_count": 0,
   "boundary_touch_count": 0,
   "frp_missing_count": 0,
@@ -18,8 +18,11 @@
   "assigned_by_district": {
     "NP-BANKE": 6,
     "NP-BARDIYA": 9,
-    "NP-CHITWAN": 2
+    "NP-CHITWAN": 2,
+    "TH-CHIANG-MAI": 3,
+    "ID-RIAU": 6,
+    "MM-SHAN": 20
   },
   "provider": "nrt",
-  "generated_at": "2026-11-13T18:06:20Z"
+  "generated_at": "2026-11-14T17:39:28Z"
 }

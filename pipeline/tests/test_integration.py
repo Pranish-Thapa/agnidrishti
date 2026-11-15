@@ -28,7 +28,7 @@ def test_real_headers_and_assignment():
 def test_cross_layer_district_ids():
     study = json.loads(config.STUDY_AREA_BOUNDARIES.read_text())
     ids = {f["properties"]["district_id"] for f in study["features"]}
-    assert ids == set(config.DISTRICTS)
+    assert ids == set(config.REGIONS)
     display = json.loads(config.DISPLAY_BOUNDARIES.read_text())
     # display may be list of features or object; handle both
     if isinstance(display, dict):
@@ -37,5 +37,5 @@ def test_cross_layer_district_ids():
         display_ids = set()
     # display uses region ids NP-BANKE etc? check file content
     text = config.DISPLAY_BOUNDARIES.read_text()
-    for district_id in config.DISTRICTS:
+    for district_id in config.REGIONS:
         assert district_id in text

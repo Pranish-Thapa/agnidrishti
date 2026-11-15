@@ -7,12 +7,16 @@ endpoint at run time (see ``availability.py``).
 
 from __future__ import annotations
 
+import json
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Mapping
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+# Single canonical six-region configuration, shared with the React application.
+REGIONS_CONFIG_PATH = REPO_ROOT / "src" / "data" / "regions.json"
 
 DATA_DIR = REPO_ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
@@ -31,7 +35,9 @@ PROCESSING_MANIFEST = MANIFEST_DIR / "processing_manifest.json"
 # Full-resolution study-area geometry extracted from the OCHA COD-AB source.
 STUDY_AREA_BOUNDARIES = BOUNDARY_DIR / "study_areas.geojson"
 # Display geometry that the React application renders.
-DISPLAY_BOUNDARIES = REPO_ROOT / "src" / "data" / "nepal-study-areas.json"
+DISPLAY_BOUNDARIES = REPO_ROOT / "src" / "data" / "study-areas.json"
+# Generated region metadata and processing status consumed by the frontend.
+REGIONS_PUBLIC_METADATA = PUBLIC_DATA_DIR / "regions.json"
 
 CONTRACT_VERSION = "1.0.0"
 GRID_DEGREES = 0.1
@@ -67,6 +73,7 @@ CITATIONS = [
     "Giglio, L., Schroeder, W., Hall, J.V. (MODIS Collection 6.1 active fire product).",
     "Schroeder, W., Oliva, P., Giglio, L., Csiszar, I.A. (VIIRS 375 m active fire product).",
     "OCHA COD-AB Nepal administrative boundaries, distributed by HDX (CC BY-IGO).",
+    "geoBoundaries ADM1 boundaries for Thailand, Indonesia and Myanmar (CC BY 3.0 IGO / CC BY 4.0).",
 ]
 
 
@@ -160,45 +167,105 @@ SENSORS: dict[str, SensorDefinition] = {
 
 SENSOR_ORDER = tuple(SENSORS)
 
-
-@dataclass(frozen=True)
-class DistrictDefinition:
-    district_id: str
-    name: str
-    province: str
-    pcode: str
-    source_name: str
-    description: str
-
-
-DISTRICTS: dict[str, DistrictDefinition] = {
-    "NP-BANKE": DistrictDefinition(
-        district_id="NP-BANKE",
-        name="Banke",
-        province="Lumbini Province",
-        pcode="NP0557",
-        source_name="Banke",
-        description="Terai district in Lumbini Province, bordering Bardiya to the west.",
-    ),
-    "NP-BARDIYA": DistrictDefinition(
-        district_id="NP-BARDIYA",
-        name="Bardiya",
-        province="Lumbini Province",
-        pcode="NP0558",
-        source_name="Bardiya",
-        description="Terai district in Lumbini Province containing Bardiya National Park.",
-    ),
-    "NP-CHITWAN": DistrictDefinition(
-        district_id="NP-CHITWAN",
-        name="Chitwan",
-        province="Bagmati Province",
-        pcode="NP0335",
-        source_name="Chitawan",
-        description="Terai district in Bagmati Province containing Chitwan National Park.",
-    ),
+# Documented first date each platform's standard-processing active-fire record
+# is available. A date before this is "platform not yet available", which is
+# different from "observed, zero detections". MODIS Aqua begins with the Aqua
+# platform (MYD14) in May 2002; Terra begins in November 2000. VIIRS dates are
+# the archive start dates published by FIRMS.
+PLATFORM_FIRST_DATE: dict[str, dict[str, str]] = {
+    "modis": {"Terra": "2000-11-01", "Aqua": "2002-05-04"},
+    "viirs_snpp": {"Suomi-NPP": "2012-01-20"},
+    "viirs_noaa20": {"NOAA-20": "2018-04-01"},
+    "viirs_noaa21": {"NOAA-21": "2023-03-01"},
 }
 
-DISTRICT_ORDER = tuple(DISTRICTS)
+
+@dataclass(frozen=True)
+class RegionDefinition:
+    """One study area, loaded from the single canonical regions.json.
+
+    ``district_id`` and the ``province``/``pcode`` properties are retained for
+    the observation contract, which still names the study-area key
+    ``district_id``. New code should use ``region_id`` and the explicit
+    country/admin-level fields.
+    """
+
+    region_id: str
+    name: str
+    full_name: str
+    country: str
+    country_code: str
+    admin_level: int
+    admin_level_label: str
+    parent: str
+    parent_label: str
+    scale_class: str
+    area_km2: float | None
+    bbox: tuple[float, float, float, float] | None
+    centroid: tuple[float, float] | None
+    description: str
+    boundary: dict
+    source_name: str
+    source_id: str | None
+
+    @property
+    def district_id(self) -> str:
+        return self.region_id
+
+    @property
+    def province(self) -> str:
+        # Backwards-compatible contract field: the parent administrative unit.
+        return self.parent
+
+    @property
+    def pcode(self) -> str | None:
+        return self.source_id
+
+    @property
+    def source_id_label(self) -> str:
+        return str(self.boundary.get("sourceIdLabel") or "")
+
+    @property
+    def is_district(self) -> bool:
+        return self.admin_level == 2
+
+
+def _load_regions() -> dict[str, RegionDefinition]:
+    payload = json.loads(REGIONS_CONFIG_PATH.read_text(encoding="utf-8"))
+    regions: dict[str, RegionDefinition] = {}
+    for raw in payload.get("regions", []):
+        boundary = dict(raw.get("boundary") or {})
+        bbox = raw.get("bbox")
+        centroid = raw.get("centroid")
+        region = RegionDefinition(
+            region_id=str(raw["id"]),
+            name=str(raw["name"]),
+            full_name=str(raw.get("fullName") or raw["name"]),
+            country=str(raw["country"]),
+            country_code=str(raw["countryCode"]),
+            admin_level=int(raw["adminLevel"]),
+            admin_level_label=str(raw["adminLevelLabel"]),
+            parent=str(raw.get("parent") or ""),
+            parent_label=str(raw.get("parentLabel") or ""),
+            scale_class=str(raw.get("scaleClass") or "region"),
+            area_km2=float(raw["areaKm2"]) if raw.get("areaKm2") is not None else None,
+            bbox=tuple(float(v) for v in bbox) if bbox else None,
+            centroid=tuple(float(v) for v in centroid) if centroid else None,
+            description=str(raw.get("description") or ""),
+            boundary=boundary,
+            source_name=str(boundary.get("sourceRegionName") or raw["name"]),
+            source_id=(str(boundary["sourceId"]) if boundary.get("sourceId") else None),
+        )
+        if region.region_id in regions:
+            raise ValueError(f"Duplicate region id in {REGIONS_CONFIG_PATH}: {region.region_id}")
+        regions[region.region_id] = region
+    if not regions:
+        raise ValueError(f"No regions defined in {REGIONS_CONFIG_PATH}")
+    return regions
+
+
+REGIONS: dict[str, RegionDefinition] = _load_regions()
+REGION_ORDER = tuple(REGIONS)
 
 
 @dataclass(frozen=True)

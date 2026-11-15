@@ -6,7 +6,7 @@ BOUNDARIES = config.STUDY_AREA_BOUNDARIES
 def test_boundaries_exist_and_load():
     assert BOUNDARIES.exists()
     boundaries = geometry.load_boundaries()
-    assert {b.district_id for b in boundaries} == {"NP-BANKE", "NP-BARDIYA", "NP-CHITWAN"}
+    assert {b.district_id for b in boundaries} == set(config.REGION_ORDER)
 
 
 def test_representative_points_inside():

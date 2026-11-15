@@ -33,7 +33,11 @@ export type HotspotDataset = {
   districtId: string
   year: string
   platformCounts: Record<string, number>
+  /** Full number of detections recorded for this region-year. */
   recordCount: number
+  /** How many detections the export includes for the map (memory bound). */
+  displayedCount: number
+  displayNote: string | null
   records: HotspotRecord[]
 }
 
@@ -45,6 +49,8 @@ type RawPointsFile = {
   year: string
   platform_counts: Record<string, number>
   record_count: number
+  displayed_count?: number
+  display_note?: string
   records: unknown[]
 }
 
@@ -92,20 +98,22 @@ function parseRow(row: unknown, districtId: string, year: string): HotspotRecord
 }
 
 /**
- * Loads the point-level detections for all three study districts for one
- * provider/year. Districts without an exported file resolve to null so the
- * map can state "no point records" honestly.
+ * Loads the point-level detections for one provider/year and the requested
+ * study areas. Areas without an exported file resolve to null so the map can
+ * state "no point records" honestly. The Explorer passes the selected area
+ * only: loading every region's file pulled hundreds of megabytes.
  */
 export async function loadHotspots(
   provider: 'sp' | 'nrt',
   year: string,
+  regionIds: string[] = studyAreas.map((area) => area.id),
   signal?: AbortSignal,
 ): Promise<(HotspotDataset | null)[] | null> {
   try {
     const datasets = await Promise.all(
-      studyAreas.map(async (area): Promise<HotspotDataset | null> => {
+      regionIds.map(async (regionId): Promise<HotspotDataset | null> => {
         const response = await fetch(
-          `${import.meta.env.BASE_URL}data/points/${provider}/${area.id}/${year}.json`,
+          `${import.meta.env.BASE_URL}data/points/${provider}/${regionId}/${year}.json`,
           { signal },
         )
         if (response.status === 404) return null
@@ -124,6 +132,8 @@ export async function loadHotspots(
           year: payload.year,
           platformCounts: payload.platform_counts,
           recordCount: payload.record_count,
+          displayedCount: payload.displayed_count ?? records.length,
+          displayNote: payload.display_note ?? null,
           records,
         }
       }),
@@ -146,10 +156,15 @@ export function markerPlatforms(layer: 'harmonized' | 'modis' | 'viirs'): string
   return ['Suomi-NPP', 'NOAA-20', 'NOAA-21']
 }
 
+/**
+ * Marker colours follow the Observation Deck channels: warm signal for the
+ * MODIS platforms and the cool sky-blue observation scale for VIIRS, matching
+ * the legend used by the weekly comparison chart.
+ */
 export const PLATFORM_COLORS: Record<string, string> = {
-  Terra: '#A65D3F', // terracotta — MODIS Terra (morning overpass)
-  Aqua: '#D28A4C', // amber — MODIS Aqua (early-afternoon overpass)
-  'Suomi-NPP': '#F2E8D8', // ivory — VIIRS reference platform
-  'NOAA-20': '#7FA08C', // muted green — VIIRS NOAA-20
-  'NOAA-21': '#7A93A8', // muted blue-gray — VIIRS NOAA-21
+  Terra: '#EA580C', // signal orange — MODIS Terra (morning overpass)
+  Aqua: '#FB923C', // warm amber — MODIS Aqua (early-afternoon overpass)
+  'Suomi-NPP': '#38BDF8', // sky blue — VIIRS reference platform
+  'NOAA-20': '#7DD3FC', // light sky — VIIRS NOAA-20
+  'NOAA-21': '#BAE6FD', // pale sky — VIIRS NOAA-21
 }

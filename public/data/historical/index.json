@@ -1,0 +1,133 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-15T09:28:30Z",
+  "calibration_version": "2012-overlap-v1",
+  "calibration_period": {
+    "start": "2012-01-20",
+    "end": "2026-07-31",
+    "note": "Only post-2012 overlap observations are used to fit or test the MODIS-to-VIIRS relationship. Pre-2012 records are never training data."
+  },
+  "terminology": "A 'MODIS-derived VIIRS-equivalent estimate' is a transformed MODIS count. It is not a VIIRS detection.",
+  "regions": {
+    "NP-BANKE": {
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011"
+      ],
+      "decisions": {
+        "Terra": "LIMITED",
+        "Aqua": "LIMITED"
+      }
+    },
+    "NP-BARDIYA": {
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011"
+      ],
+      "decisions": {
+        "Terra": "LIMITED",
+        "Aqua": "LIMITED"
+      }
+    },
+    "NP-CHITWAN": {
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011"
+      ],
+      "decisions": {
+        "Terra": "LIMITED",
+        "Aqua": "LIMITED"
+      }
+    },
+    "TH-CHIANG-MAI": {
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011"
+      ],
+      "decisions": {
+        "Terra": "LIMITED",
+        "Aqua": "LIMITED"
+      }
+    },
+    "ID-RIAU": {
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011"
+      ],
+      "decisions": {
+        "Terra": "LIMITED",
+        "Aqua": "LIMITED"
+      }
+    },
+    "MM-SHAN": {
+      "years": [
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011"
+      ],
+      "decisions": {
+        "Terra": "LIMITED",
+        "Aqua": "LIMITED"
+      }
+    }
+  }
+}

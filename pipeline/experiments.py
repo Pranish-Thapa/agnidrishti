@@ -49,8 +49,8 @@ EXPERIMENT_CONFIG = {
         "delivered (both observing); recorded zeros kept, missing files excluded"
     ),
     "grid_degrees": config.GRID_DEGREES,
-    "bbox": "80,27,86,29.5",
-    "districts": list(config.DISTRICT_ORDER),
+    "regions": list(config.REGION_ORDER),
+    "districts": list(config.REGION_ORDER),
     "validation_years": [2019, 2022],
     "purge_days": 30,
     "ratio_min_month_denominator": 5,
@@ -61,9 +61,10 @@ EXPERIMENT_CONFIG = {
     "bootstrap_seed": 2026,
     "bootstrap_confidence_level": 0.90,
     "acquisition_note": (
-        "Historical record covers Jan-Jun 2012-2026 plus July 2026 only; "
+        "Post-2012 reference record covers Jan-Jun 2012-2026 plus July 2026; "
         "Aug-Dec is not part of the acquired record and no result may be "
-        "generalized to those months."
+        "generalized to those months. Calibration uses post-2012 overlap only; "
+        "pre-2012 MODIS is never fitted against a nonexistent VIIRS observation."
     ),
 }
 
@@ -81,14 +82,22 @@ def _provenance() -> dict[str, Any]:
         "reference_sensor": REFERENCE_SENSOR,
         "reference_platform": REFERENCE_PLATFORM,
         "grid_degrees": config.GRID_DEGREES,
-        "districts": list(config.DISTRICT_ORDER),
+        "districts": list(config.REGION_ORDER),
+        "regions": list(config.REGION_ORDER),
+        "region_bboxes": {
+            rid: config.REGIONS[rid].bbox for rid in config.REGION_ORDER
+        },
         "source_datasets": [
             "data/raw/modis/MODIS_SP",
             "data/raw/viirs_snpp/VIIRS_SNPP_SP",
             "data/processed/historical/inventory.json",
         ],
-        "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
+        "boundaries": (
+            "geoBoundaries ADM1 for Thailand, Indonesia and Myanmar; OCHA COD-AB "
+            "Nepal admin level 2 for the three Nepal districts (CC BY-IGO)"
+        ),
         "generated_at": _utc_now(),
+        "raw_totals_not_comparable_across_regions": True,
     }
 
 
@@ -122,7 +131,7 @@ def build_pairs(
     modis_platforms = EXPERIMENT_CONFIG["modis_platforms"]
     ref_platforms = config.SENSORS[reference_sensor].platforms
     pairs: list[dict[str, Any]] = []
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         for modis_platform in modis_platforms:
             for ref_platform in ref_platforms:
                 common_dates = (
@@ -911,7 +920,7 @@ def run_seam_audit(
     # 1. Scale step at the earliest full month of joint availability.
     audit_months = ["2012-02", "2012-03", "2012-04"]
     step_rows = []
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         for modis_platform in EXPERIMENT_CONFIG["modis_platforms"]:
             month_pairs = []
             for day in common_dates:

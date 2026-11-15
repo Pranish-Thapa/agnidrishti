@@ -1,10 +1,55 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T20:15:06Z",
+  "generated_at": "2026-11-15T09:26:36Z",
   "provider": "area-api",
   "product": "SP",
-  "bbox": "80,27,86,29.5",
-  "download_window_rule": "Jan-Jun each year 2012-2026, plus July 2026 (per acquisition plan)",
+  "regions": [
+    "NP-BANKE",
+    "NP-BARDIYA",
+    "NP-CHITWAN",
+    "TH-CHIANG-MAI",
+    "ID-RIAU",
+    "MM-SHAN"
+  ],
+  "region_bboxes": {
+    "NP-BANKE": [
+      81.4985,
+      27.8536,
+      82.1941,
+      28.3378
+    ],
+    "NP-BARDIYA": [
+      81.0591,
+      28.0689,
+      81.7666,
+      28.6747
+    ],
+    "NP-CHITWAN": [
+      83.9187,
+      27.355,
+      84.7966,
+      27.8805
+    ],
+    "TH-CHIANG-MAI": [
+      98.008,
+      17.2424,
+      99.5729,
+      20.1474
+    ],
+    "ID-RIAU": [
+      100.0249,
+      -1.1223,
+      103.8146,
+      2.8839
+    ],
+    "MM-SHAN": [
+      96.1511,
+      19.2993,
+      101.1699,
+      24.1591
+    ]
+  },
+  "download_window_rule": "MODIS pre-2012: 2000-11-01..2011-12-31 (full months, region bbox); post-2012: Jan-Jun each year 2012-2026 plus July 2026 (per acquisition plan)",
   "sensors": {
     "modis": {
       "sensor_id": "modis",
@@ -19,16 +64,151 @@
         "last_available": "2026-08-31",
         "checked_at": "2026-11-13T18:04:40Z"
       },
-      "files": 589,
+      "files": 7251,
       "file_statuses": {
-        "downloaded": 545,
-        "downloaded_empty": 44
+        "downloaded_empty": 2503,
+        "downloaded": 4743,
+        "already_present": 5
       },
-      "empty_files": 44,
-      "raw_record_count": 67111,
-      "first_actual_observation": "2012-01-20",
-      "last_actual_observation": "2026-06-28",
+      "empty_files": 2508,
+      "raw_record_count": 1247937,
+      "first_actual_observation": "2000-11-01",
+      "last_actual_observation": "2026-07-31",
       "months_with_observations": [
+        "2000-11",
+        "2000-12",
+        "2001-01",
+        "2001-02",
+        "2001-03",
+        "2001-04",
+        "2001-05",
+        "2001-06",
+        "2001-07",
+        "2001-08",
+        "2001-09",
+        "2001-10",
+        "2001-11",
+        "2001-12",
+        "2002-01",
+        "2002-02",
+        "2002-03",
+        "2002-04",
+        "2002-05",
+        "2002-06",
+        "2002-07",
+        "2002-08",
+        "2002-09",
+        "2002-10",
+        "2002-11",
+        "2002-12",
+        "2003-01",
+        "2003-02",
+        "2003-03",
+        "2003-04",
+        "2003-05",
+        "2003-06",
+        "2003-07",
+        "2003-08",
+        "2003-09",
+        "2003-10",
+        "2003-11",
+        "2003-12",
+        "2004-01",
+        "2004-02",
+        "2004-03",
+        "2004-04",
+        "2004-05",
+        "2004-06",
+        "2004-07",
+        "2004-08",
+        "2004-09",
+        "2004-10",
+        "2004-11",
+        "2004-12",
+        "2005-01",
+        "2005-02",
+        "2005-03",
+        "2005-04",
+        "2005-05",
+        "2005-06",
+        "2005-07",
+        "2005-08",
+        "2005-09",
+        "2005-10",
+        "2005-11",
+        "2005-12",
+        "2006-01",
+        "2006-02",
+        "2006-03",
+        "2006-04",
+        "2006-05",
+        "2006-06",
+        "2006-07",
+        "2006-08",
+        "2006-09",
+        "2006-10",
+        "2006-11",
+        "2006-12",
+        "2007-01",
+        "2007-02",
+        "2007-03",
+        "2007-04",
+        "2007-05",
+        "2007-06",
+        "2007-07",
+        "2007-08",
+        "2007-09",
+        "2007-10",
+        "2007-11",
+        "2007-12",
+        "2008-01",
+        "2008-02",
+        "2008-03",
+        "2008-04",
+        "2008-05",
+        "2008-06",
+        "2008-07",
+        "2008-08",
+        "2008-09",
+        "2008-10",
+        "2008-11",
+        "2008-12",
+        "2009-01",
+        "2009-02",
+        "2009-03",
+        "2009-04",
+        "2009-05",
+        "2009-06",
+        "2009-07",
+        "2009-08",
+        "2009-09",
+        "2009-10",
+        "2009-11",
+        "2009-12",
+        "2010-01",
+        "2010-02",
+        "2010-03",
+        "2010-04",
+        "2010-05",
+        "2010-06",
+        "2010-07",
+        "2010-08",
+        "2010-09",
+        "2010-10",
+        "2010-11",
+        "2010-12",
+        "2011-01",
+        "2011-02",
+        "2011-03",
+        "2011-04",
+        "2011-05",
+        "2011-06",
+        "2011-07",
+        "2011-08",
+        "2011-09",
+        "2011-10",
+        "2011-11",
+        "2011-12",
         "2012-01",
         "2012-02",
         "2012-03",
@@ -118,14 +298,24 @@
         "2026-03",
         "2026-04",
         "2026-05",
-        "2026-06"
+        "2026-06",
+        "2026-07"
       ],
-      "requested_dates": 2731,
-      "dates_with_files": 2731,
-      "dates_with_observations": 2122,
+      "requested_dates": 6809,
+      "dates_with_files": 6809,
+      "dates_with_observations": 6306,
       "dates_requested_but_without_file": 0,
-      "dates_in_availability_not_requested": 2576,
-      "duplicate_files_by_sha256": [],
+      "dates_in_availability_not_requested": 2626,
+      "duplicate_files_by_sha256": [
+        "data/raw/regions/MM-SHAN/modis/MODIS_SP/modis_2000-12-01_2000-12-05.csv",
+        "data/raw/regions/NP-BARDIYA/modis/MODIS_SP/modis_2001-01-15_2001-01-19.csv",
+        "data/raw/regions/NP-BARDIYA/modis/MODIS_SP/modis_2007-02-08_2007-02-12.csv",
+        "data/raw/regions/MM-SHAN/modis/MODIS_SP/modis_2008-06-02_2008-06-06.csv",
+        "data/raw/regions/MM-SHAN/modis/MODIS_SP/modis_2009-08-16_2009-08-20.csv",
+        "data/raw/regions/NP-BARDIYA/modis/MODIS_SP/modis_2010-06-02_2010-06-06.csv",
+        "data/raw/regions/MM-SHAN/modis/MODIS_SP/modis_2010-10-10_2010-10-14.csv",
+        "data/raw/regions/NP-BARDIYA/modis/MODIS_SP/modis_2011-02-12_2011-02-16.csv"
+      ],
       "distinct_headers": [
         {
           "columns": [
@@ -145,10 +335,10 @@
             "daynight",
             "type"
           ],
-          "files": 589
+          "files": 7251
         }
       ],
-      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Records are detections inside bbox 80,27,86,29.5; they are not unique fires."
+      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Requests are region-scoped: Nepal uses the shared OCHA bbox and the three new regions use their own buffered bounding boxes, so raw counts are not comparable across regions without area normalisation. Records are detections, not unique fires."
     },
     "viirs_snpp": {
       "sensor_id": "viirs_snpp",
@@ -162,15 +352,15 @@
         "last_available": "2026-07-31",
         "checked_at": "2026-11-13T18:04:40Z"
       },
-      "files": 589,
+      "files": 2353,
       "file_statuses": {
-        "downloaded": 565,
-        "downloaded_empty": 24
+        "downloaded": 2264,
+        "downloaded_empty": 89
       },
-      "empty_files": 24,
-      "raw_record_count": 503792,
+      "empty_files": 89,
+      "raw_record_count": 3893576,
       "first_actual_observation": "2012-01-20",
-      "last_actual_observation": "2026-07-03",
+      "last_actual_observation": "2026-07-31",
       "months_with_observations": [
         "2012-01",
         "2012-02",
@@ -266,10 +456,12 @@
       ],
       "requested_dates": 2731,
       "dates_with_files": 2731,
-      "dates_with_observations": 2438,
+      "dates_with_observations": 2704,
       "dates_requested_but_without_file": 0,
       "dates_in_availability_not_requested": 2576,
-      "duplicate_files_by_sha256": [],
+      "duplicate_files_by_sha256": [
+        "data/raw/regions/MM-SHAN/viirs_snpp/VIIRS_SNPP_SP/viirs_snpp_2012-06-21_2012-06-25.csv"
+      ],
       "distinct_headers": [
         {
           "columns": [
@@ -289,10 +481,10 @@
             "daynight",
             "type"
           ],
-          "files": 589
+          "files": 2353
         }
       ],
-      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Records are detections inside bbox 80,27,86,29.5; they are not unique fires."
+      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Requests are region-scoped: Nepal uses the shared OCHA bbox and the three new regions use their own buffered bounding boxes, so raw counts are not comparable across regions without area normalisation. Records are detections, not unique fires."
     },
     "viirs_noaa20": {
       "sensor_id": "viirs_noaa20",
@@ -306,15 +498,15 @@
         "last_available": "2026-07-31",
         "checked_at": "2026-11-13T18:04:40Z"
       },
-      "files": 339,
+      "files": 1353,
       "file_statuses": {
-        "downloaded": 325,
-        "downloaded_empty": 14
+        "downloaded": 1301,
+        "downloaded_empty": 52
       },
-      "empty_files": 14,
-      "raw_record_count": 306213,
+      "empty_files": 52,
+      "raw_record_count": 2038413,
       "first_actual_observation": "2018-04-01",
-      "last_actual_observation": "2026-07-27",
+      "last_actual_observation": "2026-07-31",
       "months_with_observations": [
         "2018-04",
         "2018-05",
@@ -371,7 +563,7 @@
       ],
       "requested_dates": 1572,
       "dates_with_files": 1572,
-      "dates_with_observations": 1411,
+      "dates_with_observations": 1570,
       "dates_requested_but_without_file": 0,
       "dates_in_availability_not_requested": 1472,
       "duplicate_files_by_sha256": [],
@@ -394,10 +586,10 @@
             "daynight",
             "type"
           ],
-          "files": 339
+          "files": 1353
         }
       ],
-      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Records are detections inside bbox 80,27,86,29.5; they are not unique fires."
+      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Requests are region-scoped: Nepal uses the shared OCHA bbox and the three new regions use their own buffered bounding boxes, so raw counts are not comparable across regions without area normalisation. Records are detections, not unique fires."
     },
     "viirs_noaa21": {
       "sensor_id": "viirs_noaa21",
@@ -411,15 +603,15 @@
         "last_available": "2026-07-31",
         "checked_at": "2026-11-13T18:04:40Z"
       },
-      "files": 151,
+      "files": 601,
       "file_statuses": {
-        "downloaded": 145,
-        "downloaded_empty": 6
+        "downloaded": 578,
+        "downloaded_empty": 23
       },
-      "empty_files": 6,
-      "raw_record_count": 142602,
+      "empty_files": 23,
+      "raw_record_count": 865309,
       "first_actual_observation": "2023-03-01",
-      "last_actual_observation": "2026-07-05",
+      "last_actual_observation": "2026-07-31",
       "months_with_observations": [
         "2023-03",
         "2023-04",
@@ -447,7 +639,7 @@
       ],
       "requested_dates": 697,
       "dates_with_files": 697,
-      "dates_with_observations": 628,
+      "dates_with_observations": 695,
       "dates_requested_but_without_file": 0,
       "dates_in_availability_not_requested": 552,
       "duplicate_files_by_sha256": [],
@@ -470,10 +662,10 @@
             "daynight",
             "type"
           ],
-          "files": 151
+          "files": 601
         }
       ],
-      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Records are detections inside bbox 80,27,86,29.5; they are not unique fires."
+      "note": "A date with a file but zero rows is a genuine no-detection observation, not missing data. Requests are region-scoped: Nepal uses the shared OCHA bbox and the three new regions use their own buffered bounding boxes, so raw counts are not comparable across regions without area normalisation. Records are detections, not unique fires."
     }
   }
 }

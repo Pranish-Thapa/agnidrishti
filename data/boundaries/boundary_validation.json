@@ -1,0 +1,133 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-11-14T17:36:15Z",
+  "regions": [
+    {
+      "region_id": "NP-BANKE",
+      "geometry_type": "Polygon",
+      "source_valid": true,
+      "valid_after_repair": true,
+      "is_simple": true,
+      "bounds": [
+        81.498535,
+        27.85365,
+        82.194063,
+        28.337813
+      ],
+      "area_km2_computed": 1883.4,
+      "area_km2_configured": 1883.4,
+      "centroid": [
+        81.822172,
+        28.087091
+      ],
+      "vertex_count": 4175,
+      "issues": []
+    },
+    {
+      "region_id": "NP-BARDIYA",
+      "geometry_type": "Polygon",
+      "source_valid": true,
+      "valid_after_repair": true,
+      "is_simple": true,
+      "bounds": [
+        81.059084,
+        28.068852,
+        81.766594,
+        28.674673
+      ],
+      "area_km2_computed": 2003.6,
+      "area_km2_configured": 2003.6,
+      "centroid": [
+        81.401398,
+        28.38359
+      ],
+      "vertex_count": 4202,
+      "issues": []
+    },
+    {
+      "region_id": "NP-CHITWAN",
+      "geometry_type": "Polygon",
+      "source_valid": true,
+      "valid_after_repair": true,
+      "is_simple": true,
+      "bounds": [
+        83.918656,
+        27.354966,
+        84.796554,
+        27.880467
+      ],
+      "area_km2_computed": 2243.6,
+      "area_km2_configured": 2243.6,
+      "centroid": [
+        84.434413,
+        27.584865
+      ],
+      "vertex_count": 7043,
+      "issues": []
+    },
+    {
+      "region_id": "TH-CHIANG-MAI",
+      "geometry_type": "Polygon",
+      "source_valid": true,
+      "valid_after_repair": true,
+      "is_simple": true,
+      "bounds": [
+        98.008039,
+        17.242449,
+        99.572913,
+        20.147434
+      ],
+      "area_km2_computed": 22245.7,
+      "area_km2_configured": null,
+      "centroid": [
+        98.728217,
+        18.793116
+      ],
+      "vertex_count": 2067,
+      "issues": []
+    },
+    {
+      "region_id": "ID-RIAU",
+      "geometry_type": "MultiPolygon",
+      "source_valid": true,
+      "valid_after_repair": true,
+      "is_simple": true,
+      "bounds": [
+        100.02494,
+        -1.122273,
+        103.814611,
+        2.883904
+      ],
+      "area_km2_computed": 90203.5,
+      "area_km2_configured": null,
+      "centroid": [
+        101.807751,
+        0.512661
+      ],
+      "vertex_count": 2766,
+      "issues": []
+    },
+    {
+      "region_id": "MM-SHAN",
+      "geometry_type": "Polygon",
+      "source_valid": true,
+      "valid_after_repair": true,
+      "is_simple": true,
+      "bounds": [
+        96.151069,
+        19.299318,
+        101.169892,
+        24.159067
+      ],
+      "area_km2_computed": 156130.7,
+      "area_km2_configured": null,
+      "centroid": [
+        98.121964,
+        21.722533
+      ],
+      "vertex_count": 6864,
+      "issues": []
+    }
+  ],
+  "note": "Geometry validation only; no boundary was approximated or invented."
+}

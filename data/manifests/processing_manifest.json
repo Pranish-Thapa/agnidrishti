@@ -1,9 +1,21 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T20:13:03Z",
+  "generated_at": "2026-11-15T09:23:34Z",
   "provider": "area-api",
   "product": "SP",
   "years": [
+    "2000",
+    "2001",
+    "2002",
+    "2003",
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
     "2012",
     "2013",
     "2014",
@@ -20,11 +32,48 @@
     "2025",
     "2026"
   ],
-  "districts": [
+  "regions": [
     "NP-BANKE",
     "NP-BARDIYA",
-    "NP-CHITWAN"
+    "NP-CHITWAN",
+    "TH-CHIANG-MAI",
+    "ID-RIAU",
+    "MM-SHAN"
   ],
+  "regions_with_observations": [
+    "ID-RIAU",
+    "MM-SHAN",
+    "NP-BANKE",
+    "NP-BARDIYA",
+    "NP-CHITWAN",
+    "TH-CHIANG-MAI"
+  ],
+  "region_status": {
+    "NP-BANKE": {
+      "status": "available",
+      "records": 41554
+    },
+    "NP-BARDIYA": {
+      "status": "available",
+      "records": 46373
+    },
+    "NP-CHITWAN": {
+      "status": "available",
+      "records": 40783
+    },
+    "TH-CHIANG-MAI": {
+      "status": "available",
+      "records": 468717
+    },
+    "ID-RIAU": {
+      "status": "available",
+      "records": 441767
+    },
+    "MM-SHAN": {
+      "status": "available",
+      "records": 3897413
+    }
+  },
   "sensors": [
     "modis",
     "viirs_snpp",

@@ -71,30 +71,37 @@ export function Hero() {
       )}
 
       <div className="relative z-10 flex min-h-[100svh] flex-col">
-        <div className="container-page flex flex-1 flex-col justify-center pb-14 pt-32 md:pb-20 md:pt-36 lg:pt-40">
+        <div className="container-page flex flex-1 flex-col justify-center pb-12 pt-28 md:pb-16 md:pt-32 lg:pt-36">
           <motion.div
             initial={reduceMotion ? false : 'hidden'}
             animate="visible"
             variants={container}
             className="max-w-[1120px]"
           >
-            <motion.div variants={label} className="flex items-center gap-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
-              <p className="eyebrow text-sand/80">NASA Space Apps Challenge 2026</p>
+            <motion.div variants={label} className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full border border-bone/20 bg-ink-950/[0.35] px-3.5 py-1.5 text-meta font-medium text-bone/85 backdrop-blur-md">
+                <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
+                NASA Space Apps Challenge 2026
+              </span>
+              <span className="hidden items-center gap-2 text-meta text-bone/60 sm:inline-flex">
+                <span className="h-px w-6 spectrum-rule" aria-hidden="true" />
+                Harmonization of MODIS and VIIRS hot spots
+              </span>
             </motion.div>
 
             <motion.h1
               variants={heading}
-              className="display mt-7 max-w-[1040px] text-[clamp(3.05rem,6.6vw,6.5rem)] leading-[0.96] text-bone text-shadow-hero"
+              className="display text-balance mt-7 max-w-[1020px] text-[clamp(2.85rem,5.7vw,5.6rem)] leading-[0.98] text-bone text-shadow-hero"
             >
-              Did the <em className="italic text-terracotta-soft">fires</em> increase,
+              Did the <span className="text-amber-soft">fires</span> increase,
               <br />
-              or did the satellites <em className="italic text-ember-soft">get better?</em>
+              or did the satellites{' '}
+              <span className="text-observation-soft">get better?</span>
             </motion.h1>
 
             <motion.p
               variants={copy}
-              className="mt-7 max-w-[560px] text-[15px] leading-[1.75] text-bone/70 sm:text-[17px] sm:leading-[1.8]"
+              className="mt-7 max-w-[600px] text-body leading-[1.75] text-bone/75 sm:text-lg sm:leading-[1.8]"
             >
               Fire activity records span decades. But when satellites change, the story they tell
               can change too. Agnidrishti helps separate real fire trends from changes in
@@ -104,7 +111,7 @@ export function Hero() {
             <motion.div variants={actions} className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 to="/explorer"
-                className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-[2px] bg-ember px-6 text-[13px] font-medium text-ink-950 transition-all duration-300 hover:bg-ember-soft active:translate-y-px active:scale-[0.99] active:bg-ember-deep"
+                className="group inline-flex min-h-[50px] items-center justify-center gap-2.5 rounded-full bg-ember px-6 text-body-sm font-semibold text-ink-950 shadow-[0_18px_44px_-22px_rgb(249_115_22/0.95)] transition-[background-color,box-shadow,transform] duration-300 hover:bg-amber-soft active:translate-y-px active:scale-[0.99] active:bg-ember-deep"
               >
                 Explore Fire Activity
                 <ArrowRight
@@ -116,14 +123,14 @@ export function Hero() {
               </Link>
               <Link
                 to="/methodology"
-                className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-[2px] border border-sand/35 px-6 text-[13px] font-medium text-bone transition-all duration-300 hover:border-sand/65 hover:bg-sand/[0.07] active:translate-y-px active:scale-[0.99] active:bg-sand/[0.1]"
+                className="group inline-flex min-h-[50px] items-center justify-center gap-2.5 rounded-full border border-bone/25 bg-ink-950/25 px-6 text-body-sm font-medium text-bone backdrop-blur-sm transition-[background-color,border-color,color] duration-300 hover:border-observation/50 hover:bg-observation/[0.08] active:translate-y-px active:scale-[0.99] active:bg-observation/10"
               >
                 Understand Our Method
                 <ArrowRight
                   size={15}
                   strokeWidth={1.8}
                   aria-hidden="true"
-                  className="text-bone/60 transition-transform duration-300 group-hover:translate-x-1"
+                  className="text-observation-soft transition-transform duration-300 group-hover:translate-x-1"
                 />
               </Link>
             </motion.div>
@@ -138,24 +145,36 @@ export function Hero() {
         >
           <div className="flex flex-col gap-5 border-t border-sand/20 py-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[11px] font-medium tracking-[0.24em] text-bone">AGNIDRISHTI</p>
-              <p className="mt-1.5 font-display text-lg italic text-bone/65">
-                <span className="text-terracotta-soft">See the fire.</span>{' '}
-                <span className="text-ember-soft">Verify the signal.</span>
+              <p className="font-display text-meta font-medium tracking-[0.18em] text-bone">
+                AGNIDRISHTI
+              </p>
+              <p className="mt-1.5 font-display text-lg leading-snug text-bone/70">
+                <span className="text-amber-soft">See the fire.</span>{' '}
+                <span className="text-observation-soft">Verify the signal.</span>
               </p>
             </div>
-            <a
-              href="#the-problem"
-              className="group inline-flex items-center gap-3 self-start font-mono text-[9px] uppercase tracking-[0.18em] text-sand/80 transition-colors hover:text-ember-soft sm:self-auto"
-            >
-              Scroll to examine the record
-              <ArrowDown
-                size={13}
-                strokeWidth={1.6}
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-y-1"
-              />
-            </a>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <span className="flex items-center gap-2 text-meta text-sand/85">
+                <span className="h-px w-4 bg-terracotta-soft" aria-hidden="true" />
+                MODIS Terra / Aqua
+              </span>
+              <span className="flex items-center gap-2 text-meta text-sand/85">
+                <span className="h-px w-4 bg-observation" aria-hidden="true" />
+                VIIRS Suomi-NPP
+              </span>
+              <a
+                href="#the-problem"
+                className="group inline-flex items-center gap-2.5 text-meta font-medium text-sand/85 transition-colors hover:text-amber-soft"
+              >
+                Examine the record
+                <ArrowDown
+                  size={13}
+                  strokeWidth={1.6}
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-y-1"
+                />
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

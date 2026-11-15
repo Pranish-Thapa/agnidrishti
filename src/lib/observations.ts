@@ -42,13 +42,19 @@ export type ObservationWeek = {
   by_sensor: Record<SensorId, { platforms: Record<string, PlatformAggregate & { days_observed?: number }> }>;
 };
 
+export type RegionDataStatus = 'available' | 'not_acquired' | 'unknown'
+
 export type ObservationDataset = {
   contract_version: string;
   district_id: string;
+  region_id?: string;
   district: {
     name: string;
+    full_name?: string;
+    country?: string;
+    admin_level_label?: string;
     province: string;
-    pcode: string;
+    pcode: string | null;
   };
   year: string;
   generated_at: string;
@@ -57,15 +63,30 @@ export type ObservationDataset = {
   sensors: SensorId[];
   days: ObservationDay[];
   weeks: ObservationWeek[];
+  processing_status?: {
+    status: RegionDataStatus;
+    reason?: string;
+    records?: number;
+  };
 };
 
 export type StudyAreaIndexEntry = {
   district_id: string;
+  region_id?: string;
   name: string;
+  full_name?: string;
+  country?: string;
+  country_code?: string;
+  admin_level?: number;
+  admin_level_label?: string;
   province: string;
-  pcode: string;
+  pcode: string | null;
+  scale_class?: string;
+  area_km2?: number | null;
   years: string[];
   bbox: number[] | null;
+  status: RegionDataStatus;
+  status_reason?: string | null;
 };
 
 export type SensorDescriptor = {
@@ -83,6 +104,9 @@ export type ObservationIndex = {
   generated_at: string;
   provider: { id: string; product: string };
   study_areas: StudyAreaIndexEntry[];
+  regions?: string[];
+  regions_with_observations?: string[];
+  region_status?: Record<string, { status: RegionDataStatus; reason?: string; records?: number }>;
   sensors: SensorDescriptor[];
   years: string[];
   paths: {
@@ -162,4 +186,19 @@ export async function loadDistrictYear(
     if (error instanceof DOMException && error.name === "AbortError") throw error;
     return null;
   }
+}
+
+/** Region-named alias. Observation files keep the historical `district_id` key. */
+export const loadRegionYear = loadDistrictYear;
+
+export function studyAreaIndexEntry(
+  index: ObservationIndex | null,
+  regionId: string
+): StudyAreaIndexEntry | null {
+  return index?.study_areas.find((entry) => entry.district_id === regionId) ?? null;
+}
+
+/** Years with an acquired file for this region and provider. Empty = missing coverage. */
+export function availableYearsFor(index: ObservationIndex | null, regionId: string): string[] {
+  return studyAreaIndexEntry(index, regionId)?.years ?? [];
 }

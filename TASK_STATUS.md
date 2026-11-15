@@ -421,3 +421,36 @@ AGNIDRISHTI_CLAUDE_EVALUATION_IMPLEMENTATION_REPORT.md.
 - **Desktop + mobile verified**: no overlap, no overflow, controls within reach on mobile,
   panel collapsible; canvas repaint verified on enter and exit.
 - Verification: 76 pytest + 7 vitest + typecheck + lint + build ✓; console/network clean.
+
+## TASK 14 — HALLMARK REDESIGN + READABILITY RECOVERY — VERIFIED COMPLETE (2026-11-14)
+
+Session recovered an interrupted build. The previous session had completed the full visual
+redesign and the Community Fire Intelligence feature, then stopped mid-readability pass (its
+last writes were `index.css`/`tailwind.config.ts` typography tokens at 15:27 and the Community
+page/map at 15:34–15:35). No broken imports, no half-written components, `tsc` clean.
+
+- **Preserved**: hero video untouched (`HeroMedia.tsx` unmodified in git; WebM/MP4 sources
+  unchanged; verified playing, `currentTime` advancing). All routes, charts, maps, filters and
+  data contracts unchanged. No scientific calculation or exported JSON modified.
+- **Readability completed**: removed every text size below 13px app-wide (hero 10–11px labels,
+  12px diagram/legend text); prose at `text-meta` (13px) raised to `text-support` (14px) in 43
+  places; hero body 15→16px (18px ≥sm), hero CTAs 13→15px; map legend/popup/tooltip text 13→14px
+  (`index.css` popup rows, Leaflet tooltips); explorer/readiness legends and status lists 13→14px.
+  Computed-style audit: **0 text nodes below 13px** on `/`, `/explorer`, `/methodology`,
+  `/community`, `/about`.
+- **Community completed**: current-month detail panel now opens on the busiest covered month when
+  the current month was not acquired (November) instead of an empty "not observed" card; the
+  7-day FWI bars use a fixed 0–30 scale with a visible track (previously stretched to the week's
+  max, so every bar read as full height); the "compared with a usual month" hint is hidden when
+  the comparison is `insufficient`.
+- **Map surface**: replaced the mauve `hue-rotate` tile tint with a grayscale-then-invert slate
+  treatment (inline and expanded), so OSM basemap labels stay legible and overlays keep their
+  colours.
+- Verification: **92 pytest + 18 vitest + typecheck + lint (0 warnings) + build** ✓. Browser
+  (Chrome/CDP, production build): 6 routes render with **0 console errors and 0 failed
+  requests**; hero video playing; mobile 390px no horizontal overflow (home/explorer/methodology/
+  community); district switch updates assessment + seasonal sentence (Banke "April", Chitwan
+  "April and March"); month click updates the detail card; map layers switch; expanded map
+  opens/exits; 3 district polygons + 17 verified NRT markers rendered.
+- Not changed: no harmonization, FWI, reliability or outlook logic; outlook remains withheld
+  (`not_validated`) exactly as before.

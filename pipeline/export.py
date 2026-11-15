@@ -25,6 +25,8 @@ def _boundary_summary(boundaries: list[Any]) -> dict[str, Any]:
             "boundary_year": boundary.provenance.get("boundary_year"),
             "publisher": boundary.provenance.get("publisher"),
             "pcode": boundary.pcode,
+            "admin_level": boundary.provenance.get("admin_level"),
+            "area_km2": config.REGIONS[district_id].area_km2,
             "crs": boundary.provenance.get("crs", config.PROJECT_CRS),
             "simplified": boundary.simplified,
             "bbox": [round(v, 6) for v in boundary.bounds],
@@ -47,11 +49,16 @@ def export(
     generated_at: str | None = None,
     processed_root: Path | None = None,
     public_root: Path | None = None,
+    region_status: dict[str, dict[str, Any]] | None = None,
+    years: list[str] | None = None,
 ) -> dict[str, Any]:
     config.ensure_directories()
     generated_at = generated_at or _utc_now()
     boundary_summary = _boundary_summary(boundaries)
-    years = sorted({day["date"][:4] for days in district_days.values() for day in days})
+    region_status = region_status or {}
+    years = years or sorted(
+        {day["date"][:4] for days in district_days.values() for day in days}
+    )
 
     processed_root = processed_root or config.PROCESSED_DIR
     public_root = public_root or config.PUBLIC_DATA_DIR
@@ -110,32 +117,61 @@ def export(
     ]
 
     study_areas_public = []
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
+        definition = config.REGIONS[district_id]
         boundary = boundary_summary.get(district_id, {})
+        region_years = sorted(
+            {day["date"][:4] for day in district_days.get(district_id, [])}
+        )
         study_areas_public.append(
             {
                 "district_id": district_id,
-                "name": config.DISTRICTS[district_id].name,
-                "province": config.DISTRICTS[district_id].province,
-                "pcode": config.DISTRICTS[district_id].pcode,
-                "years": years,
+                "region_id": district_id,
+                "name": definition.name,
+                "full_name": definition.full_name,
+                "country": definition.country,
+                "country_code": definition.country_code,
+                "admin_level": definition.admin_level,
+                "admin_level_label": definition.admin_level_label,
+                "province": definition.province,
+                "pcode": definition.pcode,
+                "scale_class": definition.scale_class,
+                "area_km2": (
+                    round(boundary["area_km2"], 1)
+                    if boundary.get("area_km2")
+                    else definition.area_km2
+                ),
+                "years": region_years,
                 "bbox": boundary.get("bbox"),
+                "status": region_status.get(district_id, {}).get("status", "unknown"),
+                "status_reason": region_status.get(district_id, {}).get("reason"),
             }
         )
 
-    # Per-district metadata + year files.
-    for district_id in config.DISTRICT_ORDER:
+    # Per-region metadata + year files. Regions with no acquired files get an
+    # index entry but no fabricated year files.
+    for district_id in district_days:
         district_dir = public_root / district_id
         district_dir.mkdir(parents=True, exist_ok=True)
         boundary = boundary_summary.get(district_id, {})
         counts = qc_report.get("assigned_by_district", {}).get(district_id, 0)
+        definition = config.REGIONS[district_id]
         metadata = {
             "contract_version": config.CONTRACT_VERSION,
             "district_id": district_id,
-            "name": config.DISTRICTS[district_id].name,
-            "province": config.DISTRICTS[district_id].province,
-            "pcode": config.DISTRICTS[district_id].pcode,
-            "description": config.DISTRICTS[district_id].description,
+            "region_id": district_id,
+            "name": definition.name,
+            "full_name": definition.full_name,
+            "country": definition.country,
+            "country_code": definition.country_code,
+            "admin_level": definition.admin_level,
+            "admin_level_label": definition.admin_level_label,
+            "province": definition.province,
+            "pcode": definition.pcode,
+            "scale_class": definition.scale_class,
+            "area_km2": definition.area_km2,
+            "description": definition.description,
+            "processing_status": region_status.get(district_id, {"status": "available"}),
             "generated_at": generated_at,
             "provider": provider,
             "product": product,
@@ -165,7 +201,8 @@ def export(
 
         days = district_days[district_id]
         weeks = district_weeks[district_id]
-        for year in years:
+        region_years = sorted({day["date"][:4] for day in days})
+        for year in region_years:
             year_days = [day for day in days if day["date"].startswith(year)]
             year_weeks = [week for week in weeks if str(week["iso_year"]) == year]
             manifests.write_json(
@@ -173,10 +210,14 @@ def export(
                 {
                     "contract_version": config.CONTRACT_VERSION,
                     "district_id": district_id,
+                    "region_id": district_id,
                     "district": {
-                        "name": config.DISTRICTS[district_id].name,
-                        "province": config.DISTRICTS[district_id].province,
-                        "pcode": config.DISTRICTS[district_id].pcode,
+                        "name": definition.name,
+                        "full_name": definition.full_name,
+                        "country": definition.country,
+                        "admin_level_label": definition.admin_level_label,
+                        "province": definition.province,
+                        "pcode": definition.pcode,
                     },
                     "year": year,
                     "generated_at": generated_at,
@@ -193,6 +234,8 @@ def export(
         "generated_at": generated_at,
         "provider": {"id": provider, "product": product},
         "study_areas": study_areas_public,
+        "regions": list(config.REGION_ORDER),
+        "region_status": region_status,
         "sensors": sensors_public,
         "years": years,
         "paths": {
@@ -222,7 +265,9 @@ def export(
         "provider": provider,
         "product": product,
         "years": years,
-        "districts": list(config.DISTRICT_ORDER),
+        "regions": list(config.REGION_ORDER),
+        "regions_with_observations": sorted(district_days),
+        "region_status": region_status,
         "sensors": list(config.SENSOR_ORDER),
         "quality_report": config.relative(processed_root / "quality_report.json"),
         "sensor_coverage": config.relative(processed_root / "sensor_coverage.json"),

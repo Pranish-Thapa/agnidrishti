@@ -1,7 +1,7 @@
 {
   "contract_version": "1.0.0",
   "district_id": "NP-CHITWAN",
-  "generated_at": "2026-11-13T18:06:20Z",
+  "generated_at": "2026-11-14T17:39:28Z",
   "provider": "nrt",
   "product": "NRT",
   "weeks": [
@@ -13,19 +13,6 @@
       "days_in_week": 2,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_noaa21": {
-          "platforms": {
-            "NOAA-21": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 2
-            }
-          }
-        },
         "modis": {
           "platforms": {
             "Terra": {
@@ -60,6 +47,19 @@
               "days_observed": 2
             }
           }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 2
+            }
+          }
         }
       }
     },
@@ -71,19 +71,6 @@
       "days_in_week": 5,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_noaa21": {
-          "platforms": {
-            "NOAA-21": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 5
-            }
-          }
-        },
         "modis": {
           "platforms": {
             "Terra": {
@@ -127,6 +114,19 @@
                 "min": 4.87,
                 "max": 4.87
               },
+              "days_observed": 5
+            }
+          }
+        },
+        "viirs_noaa21": {
+          "platforms": {
+            "NOAA-21": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
               "days_observed": 5
             }
           }

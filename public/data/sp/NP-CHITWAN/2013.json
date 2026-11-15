@@ -1,13 +1,17 @@
 {
   "contract_version": "1.0.0",
   "district_id": "NP-CHITWAN",
+  "region_id": "NP-CHITWAN",
   "district": {
     "name": "Chitwan",
+    "full_name": "Chitwan District",
+    "country": "Nepal",
+    "admin_level_label": "District",
     "province": "Bagmati Province",
     "pcode": "NP0335"
   },
   "year": "2013",
-  "generated_at": "2026-11-13T20:13:03Z",
+  "generated_at": "2026-11-15T09:23:34Z",
   "provider": "area-api",
   "product": "SP",
   "sensors": [
@@ -7089,6 +7093,926 @@
           }
         }
       }
+    },
+    {
+      "date": "2013-07-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-07-31",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-08-31",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-09-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-10-31",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-11-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2013-12-31",
+      "status": "missing",
+      "by_sensor": {}
     }
   ],
   "weeks": [
@@ -7097,7 +8021,7 @@
       "iso_week": 1,
       "week_start": "2012-12-31",
       "week_end": "2013-01-06",
-      "days_in_week": 6,
+      "days_in_week": 7,
       "status": "incomplete",
       "by_sensor": {
         "viirs_snpp": {
@@ -7121,7 +8045,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -7130,7 +8054,7 @@
               "frp": null,
               "days_observed": 6
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -7172,7 +8096,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -7181,7 +8105,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -7223,6 +8147,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 5,
@@ -7236,15 +8169,6 @@
                 "min": 6.9,
                 "max": 17.3
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7280,6 +8204,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 2,
@@ -7293,15 +8226,6 @@
                 "min": 8.6,
                 "max": 30.3
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7337,6 +8261,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 15,
@@ -7350,15 +8283,6 @@
                 "min": 3.8,
                 "max": 27.7
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7394,6 +8318,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 4,
@@ -7407,15 +8340,6 @@
                 "min": 5.3,
                 "max": 9.2
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7451,6 +8375,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 8,
@@ -7464,15 +8397,6 @@
                 "min": 13.6,
                 "max": 34.7
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7508,7 +8432,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -7517,7 +8441,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -7559,6 +8483,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 11,
@@ -7572,15 +8505,6 @@
                 "min": 6.1,
                 "max": 28.3
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7616,6 +8540,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 3,
@@ -7629,15 +8562,6 @@
                 "min": 10.3,
                 "max": 34.7
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -7673,21 +8597,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 15,
-              "cells": null,
-              "cell_days": 9,
-              "occupied_cells": 5,
-              "frp": {
-                "n": 15,
-                "sum": 384.4,
-                "mean": 25.6267,
-                "min": 6.8,
-                "max": 77.6
-              },
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed",
               "detections": 2,
@@ -7700,6 +8609,21 @@
                 "mean": 33.65,
                 "min": 33.6,
                 "max": 33.7
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 15,
+              "cells": null,
+              "cell_days": 9,
+              "occupied_cells": 5,
+              "frp": {
+                "n": 15,
+                "sum": 384.4,
+                "mean": 25.6267,
+                "min": 6.8,
+                "max": 77.6
               },
               "days_observed": 7
             }
@@ -7736,21 +8660,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 5,
-              "cells": null,
-              "cell_days": 3,
-              "occupied_cells": 3,
-              "frp": {
-                "n": 5,
-                "sum": 99.4,
-                "mean": 19.88,
-                "min": 10.2,
-                "max": 27.7
-              },
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed",
               "detections": 1,
@@ -7763,6 +8672,21 @@
                 "mean": 14.8,
                 "min": 14.8,
                 "max": 14.8
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 5,
+              "cells": null,
+              "cell_days": 3,
+              "occupied_cells": 3,
+              "frp": {
+                "n": 5,
+                "sum": 99.4,
+                "mean": 19.88,
+                "min": 10.2,
+                "max": 27.7
               },
               "days_observed": 7
             }
@@ -7799,21 +8723,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 25,
-              "cells": null,
-              "cell_days": 10,
-              "occupied_cells": 8,
-              "frp": {
-                "n": 25,
-                "sum": 592.2,
-                "mean": 23.688,
-                "min": 7.4,
-                "max": 77.6
-              },
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed",
               "detections": 9,
@@ -7826,6 +8735,21 @@
                 "mean": 15.4222,
                 "min": 8.0,
                 "max": 36.8
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 25,
+              "cells": null,
+              "cell_days": 10,
+              "occupied_cells": 8,
+              "frp": {
+                "n": 25,
+                "sum": 592.2,
+                "mean": 23.688,
+                "min": 7.4,
+                "max": 77.6
               },
               "days_observed": 7
             }
@@ -7862,21 +8786,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 43,
-              "cells": null,
-              "cell_days": 25,
-              "occupied_cells": 16,
-              "frp": {
-                "n": 43,
-                "sum": 831.7,
-                "mean": 19.3419,
-                "min": 4.5,
-                "max": 61.3
-              },
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed",
               "detections": 32,
@@ -7889,6 +8798,21 @@
                 "mean": 13.9969,
                 "min": 3.9,
                 "max": 69.1
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 43,
+              "cells": null,
+              "cell_days": 25,
+              "occupied_cells": 16,
+              "frp": {
+                "n": 43,
+                "sum": 831.7,
+                "mean": 19.3419,
+                "min": 4.5,
+                "max": 61.3
               },
               "days_observed": 7
             }
@@ -7925,21 +8849,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed",
-              "detections": 23,
-              "cells": null,
-              "cell_days": 13,
-              "occupied_cells": 9,
-              "frp": {
-                "n": 23,
-                "sum": 383.0,
-                "mean": 16.6522,
-                "min": 4.7,
-                "max": 51.9
-              },
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed",
               "detections": 16,
@@ -7952,6 +8861,21 @@
                 "mean": 10.1,
                 "min": 4.8,
                 "max": 26.5
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 23,
+              "cells": null,
+              "cell_days": 13,
+              "occupied_cells": 9,
+              "frp": {
+                "n": 23,
+                "sum": 383.0,
+                "mean": 16.6522,
+                "min": 4.7,
+                "max": 51.9
               },
               "days_observed": 7
             }
@@ -7988,6 +8912,15 @@
         },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 2,
@@ -8001,15 +8934,6 @@
                 "min": 8.1,
                 "max": 13.1
               },
-              "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
               "days_observed": 7
             }
           }
@@ -8045,7 +8969,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8054,7 +8978,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8096,15 +9020,6 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            },
             "Terra": {
               "status": "observed",
               "detections": 1,
@@ -8118,6 +9033,15 @@
                 "min": 10.9,
                 "max": 10.9
               },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
               "days_observed": 7
             }
           }
@@ -8147,7 +9071,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8156,7 +9080,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8192,7 +9116,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8201,7 +9125,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8237,7 +9161,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8246,7 +9170,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8282,7 +9206,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8291,7 +9215,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8327,7 +9251,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8336,7 +9260,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8372,7 +9296,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8381,7 +9305,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8417,7 +9341,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8426,7 +9350,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8462,7 +9386,7 @@
         },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8471,7 +9395,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -8483,6 +9407,240 @@
           }
         }
       }
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 27,
+      "week_start": "2013-07-01",
+      "week_end": "2013-07-07",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 28,
+      "week_start": "2013-07-08",
+      "week_end": "2013-07-14",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 29,
+      "week_start": "2013-07-15",
+      "week_end": "2013-07-21",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 30,
+      "week_start": "2013-07-22",
+      "week_end": "2013-07-28",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 31,
+      "week_start": "2013-07-29",
+      "week_end": "2013-08-04",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 32,
+      "week_start": "2013-08-05",
+      "week_end": "2013-08-11",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 33,
+      "week_start": "2013-08-12",
+      "week_end": "2013-08-18",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 34,
+      "week_start": "2013-08-19",
+      "week_end": "2013-08-25",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 35,
+      "week_start": "2013-08-26",
+      "week_end": "2013-09-01",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 36,
+      "week_start": "2013-09-02",
+      "week_end": "2013-09-08",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 37,
+      "week_start": "2013-09-09",
+      "week_end": "2013-09-15",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 38,
+      "week_start": "2013-09-16",
+      "week_end": "2013-09-22",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 39,
+      "week_start": "2013-09-23",
+      "week_end": "2013-09-29",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 40,
+      "week_start": "2013-09-30",
+      "week_end": "2013-10-06",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 41,
+      "week_start": "2013-10-07",
+      "week_end": "2013-10-13",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 42,
+      "week_start": "2013-10-14",
+      "week_end": "2013-10-20",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 43,
+      "week_start": "2013-10-21",
+      "week_end": "2013-10-27",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 44,
+      "week_start": "2013-10-28",
+      "week_end": "2013-11-03",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 45,
+      "week_start": "2013-11-04",
+      "week_end": "2013-11-10",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 46,
+      "week_start": "2013-11-11",
+      "week_end": "2013-11-17",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 47,
+      "week_start": "2013-11-18",
+      "week_end": "2013-11-24",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 48,
+      "week_start": "2013-11-25",
+      "week_end": "2013-12-01",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 49,
+      "week_start": "2013-12-02",
+      "week_end": "2013-12-08",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 50,
+      "week_start": "2013-12-09",
+      "week_end": "2013-12-15",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 51,
+      "week_start": "2013-12-16",
+      "week_end": "2013-12-22",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2013,
+      "iso_week": 52,
+      "week_start": "2013-12-23",
+      "week_end": "2013-12-29",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
     }
   ]
 }

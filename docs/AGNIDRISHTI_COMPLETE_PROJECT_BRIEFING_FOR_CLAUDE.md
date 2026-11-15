@@ -8,6 +8,19 @@
 > from pooled out-of-fold predictions (7 reliable / 6 caution / 8 insufficient / 15 unavailable);
 > and weekly-scale validation is now the headline (Terra 0.847 / Aqua 0.936). Figures in this
 > document predate these corrections where they conflict.
+>
+> **Pre-2012 extension (2026-11-15):** the project now covers **six study areas** (three Nepal
+> districts plus Chiang Mai, Riau and Shan) and **2000–2026**, not three districts from 2012.
+> MODIS Terra (from 2000-11-01) and Aqua (from 2002-05-04) were acquired for every region through
+> 2011-12-31 and processed through the same pipeline. A separate
+> `python -m pipeline backcast` run tests whether the MODIS→VIIRS relationship transfers to
+> pre-2012 years using blocked year splits with a purge gap, leave-one-year-out folds and all
+> three methods. It produces SUPPORTED / LIMITED / UNSUPPORTED decisions per region, platform and
+> calendar month; only supported/limited months yield "MODIS-derived VIIRS-equivalent estimates"
+> (stored separately from raw MODIS). Where evidence is inconclusive the report says no single
+> method can be confidently identified. 2000–2001 is Terra-only. See `docs/REGIONAL_COVERAGE.md`
+> for current coverage and regeneration commands; where this document says "three districts",
+> "2012–2026" or "no pre-2012 data", that is superseded.
 
 # AGNIDRISHTI — COMPLETE PROJECT BRIEFING FOR CLAUDE
 

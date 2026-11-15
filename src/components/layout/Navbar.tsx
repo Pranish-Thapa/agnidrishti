@@ -60,77 +60,88 @@ export function Navbar() {
 
   return (
     <>
-      <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        solid
-          ? 'border-b border-sand/10 bg-ink-950/95 backdrop-blur-md'
-          : 'border-b border-transparent bg-gradient-to-b from-ink-950/70 to-transparent'
-      }`}
-    >
-      <div className="container-page flex h-[72px] items-center justify-between gap-6 md:h-[80px]">
-        <Logo />
+      <header className="fixed inset-x-0 top-0 z-50 pt-3 md:pt-4">
+        <div className="container-page">
+          <div
+            className={`relative flex h-[62px] items-center justify-between gap-6 rounded-full border px-4 transition-[background-color,border-color,box-shadow] duration-500 sm:px-5 ${
+              solid
+                ? 'instrument-bar'
+                : 'border-transparent bg-gradient-to-b from-ink-950/55 to-transparent'
+            }`}
+          >
+            {solid ? (
+              <span
+                className="pointer-events-none absolute inset-x-8 bottom-0 h-px spectrum-rule-soft opacity-70"
+                aria-hidden="true"
+              />
+            ) : null}
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => {
-            const isActive =
-              link.to === '/' ? pathname === '/' : pathname.startsWith(link.to)
+            <Logo />
 
-            return (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                aria-current={isActive ? 'page' : undefined}
-                className={`relative py-2 text-[13px] transition-colors duration-300 ${
-                  isActive ? 'text-bone' : 'text-ash-light hover:text-bone'
-                }`}
+            <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+              {navLinks.map((link) => {
+                const isActive =
+                  link.to === '/' ? pathname === '/' : pathname.startsWith(link.to)
+
+                return (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`relative rounded-full px-3.5 py-2 text-support transition-colors duration-300 ${
+                      isActive
+                        ? 'text-bone'
+                        : 'text-ash-light hover:bg-sand/[0.05] hover:text-bone'
+                    }`}
+                  >
+                    {link.label}
+                    {isActive ? (
+                      <motion.span
+                        layoutId="nav-active-underline"
+                        className="absolute inset-x-3.5 -bottom-px h-px bg-ember"
+                        transition={
+                          reduceMotion
+                            ? { duration: 0 }
+                            : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
+                        }
+                        aria-hidden="true"
+                      />
+                    ) : null}
+                  </NavLink>
+                )
+              })}
+            </nav>
+
+            <div className="flex items-center gap-2.5">
+              <Link
+                to="/explorer"
+                className="group hidden min-h-[38px] items-center gap-2 rounded-full border border-ember/35 bg-ember/[0.09] px-4 text-support font-medium text-amber-soft transition-[background-color,border-color,color] duration-300 hover:border-ember/60 hover:bg-ember/[0.16] hover:text-bone sm:inline-flex"
               >
-                {link.label}
-                {isActive ? (
-                  <motion.span
-                    layoutId="nav-active-underline"
-                    className="absolute -bottom-0.5 left-0 h-px w-full bg-ember"
-                    transition={
-                      reduceMotion
-                        ? { duration: 0 }
-                        : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
-                    }
-                    aria-hidden="true"
-                  />
-                ) : null}
-              </NavLink>
-            )
-          })}
-        </nav>
+                Open Explorer
+                <ArrowUpRight
+                  size={14}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </Link>
 
-        <div className="flex items-center gap-3">
-          <Link
-            to="/explorer"
-            className="group hidden min-h-[40px] items-center gap-2 rounded-[2px] border border-sand/30 px-4 text-[12px] font-medium text-bone transition-colors duration-300 hover:border-ember/60 hover:bg-ember/[0.06] sm:inline-flex"
-          >
-            Open Explorer
-            <ArrowUpRight
-              size={14}
-              strokeWidth={1.8}
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
-          </Link>
-
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-sand/20 text-bone transition-colors hover:border-sand/40 lg:hidden"
-          >
-            {menuOpen ? <X size={18} strokeWidth={1.6} /> : <Menu size={18} strokeWidth={1.6} />}
-          </button>
+              <button
+                type="button"
+                onClick={() => setMenuOpen((open) => !open)}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-menu"
+                aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-sand/20 text-bone transition-colors hover:border-sand/40 hover:bg-sand/[0.05] lg:hidden"
+              >
+                {menuOpen ? <X size={18} strokeWidth={1.6} /> : <Menu size={18} strokeWidth={1.6} />}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <AnimatePresence>
+      <AnimatePresence>
         {menuOpen ? (
           <motion.div
             id="mobile-menu"
@@ -138,7 +149,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
             transition={reduceMotion ? { duration: 0 } : { duration: 0.24, ease: 'easeOut' }}
-            className="fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto bg-ink-950 md:top-[80px] lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-[78px] z-40 overflow-y-auto bg-ink-950/95 backdrop-blur-xl md:top-[84px] lg:hidden"
           >
             <div className="container-page flex min-h-full flex-col pb-10 pt-10">
               <motion.nav
@@ -157,19 +168,19 @@ export function Navbar() {
                       <NavLink
                         to={link.to}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`group flex items-baseline gap-5 border-b border-sand/10 py-5 ${
+                        className={`group flex items-baseline gap-5 border-b border-sand/[0.09] py-5 ${
                           isActive ? 'text-bone' : 'text-ash-light'
                         }`}
                       >
-                        <span className="font-mono text-[10px] tracking-[0.16em] text-ember">
+                        <span className="font-mono text-meta tracking-[0.12em] text-ember">
                           0{index + 1}
                         </span>
-                        <span className="display text-4xl leading-none transition-colors group-hover:text-ember-soft sm:text-5xl">
+                        <span className="display text-4xl leading-none transition-colors group-hover:text-amber-soft sm:text-5xl">
                           {link.label}
                         </span>
                         {isActive ? (
                           <span
-                            className="ml-auto h-1 w-1 rounded-full bg-ember"
+                            className="ml-auto h-px w-8 bg-ember"
                             aria-hidden="true"
                           />
                         ) : null}
@@ -182,7 +193,7 @@ export function Navbar() {
               <div className="mt-auto pt-12">
                 <Link
                   to="/explorer"
-                  className="group flex min-h-[50px] w-full items-center justify-between border border-ember/50 bg-ember px-5 text-[13px] font-medium text-ink-950 transition-colors hover:bg-ember-soft"
+                  className="group flex min-h-[50px] w-full items-center justify-between rounded-full border border-ember/50 bg-ember px-5 text-body-sm font-medium text-ink-950 transition-colors hover:bg-amber-soft"
                 >
                   Open Explorer
                   <ArrowUpRight
@@ -194,12 +205,12 @@ export function Navbar() {
                 </Link>
                 <div className="mt-8 flex items-end justify-between gap-6">
                   <div>
-                    <p className="text-[11px] font-medium tracking-[0.22em] text-bone">
+                    <p className="font-display text-support font-medium tracking-[0.15em] text-bone">
                       {site.wordmark}
                     </p>
-                    <p className="mt-2 font-display text-lg italic text-ash">{site.tagline}</p>
+                    <p className="mt-2 font-display text-lg text-ash">{site.tagline}</p>
                   </div>
-                  <p className="max-w-[150px] text-right font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-ash-dark">
+                  <p className="max-w-[150px] text-right text-support leading-relaxed text-ash-dark">
                     {site.challengeShort}
                   </p>
                 </div>

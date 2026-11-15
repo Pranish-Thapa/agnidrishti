@@ -1,0 +1,226 @@
+{
+  "contractVersion": "2.0.0",
+  "projectCrs": "OGC CRS84 / WGS84 longitude-latitude",
+  "note": "Canonical six-region configuration. Consumed by the Python pipeline (pipeline/config.py) and the React application (src/lib/regions.ts). Add a study area here first; boundary geometry is generated into src/data/study-areas.json by python -m pipeline boundaries.",
+  "regions": [
+    {
+      "id": "NP-BANKE",
+      "name": "Banke",
+      "fullName": "Banke District",
+      "country": "Nepal",
+      "countryCode": "NPL",
+      "adminLevel": 2,
+      "adminLevelLabel": "District",
+      "parent": "Lumbini Province",
+      "parentLabel": "Province",
+      "scaleClass": "district",
+      "areaKm2": 1883.4,
+      "bbox": [
+        81.4985,
+        27.8536,
+        82.1941,
+        28.3378
+      ],
+      "centroid": [
+        81.822172,
+        28.087091
+      ],
+      "description": "A Terai district in Lumbini Province, bordering Bardiya to the west. Selected as a high-fire study area.",
+      "boundary": {
+        "source": "OCHA COD-AB Nepal, administrative level 2",
+        "datasetUrl": "https://data.humdata.org/dataset/cod-ab-npl",
+        "license": "CC BY-IGO",
+        "publisher": "OCHA / HDX",
+        "boundaryYear": 2024,
+        "adminLevel": 2,
+        "sourceFile": "data/boundaries/source/npl_admin2.geojson",
+        "sourceFileProvenance": "data/boundaries/source/npl_admin_boundaries.geojson.zip",
+        "sourceRegionName": "Banke",
+        "sourceId": "NP0557",
+        "sourceIdLabel": "OCHA P-code"
+      }
+    },
+    {
+      "id": "NP-BARDIYA",
+      "name": "Bardiya",
+      "fullName": "Bardiya District",
+      "country": "Nepal",
+      "countryCode": "NPL",
+      "adminLevel": 2,
+      "adminLevelLabel": "District",
+      "parent": "Lumbini Province",
+      "parentLabel": "Province",
+      "scaleClass": "district",
+      "areaKm2": 2003.6,
+      "bbox": [
+        81.0591,
+        28.0689,
+        81.7666,
+        28.6747
+      ],
+      "centroid": [
+        81.401398,
+        28.38359
+      ],
+      "description": "A Terai district in Lumbini Province, west of Banke, containing Bardiya National Park. Selected as a high-fire study area.",
+      "boundary": {
+        "source": "OCHA COD-AB Nepal, administrative level 2",
+        "datasetUrl": "https://data.humdata.org/dataset/cod-ab-npl",
+        "license": "CC BY-IGO",
+        "publisher": "OCHA / HDX",
+        "boundaryYear": 2024,
+        "adminLevel": 2,
+        "sourceFile": "data/boundaries/source/npl_admin2.geojson",
+        "sourceFileProvenance": "data/boundaries/source/npl_admin_boundaries.geojson.zip",
+        "sourceRegionName": "Bardiya",
+        "sourceId": "NP0558",
+        "sourceIdLabel": "OCHA P-code"
+      }
+    },
+    {
+      "id": "NP-CHITWAN",
+      "name": "Chitwan",
+      "fullName": "Chitwan District",
+      "country": "Nepal",
+      "countryCode": "NPL",
+      "adminLevel": 2,
+      "adminLevelLabel": "District",
+      "parent": "Bagmati Province",
+      "parentLabel": "Province",
+      "scaleClass": "district",
+      "areaKm2": 2243.6,
+      "bbox": [
+        83.9187,
+        27.355,
+        84.7966,
+        27.8805
+      ],
+      "centroid": [
+        84.434413,
+        27.584865
+      ],
+      "description": "A Terai district in Bagmati Province, south-central Nepal, containing Chitwan National Park. Selected as a high-fire study area.",
+      "boundary": {
+        "source": "OCHA COD-AB Nepal, administrative level 2",
+        "datasetUrl": "https://data.humdata.org/dataset/cod-ab-npl",
+        "license": "CC BY-IGO",
+        "publisher": "OCHA / HDX",
+        "boundaryYear": 2024,
+        "adminLevel": 2,
+        "sourceFile": "data/boundaries/source/npl_admin2.geojson",
+        "sourceFileProvenance": "data/boundaries/source/npl_admin_boundaries.geojson.zip",
+        "sourceRegionName": "Chitwan",
+        "sourceId": "NP0335",
+        "sourceIdLabel": "OCHA P-code"
+      }
+    },
+    {
+      "id": "TH-CHIANG-MAI",
+      "name": "Chiang Mai",
+      "fullName": "Chiang Mai Province",
+      "country": "Thailand",
+      "countryCode": "THA",
+      "adminLevel": 1,
+      "adminLevelLabel": "Province",
+      "parent": "Thailand",
+      "parentLabel": "Country",
+      "scaleClass": "province",
+      "areaKm2": 22245.7,
+      "bbox": [
+        98.008,
+        17.2424,
+        99.5729,
+        20.1474
+      ],
+      "centroid": [
+        98.728217,
+        18.793116
+      ],
+      "description": "A mountainous northern Thai province bordering Myanmar and Laos, with a distinct dry-season burning cycle. Selected as a high-fire study area.",
+      "boundary": {
+        "source": "geoBoundaries gbHumanitarian ADM1 (OCHA COD-AB derived), Thailand",
+        "datasetUrl": "https://www.geoboundaries.org/",
+        "license": "CC BY 3.0 IGO",
+        "publisher": "geoBoundaries / OCHA",
+        "boundaryYear": 2017,
+        "adminLevel": 1,
+        "sourceFile": "data/boundaries/source/tha_adm1.geojson",
+        "sourceRegionName": "Chiang Mai",
+        "sourceId": "26819535B4595205640770",
+        "sourceIdLabel": "geoBoundaries shapeID"
+      }
+    },
+    {
+      "id": "ID-RIAU",
+      "name": "Riau",
+      "fullName": "Riau Province",
+      "country": "Indonesia",
+      "countryCode": "IDN",
+      "adminLevel": 1,
+      "adminLevelLabel": "Province",
+      "parent": "Indonesia",
+      "parentLabel": "Country",
+      "scaleClass": "province",
+      "areaKm2": 90203.5,
+      "bbox": [
+        100.0249,
+        -1.1223,
+        103.8146,
+        2.8839
+      ],
+      "centroid": [
+        101.807751,
+        0.512661
+      ],
+      "description": "A large central Sumatran province dominated by peatland and plantation landscapes, where drained peat fires can smoulder for weeks. Selected as a high-fire study area.",
+      "boundary": {
+        "source": "geoBoundaries gbHumanitarian ADM1 (OCHA COD-AB derived), Indonesia",
+        "datasetUrl": "https://www.geoboundaries.org/",
+        "license": "CC BY 3.0 IGO",
+        "publisher": "geoBoundaries / OCHA",
+        "boundaryYear": 2017,
+        "adminLevel": 1,
+        "sourceFile": "data/boundaries/source/idn_adm1.geojson",
+        "sourceRegionName": "Riau",
+        "sourceId": "30024224B70649796263296",
+        "sourceIdLabel": "geoBoundaries shapeID"
+      }
+    },
+    {
+      "id": "MM-SHAN",
+      "name": "Shan",
+      "fullName": "Shan State",
+      "country": "Myanmar",
+      "countryCode": "MMR",
+      "adminLevel": 1,
+      "adminLevelLabel": "State",
+      "parent": "Myanmar",
+      "parentLabel": "Country",
+      "scaleClass": "state",
+      "areaKm2": 156130.7,
+      "bbox": [
+        96.1511,
+        19.2993,
+        101.1699,
+        24.1591
+      ],
+      "centroid": [
+        98.121964,
+        21.722533
+      ],
+      "description": "Myanmar's largest state, a highland region with extensive dry-season burning and a long international border. Selected as a high-fire study area.",
+      "boundary": {
+        "source": "geoBoundaries gbOpen ADM1, Myanmar",
+        "datasetUrl": "https://www.geoboundaries.org/",
+        "license": "CC BY 4.0",
+        "publisher": "geoBoundaries / Myanmar Analytics Project",
+        "boundaryYear": 2019,
+        "adminLevel": 1,
+        "sourceFile": "data/boundaries/source/mmr_adm1.geojson",
+        "sourceRegionName": "Shan",
+        "sourceId": "20573499B82952573339616",
+        "sourceIdLabel": "geoBoundaries shapeID"
+      }
+    }
+  ]
+}

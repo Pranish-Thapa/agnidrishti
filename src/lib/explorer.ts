@@ -2,7 +2,7 @@ export const providers = [
   {
     id: 'sp' as const,
     label: 'Standard Processing',
-    note: 'Historical 2012–2026',
+    note: 'Historical 2000–2026 · per-region coverage',
   },
   {
     id: 'nrt' as const,
@@ -17,7 +17,7 @@ export const layers = [
   {
     id: 'harmonized',
     label: 'Harmonized',
-    note: 'VIIRS-equivalent · provisional',
+    note: 'VIIRS-equivalent · per-region decision',
   },
   { id: 'modis', label: 'MODIS raw', note: 'Terra + Aqua · sensor-native' },
   { id: 'viirs', label: 'VIIRS raw', note: 'Suomi-NPP · sensor-native' },

@@ -16,15 +16,15 @@ export function CapabilitiesSection() {
             <Reveal delay={0.08}>
               <h2 className="display mt-7 max-w-[700px] text-[clamp(2.6rem,5vw,4.6rem)] leading-[1] text-bone">
                 A trend has to earn{' '}
-                <em className="italic text-sand/85">its confidence.</em>
+                <span className="text-observation-soft">its confidence.</span>
               </h2>
             </Reveal>
           </div>
           <div className="lg:col-span-5 lg:pb-2">
             <Reveal delay={0.14}>
               <p className="max-w-[430px] body-copy">
-                Three planned tests interrogate the transition itself, the methods used to correct
-                it, and the record&apos;s reliability when observations disappear.
+                Three analyses interrogate the transition itself, the methods used to correct it,
+                and the record&apos;s reliability when observations disappear.
               </p>
             </Reveal>
           </div>
@@ -35,10 +35,13 @@ export function CapabilitiesSection() {
             <Reveal key={capability.title} delay={index * 0.04}>
               <article className="grid gap-7 border-t border-sand/[0.12] py-9 md:grid-cols-2 md:gap-x-10 lg:grid-cols-12 lg:gap-8 lg:py-11">
                 <div className="flex items-start justify-between gap-4 lg:col-span-2 lg:block">
-                  <p className="font-mono text-[11px] tracking-[0.18em] text-ember">
+                  <p className="font-mono text-meta tracking-[0.18em] text-ember">
                     {capability.index}
                   </p>
-                  <StatusBadge className="lg:mt-4" tone="planned">
+                  <StatusBadge
+                    className="lg:mt-4"
+                    tone={capability.status.includes('inconclusive') ? 'neutral' : 'active'}
+                  >
                     {capability.status}
                   </StatusBadge>
                 </div>
@@ -53,7 +56,7 @@ export function CapabilitiesSection() {
                 </div>
 
                 <div className="lg:col-span-3">
-                  <p className="max-w-[380px] text-[13px] leading-[1.8] text-ash">
+                  <p className="max-w-[380px] text-body-sm leading-[1.8] text-ash">
                     {capability.description}
                   </p>
                 </div>
@@ -67,10 +70,10 @@ export function CapabilitiesSection() {
         </div>
 
         <Reveal>
-          <p className="mt-6 max-w-[720px] text-[11px] leading-relaxed text-ash-dark">
-            Capability status reflects this foundation build. The diagrams above are conceptual
-            schematics, not validation results. Harmonization and backtesting calculations will be
-            connected in a later development phase.
+          <p className="mt-6 max-w-[720px] text-support leading-relaxed text-ash-dark">
+            Capability status reflects the current processed record. The diagrams above are
+            conceptual schematics, not validation results. Harmonization and backtesting outputs are
+            rendered from the published experiment artifacts.
           </p>
         </Reveal>
       </div>

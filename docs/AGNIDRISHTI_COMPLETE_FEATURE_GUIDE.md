@@ -13,6 +13,19 @@
 > from pooled out-of-fold predictions (7 reliable / 6 caution / 8 insufficient / 15 unavailable);
 > and weekly-scale validation is now the headline (Terra 0.847 / Aqua 0.936). Figures in this
 > document predate these corrections where they conflict.
+>
+> **Pre-2012 extension (2026-11-15):** the project now covers **six study areas** (three Nepal
+> districts plus Chiang Mai, Riau and Shan) and **2000–2026**, not three districts from 2012.
+> MODIS Terra (from 2000-11-01) and Aqua (from 2002-05-04) were acquired for every region through
+> 2011-12-31 and processed through the same pipeline. A separate
+> `python -m pipeline backcast` run tests whether the MODIS→VIIRS relationship transfers to
+> pre-2012 years using blocked year splits with a purge gap, leave-one-year-out folds and all
+> three methods. It produces SUPPORTED / LIMITED / UNSUPPORTED decisions per region, platform and
+> calendar month; only supported/limited months yield "MODIS-derived VIIRS-equivalent estimates"
+> (stored separately from raw MODIS). Where evidence is inconclusive the report says no single
+> method can be confidently identified. 2000–2001 is Terra-only. See `docs/REGIONAL_COVERAGE.md`
+> for the current coverage and regeneration commands; where this document says "three districts",
+> "2012–2026" or "no pre-2012 data", that is superseded.
 
 ---
 
@@ -24,11 +37,13 @@ Agnidrishti ("fire vision") is a satellite-aware fire activity calendar built fo
 Apps Challenge 2026 challenge *"Harmonization of MODIS and VIIRS Hot Spots."* It is two things at
 once:
 
-1. **An interactive web application** (React) where you explore 14+ years of real satellite fire
-   observations for three high-fire districts in Nepal — Banke, Bardiya and Chitwan — week by week.
+1. **An interactive web application** (React) where you explore 25+ years of real satellite fire
+   observations for six high-fire study areas in Nepal, Thailand, Indonesia and Myanmar — week by
+   week, with pre-2012 estimates only where they are supported.
 2. **A scientific data pipeline** (Python) that downloads, cleans and analyses real NASA FIRMS
    satellite data, tests three statistical ways to make two different satellites comparable, and
-   honestly reports how well that works.
+   honestly reports how well that works — including whether the correction can be carried back
+   before VIIRS existed.
 
 ## The problem it solves
 

@@ -1,39 +1,58 @@
-import boundaries from '../data/nepal-study-areas.json'
+import boundaries from '../data/study-areas.json'
 
 export type Position = [number, number]
 
-export type DistrictGeometry =
+export type RegionGeometry =
   | { type: 'Polygon'; coordinates: Position[][] }
   | { type: 'MultiPolygon'; coordinates: Position[][][] }
 
-export type DistrictFeature = {
+export type RegionFeature = {
   type: 'Feature'
   id: string
   properties: {
     id: string
+    regionId: string
     name: string
-    province: string
-    pcode: string
+    fullName: string
+    country: string
+    countryCode: string
+    adminLevel: number
+    adminLevelLabel: string
+    parent: string
+    scaleClass: string
+    areaKm2: number | null
+    pcode: string | null
+    sourceIdLabel: string
     boundaryYear: number
     source: string
     sourceUrl: string
     license: string
+    bbox: readonly [number, number, number, number]
   }
-  geometry: DistrictGeometry
+  geometry: RegionGeometry
 }
 
 type BoundaryCollection = {
   type: 'FeatureCollection'
-  features: DistrictFeature[]
+  features: RegionFeature[]
 }
 
 const collection = boundaries as unknown as BoundaryCollection
 
-export function getDistrictFeature(id: string): DistrictFeature | undefined {
-  return collection.features.find((feature) => feature.properties.id === id)
+export function getRegionFeature(id: string): RegionFeature | undefined {
+  return collection.features.find(
+    (feature) => feature.properties.regionId === id || feature.properties.id === id,
+  )
 }
 
-function forEachPosition(geometry: DistrictGeometry, visit: (position: Position) => void) {
+/** @deprecated Use getRegionFeature. Retained for older call sites. */
+export const getDistrictFeature = getRegionFeature
+
+export function regionFeatures(): readonly RegionFeature[] {
+  return collection.features
+}
+
+function forEachPosition(geometry: RegionGeometry, visit: (position: Position) => void) {
   if (geometry.type === 'Polygon') {
     geometry.coordinates.forEach((ring) => ring.forEach(visit))
     return
@@ -54,22 +73,23 @@ function projectMercator([lon, lat]: Position): Projected {
   }
 }
 
-type BuildDistrictPathOptions = {
+type BuildRegionPathOptions = {
   width?: number
   height?: number
   padding?: number
 }
 
 /**
- * Projects a real district boundary into a fitted SVG path.
+ * Projects a real study-area boundary into a fitted SVG path.
  *
- * The geometry source is WGS84 longitude/latitude geometry from OCHA COD-AB
- * Nepal. Mercator projection is used only for display; no coordinates are
+ * The geometry source is authoritative WGS84 longitude/latitude geometry
+ * (OCHA COD-AB for Nepal, geoBoundaries ADM1 for Thailand, Indonesia and
+ * Myanmar). Mercator projection is used only for display; no coordinates are
  * altered or invented.
  */
-export function buildDistrictPath(
-  geometry: DistrictGeometry,
-  { width = 800, height = 600, padding = 46 }: BuildDistrictPathOptions = {},
+export function buildRegionPath(
+  geometry: RegionGeometry,
+  { width = 800, height = 600, padding = 46 }: BuildRegionPathOptions = {},
 ) {
   let minX = Infinity
   let minY = Infinity
@@ -119,4 +139,25 @@ export function buildDistrictPath(
     width,
     height,
   }
+}
+
+/** @deprecated Use buildRegionPath. */
+export const buildDistrictPath = buildRegionPath
+
+export type RegionBounds = [number, number, number, number]
+
+/** Union bounds of the supplied regions (or all six by default). */
+export function regionUnionBounds(features: readonly RegionFeature[] = collection.features): RegionBounds {
+  let west = Infinity
+  let south = Infinity
+  let east = -Infinity
+  let north = -Infinity
+  for (const feature of features) {
+    const [w, s, e, n] = feature.properties.bbox
+    west = Math.min(west, w)
+    south = Math.min(south, s)
+    east = Math.max(east, e)
+    north = Math.max(north, n)
+  }
+  return [west, south, east, north]
 }

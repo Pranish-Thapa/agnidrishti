@@ -12,15 +12,30 @@
 
 import type { LayerId } from './explorer'
 import { getFactor, type HarmonizationFactors } from './experiments'
+import {
+  backcastMonth,
+  isBackcastEligible,
+  isPreBackcastPeriod,
+  type BackcastArtifact,
+} from './backcast'
 import type { ObservationDataset, ObservationWeek } from './observations'
 
-export type WeekCellKind = 'estimate' | 'raw' | 'no_co_observation' | 'not_observed'
+export type WeekCellKind =
+  | 'estimate'
+  | 'raw'
+  | 'no_co_observation'
+  | 'backcast_unsupported'
+  | 'not_observed'
 
 export type PlatformEstimate = {
   platform: string
   detections: number
   factor: number
-  factorSource: 'fitted' | 'district_ratio_fallback'
+  factorSource:
+    | 'fitted'
+    | 'district_ratio_fallback'
+    | 'backcast_supported'
+    | 'backcast_limited'
   estimate: number
 }
 
@@ -39,6 +54,7 @@ export function computeWeekCell(
   layer: LayerId,
   districtId: string,
   factors: HarmonizationFactors | null,
+  backcast?: BackcastArtifact | null,
 ): WeekCell {
   const modis = week.by_sensor.modis?.platforms ?? {}
   const snpp = week.by_sensor.viirs_snpp?.platforms['Suomi-NPP']
@@ -62,6 +78,53 @@ export function computeWeekCell(
     }
   }
 
+  const monthOfYear = week.week_start.slice(5, 7)
+  const preBackcast = isPreBackcastPeriod(week.week_start)
+
+  // Before the VIIRS reference exists, an estimate is allowed only where the
+  // regional transferability decision explicitly supports the platform and
+  // month. There is no co-observation to require, and no supported month is
+  // ever zero-filled.
+  if (preBackcast) {
+    if (!modisObserved) {
+      return { week, value: null, kind: 'not_observed' }
+    }
+    if (!backcast) {
+      return { week, value: null, kind: 'backcast_unsupported' }
+    }
+    const platformEstimates: PlatformEstimate[] = []
+    for (const platform of ['Terra', 'Aqua'] as const) {
+      const block = modis[platform]
+      const days = block?.days_observed ?? 0
+      const detections = block?.detections
+      if (!block || days === 0 || detections === undefined || detections === null) continue
+      const month = backcastMonth(backcast, districtId, platform, monthOfYear)
+      if (!isBackcastEligible(month) || month === null || month.factor === null) continue
+      platformEstimates.push({
+        platform,
+        detections,
+        factor: month.factor,
+        factorSource:
+          month.status === 'supported' ? 'backcast_supported' : 'backcast_limited',
+        estimate: detections * month.factor,
+      })
+    }
+    if (platformEstimates.length === 0) {
+      return { week, value: null, kind: 'backcast_unsupported' }
+    }
+    // Factors estimate the same VIIRS daily count, so average rather than sum.
+    const total =
+      platformEstimates.reduce((sum, e) => sum + e.estimate, 0) /
+      platformEstimates.length
+    return {
+      week,
+      value: total,
+      kind: 'estimate',
+      platformEstimates,
+      estimateBasis: platformEstimates.length,
+    }
+  }
+
   // Harmonized: requires co-observation (both a MODIS platform and the VIIRS
   // reference recorded observations this week). Each platform's factor was
   // fitted to predict the FULL Suomi-NPP count by itself, so per-platform
@@ -71,7 +134,6 @@ export function computeWeekCell(
   if (!modisObserved || !viirsObserved || !factors) {
     return { week, value: null, kind: 'no_co_observation' }
   }
-  const monthOfYear = week.week_start.slice(5, 7)
   const platformEstimates: PlatformEstimate[] = []
   for (const platform of ['Terra', 'Aqua'] as const) {
     const block = modis[platform]
@@ -153,9 +215,10 @@ export function aggregateDistrictYear(
   dataset: ObservationDataset,
   layer: LayerId,
   factors: HarmonizationFactors | null,
+  backcast?: BackcastArtifact | null,
 ): DistrictYearSummary {
   const weekCells = dataset.weeks.map((week) =>
-    computeWeekCell(week, layer, dataset.district_id, factors),
+    computeWeekCell(week, layer, dataset.district_id, factors, backcast),
   )
   let total = 0
   let weeksWithDetections = 0

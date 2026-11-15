@@ -8,7 +8,9 @@ const hairline = withAlpha(palette.bone, 0.09)
 const frame = withAlpha(palette.bone, 0.46)
 const label = withAlpha(palette.bone, 0.92)
 const secondary = palette.ash.DEFAULT
-const amber = palette.amber.DEFAULT
+/** MODIS keeps the warm signal channel; VIIRS takes the cool observation channel. */
+const modis = palette.amber.DEFAULT
+const viirs = palette.observation.DEFAULT
 
 const rise: Variants = {
   hidden: { opacity: 0, y: 10 },
@@ -39,7 +41,7 @@ export function ResolutionDiagram() {
     <figure className="panel relative overflow-hidden">
       <div className="flex items-center justify-between gap-4 border-b border-sand/10 px-5 py-4 sm:px-6">
         <p className="mono-meta text-ash">Nominal pixel width at nadir</p>
-        <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-sand/80">
+        <p className="font-mono text-meta tracking-[0.02em] text-sand/80">
           Illustrative scale diagram
         </p>
       </div>
@@ -133,7 +135,7 @@ export function ResolutionDiagram() {
               y="231"
               width="87"
               height="87"
-              fill={withAlpha(amber, 0.035)}
+              fill={withAlpha(viirs, 0.035)}
               stroke={frame}
               strokeWidth="1.2"
             />
@@ -169,11 +171,11 @@ export function ResolutionDiagram() {
             transition={{ duration: 0.5, delay: 0.52, ease }}
             style={markerOrigin}
           >
-            <circle cx="188" cy="208" r="17" fill={withAlpha(amber, 0.08)} />
-            <circle cx="188" cy="208" r="8" fill={withAlpha(amber, 0.16)} />
-            <circle cx="188" cy="208" r="3.4" fill={amber} />
-            <line x1="188" y1="188" x2="188" y2="228" stroke={withAlpha(amber, 0.32)} />
-            <line x1="168" y1="208" x2="208" y2="208" stroke={withAlpha(amber, 0.32)} />
+            <circle cx="188" cy="208" r="17" fill={withAlpha(modis, 0.08)} />
+            <circle cx="188" cy="208" r="8" fill={withAlpha(modis, 0.16)} />
+            <circle cx="188" cy="208" r="3.4" fill={modis} />
+            <line x1="188" y1="188" x2="188" y2="228" stroke={withAlpha(modis, 0.32)} />
+            <line x1="168" y1="208" x2="208" y2="208" stroke={withAlpha(modis, 0.32)} />
           </motion.g>
 
           <motion.g
@@ -181,10 +183,10 @@ export function ResolutionDiagram() {
             transition={{ duration: 0.5, delay: 0.58, ease }}
             style={markerOrigin}
           >
-            <circle cx="449.5" cy="274.5" r="10" fill={withAlpha(amber, 0.08)} />
-            <circle cx="449.5" cy="274.5" r="2.8" fill={amber} />
-            <line x1="449.5" y1="261" x2="449.5" y2="288" stroke={withAlpha(amber, 0.32)} />
-            <line x1="436" y1="274.5" x2="463" y2="274.5" stroke={withAlpha(amber, 0.32)} />
+            <circle cx="449.5" cy="274.5" r="10" fill={withAlpha(viirs, 0.08)} />
+            <circle cx="449.5" cy="274.5" r="2.8" fill={viirs} />
+            <line x1="449.5" y1="261" x2="449.5" y2="288" stroke={withAlpha(viirs, 0.32)} />
+            <line x1="436" y1="274.5" x2="463" y2="274.5" stroke={withAlpha(viirs, 0.32)} />
           </motion.g>
 
           <motion.line
@@ -228,7 +230,7 @@ export function ResolutionDiagram() {
         </motion.svg>
       </div>
 
-      <figcaption className="border-t border-sand/10 px-5 py-4 text-[11px] leading-relaxed text-ash-dark sm:px-6">
+      <figcaption className="border-t border-sand/10 px-5 py-4 text-support leading-relaxed text-ash-dark sm:px-6">
         Pixel widths are drawn at true relative scale. By nominal area, roughly seven VIIRS I-band
         footprints fit within one 1 km MODIS pixel. This is a schematic, not an observation.
       </figcaption>

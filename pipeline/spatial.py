@@ -12,7 +12,7 @@ def assign_study_areas(records: list[dict[str, Any]], index: geometry.DistrictIn
     assigned: list[dict[str, Any]] = []
     outside_count = 0
     touch_count = 0
-    district_counts: dict[str, int] = {district_id: 0 for district_id in config.DISTRICT_ORDER}
+    district_counts: dict[str, int] = {district_id: 0 for district_id in config.REGION_ORDER}
     for record in records:
         assignment = index.assign(record["longitude"], record["latitude"])
         record["district_id"] = assignment.district_id

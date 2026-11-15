@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-14T04:36:38Z",
+  "generated_at": "2026-11-15T09:41:08Z",
   "provider": "sp",
   "product": "SP",
   "district_id": "NP-BARDIYA",
@@ -21,13 +21,16 @@
     "daynight"
   ],
   "platform_counts": {
-    "Aqua": 99,
-    "NOAA-20": 1381,
+    "Aqua": 100,
+    "NOAA-20": 1384,
     "NOAA-21": 1299,
     "Suomi-NPP": 1400,
     "Terra": 37
   },
-  "record_count": 4216,
+  "record_count": 4220,
+  "displayed_count": 4220,
+  "display_cap": 5000,
+  "display_note": "All 4,220 recorded detections for this region-year are shown.",
   "provenance": {
     "source": "NASA FIRMS active fire products (MOD14/MYD14 C6.1; VNP14IMG family)",
     "processing": "normalize -> qc -> exact district polygon assignment",
@@ -2687,6 +2690,17 @@
       "D"
     ],
     [
+      28.474,
+      81.1266,
+      "03-10",
+      "07:51",
+      "NOAA-20",
+      343.2,
+      6.0,
+      "n",
+      "D"
+    ],
+    [
       28.3648,
       81.3122,
       "03-14",
@@ -2706,6 +2720,39 @@
       334.9,
       6.6,
       "n",
+      "D"
+    ],
+    [
+      28.3648,
+      81.3122,
+      "03-14",
+      "08:16",
+      "NOAA-20",
+      339.9,
+      4.4,
+      "n",
+      "D"
+    ],
+    [
+      28.3656,
+      81.3135,
+      "03-14",
+      "08:16",
+      "NOAA-20",
+      334.9,
+      6.6,
+      "n",
+      "D"
+    ],
+    [
+      28.5346,
+      81.2461,
+      "03-14",
+      "09:37",
+      "Aqua",
+      314.2,
+      7.9,
+      72,
       "D"
     ],
     [

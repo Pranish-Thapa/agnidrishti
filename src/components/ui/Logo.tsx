@@ -16,25 +16,27 @@ export function Logo({ showTagline = true, size = 'default' }: LogoProps) {
       aria-label={`${site.name} — home`}
       className="group inline-flex items-center gap-3 text-bone"
     >
-      <LogoMark
-        className={
-          isLarge
-            ? 'h-10 w-10 text-bone transition-transform duration-500 group-hover:rotate-[-6deg]'
-            : 'h-8 w-8 text-bone transition-transform duration-500 group-hover:rotate-[-6deg]'
-        }
-      />
+      <span className="relative inline-flex items-center justify-center">
+        <LogoMark
+          className={
+            isLarge
+              ? 'h-10 w-10 text-bone transition-transform duration-500 group-hover:rotate-[-6deg]'
+              : 'h-8 w-8 text-bone transition-transform duration-500 group-hover:rotate-[-6deg]'
+          }
+        />
+      </span>
       <span className="flex flex-col leading-none">
         <span
           className={
             isLarge
-              ? 'text-[15px] font-medium tracking-[0.24em]'
-              : 'text-[12px] font-medium tracking-[0.22em] sm:text-[13px]'
+              ? 'font-display text-body font-medium tracking-[0.16em]'
+              : 'font-display text-body-sm font-medium tracking-[0.15em] sm:text-body-sm'
           }
         >
           {site.wordmark}
         </span>
         {showTagline ? (
-          <span className="mt-1.5 hidden font-mono text-[8px] uppercase tracking-[0.19em] text-ash sm:block">
+          <span className="mt-1.5 hidden text-meta font-normal tracking-[0.02em] text-ash sm:block">
             {site.tagline}
           </span>
         ) : null}

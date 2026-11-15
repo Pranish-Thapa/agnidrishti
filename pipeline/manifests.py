@@ -10,15 +10,26 @@ from typing import Any
 
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp = tempfile.mkstemp(prefix=path.name + ".", dir=str(path.parent))
-    try:
-        with open(fd, "w", encoding="utf-8") as handle:
-            json.dump(payload, handle, indent=2, ensure_ascii=False)
-            handle.write("\n")
-            handle.flush()
-        Path(tmp).replace(path)
-    finally:
-        Path(tmp).unlink(missing_ok=True)
+    import time
+
+    last_error = None
+    for _ in range(5):
+        fd, tmp = tempfile.mkstemp(prefix=path.name + ".", dir=str(path.parent))
+        try:
+            with open(fd, "w", encoding="utf-8") as handle:
+                json.dump(payload, handle, indent=2, ensure_ascii=False)
+                handle.write("\n")
+                handle.flush()
+            try:
+                Path(tmp).replace(path)
+                return
+            except PermissionError as error:
+                last_error = error
+                time.sleep(0.5)
+        finally:
+            Path(tmp).unlink(missing_ok=True)
+    if last_error is not None:
+        raise last_error
 
 
 def read_json(path: Path) -> Any:

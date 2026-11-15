@@ -8,7 +8,7 @@ import { ExplorerPage } from './pages/ExplorerPage'
 import { MethodologyPage } from './pages/MethodologyPage'
 import { AboutPage } from './pages/AboutPage'
 import { NotFoundPage } from './pages/NotFoundPage'
-
+import { CommunityPage } from './pages/CommunityPage'
 function ScrollManager() {
   const { pathname, hash } = useLocation()
 
@@ -35,12 +35,16 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   '/explorer': {
     title: 'Explorer — Agnidrishti',
     description:
-      'The Agnidrishti fire activity explorer shell. Processed MODIS and VIIRS observations will populate the calendar and map once connected.',
+      'Explore processed MODIS and VIIRS fire observations, the provisional harmonized estimate, and the evidence behind each weekly value.',
   },
   '/methodology': {
     title: 'Methodology — Agnidrishti',
     description:
       'How Agnidrishti harmonizes MODIS and VIIRS hot spot records, validates the corrected series, and keeps uncertainty visible.',
+  },
+  '/community': {
+    title: 'Community Intelligence — Agnidrishti',    description:
+      'Historical fire activity and recent satellite detections for six study areas across Nepal, Thailand, Indonesia and Myanmar. Fire-danger assessment is shown only where it has been validated.',
   },
   '/about': {
     title: 'About — Agnidrishti',
@@ -74,7 +78,7 @@ export default function App() {
     <div className="min-h-screen overflow-x-clip bg-ink">
       <a
         href="#main-content"
-        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-[2px] bg-bone px-4 py-2 text-[13px] font-medium text-ink transition-transform focus:translate-y-0"
+        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-bone px-4 py-2 text-body-sm font-medium text-ink transition-transform focus:translate-y-0"
       >
         Skip to content
       </a>
@@ -95,6 +99,7 @@ export default function App() {
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/methodology" element={<MethodologyPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/community" element={<CommunityPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </motion.div>

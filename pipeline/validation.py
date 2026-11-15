@@ -170,12 +170,20 @@ def run_independent_audit(
         "note": "zeros are recorded observations; they are kept, never filled",
     }
 
-    # 4. Sensor identity: fitted models exist per district AND per platform.
+    # 4. Sensor identity: fitted models exist per region AND per platform for
+    #    every region represented in the evaluation sample. Regions with no
+    #    standard-processing acquisition have no fitted model *by design*;
+    #    they are reported as missing coverage, never as an identity failure.
+    observed_regions = sorted({p["district_id"] for p in pairs if p.get("district_id")})
     expected_scopes = {
         f"{d}|{p}"
-        for d in config.DISTRICT_ORDER
+        for d in observed_regions
         for p in experiments.EXPERIMENT_CONFIG["modis_platforms"]
     }
+    checks["regions_with_evaluation_data"] = observed_regions
+    checks["regions_without_evaluation_data"] = [
+        region_id for region_id in config.REGION_ORDER if region_id not in observed_regions
+    ]
     identity_checks = {}
     for method, model in fitted.items():
         scopes = set(model["models"].keys())
@@ -479,7 +487,7 @@ def build_cell_pairs(
         & requested_by_sensor.get(experiments.REFERENCE_SENSOR, set())
     )
     pairs: list[dict[str, Any]] = []
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         for modis_platform in experiments.EXPERIMENT_CONFIG["modis_platforms"]:
             modis_key = (district_id, "modis", modis_platform)
             ref_key = (district_id, experiments.REFERENCE_SENSOR, experiments.REFERENCE_PLATFORM)
@@ -513,7 +521,7 @@ def run_spatial_robustness(
     train, validation = experiments.train_validation_split(pairs)
 
     districts: dict[str, Any] = {}
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         idx = [i for i, p in enumerate(validation) if p["district_id"] == district_id]
         if not idx:
             districts[district_id] = {"validation_pairs": 0, "status": "insufficient_evidence"}
@@ -557,7 +565,7 @@ def run_cell_error_analysis(
     if model is not None:
         # The district-day model is applied within each district+platform
         # scope; cell identity is carried alongside for error aggregation.
-        for district_id in config.DISTRICT_ORDER:
+        for district_id in config.REGION_ORDER:
             for modis_platform in experiments.EXPERIMENT_CONFIG["modis_platforms"]:
                 scoped = [
                     p for p in validation
@@ -622,7 +630,7 @@ def classify_reliability(
     *,
     training_months_by_district: dict[str, set[str]] | None = None,
 ) -> dict[str, Any]:
-    """Classify district × month-of-year strata using documented criteria,
+    """Classify district Ã— month-of-year strata using documented criteria,
     graded on POOLED OUT-OF-FOLD predictions from the leave-one-year-out audit
     (B4). Each out-of-fold record was predicted by a model trained without its
     year, so pooling across all 15 folds multiplies the per-stratum evidence
@@ -639,7 +647,7 @@ def classify_reliability(
     grid: dict[str, Any] = {}
     counts = {"reliable": 0, "use_with_caution": 0, "insufficient_evidence": 0, "unavailable": 0}
 
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         district_rows: dict[str, Any] = {}
         for month in [f"{m:02d}" for m in range(1, 13)]:
             stratum_records = strata.get((district_id, month), [])

@@ -15,7 +15,7 @@ export function CredibilitySection() {
               <Reveal delay={0.08}>
                 <h2 className="display mt-7 max-w-[480px] text-[clamp(2.6rem,4.6vw,4.4rem)] leading-[1] text-bone">
                   Not just a smoother graph.{' '}
-                  <em className="italic text-sand/85">A tested signal.</em>
+                  <span className="text-amber-soft">A tested signal.</span>
                 </h2>
               </Reveal>
               <Reveal delay={0.14}>
@@ -28,7 +28,7 @@ export function CredibilitySection() {
 
               <Reveal delay={0.2}>
                 <blockquote className="mt-9 border-l border-ember/60 pl-5">
-                  <p className="max-w-[420px] text-[14px] leading-[1.8] text-bone/85">
+                  <p className="max-w-[420px] text-body-sm leading-[1.8] text-bone/85">
                     Harmonized detections are not ground truth. They are an improved basis for
                     comparing satellite observations across time.
                   </p>
@@ -38,17 +38,17 @@ export function CredibilitySection() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="grid gap-x-10 sm:grid-cols-2">
+            <div className="grid gap-x-6 gap-y-2 sm:grid-cols-2">
               {principles.map((principle, index) => (
                 <Reveal key={principle.index} delay={0.04 * index}>
-                  <article className="border-t border-sand/[0.14] py-6">
-                    <p className="font-mono text-[9px] tracking-[0.18em] text-ember/80">
+                  <article className="group h-full rounded-xl border border-sand/[0.09] bg-ink-900/35 px-5 py-5 transition-colors hover:border-sand/[0.18] hover:bg-ink-900/55">
+                    <p className="font-mono text-meta tracking-[0.12em] text-amber-soft/80">
                       {principle.index}
                     </p>
-                    <h3 className="mt-2 text-[15px] font-medium leading-snug text-bone">
+                    <h3 className="mt-2.5 text-body font-medium leading-snug text-bone">
                       {principle.title}
                     </h3>
-                    <p className="mt-2.5 text-[12.5px] leading-[1.75] text-ash">
+                    <p className="mt-2.5 text-support leading-[1.75] text-ash">
                       {principle.description}
                     </p>
                   </article>
@@ -68,7 +68,7 @@ export function CredibilitySection() {
             </div>
             <div className="border-t border-sand/[0.12] py-8 md:border-l md:border-t-0 md:pl-12">
               <p className="eyebrow text-sand/75">What it is not</p>
-              <p className="mt-4 max-w-[480px] text-[13px] leading-[1.8] text-ash">
+              <p className="mt-4 max-w-[480px] text-body-sm leading-[1.8] text-ash">
                 Ground truth, a complete census of every fire, or a tool for predicting exact
                 ignition locations. Missing observations are never treated as zero fire activity.
               </p>

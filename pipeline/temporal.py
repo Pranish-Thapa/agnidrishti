@@ -43,14 +43,30 @@ def build_daily(
     all_dates: list[str],
     sensor_coverage: dict[str, dict[str, Any]],
     cell_days: dict[tuple[str, str, str, str], list[dict[str, Any]]],
+    *,
+    region_dates: dict[str, set[str]] | None = None,
 ) -> list[dict[str, Any]]:
+    """Build one observation day per date in ``all_dates``.
+
+    ``region_dates`` scopes acquisition per study area: a date a region did not
+    acquire is *missing* for that region even when another region acquired it.
+    Without it (legacy callers/tests) the sensor-level date union is used.
+
+    A platform is marked ``unavailable`` before its documented first date, so
+    Terra-only years are never reported as Aqua zero-detection days.
+    """
+
     days: list[dict[str, Any]] = []
     for date_str in sorted(all_dates):
         by_sensor: dict[str, Any] = {}
         reporting_platform_exists = False
         any_sensor_has_date = False
         for sensor_id, coverage in sensor_coverage.items():
-            if date_str not in (coverage.get("dates") or []):
+            if region_dates is not None:
+                acquired = region_dates.get(sensor_id) or set()
+                if date_str not in acquired:
+                    continue
+            elif date_str not in (coverage.get("dates") or []):
                 continue
             any_sensor_has_date = True
             platforms_out: dict[str, Any] = {}
@@ -61,7 +77,11 @@ def build_daily(
                 cell_day_count = len(cells)  # one per cell per day
                 frp = _frp_from_cells(cells)
                 platform_reporting = bool(pinfo.get("reporting"))
-                if platform_reporting:
+                first_date = (config.PLATFORM_FIRST_DATE.get(sensor_id) or {}).get(platform)
+                if first_date and date_str < first_date:
+                    platform_status = "unavailable"
+                    platform_reporting = False
+                elif platform_reporting:
                     reporting_platform_exists = True
                     platform_status = "observed_zero" if detections == 0 else "observed"
                 else:
@@ -73,7 +93,8 @@ def build_daily(
                     "cell_days": cell_day_count if platform_reporting else None,
                     "frp": frp if platform_reporting else None,
                 }
-            by_sensor[sensor_id] = {"platforms": platforms_out}
+            if platforms_out:
+                by_sensor[sensor_id] = {"platforms": platforms_out}
 
         if not any_sensor_has_date:
             status = "missing"

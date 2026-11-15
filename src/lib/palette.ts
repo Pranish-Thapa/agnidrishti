@@ -1,51 +1,65 @@
 /**
- * Agnidrishti colour tokens.
+ * Agnidrishti colour tokens — "Observation Deck" identity.
  *
- * Single source of truth for the brand palette. Tailwind colours are generated
- * from this module, and SVG illustrations import the same values so no
- * component invents its own hex codes.
+ * Deep navy ground (the satellite's cold vantage point) with warm signal-orange
+ * detections cutting through the dark, and a cool sky-blue observation channel
+ * for VIIRS-scale values. The warm/cool split mirrors the app's core question:
+ * separating the fire signal (warm) from the observation reference (cool).
  *
  * Palette narrative
- *   ink      charcoal with a cold forest undertone — page ground
- *   forest   deep and muted forest — secondary surfaces and selected sections
- *   terracotta  burnt earth — rules, selected states, "raw" series
- *   amber    warm light — interactive accents and highlights
- *   sand     dry grass and paper — secondary information
- *   bone     warm ivory — primary text
- *   ash      muted stone — supporting text
+ *   ink          deep navy-charcoal — the observation deck at night
+ *   forest       progressive navy panels — instrument surfaces
+ *   terracotta   deep signal orange — raw MODIS / danger scale
+ *   amber        vivid signal orange — interactive accents, highlights
+ *   observation  sky blue — the VIIRS reference scale (new channel)
+ *   sand         cool blue-grey — rules and hairlines
+ *   bone         cool off-white — primary readouts
+ *   ash          blue-grey — secondary readouts
  */
 export const palette = {
   ink: {
-    DEFAULT: '#0A1211',
-    950: '#0A1211',
-    900: '#0D1716',
-    850: '#111D1B',
-    800: '#152321',
-    700: '#1B2C29',
-    600: '#243734',
+    DEFAULT: '#0B1120',
+    950: '#070B14',
+    900: '#0B1120',
+    850: '#0F1729',
+    800: '#131E36',
+    700: '#1C2C4E',
+    600: '#27395F',
   },
   forest: {
-    deep: '#0F1E1D',
-    DEFAULT: '#172B2B',
-    muted: '#34483D',
-    soft: '#3F5648',
+    deep: '#0A1322',
+    DEFAULT: '#101B31',
+    muted: '#1D3357',
+    soft: '#294673',
   },
   terracotta: {
-    DEFAULT: '#A65D3F',
-    soft: '#BC7150',
-    deep: '#84462E',
+    DEFAULT: '#C2410C',
+    soft: '#EA580C',
+    deep: '#9A3412',
   },
   amber: {
-    DEFAULT: '#D28A4C',
-    soft: '#E3A56C',
-    deep: '#B06F3A',
+    DEFAULT: '#F97316',
+    soft: '#FB923C',
+    deep: '#EA580C',
   },
-  sand: '#E8D8BD',
-  bone: '#F2E8D8',
+  observation: {
+    DEFAULT: '#38BDF8',
+    soft: '#7DD3FC',
+    deep: '#0284C7',
+  },
+  danger: {
+    low: '#2F7D6A',
+    moderate: '#EAB308',
+    high: '#F59E0B',
+    very_high: '#EA580C',
+    extreme: '#DC2626',
+  },
+  sand: '#A8B6CE',
+  bone: '#F1F5F9',
   ash: {
-    DEFAULT: '#B9B2A5',
-    light: '#D3CCBD',
-    dark: '#938E83',
+    DEFAULT: '#8496B3',
+    light: '#ADBCCF',
+    dark: '#6B7D9B',
   },
 } as const
 

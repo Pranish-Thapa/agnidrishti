@@ -4,8 +4,10 @@ import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import {
   Crosshair,
+  Focus,
   Layers,
   Maximize2,
+  Minimize2,
   Minus,
   Plus,
   Search,
@@ -14,9 +16,9 @@ import {
 import { useReducedMotion } from 'framer-motion'
 import { StatusBadge } from '../ui/StatusBadge'
 import { LogoMark } from '../ui/LogoMark'
-import { getDistrictFeature, type DistrictGeometry } from '../../lib/geo'
+import { getDistrictFeature, type RegionGeometry } from '../../lib/geo'
 import { palette, withAlpha } from '../../lib/palette'
-import { studyAreaBoundarySource, studyAreas, type StudyArea, type StudyAreaId } from '../../lib/regions'
+import { studyAreaBoundarySources, studyAreas, type StudyArea } from '../../lib/regions'
 import type { DistrictYearSummary } from '../../lib/layers'
 import type { LayerId, ProviderId } from '../../lib/explorer'
 import {
@@ -35,19 +37,30 @@ type MapPanelProps = {
   years: string[]
   provider: ProviderId
   districtSummaries: (DistrictYearSummary | null)[] | null
-  onSelectDistrict: (id: StudyAreaId) => void
+  onSelectDistrict: (id: string) => void
   onYearChange: (year: string) => void
   onProviderChange: (provider: ProviderId) => void
 }
 
 type ViewMode = 'district' | 'hotspots' | 'both'
 
-const TERRACOTTA = palette.terracotta.DEFAULT
 const MAX_ZOOM = 15
-const MIN_ZOOM = 7
+// Six study areas span Nepal to Indonesia; the overview needs continental zoom.
+const MIN_ZOOM = 3
+
+/**
+ * District fill channels mirror the rest of the app: warm signal for raw
+ * MODIS, the cool observation scale for VIIRS, and the amber estimate channel
+ * for the provisional harmonized layer.
+ */
+const SIGNAL_COLORS: Record<LayerId, string> = {
+  modis: palette.terracotta.soft,
+  viirs: palette.observation.DEFAULT,
+  harmonized: palette.amber.DEFAULT,
+}
 
 const viewModes: Array<{ id: ViewMode; label: string }> = [
-  { id: 'district', label: 'District activity' },
+  { id: 'district', label: 'Area fill' },
   { id: 'hotspots', label: 'Hotspots' },
   { id: 'both', label: 'Both' },
 ]
@@ -56,6 +69,7 @@ function districtStyle(
   districtId: string,
   summaries: (DistrictYearSummary | null)[] | null,
   selectedId: string,
+  layer: LayerId,
 ): L.PathOptions {
   const selected = districtId === selectedId
   const summary = summaries?.find((s) => s?.districtId === districtId) ?? null
@@ -68,11 +82,12 @@ function districtStyle(
       fillOpacity: 0.5,
     }
   }
+  const signal = SIGNAL_COLORS[layer] ?? palette.amber.DEFAULT
   const intensity = Math.sqrt(Math.min(summary.total, maxTotal) / maxTotal)
   return {
-    color: selected ? palette.bone : withAlpha(TERRACOTTA, 0.85),
+    color: selected ? palette.bone : withAlpha(signal, 0.85),
     weight: selected ? 2.5 : 1.5,
-    fillColor: withAlpha(TERRACOTTA, 0.2 + 0.6 * intensity),
+    fillColor: withAlpha(signal, 0.2 + 0.6 * intensity),
     fillOpacity: 0.55,
   }
 }
@@ -94,7 +109,7 @@ function popupHtml(record: HotspotRecord): string {
   if (record.daynight) {
     rows.push(['Pass', record.daynight === 'D' ? 'Day' : 'Night'])
   }
-  rows.push(['District', record.districtId.replace('NP-', '')])
+  rows.push(['Study area', record.districtId])
   rows.push(['Source', 'NASA FIRMS'])
   return `<div class="agnidrishti-popup">${rows
     .map(
@@ -105,7 +120,7 @@ function popupHtml(record: HotspotRecord): string {
 }
 
 /** Ray-casting point-in-polygon over GeoJSON Polygon/MultiPolygon rings. */
-function pointInDistrict(lat: number, lng: number, geometry: DistrictGeometry): boolean {
+function pointInDistrict(lat: number, lng: number, geometry: RegionGeometry): boolean {
   const polygons: number[][][][] =
     geometry.type === 'Polygon' ? [geometry.coordinates as number[][][]] : (geometry.coordinates as number[][][][])
   let inside = false
@@ -167,6 +182,8 @@ export function MapPanel({
   selectRef.current = onSelectDistrict
   const areaRef = useRef(area)
   areaRef.current = area
+  const layerRef = useRef(layer)
+  layerRef.current = layer
   const summariesRef = useRef(districtSummaries)
   summariesRef.current = districtSummaries
   const hotspotSelectRef = useRef<(r: HotspotRecord) => void>(() => {})
@@ -184,7 +201,7 @@ export function MapPanel({
     )
   }, [query])
 
-  const selectDistrict = (id: StudyAreaId) => {
+  const selectDistrict = (id: string) => {
     onSelectDistrict(id)
     setSearchQuery('')
     setSearchFocused(false)
@@ -235,9 +252,22 @@ export function MapPanel({
     const raf = requestAnimationFrame(() => invalidate())
     const t1 = window.setTimeout(invalidate, 260)
     const t2 = window.setTimeout(invalidate, 700)
+    // The container changes width whenever it is re-parented or the viewport
+    // changes; Leaflet only re-measures when told to, so watch it directly.
+    let resizeFrame = 0
+    const observer =
+      typeof ResizeObserver === 'undefined'
+        ? null
+        : new ResizeObserver(() => {
+            cancelAnimationFrame(resizeFrame)
+            resizeFrame = requestAnimationFrame(invalidate)
+          })
+    observer?.observe(node)
     if (!expanded) {
       return () => {
         cancelAnimationFrame(raf)
+        cancelAnimationFrame(resizeFrame)
+        observer?.disconnect()
         window.clearTimeout(t1)
         window.clearTimeout(t2)
       }
@@ -255,6 +285,8 @@ export function MapPanel({
       document.removeEventListener('keydown', onKey)
       window.removeEventListener('resize', onResize)
       cancelAnimationFrame(raf)
+      cancelAnimationFrame(resizeFrame)
+      observer?.disconnect()
       window.clearTimeout(t1)
       window.clearTimeout(t2)
       requestAnimationFrame(() => invalidate())
@@ -276,6 +308,7 @@ export function MapPanel({
           (feature?.properties as { id: string } | undefined)?.id ?? '',
           summariesRef.current,
           areaRef.current.id,
+          layerRef.current,
         ),
       onEachFeature: (feature, layerInstance) => {
         const props = feature.properties as { id: string; name: string }
@@ -294,9 +327,10 @@ export function MapPanel({
         (feature?.properties as { id: string } | undefined)?.id ?? '',
         districtSummaries,
         area.id,
+        layer,
       ),
     )
-  }, [area.id, districtSummaries])
+  }, [area.id, districtSummaries, layer])
 
   // ---- District selection via map click (canvas sits above the SVG paths) ----
   useEffect(() => {
@@ -307,7 +341,7 @@ export function MapPanel({
         if (pointInDistrict(event.latlng.lat, event.latlng.lng, feature.geometry)) {
           const id = (feature.properties as { id: string }).id
           if (studyAreas.some((s) => s.id === id)) {
-            selectRef.current(id as StudyAreaId)
+            selectRef.current(id as string)
           }
           return
         }
@@ -357,9 +391,34 @@ export function MapPanel({
     map.setZoom(map.getZoom() + delta)
   }
 
-  // ---- Fit to selected district on selection change ----
+  // ---- Start on an all-six overview; zoom to an area after a selection ----
+  const hasFittedOverviewRef = useRef(false)
   useEffect(() => {
-    fitToDistrict()
+    if (hasFittedOverviewRef.current) {
+      fitToDistrict()
+      return
+    }
+    // The card can mount before Leaflet measures the host. Fitting at that
+    // moment produces a wildly zoomed view, so retry until the host has size.
+    const attemptOverview = () => {
+      const map = mapRef.current
+      const host = containerRef.current
+      if (!map || !host) return
+      // getSize() can be a stale cache from the first layout pass; measure the
+      // host directly and refresh Leaflet before computing the fit.
+      const rect = host.getBoundingClientRect()
+      if (rect.width < 80 || rect.height < 80) return
+      map.invalidateSize({ pan: false })
+      fitAllDistricts()
+      hasFittedOverviewRef.current = true
+    }
+    attemptOverview()
+    const t1 = window.setTimeout(attemptOverview, 350)
+    const t2 = window.setTimeout(attemptOverview, 1000)
+    return () => {
+      window.clearTimeout(t1)
+      window.clearTimeout(t2)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [area.id])
 
@@ -373,7 +432,7 @@ export function MapPanel({
     const controller = new AbortController()
     setHotspotsLoading(true)
     setHotspotsError(false)
-    loadHotspots(provider, year, controller.signal)
+    loadHotspots(provider, year, [area.id], controller.signal)
       .then((datasets) => {
         if (controller.signal.aborted) return
         setHotspots(datasets)
@@ -386,7 +445,7 @@ export function MapPanel({
         if (!controller.signal.aborted) setHotspotsLoading(false)
       })
     return () => controller.abort()
-  }, [showHotspots, provider, year])
+  }, [showHotspots, provider, year, area.id])
 
   // ---- Hotspot markers ----
   useEffect(() => {
@@ -405,12 +464,12 @@ export function MapPanel({
       if (!dataset) continue
       for (const record of dataset.records) {
         if (!family.includes(record.platform)) continue
-        const color = PLATFORM_COLORS[record.platform] ?? TERRACOTTA
+        const color = PLATFORM_COLORS[record.platform] ?? palette.amber.DEFAULT
         const baseRadius = markerRadius(record.frp)
         const marker = L.circleMarker([record.latitude, record.longitude], {
           renderer,
           radius: baseRadius,
-          color: withAlpha('#0A1211', 0.55),
+          color: withAlpha(palette.ink[950], 0.55),
           weight: 1,
           opacity: 0.9,
           fillColor: color,
@@ -451,39 +510,57 @@ export function MapPanel({
 
   const summaryForSelected = districtSummaries?.find((s) => s?.districtId === area.id) ?? null
 
+  // Legend counts describe the markers actually drawn for the active layer,
+  // while `total` is the full per-family count from the export. The two differ
+  // when a large region-year was capped for map legibility.
   const platformLegend = useMemo(() => {
     if (!hotspots) return null
     const counts: Record<string, number> = {}
+    let plotted = 0
     let total = 0
     for (const dataset of hotspots) {
       if (!dataset) continue
+      for (const record of dataset.records) {
+        if (!markerFamily.includes(record.platform)) continue
+        counts[record.platform] = (counts[record.platform] ?? 0) + 1
+        plotted += 1
+      }
       for (const [platform, count] of Object.entries(dataset.platformCounts)) {
         if (!markerFamily.includes(platform)) continue
-        counts[platform] = (counts[platform] ?? 0) + count
         total += count
       }
     }
-    return { counts, total }
+    return { counts, plotted, total }
   }, [hotspots, markerFamily])
 
-  const displayedHotspotCount = viewMode === 'district' ? null : (platformLegend?.total ?? null)
+  const hotspotDisplay = platformLegend
+    ? {
+        shown: platformLegend.plotted,
+        total: platformLegend.total,
+        capped: platformLegend.plotted < platformLegend.total,
+      }
+    : null
+
+  const displayedHotspotCount =
+    viewMode === 'district' ? null : (hotspotDisplay?.shown ?? platformLegend?.total ?? null)
 
   const layerExplanation =
     viewMode === 'district'
-      ? `District fill intensity aggregates the ${layerLabel} total per district for ${year ?? 'the selected year'} (${provider === 'sp' ? 'Standard Processing' : 'Near Real-Time'}). No hotspot markers are shown in this mode.`
+      ? `Area fill intensity aggregates the ${layerLabel} total per study area for ${year ?? 'the selected year'} (${provider === 'sp' ? 'Standard Processing' : 'Near Real-Time'}). No hotspot markers are shown in this mode.`
       : viewMode === 'hotspots'
         ? 'Each dot is one verified NASA FIRMS hotspot detection, coloured by platform and sized by FRP. A detection is not a unique fire.'
-        : 'District fill intensity aggregates activity per district; the dots are the underlying verified detections. On the harmonized layer the dots are the raw MODIS observations feeding the provisional estimate — harmonized values are never drawn as observed hotspots.'
+        : 'Area fill intensity aggregates activity per study area; the dots are the underlying verified detections. On the harmonized layer the dots are the raw MODIS observations feeding the provisional estimate — harmonized values are never drawn as observed hotspots.'
 
   // ---- Floating control group ----
   const controlGroup = (
-    <div className="pointer-events-auto flex flex-col overflow-hidden rounded-xl border border-sand/[0.16] bg-ink-950/[0.2] shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-md">
+    <div className="pointer-events-auto flex flex-col overflow-hidden rounded-xl border border-sand/[0.16] bg-ink-950/75 shadow-instrument-sm backdrop-blur-md">
       {[
         { label: 'Zoom map in', icon: <Plus size={15} strokeWidth={1.8} />, action: () => zoom(1) },
         { label: 'Zoom map out', icon: <Minus size={15} strokeWidth={1.8} />, action: () => zoom(-1) },
         { label: 'Reset to default view', icon: <Crosshair size={14} strokeWidth={1.8} />, action: resetView },
-        { label: 'Fit all three districts', icon: <Layers size={14} strokeWidth={1.8} />, action: fitAllDistricts },
-        { label: 'Fit map to selected district', icon: <Maximize2 size={13} strokeWidth={1.8} />, action: fitToDistrict },
+        { label: 'Fit all study areas', icon: <Layers size={14} strokeWidth={1.8} />, action: fitAllDistricts },
+        { label: 'Fit map to selected area', icon: <Focus size={14} strokeWidth={1.8} />, action: fitToDistrict },
+        { label: 'Collapse map', icon: <Minimize2 size={14} strokeWidth={1.8} />, action: () => setExpanded(false) },
       ].map((item, index) => (
         <button
           key={item.label}
@@ -504,7 +581,7 @@ export function MapPanel({
   // ---- Layer-mode segmented control ----
   const layerModeControl = (
     <div
-      className="flex overflow-hidden rounded-lg border border-sand/[0.16] bg-ink-950/[0.2] backdrop-blur-md"
+      className="flex gap-1 rounded-xl border border-sand/[0.14] bg-ink-950/60 p-1 backdrop-blur-md"
       role="group"
       aria-label="Map visualization layers"
     >
@@ -516,9 +593,11 @@ export function MapPanel({
             type="button"
             aria-pressed={active}
             onClick={() => setViewMode(mode.id)}
-            className={`px-3 py-1.5 text-[10px] uppercase tracking-[0.1em] transition-colors ${
-              active ? 'bg-ember/20 text-bone' : 'text-ash-light hover:bg-sand/[0.06] hover:text-bone'
-            } ${mode.id !== 'district' ? 'border-l border-sand/[0.12]' : ''}`}
+            className={`rounded-lg px-3 py-1 text-meta font-medium transition-[background-color,box-shadow,color] ${
+              active
+                ? 'state-selected text-bone'
+                : 'text-ash-light hover:bg-sand/[0.06] hover:text-bone'
+            }`}
           >
             {mode.label}
           </button>
@@ -529,8 +608,8 @@ export function MapPanel({
 
   // ---- Legend (expanded) ----
   const expandedLegend = (
-    <div className="pointer-events-none max-w-[240px] rounded-lg border border-sand/[0.14] bg-ink-950/[0.2] px-3 py-2.5 shadow-lg backdrop-blur-md">
-      <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-light">
+    <div className="pointer-events-none max-w-[240px] rounded-xl border border-sand/[0.14] bg-ink-950/80 px-3 py-2.5 shadow-instrument-sm backdrop-blur-md">
+      <p className="font-mono text-support tracking-[0.02em] text-ash-light">
         {layerLabel} · {provider === 'sp' ? 'SP' : 'NRT'} · {year ?? '—'}
       </p>
       {(viewMode === 'district' || viewMode === 'both') && (
@@ -539,20 +618,20 @@ export function MapPanel({
             <span
               key={a}
               className="h-2.5 w-5 border border-sand/10"
-              style={{ background: withAlpha(TERRACOTTA, a) }}
+              style={{ background: withAlpha(SIGNAL_COLORS[layer] ?? palette.amber.DEFAULT, a) }}
               aria-hidden="true"
             />
           ))}
-          <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
-            district total
+          <span className="whitespace-nowrap font-mono text-support tracking-[0.02em] text-ash-dark">
+            study-area total
           </span>
         </div>
       )}
       {(viewMode === 'hotspots' || viewMode === 'both') && (
         <div className="mt-1.5">
           {hotspotsLoading ? (
-            <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">loading detections…</p>
-          ) : platformLegend && platformLegend.total > 0 ? (
+            <p className="font-mono text-support tracking-[0.02em] text-ash-dark">loading detections…</p>
+          ) : platformLegend && platformLegend.plotted > 0 ? (
             <div className="space-y-1">
               {markerFamily
                 .filter((p) => (platformLegend.counts[p] ?? 0) > 0)
@@ -560,27 +639,37 @@ export function MapPanel({
                   <div key={p} className="flex items-center gap-1.5">
                     <span
                       className="h-2.5 w-2.5 rounded-full border border-ink/60"
-                      style={{ background: PLATFORM_COLORS[p] ?? TERRACOTTA }}
+                      style={{ background: PLATFORM_COLORS[p] ?? palette.amber.DEFAULT }}
                       aria-hidden="true"
                     />
-                    <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-light">
+                    <span className="font-mono text-support tracking-[0.02em] text-ash-light">
                       {p} · {(platformLegend.counts[p] ?? 0).toLocaleString()}
                     </span>
                   </div>
                 ))}
-              <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+              <p className="font-mono text-support tracking-[0.02em] text-ash-dark">
                 dot size = FRP · detections, not fires
               </p>
+              {hotspotDisplay?.capped && (
+                <p className="font-mono text-support leading-relaxed tracking-[0.02em] text-ash-dark">
+                  {hotspotDisplay.shown.toLocaleString()} of{' '}
+                  {hotspotDisplay.total.toLocaleString()} shown · highest FRP (map legibility)
+                </p>
+              )}
             </div>
           ) : (
-            <p className="font-mono text-[8px] uppercase leading-relaxed tracking-[0.1em] text-ash-dark">
-              {hotspotsError ? 'point records unavailable' : 'no point records for this selection'}
+            <p className="font-mono text-support leading-relaxed tracking-[0.02em] text-ash-dark">
+              {hotspotsError
+                ? 'point records unavailable'
+                : platformLegend && platformLegend.total > 0
+                  ? `no ${layerLabel} detections in the capped map display`
+                  : 'no point records for this selection'}
             </p>
           )}
         </div>
       )}
       {layer === 'harmonized' && (viewMode === 'hotspots' || viewMode === 'both') && (
-        <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+        <p className="mt-1 font-mono text-support tracking-[0.02em] text-ash-dark">
           markers = raw MODIS inputs to the estimate
         </p>
       )}
@@ -601,17 +690,19 @@ export function MapPanel({
         className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left"
       >
         <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-0.5">
-          <span className="text-[12px] font-medium text-bone">{area.name}</span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-ash-dark">
+          <span className="text-support font-medium text-bone">{area.name}</span>
+          <span className="font-mono text-support tracking-[0.02em] text-ash-dark">
             {year ?? '—'} · {provider === 'sp' ? 'SP' : 'NRT'} · {layerLabel}
           </span>
           {displayedHotspotCount !== null && (
-            <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-ember">
-              {displayedHotspotCount.toLocaleString()} hotspots shown
+            <span className="font-mono text-support tracking-[0.02em] text-ember">
+              {hotspotDisplay?.capped
+                ? `${hotspotDisplay.shown.toLocaleString()} of ${hotspotDisplay.total.toLocaleString()} hotspots shown`
+                : `${displayedHotspotCount.toLocaleString()} hotspots shown`}
             </span>
           )}
         </div>
-        <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+        <span className="shrink-0 font-mono text-support tracking-[0.02em] text-ash-light">
           {infoOpen ? 'Hide details ▾' : 'Details ▴'}
         </span>
       </button>
@@ -619,7 +710,7 @@ export function MapPanel({
         <div className="max-h-[36vh] overflow-y-auto border-t border-sand/[0.1] px-4 py-3">
           {selectedHotspot && (
             <div className="mb-3 rounded-lg border border-ember/30 bg-ember/[0.06] px-3 py-2.5">
-              <p className="font-mono text-[8px] uppercase tracking-[0.14em] text-ember">
+              <p className="font-mono text-support tracking-[0.02em] text-ember">
                 Selected hotspot · NASA FIRMS
               </p>
               <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-3">
@@ -631,42 +722,41 @@ export function MapPanel({
                   ['FRP (MW)', selectedHotspot.frp !== null ? selectedHotspot.frp.toFixed(1) : null],
                   ['Confidence', selectedHotspot.confidence !== null ? String(selectedHotspot.confidence) : null],
                   ['Pass', selectedHotspot.daynight === 'D' ? 'Day' : selectedHotspot.daynight === 'N' ? 'Night' : null],
-                  ['District', selectedHotspot.districtId.replace('NP-', '')],
+                  ['Study area', selectedHotspot.districtId],
                 ]
                   .filter(([, v]) => v !== null)
                   .map(([label, value]) => (
                     <div key={label as string}>
-                      <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">{label}</p>
-                      <p className="text-[11px] text-bone">{value}</p>
+                      <p className="font-mono text-support tracking-[0.02em] text-ash-dark">{label}</p>
+                      <p className="text-meta text-bone">{value}</p>
                     </div>
                   ))}
               </div>
-              <p className="mt-2 text-[10px] leading-relaxed text-ash-dark">
+              <p className="mt-2 text-support leading-relaxed text-ash-dark">
                 One hotspot detection — not a unique fire. Source: NASA FIRMS.
               </p>
             </div>
           )}
           <div className="grid gap-3 sm:grid-cols-3">
             <div>
-              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">Coverage</p>
-              <p className="mt-1 text-[11px] leading-relaxed text-ash-light">{coverageText}</p>
+              <p className="font-mono text-support tracking-[0.02em] text-ash-dark">Coverage</p>
+              <p className="mt-1 text-support leading-relaxed text-ash-light">{coverageText}</p>
             </div>
             <div>
-              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">Active layer</p>
-              <p className="mt-1 text-[11px] leading-relaxed text-ash-light">
+              <p className="font-mono text-support tracking-[0.02em] text-ash-dark">Active layer</p>
+              <p className="mt-1 text-support leading-relaxed text-ash-light">
                 {viewModes.find((m) => m.id === viewMode)?.label} · {layerLabel}
               </p>
             </div>
             <div>
-              <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">Boundaries</p>
-              <p className="mt-1 text-[11px] leading-relaxed text-ash-dark">
-                {studyAreaBoundarySource.label} ({studyAreaBoundarySource.license},{' '}
-                {studyAreaBoundarySource.boundaryYear}) · Tiles © OpenStreetMap
+              <p className="font-mono text-support tracking-[0.02em] text-ash-dark">Boundaries</p>
+              <p className="mt-1 text-support leading-relaxed text-ash-dark">
+                {studyAreaBoundarySources.map((src) => `${src.source} (${src.license}, ${src.boundaryYear})`).join('; ')} · Tiles © OpenStreetMap
               </p>
             </div>
           </div>
-          <p className="mt-3 text-[11px] leading-relaxed text-ash">{layerExplanation}</p>
-          <p className="mt-1.5 text-[10px] leading-relaxed text-ash-dark">
+          <p className="mt-3 text-support leading-relaxed text-ash">{layerExplanation}</p>
+          <p className="mt-1.5 text-support leading-relaxed text-ash-dark">
             Missing observations are never treated as zero; August–December were not requested in the
             historical acquisition. Detections are hotspot observations, not unique fires.
           </p>
@@ -684,10 +774,10 @@ export function MapPanel({
 
             {/* Floating top bar */}
             <div className="pointer-events-none absolute inset-x-0 top-0 z-[1100] p-2 sm:p-3">
-              <div className="pointer-events-auto mx-auto flex max-w-[1300px] flex-wrap items-center gap-2 rounded-xl border border-sand/[0.16] bg-ink-950/[0.2] px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-md">
+              <div className="instrument-bar pointer-events-auto mx-auto flex max-w-[1300px] flex-wrap items-center gap-2 rounded-2xl px-3 py-2">
                 <div className="flex items-center gap-2 pr-1">
                   <LogoMark className="h-6 w-6 text-sand" />
-                  <span className="hidden font-display text-[15px] leading-none text-bone sm:inline">
+                  <span className="hidden font-display text-body leading-none text-bone sm:inline">
                     Agnidrishti <span className="text-ash-dark">· map</span>
                   </span>
                 </div>
@@ -715,9 +805,9 @@ export function MapPanel({
                         selectDistrict(searchResults[0].id)
                       }
                     }}
-                    placeholder="Search district"
-                    aria-label="Search district or province"
-                    className="h-8 w-full rounded-lg border border-sand/[0.16] bg-ink-900 pl-8 pr-3 text-[12px] text-bone placeholder:text-ash-dark focus:border-ember/60 focus:outline-none"
+                    placeholder="Search study area"
+                    aria-label="Search study area or province"
+                    className="h-8 w-full rounded-lg border border-sand/[0.16] bg-ink-900 pl-8 pr-3 text-support text-bone placeholder:text-ash-dark focus:border-ember/60 focus:outline-none"
                   />
                   {searchFocused && query.length > 0 && (
                     <div className="absolute left-0 right-0 top-[36px] overflow-hidden rounded-lg border border-sand/[0.16] bg-ink-950/[0.7] shadow-xl backdrop-blur-md">
@@ -730,20 +820,20 @@ export function MapPanel({
                             className="flex w-full items-center justify-between px-3 py-2 text-left transition-colors hover:bg-sand/[0.07]"
                           >
                             <span>
-                              <span className="block text-[12px] text-bone">{s.name}</span>
-                              <span className="block font-mono text-[9px] uppercase tracking-[0.1em] text-ash-dark">
+                              <span className="block text-support text-bone">{s.name}</span>
+                              <span className="block font-mono text-support tracking-[0.02em] text-ash-dark">
                                 {s.province} · {s.pcode}
                               </span>
                             </span>
-                            <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ember">
+                            <span className="font-mono text-support tracking-[0.02em] text-ember">
                               select
                             </span>
                           </button>
                         ))
                       ) : (
-                        <p className="px-3 py-2.5 text-[11px] text-ash-dark">
-                          No district matches “{searchQuery}”. The map covers Banke, Bardiya and
-                          Chitwan.
+                        <p className="px-3 py-2.5 text-meta text-ash-dark">
+                          No study area matches “{searchQuery}”. The map covers six study areas in
+                          Nepal, Thailand, Indonesia and Myanmar.
                         </p>
                       )}
                     </div>
@@ -759,7 +849,7 @@ export function MapPanel({
                     id="map-year-expanded"
                     value={year ?? ''}
                     onChange={(e) => onYearChange(e.target.value)}
-                    className="h-8 rounded-lg border border-sand/[0.16] bg-ink-900 px-2 font-mono text-[11px] text-bone focus:border-ember/60 focus:outline-none"
+                    className="h-8 rounded-lg border border-sand/[0.16] bg-ink-900 px-2 font-mono text-meta text-bone focus:border-ember/60 focus:outline-none"
                     aria-label="Year"
                   >
                     {years.map((y) => (
@@ -775,7 +865,7 @@ export function MapPanel({
                     id="map-provider-expanded"
                     value={provider}
                     onChange={(e) => onProviderChange(e.target.value as ProviderId)}
-                    className="h-8 rounded-lg border border-sand/[0.16] bg-ink-900 px-2 font-mono text-[11px] uppercase text-bone focus:border-ember/60 focus:outline-none"
+                    className="h-8 rounded-lg border border-sand/[0.16] bg-ink-900 px-2 font-mono text-meta text-bone focus:border-ember/60 focus:outline-none"
                     aria-label="Processing type"
                   >
                     <option value="sp">SP</option>
@@ -790,7 +880,7 @@ export function MapPanel({
                   onClick={() => setExpanded(false)}
                   aria-label="Exit expanded map"
                   title="Exit expanded map (Esc)"
-                  className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-sand/[0.16] bg-ink-950/[0.2] text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
+                  className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-sand/[0.16] bg-ink-950/60 text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
                 >
                   <X size={15} strokeWidth={1.8} />
                 </button>
@@ -812,10 +902,10 @@ export function MapPanel({
                     type="button"
                     aria-pressed={active}
                     onClick={() => onSelectDistrict(s.id)}
-                    className={`pointer-events-auto rounded-lg border px-2.5 py-1 text-left font-mono text-[10px] uppercase tracking-[0.12em] shadow-md backdrop-blur-md transition-colors ${
+                    className={`pointer-events-auto rounded-full border px-3 py-1 text-left text-meta font-medium shadow-md backdrop-blur-md transition-[background-color,color,border-color] ${
                       active
-                        ? 'border-bone/60 bg-ink-950/[0.2] text-bone'
-                        : 'border-sand/[0.16] bg-ink-950/80 text-ash-light hover:text-bone'
+                        ? 'border-bone/50 bg-ink-950/85 text-bone'
+                        : 'border-sand/[0.16] bg-ink-950/80 text-ash-light hover:border-sand/30 hover:text-bone'
                     }`}
                   >
                     {s.name}
@@ -824,42 +914,43 @@ export function MapPanel({
               })}
             </div>
 
-            {/* Legend (desktop; the bottom panel covers the explanation on mobile) */}
-            <div className="pointer-events-none absolute bottom-[124px] left-2 z-[1100] hidden max-w-[240px] sm:left-3 sm:block">
-              {expandedLegend}
+            {/* Legend and attribution stack above the info panel, so the panel can
+                expand without covering them. */}
+            <div className="absolute inset-x-0 bottom-0 z-[1100]">
+              <div className="mx-2 mb-2 flex items-end justify-between gap-3 sm:mx-3 sm:mb-3">
+                <div className="pointer-events-none hidden max-w-[240px] sm:block">
+                  {expandedLegend}
+                </div>
+                <div className="pointer-events-none ml-auto hidden rounded bg-ink-950/80 px-2 py-0.5 font-mono text-meta text-ash-dark sm:block">
+                  ©{' '}
+                  <a
+                    href="https://www.openstreetmap.org/copyright"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="pointer-events-auto underline decoration-sand/30"
+                  >
+                    OpenStreetMap
+                  </a>{' '}
+                  contributors · OCHA COD-AB · geoBoundaries
+                </div>
+              </div>
+              {bottomPanel}
             </div>
-
-            {/* Attribution */}
-            <div className="pointer-events-none absolute bottom-[124px] right-2 z-[1100] hidden rounded bg-ink-950/80 px-2 py-0.5 font-mono text-[8px] text-ash-dark sm:right-3 sm:block">
-              ©{' '}
-              <a
-                href="https://www.openstreetmap.org/copyright"
-                target="_blank"
-                rel="noreferrer"
-                className="pointer-events-auto underline decoration-sand/30"
-              >
-                OpenStreetMap
-              </a>{' '}
-              contributors · OCHA COD-AB (HDX)
-            </div>
-
-            {/* Bottom info panel */}
-            <div className="absolute inset-x-0 bottom-0 z-[1100]">{bottomPanel}</div>
           </div>,
           document.body,
         )
       : null
 
   return (
-    <section aria-labelledby="map-heading" className="border border-sand/[0.12] bg-ink-850">
+    <section aria-labelledby="map-heading" className="card overflow-hidden">
       {expandedOverlay}
-      <div className="flex items-start justify-between gap-4 border-b border-sand/10 px-5 py-4">
+      <div className="flex items-start justify-between gap-4 border-b border-sand/[0.08] px-5 py-5 sm:px-6">
         <div className="min-w-0">
-          <p className="eyebrow text-ash-dark">Selected study area</p>
+          <p className="eyebrow text-ash">Selected study area</p>
           <h2 id="map-heading" className="mt-2 font-display text-xl text-bone">
-            {area.name} district
+            {area.name} {area.adminLevelLabel.toLowerCase()}
           </h2>
-          <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.12em] text-ash-dark">
+          <p className="mt-1 font-mono text-meta tracking-[0.03em] text-ash-dark">
             {area.province} · {area.pcode}
           </p>
         </div>
@@ -871,7 +962,7 @@ export function MapPanel({
             aria-expanded={expanded}
             aria-label="Expand map to full screen"
             title="Expand to full screen"
-            className="flex items-center gap-1.5 border border-sand/[0.14] bg-ink-950/70 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light transition-colors hover:bg-sand/[0.075] hover:text-bone"
+            className="flex items-center gap-1.5 rounded-full border border-sand/[0.14] bg-ink-950/60 px-3 py-1.5 text-meta font-medium text-ash-light transition-[background-color,color,border-color] hover:border-observation/35 hover:bg-observation/[0.07] hover:text-bone"
           >
             <Maximize2 size={12} strokeWidth={1.7} />
             Expand
@@ -879,27 +970,31 @@ export function MapPanel({
         </div>
       </div>
 
-      <div
-        className="flex gap-1 border-b border-sand/10 bg-ink-900 px-5 py-2.5"
-        role="group"
-        aria-label="Map visualization layers"
-      >
-        {viewModes.map((mode) => {
-          const active = viewMode === mode.id
-          return (
-            <button
-              key={mode.id}
-              type="button"
-              aria-pressed={active}
-              onClick={() => setViewMode(mode.id)}
-              className={`flex-1 whitespace-nowrap px-3 py-1.5 text-[10px] uppercase tracking-[0.1em] transition-colors ${
-                active ? 'state-selected text-bone' : 'text-ash-light hover:bg-sand/[0.05] hover:text-bone'
-              }`}
-            >
-              {mode.label}
-            </button>
-          )
-        })}
+      <div className="border-b border-sand/[0.08] bg-ink-900/60 px-4 py-2.5 sm:px-5">
+        <div
+          className="flex gap-1 rounded-xl border border-sand/[0.1] bg-ink-950/40 p-1"
+          role="group"
+          aria-label="Map visualization layers"
+        >
+          {viewModes.map((mode) => {
+            const active = viewMode === mode.id
+            return (
+              <button
+                key={mode.id}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setViewMode(mode.id)}
+                className={`min-h-[32px] flex-1 whitespace-nowrap rounded-lg px-3 text-meta transition-[background-color,box-shadow,color] duration-200 ${
+                  active
+                    ? 'state-selected text-bone'
+                    : 'text-ash-light hover:bg-sand/[0.05] hover:text-bone'
+                }`}
+              >
+                {mode.label}
+              </button>
+            )
+          })}
+        </div>
       </div>
 
       {/* Collapsed map host — the Leaflet container lives here when not expanded */}
@@ -908,16 +1003,16 @@ export function MapPanel({
           <div
             ref={containerRef}
             role="application"
-            aria-label={`Geographic map of the Nepal study areas. ${area.name} district is highlighted. District fill intensity shows the ${layerLabel} total for ${year ?? 'the selected year'}; fire hotspot markers show real NASA FIRMS detections when the Hotspots layer is active. OpenStreetMap tiles; OCHA COD-AB boundaries.`}
+            aria-label={`Geographic map of the six study areas. ${area.name} ${area.adminLevelLabel.toLowerCase()} is highlighted. Area fill intensity shows the ${layerLabel} total for ${year ?? 'the selected year'}; fire hotspot markers show real NASA FIRMS detections when the Hotspots layer is active. OpenStreetMap tiles; OCHA COD-AB and geoBoundaries boundaries.`}
             className="map-surface absolute inset-0 w-full"
           />
         </div>
         {expanded && (
           <div className="absolute inset-0 flex items-center justify-center bg-ink/85 px-6 text-center">
-            <p className="text-[12px] leading-relaxed text-ash">
+            <p className="text-support leading-relaxed text-ash">
               The map is open in expanded mode. Use{' '}
               <span className="text-bone">Exit</span> in the top bar (or press Esc) to return here —
-              your district, year, provider and layer selection is preserved.
+              your area, year, provider and layer selection is preserved.
             </p>
           </div>
         )}
@@ -932,10 +1027,10 @@ export function MapPanel({
                 type="button"
                 aria-pressed={active}
                 onClick={() => onSelectDistrict(s.id)}
-                className={`border px-2.5 py-1 text-left font-mono text-[9px] uppercase tracking-[0.12em] backdrop-blur-[2px] transition-colors ${
+                className={`rounded-full border px-3 py-1 text-left text-meta font-medium backdrop-blur-[2px] transition-[background-color,color,border-color] ${
                   active
-                    ? 'border-bone/60 bg-ink-950/85 text-bone'
-                    : 'border-sand/[0.14] bg-ink-950/70 text-ash-light hover:text-bone'
+                    ? 'border-bone/50 bg-ink-950/85 text-bone'
+                    : 'border-sand/[0.14] bg-ink-950/70 text-ash-light hover:border-sand/30 hover:text-bone'
                 }`}
               >
                 {s.name}
@@ -965,76 +1060,97 @@ export function MapPanel({
           <button
             type="button"
             onClick={fitToDistrict}
-            aria-label="Fit map to selected district"
+            aria-label="Fit map to selected area"
+            title="Fit map to selected area"
             className="flex h-9 w-9 items-center justify-center border-t border-sand/[0.12] text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
           >
-            <Maximize2 size={13} strokeWidth={1.8} />
+            <Focus size={14} strokeWidth={1.8} />
+          </button>
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            aria-expanded={expanded}
+            aria-label="Expand map"
+            title="Expand map to full screen"
+            className="flex h-9 w-9 items-center justify-center border-t border-sand/[0.12] text-ash-light transition-colors hover:bg-sand/[0.09] hover:text-bone"
+          >
+            <Maximize2 size={14} strokeWidth={1.8} />
           </button>
         </div>
+      </div>
 
-        {/* Legend */}
-        <div className="pointer-events-none absolute bottom-8 left-3 z-[500] max-w-[68%] rounded-lg border border-sand/[0.14] bg-ink-950/85 px-2.5 py-2 backdrop-blur-md">
-          <p className="font-mono text-[8px] uppercase tracking-[0.12em] text-ash-light">
+      {/* Legend — kept below the map so the minimized view stays unobstructed. */}
+      <div className="border-t border-sand/[0.08] bg-ink-900/60 px-4 py-3 sm:px-5">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <p className="font-mono text-support tracking-[0.02em] text-ash-light">
             {layerLabel} · {provider === 'sp' ? 'SP' : 'NRT'} · {year ?? '—'}
           </p>
           {(viewMode === 'district' || viewMode === 'both') && (
-            <div className="mt-1.5 flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5">
               {[0.1, 0.35, 0.6, 0.8].map((a) => (
                 <span
                   key={a}
                   className="h-2.5 w-5 border border-sand/10"
-                  style={{ background: withAlpha(TERRACOTTA, a) }}
+                  style={{ background: withAlpha(SIGNAL_COLORS[layer] ?? palette.amber.DEFAULT, a) }}
                   aria-hidden="true"
                 />
               ))}
-              <span className="ml-1 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
-                district total
+              <span className="ml-1 font-mono text-support tracking-[0.02em] text-ash-dark">
+                study-area total
               </span>
             </div>
           )}
           {(viewMode === 'hotspots' || viewMode === 'both') && (
-            <div className="mt-1.5">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               {hotspotsLoading ? (
-                <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                <span className="font-mono text-support tracking-[0.02em] text-ash-dark">
                   loading detections…
-                </p>
-              ) : platformLegend && platformLegend.total > 0 ? (
-                <div className="space-y-1">
-                  {markerFamily
-                    .filter((p) => (platformLegend.counts[p] ?? 0) > 0)
-                    .map((p) => (
-                      <div key={p} className="flex items-center gap-1.5">
-                        <span
-                          className="h-2.5 w-2.5 rounded-full border border-ink/60"
-                          style={{ background: PLATFORM_COLORS[p] ?? TERRACOTTA }}
-                          aria-hidden="true"
-                        />
-                        <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-light">
-                          {p} · {(platformLegend.counts[p] ?? 0).toLocaleString()}
-                        </span>
-                      </div>
-                    ))}
-                  <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
-                    dot size = FRP · detections, not fires
-                  </p>
-                </div>
+                </span>
+              ) : platformLegend && platformLegend.plotted > 0 ? (
+                markerFamily
+                  .filter((p) => (platformLegend.counts[p] ?? 0) > 0)
+                  .map((p) => (
+                    <span key={p} className="flex items-center gap-1.5">
+                      <span
+                        className="h-2.5 w-2.5 rounded-full border border-ink/60"
+                        style={{ background: PLATFORM_COLORS[p] ?? palette.amber.DEFAULT }}
+                        aria-hidden="true"
+                      />
+                      <span className="font-mono text-support tracking-[0.02em] text-ash-light">
+                        {p} · {(platformLegend.counts[p] ?? 0).toLocaleString()}
+                      </span>
+                    </span>
+                  ))
               ) : (
-                <p className="font-mono text-[8px] uppercase leading-relaxed tracking-[0.1em] text-ash-dark">
-                  {hotspotsError ? 'point records unavailable' : 'no point records for this selection'}
-                </p>
+                <span className="font-mono text-support leading-relaxed tracking-[0.02em] text-ash-dark">
+                  {hotspotsError
+                    ? 'point records unavailable'
+                    : platformLegend && platformLegend.total > 0
+                      ? `no ${layerLabel} detections in the capped map display`
+                      : 'no point records for this selection'}
+                </span>
+              )}
+              {hotspotDisplay?.capped && (hotspotDisplay.shown > 0) && (
+                <span className="w-full font-mono text-support leading-relaxed tracking-[0.02em] text-ash-dark">
+                  {hotspotDisplay.shown.toLocaleString()} of{' '}
+                  {hotspotDisplay.total.toLocaleString()} plotted · highest FRP, for legibility
+                </span>
               )}
             </div>
           )}
-          <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
-            {layer === 'harmonized' && (viewMode === 'hotspots' || viewMode === 'both')
-              ? 'markers = raw MODIS inputs to the estimate'
-              : 'real NASA FIRMS detections'}
-          </p>
         </div>
+        <p className="mt-1.5 font-mono text-support leading-relaxed tracking-[0.02em] text-ash-dark">
+          {viewMode === 'hotspots' || viewMode === 'both'
+            ? 'Dot size = FRP · detections, not fires'
+            : 'Area fill intensity aggregates activity per study area'}
+          {layer === 'harmonized' && viewMode !== 'district'
+            ? ' · markers are the raw MODIS inputs to the estimate'
+            : ''}
+        </p>
       </div>
 
-      <div className="space-y-1.5 border-t border-sand/10 px-5 py-3.5">
-        <p className="text-[11px] leading-relaxed text-ash">
+      <div className="space-y-1.5 border-t border-sand/[0.08] px-5 py-4 sm:px-6">
+        <p className="text-support leading-relaxed text-ash">
           {viewMode !== 'district' && (
             <>
               <span className="text-ash-light">Hotspot markers</span> are real NASA FIRMS detections
@@ -1044,7 +1160,7 @@ export function MapPanel({
           )}
           {viewMode !== 'hotspots' && (
             <>
-              <span className="text-ash-light">Fill intensity</span> shows each district's aggregated{' '}
+              <span className="text-ash-light">Fill intensity</span> shows each study area's aggregated{' '}
               <span className="text-ash-light">{layerLabel}</span> total for{' '}
               {year ?? 'the selected year'} (
               {provider === 'sp' ? 'Standard Processing' : 'Near Real-Time'}).{' '}
@@ -1061,9 +1177,8 @@ export function MapPanel({
             ? `${area.name} ${year}: ${summaryForSelected.total.toLocaleString()} total across ${summaryForSelected.weekCells.length} covered weeks.`
             : ''}
         </p>
-        <p className="text-[10px] leading-relaxed text-ash-dark">
-          Boundary geometry: {studyAreaBoundarySource.label} ({studyAreaBoundarySource.license},{' '}
-          {studyAreaBoundarySource.boundaryYear}). Tiles © OpenStreetMap contributors. Expand for
+        <p className="text-support leading-relaxed text-ash-dark">
+          Boundary geometry: {studyAreaBoundarySources.map((src) => `${src.source} (${src.license}, ${src.boundaryYear})`).join('; ')}. Tiles © OpenStreetMap contributors. Expand for
           the full-screen map with search, hotspot details and the information panel.
         </p>
       </div>

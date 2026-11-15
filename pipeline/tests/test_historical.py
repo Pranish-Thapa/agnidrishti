@@ -117,6 +117,34 @@ def test_dedupe_area_entries_keeps_latest_status(tmp_path: Path, monkeypatch):
     assert grouped["viirs_noaa20"] == []  # file missing -> dropped
 
 
+def test_dedupe_keeps_same_window_for_different_regions(tmp_path: Path, monkeypatch):
+    """One Area API window requested for two regions is two acquired files.
+
+    Regression: entry_id encodes sensor and window only, so keying the
+    dedupe on it alone silently dropped every region but one.
+    """
+
+    monkeypatch.setattr(config, "REPO_ROOT", tmp_path)
+
+    def regional(region_id: str) -> dict:
+        entry = chunk_entry("modis", "2024-03-01", "2024-03-05")
+        return {
+            **entry,
+            "region_id": region_id,
+            "storage_path": f"data/raw/regions/{region_id}/modis/{region_id}_2024-03-01.csv",
+        }
+
+    nepal = regional("NP-BANKE")
+    thailand = regional("TH-CHIANG-MAI")
+    for entry in (nepal, thailand):
+        path = tmp_path / entry["storage_path"]
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("x")
+
+    grouped = historical.dedupe_area_entries([nepal, thailand])
+    assert [entry["region_id"] for entry in grouped["modis"]] == ["NP-BANKE", "TH-CHIANG-MAI"]
+
+
 def test_missing_window_is_detectable():
     requested = dates_from_windows([("2024-03-01", "2024-03-31")])
     delivered = dates_from_windows([("2024-03-01", "2024-03-20")])
@@ -206,16 +234,16 @@ def test_coverage_matrix_never_fills_missing_with_zero():
         assert row["detections"] is None  # never a fabricated zero
 
 
-def test_coverage_matrix_reports_all_five_study_districts():
+def test_coverage_matrix_reports_all_six_study_regions():
     records = [make_record("modis", "Terra", "2024-04-10", district_id=d)
-               for d in config.DISTRICT_ORDER]
+               for d in config.REGION_ORDER]
     requested = {sid: set() for sid in config.SENSOR_ORDER}
     requested["modis"] = dates_from_windows([("2024-04-01", "2024-04-30")])
     availability = {sid: ("2000-11-01", "2026-08-31") for sid in config.SENSOR_ORDER}
     coverage = historical.build_coverage_matrices(
         records, requested_by_sensor=requested, availability_spans=availability
     )
-    for district in config.DISTRICT_ORDER:
+    for district in config.REGION_ORDER:
         row = _month_row(coverage, "modis", district, 2024, "Apr")
         assert row["status"] == "observed"
 

@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T20:15:48Z",
+  "generated_at": "2026-11-15T09:34:21Z",
   "provisional_thresholds": {
     "min_co_detection_days_per_month": 6,
     "min_comparable_cell_days_per_district": 10,
@@ -10,16 +10,22 @@
     "1_enough_historical_overlap": {
       "answer": true,
       "evidence": {
-        "comparable_cell_days_bbox": 3777,
+        "comparable_cell_days_bbox": 159536,
         "district_comparable_cell_days": {
           "NP-BANKE": 1069,
           "NP-BARDIYA": 1322,
-          "NP-CHITWAN": 1386
+          "NP-CHITWAN": 1386,
+          "TH-CHIANG-MAI": 11829,
+          "ID-RIAU": 11396,
+          "MM-SHAN": 132534
         },
         "districts_with_suitable_months": {
           "NP-BANKE": 18,
           "NP-BARDIYA": 29,
-          "NP-CHITWAN": 42
+          "NP-CHITWAN": 42,
+          "TH-CHIANG-MAI": 69,
+          "ID-RIAU": 85,
+          "MM-SHAN": 80
         },
         "thresholds": {
           "min_co_detection_days_per_month": 6
@@ -152,6 +158,246 @@
           "2026-02",
           "2026-03",
           "2026-04"
+        ],
+        "TH-CHIANG-MAI": [
+          "2012-01",
+          "2012-02",
+          "2012-03",
+          "2012-04",
+          "2013-01",
+          "2013-02",
+          "2013-03",
+          "2013-04",
+          "2014-01",
+          "2014-02",
+          "2014-03",
+          "2014-04",
+          "2014-05",
+          "2015-01",
+          "2015-02",
+          "2015-03",
+          "2015-04",
+          "2015-05",
+          "2016-01",
+          "2016-02",
+          "2016-03",
+          "2016-04",
+          "2016-05",
+          "2017-01",
+          "2017-02",
+          "2017-03",
+          "2017-04",
+          "2018-01",
+          "2018-02",
+          "2018-03",
+          "2018-04",
+          "2019-01",
+          "2019-02",
+          "2019-03",
+          "2019-04",
+          "2019-05",
+          "2020-01",
+          "2020-02",
+          "2020-03",
+          "2020-04",
+          "2020-05",
+          "2021-01",
+          "2021-02",
+          "2021-03",
+          "2021-04",
+          "2021-05",
+          "2022-01",
+          "2022-02",
+          "2022-03",
+          "2022-04",
+          "2022-05",
+          "2023-01",
+          "2023-02",
+          "2023-03",
+          "2023-04",
+          "2023-05",
+          "2024-01",
+          "2024-02",
+          "2024-03",
+          "2024-04",
+          "2024-05",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2026-02",
+          "2026-03",
+          "2026-04",
+          "2026-05"
+        ],
+        "ID-RIAU": [
+          "2012-01",
+          "2012-02",
+          "2012-03",
+          "2012-04",
+          "2012-05",
+          "2012-06",
+          "2013-01",
+          "2013-02",
+          "2013-03",
+          "2013-04",
+          "2013-05",
+          "2013-06",
+          "2014-01",
+          "2014-02",
+          "2014-03",
+          "2014-04",
+          "2014-05",
+          "2014-06",
+          "2015-01",
+          "2015-02",
+          "2015-03",
+          "2015-04",
+          "2015-05",
+          "2015-06",
+          "2016-01",
+          "2016-02",
+          "2016-03",
+          "2016-04",
+          "2016-05",
+          "2016-06",
+          "2017-01",
+          "2017-02",
+          "2017-03",
+          "2017-04",
+          "2017-05",
+          "2017-06",
+          "2018-01",
+          "2018-02",
+          "2018-03",
+          "2018-04",
+          "2018-05",
+          "2018-06",
+          "2019-01",
+          "2019-02",
+          "2019-03",
+          "2019-04",
+          "2019-05",
+          "2019-06",
+          "2020-01",
+          "2020-02",
+          "2020-03",
+          "2020-04",
+          "2020-05",
+          "2020-06",
+          "2021-02",
+          "2021-03",
+          "2021-04",
+          "2021-05",
+          "2021-06",
+          "2022-01",
+          "2022-02",
+          "2022-03",
+          "2022-04",
+          "2022-05",
+          "2022-06",
+          "2023-02",
+          "2023-03",
+          "2023-04",
+          "2023-05",
+          "2023-06",
+          "2024-01",
+          "2024-02",
+          "2024-03",
+          "2024-04",
+          "2024-05",
+          "2024-06",
+          "2025-02",
+          "2025-05",
+          "2025-06",
+          "2026-01",
+          "2026-02",
+          "2026-03",
+          "2026-04",
+          "2026-06",
+          "2026-07"
+        ],
+        "MM-SHAN": [
+          "2012-01",
+          "2012-02",
+          "2012-03",
+          "2012-04",
+          "2012-05",
+          "2013-01",
+          "2013-02",
+          "2013-03",
+          "2013-04",
+          "2013-05",
+          "2014-01",
+          "2014-02",
+          "2014-03",
+          "2014-04",
+          "2014-05",
+          "2015-01",
+          "2015-02",
+          "2015-03",
+          "2015-04",
+          "2015-05",
+          "2015-06",
+          "2016-01",
+          "2016-02",
+          "2016-03",
+          "2016-04",
+          "2016-05",
+          "2017-01",
+          "2017-02",
+          "2017-03",
+          "2017-04",
+          "2017-05",
+          "2018-01",
+          "2018-02",
+          "2018-03",
+          "2018-04",
+          "2018-05",
+          "2019-01",
+          "2019-02",
+          "2019-03",
+          "2019-04",
+          "2019-05",
+          "2019-06",
+          "2020-01",
+          "2020-02",
+          "2020-03",
+          "2020-04",
+          "2020-05",
+          "2020-06",
+          "2021-01",
+          "2021-02",
+          "2021-03",
+          "2021-04",
+          "2021-05",
+          "2022-01",
+          "2022-02",
+          "2022-03",
+          "2022-04",
+          "2022-05",
+          "2023-01",
+          "2023-02",
+          "2023-03",
+          "2023-04",
+          "2023-05",
+          "2023-06",
+          "2024-01",
+          "2024-02",
+          "2024-03",
+          "2024-04",
+          "2024-05",
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2026-01",
+          "2026-02",
+          "2026-03",
+          "2026-04",
+          "2026-05"
         ]
       },
       "criterion": ">= 6 MODIS-VIIRS co-detection days in the district-month"
@@ -160,7 +406,10 @@
       "answer": {
         "NP-BANKE": true,
         "NP-BARDIYA": true,
-        "NP-CHITWAN": true
+        "NP-CHITWAN": true,
+        "TH-CHIANG-MAI": true,
+        "ID-RIAU": true,
+        "MM-SHAN": true
       },
       "criterion": ">= 12 suitable months across the record (provisional)"
     },
@@ -367,6 +616,274 @@
       "2026-02": 11,
       "2026-03": 12,
       "2026-04": 11
+    },
+    "TH-CHIANG-MAI": {
+      "2012-01": 10,
+      "2012-02": 26,
+      "2012-03": 29,
+      "2012-04": 12,
+      "2012-05": 2,
+      "2013-01": 21,
+      "2013-02": 20,
+      "2013-03": 25,
+      "2013-04": 26,
+      "2013-05": 4,
+      "2014-01": 17,
+      "2014-02": 25,
+      "2014-03": 31,
+      "2014-04": 22,
+      "2014-05": 6,
+      "2015-01": 14,
+      "2015-02": 22,
+      "2015-03": 26,
+      "2015-04": 21,
+      "2015-05": 10,
+      "2015-06": 1,
+      "2016-01": 22,
+      "2016-02": 20,
+      "2016-03": 26,
+      "2016-04": 30,
+      "2016-05": 16,
+      "2017-01": 7,
+      "2017-02": 25,
+      "2017-03": 30,
+      "2017-04": 18,
+      "2017-05": 2,
+      "2018-01": 10,
+      "2018-02": 24,
+      "2018-03": 27,
+      "2018-04": 17,
+      "2018-05": 4,
+      "2019-01": 6,
+      "2019-02": 27,
+      "2019-03": 29,
+      "2019-04": 28,
+      "2019-05": 13,
+      "2019-06": 2,
+      "2020-01": 23,
+      "2020-02": 27,
+      "2020-03": 31,
+      "2020-04": 22,
+      "2020-05": 6,
+      "2020-06": 1,
+      "2021-01": 20,
+      "2021-02": 24,
+      "2021-03": 28,
+      "2021-04": 12,
+      "2021-05": 10,
+      "2022-01": 11,
+      "2022-02": 15,
+      "2022-03": 15,
+      "2022-04": 12,
+      "2022-05": 6,
+      "2023-01": 17,
+      "2023-02": 21,
+      "2023-03": 23,
+      "2023-04": 28,
+      "2023-05": 14,
+      "2023-06": 3,
+      "2024-01": 8,
+      "2024-02": 19,
+      "2024-03": 28,
+      "2024-04": 30,
+      "2024-05": 12,
+      "2024-06": 1,
+      "2025-01": 3,
+      "2025-02": 14,
+      "2025-03": 27,
+      "2025-04": 18,
+      "2025-05": 9,
+      "2026-01": 5,
+      "2026-02": 11,
+      "2026-03": 21,
+      "2026-04": 27,
+      "2026-05": 7,
+      "2026-06": 1
+    },
+    "ID-RIAU": {
+      "2012-01": 9,
+      "2012-02": 14,
+      "2012-03": 17,
+      "2012-04": 19,
+      "2012-05": 25,
+      "2012-06": 28,
+      "2013-01": 22,
+      "2013-02": 9,
+      "2013-03": 28,
+      "2013-04": 22,
+      "2013-05": 22,
+      "2013-06": 29,
+      "2014-01": 15,
+      "2014-02": 28,
+      "2014-03": 30,
+      "2014-04": 23,
+      "2014-05": 24,
+      "2014-06": 26,
+      "2015-01": 21,
+      "2015-02": 26,
+      "2015-03": 28,
+      "2015-04": 22,
+      "2015-05": 25,
+      "2015-06": 22,
+      "2016-01": 15,
+      "2016-02": 15,
+      "2016-03": 27,
+      "2016-04": 26,
+      "2016-05": 20,
+      "2016-06": 18,
+      "2017-01": 15,
+      "2017-02": 10,
+      "2017-03": 13,
+      "2017-04": 11,
+      "2017-05": 12,
+      "2017-06": 14,
+      "2018-01": 6,
+      "2018-02": 23,
+      "2018-03": 17,
+      "2018-04": 16,
+      "2018-05": 18,
+      "2018-06": 16,
+      "2019-01": 13,
+      "2019-02": 27,
+      "2019-03": 28,
+      "2019-04": 21,
+      "2019-05": 21,
+      "2019-06": 14,
+      "2020-01": 21,
+      "2020-02": 23,
+      "2020-03": 29,
+      "2020-04": 21,
+      "2020-05": 12,
+      "2020-06": 10,
+      "2021-01": 4,
+      "2021-02": 17,
+      "2021-03": 20,
+      "2021-04": 13,
+      "2021-05": 15,
+      "2021-06": 20,
+      "2022-01": 13,
+      "2022-02": 11,
+      "2022-03": 16,
+      "2022-04": 10,
+      "2022-05": 15,
+      "2022-06": 14,
+      "2023-01": 5,
+      "2023-02": 7,
+      "2023-03": 16,
+      "2023-04": 17,
+      "2023-05": 19,
+      "2023-06": 21,
+      "2024-01": 9,
+      "2024-02": 16,
+      "2024-03": 19,
+      "2024-04": 21,
+      "2024-05": 15,
+      "2024-06": 12,
+      "2025-01": 3,
+      "2025-02": 9,
+      "2025-03": 3,
+      "2025-04": 5,
+      "2025-05": 10,
+      "2025-06": 17,
+      "2026-01": 7,
+      "2026-02": 20,
+      "2026-03": 23,
+      "2026-04": 14,
+      "2026-05": 5,
+      "2026-06": 8,
+      "2026-07": 14
+    },
+    "MM-SHAN": {
+      "2012-01": 12,
+      "2012-02": 29,
+      "2012-03": 30,
+      "2012-04": 29,
+      "2012-05": 22,
+      "2012-06": 2,
+      "2013-01": 29,
+      "2013-02": 28,
+      "2013-03": 31,
+      "2013-04": 30,
+      "2013-05": 16,
+      "2013-06": 4,
+      "2014-01": 29,
+      "2014-02": 28,
+      "2014-03": 31,
+      "2014-04": 30,
+      "2014-05": 27,
+      "2014-06": 5,
+      "2015-01": 26,
+      "2015-02": 28,
+      "2015-03": 31,
+      "2015-04": 29,
+      "2015-05": 21,
+      "2015-06": 7,
+      "2016-01": 26,
+      "2016-02": 27,
+      "2016-03": 31,
+      "2016-04": 30,
+      "2016-05": 17,
+      "2016-06": 3,
+      "2017-01": 23,
+      "2017-02": 28,
+      "2017-03": 31,
+      "2017-04": 26,
+      "2017-05": 19,
+      "2017-06": 5,
+      "2018-01": 21,
+      "2018-02": 28,
+      "2018-03": 31,
+      "2018-04": 30,
+      "2018-05": 18,
+      "2018-06": 1,
+      "2019-01": 25,
+      "2019-02": 28,
+      "2019-03": 31,
+      "2019-04": 30,
+      "2019-05": 30,
+      "2019-06": 7,
+      "2020-01": 28,
+      "2020-02": 29,
+      "2020-03": 31,
+      "2020-04": 24,
+      "2020-05": 23,
+      "2020-06": 8,
+      "2021-01": 31,
+      "2021-02": 27,
+      "2021-03": 31,
+      "2021-04": 28,
+      "2021-05": 23,
+      "2021-06": 4,
+      "2022-01": 29,
+      "2022-02": 28,
+      "2022-03": 29,
+      "2022-04": 29,
+      "2022-05": 13,
+      "2022-06": 1,
+      "2023-01": 31,
+      "2023-02": 28,
+      "2023-03": 30,
+      "2023-04": 30,
+      "2023-05": 16,
+      "2023-06": 9,
+      "2024-01": 31,
+      "2024-02": 29,
+      "2024-03": 30,
+      "2024-04": 30,
+      "2024-05": 21,
+      "2024-06": 4,
+      "2025-01": 29,
+      "2025-02": 28,
+      "2025-03": 31,
+      "2025-04": 27,
+      "2025-05": 11,
+      "2025-06": 6,
+      "2026-01": 31,
+      "2026-02": 27,
+      "2026-03": 31,
+      "2026-04": 27,
+      "2026-05": 15,
+      "2026-06": 2
     }
   },
   "suitable_months_by_district": {
@@ -730,6 +1247,948 @@
       {
         "year_month": "2026-04",
         "co_detection_days": 11
+      }
+    ],
+    "TH-CHIANG-MAI": [
+      {
+        "year_month": "2012-01",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2012-02",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2012-03",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2012-04",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2013-01",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2013-02",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2013-03",
+        "co_detection_days": 25
+      },
+      {
+        "year_month": "2013-04",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2014-01",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2014-02",
+        "co_detection_days": 25
+      },
+      {
+        "year_month": "2014-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2014-04",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2014-05",
+        "co_detection_days": 6
+      },
+      {
+        "year_month": "2015-01",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2015-02",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2015-03",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2015-04",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2015-05",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2016-01",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2016-02",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2016-03",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2016-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2016-05",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2017-01",
+        "co_detection_days": 7
+      },
+      {
+        "year_month": "2017-02",
+        "co_detection_days": 25
+      },
+      {
+        "year_month": "2017-03",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2017-04",
+        "co_detection_days": 18
+      },
+      {
+        "year_month": "2018-01",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2018-02",
+        "co_detection_days": 24
+      },
+      {
+        "year_month": "2018-03",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2018-04",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2019-01",
+        "co_detection_days": 6
+      },
+      {
+        "year_month": "2019-02",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2019-03",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2019-04",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2019-05",
+        "co_detection_days": 13
+      },
+      {
+        "year_month": "2020-01",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2020-02",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2020-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2020-04",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2020-05",
+        "co_detection_days": 6
+      },
+      {
+        "year_month": "2021-01",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2021-02",
+        "co_detection_days": 24
+      },
+      {
+        "year_month": "2021-03",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2021-04",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2021-05",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2022-01",
+        "co_detection_days": 11
+      },
+      {
+        "year_month": "2022-02",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2022-03",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2022-04",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2022-05",
+        "co_detection_days": 6
+      },
+      {
+        "year_month": "2023-01",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2023-02",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2023-03",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2023-04",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2023-05",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2024-01",
+        "co_detection_days": 8
+      },
+      {
+        "year_month": "2024-02",
+        "co_detection_days": 19
+      },
+      {
+        "year_month": "2024-03",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2024-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2024-05",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2025-02",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2025-03",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2025-04",
+        "co_detection_days": 18
+      },
+      {
+        "year_month": "2025-05",
+        "co_detection_days": 9
+      },
+      {
+        "year_month": "2026-02",
+        "co_detection_days": 11
+      },
+      {
+        "year_month": "2026-03",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2026-04",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2026-05",
+        "co_detection_days": 7
+      }
+    ],
+    "ID-RIAU": [
+      {
+        "year_month": "2012-01",
+        "co_detection_days": 9
+      },
+      {
+        "year_month": "2012-02",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2012-03",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2012-04",
+        "co_detection_days": 19
+      },
+      {
+        "year_month": "2012-05",
+        "co_detection_days": 25
+      },
+      {
+        "year_month": "2012-06",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2013-01",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2013-02",
+        "co_detection_days": 9
+      },
+      {
+        "year_month": "2013-03",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2013-04",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2013-05",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2013-06",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2014-01",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2014-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2014-03",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2014-04",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2014-05",
+        "co_detection_days": 24
+      },
+      {
+        "year_month": "2014-06",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2015-01",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2015-02",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2015-03",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2015-04",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2015-05",
+        "co_detection_days": 25
+      },
+      {
+        "year_month": "2015-06",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2016-01",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2016-02",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2016-03",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2016-04",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2016-05",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2016-06",
+        "co_detection_days": 18
+      },
+      {
+        "year_month": "2017-01",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2017-02",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2017-03",
+        "co_detection_days": 13
+      },
+      {
+        "year_month": "2017-04",
+        "co_detection_days": 11
+      },
+      {
+        "year_month": "2017-05",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2017-06",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2018-01",
+        "co_detection_days": 6
+      },
+      {
+        "year_month": "2018-02",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2018-03",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2018-04",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2018-05",
+        "co_detection_days": 18
+      },
+      {
+        "year_month": "2018-06",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2019-01",
+        "co_detection_days": 13
+      },
+      {
+        "year_month": "2019-02",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2019-03",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2019-04",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2019-05",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2019-06",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2020-01",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2020-02",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2020-03",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2020-04",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2020-05",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2020-06",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2021-02",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2021-03",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2021-04",
+        "co_detection_days": 13
+      },
+      {
+        "year_month": "2021-05",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2021-06",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2022-01",
+        "co_detection_days": 13
+      },
+      {
+        "year_month": "2022-02",
+        "co_detection_days": 11
+      },
+      {
+        "year_month": "2022-03",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2022-04",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2022-05",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2022-06",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2023-02",
+        "co_detection_days": 7
+      },
+      {
+        "year_month": "2023-03",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2023-04",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2023-05",
+        "co_detection_days": 19
+      },
+      {
+        "year_month": "2023-06",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2024-01",
+        "co_detection_days": 9
+      },
+      {
+        "year_month": "2024-02",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2024-03",
+        "co_detection_days": 19
+      },
+      {
+        "year_month": "2024-04",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2024-05",
+        "co_detection_days": 15
+      },
+      {
+        "year_month": "2024-06",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2025-02",
+        "co_detection_days": 9
+      },
+      {
+        "year_month": "2025-05",
+        "co_detection_days": 10
+      },
+      {
+        "year_month": "2025-06",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2026-01",
+        "co_detection_days": 7
+      },
+      {
+        "year_month": "2026-02",
+        "co_detection_days": 20
+      },
+      {
+        "year_month": "2026-03",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2026-04",
+        "co_detection_days": 14
+      },
+      {
+        "year_month": "2026-06",
+        "co_detection_days": 8
+      },
+      {
+        "year_month": "2026-07",
+        "co_detection_days": 14
+      }
+    ],
+    "MM-SHAN": [
+      {
+        "year_month": "2012-01",
+        "co_detection_days": 12
+      },
+      {
+        "year_month": "2012-02",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2012-03",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2012-04",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2012-05",
+        "co_detection_days": 22
+      },
+      {
+        "year_month": "2013-01",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2013-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2013-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2013-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2013-05",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2014-01",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2014-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2014-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2014-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2014-05",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2015-01",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2015-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2015-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2015-04",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2015-05",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2015-06",
+        "co_detection_days": 7
+      },
+      {
+        "year_month": "2016-01",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2016-02",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2016-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2016-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2016-05",
+        "co_detection_days": 17
+      },
+      {
+        "year_month": "2017-01",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2017-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2017-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2017-04",
+        "co_detection_days": 26
+      },
+      {
+        "year_month": "2017-05",
+        "co_detection_days": 19
+      },
+      {
+        "year_month": "2018-01",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2018-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2018-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2018-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2018-05",
+        "co_detection_days": 18
+      },
+      {
+        "year_month": "2019-01",
+        "co_detection_days": 25
+      },
+      {
+        "year_month": "2019-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2019-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2019-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2019-05",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2019-06",
+        "co_detection_days": 7
+      },
+      {
+        "year_month": "2020-01",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2020-02",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2020-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2020-04",
+        "co_detection_days": 24
+      },
+      {
+        "year_month": "2020-05",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2020-06",
+        "co_detection_days": 8
+      },
+      {
+        "year_month": "2021-01",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2021-02",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2021-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2021-04",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2021-05",
+        "co_detection_days": 23
+      },
+      {
+        "year_month": "2022-01",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2022-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2022-03",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2022-04",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2022-05",
+        "co_detection_days": 13
+      },
+      {
+        "year_month": "2023-01",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2023-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2023-03",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2023-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2023-05",
+        "co_detection_days": 16
+      },
+      {
+        "year_month": "2023-06",
+        "co_detection_days": 9
+      },
+      {
+        "year_month": "2024-01",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2024-02",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2024-03",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2024-04",
+        "co_detection_days": 30
+      },
+      {
+        "year_month": "2024-05",
+        "co_detection_days": 21
+      },
+      {
+        "year_month": "2025-01",
+        "co_detection_days": 29
+      },
+      {
+        "year_month": "2025-02",
+        "co_detection_days": 28
+      },
+      {
+        "year_month": "2025-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2025-04",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2025-05",
+        "co_detection_days": 11
+      },
+      {
+        "year_month": "2025-06",
+        "co_detection_days": 6
+      },
+      {
+        "year_month": "2026-01",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2026-02",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2026-03",
+        "co_detection_days": 31
+      },
+      {
+        "year_month": "2026-04",
+        "co_detection_days": 27
+      },
+      {
+        "year_month": "2026-05",
+        "co_detection_days": 15
       }
     ]
   },

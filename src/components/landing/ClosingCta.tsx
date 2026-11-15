@@ -17,14 +17,14 @@ export function ClosingCta() {
           <SectionLabel index="05" label="Open the record" />
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="display mt-7 max-w-[680px] text-[clamp(3rem,6.6vw,6rem)] leading-[0.98] text-bone text-shadow-hero">
+          <h2 className="display mt-7 max-w-[700px] text-[clamp(3rem,6.6vw,6rem)] leading-[0.98] text-bone text-shadow-hero">
             Look beyond
             <br />
-            <em className="italic text-sand/90">the numbers.</em>
+            <span className="text-amber-soft">the numbers.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.14}>
-          <p className="mt-6 max-w-[480px] text-[15px] leading-[1.8] text-bone/70 sm:text-base">
+          <p className="mt-6 max-w-[480px] text-body leading-[1.8] text-bone/70 sm:text-base">
             Explore fire activity through a record that accounts for the satellites observing it.
           </p>
         </Reveal>
@@ -32,8 +32,9 @@ export function ClosingCta() {
           <div className="mt-9">
             <ButtonLink to="/explorer">Explore Agnidrishti</ButtonLink>
           </div>
-          <p className="mt-5 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-sand/65">
-            Explorer foundation is live. Processed data connection is in development.
+          <p className="mt-5 max-w-[430px] text-support leading-relaxed text-sand/65">
+            Explore the processed MODIS and VIIRS record, its harmonized estimate, and the evidence
+            behind every displayed value.
           </p>
         </Reveal>
       </div>

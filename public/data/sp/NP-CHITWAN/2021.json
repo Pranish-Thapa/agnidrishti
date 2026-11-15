@@ -1,13 +1,17 @@
 {
   "contract_version": "1.0.0",
   "district_id": "NP-CHITWAN",
+  "region_id": "NP-CHITWAN",
   "district": {
     "name": "Chitwan",
+    "full_name": "Chitwan District",
+    "country": "Nepal",
+    "admin_level_label": "District",
     "province": "Bagmati Province",
     "pcode": "NP0335"
   },
   "year": "2021",
-  "generated_at": "2026-11-13T20:13:03Z",
+  "generated_at": "2026-11-15T09:23:34Z",
   "provider": "area-api",
   "product": "SP",
   "sensors": [
@@ -9788,6 +9792,926 @@
           }
         }
       }
+    },
+    {
+      "date": "2021-07-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-07-31",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-08-31",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-09-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-10-31",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-11-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-01",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-02",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-03",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-04",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-05",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-06",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-07",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-08",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-09",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-10",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-11",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-12",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-13",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-14",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-15",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-16",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-17",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-18",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-19",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-20",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-21",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-22",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-23",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-24",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-25",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-26",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-27",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-28",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-29",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-30",
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "date": "2021-12-31",
+      "status": "missing",
+      "by_sensor": {}
     }
   ],
   "weeks": [
@@ -9799,19 +10723,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -9825,9 +10736,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -9836,7 +10760,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -9857,19 +10781,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -9889,9 +10800,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -9900,7 +10824,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -9921,25 +10845,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 3,
-              "cells": null,
-              "cell_days": 2,
-              "occupied_cells": 2,
-              "frp": {
-                "n": 3,
-                "sum": 14.83,
-                "mean": 4.9433,
-                "min": 3.55,
-                "max": 7.0
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -9959,8 +10864,36 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 3,
+              "cells": null,
+              "cell_days": 2,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 3,
+                "sum": 14.83,
+                "mean": 4.9433,
+                "min": 3.55,
+                "max": 7.0
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 3,
@@ -9975,15 +10908,6 @@
                 "max": 20.1
               },
               "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
             }
           }
         }
@@ -9997,25 +10921,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 5,
-              "cells": null,
-              "cell_days": 4,
-              "occupied_cells": 2,
-              "frp": {
-                "n": 5,
-                "sum": 23.17,
-                "mean": 4.634,
-                "min": 2.24,
-                "max": 6.8
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10035,9 +10940,28 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 5,
+              "cells": null,
+              "cell_days": 4,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 5,
+                "sum": 23.17,
+                "mean": 4.634,
+                "min": 2.24,
+                "max": 6.8
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -10046,7 +10970,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -10067,25 +10991,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 15,
-              "cells": null,
-              "cell_days": 9,
-              "occupied_cells": 5,
-              "frp": {
-                "n": 15,
-                "sum": 70.97,
-                "mean": 4.7313,
-                "min": 1.59,
-                "max": 8.66
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10105,9 +11010,28 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 15,
+              "cells": null,
+              "cell_days": 9,
+              "occupied_cells": 5,
+              "frp": {
+                "n": 15,
+                "sum": 70.97,
+                "mean": 4.7313,
+                "min": 1.59,
+                "max": 8.66
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -10116,7 +11040,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -10137,25 +11061,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 16,
-              "cells": null,
-              "cell_days": 10,
-              "occupied_cells": 4,
-              "frp": {
-                "n": 16,
-                "sum": 79.09,
-                "mean": 4.9431,
-                "min": 0.35,
-                "max": 9.15
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10175,8 +11080,36 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 16,
+              "cells": null,
+              "cell_days": 10,
+              "occupied_cells": 4,
+              "frp": {
+                "n": 16,
+                "sum": 79.09,
+                "mean": 4.9431,
+                "min": 0.35,
+                "max": 9.15
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 4,
@@ -10191,15 +11124,6 @@
                 "max": 15.5
               },
               "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
             }
           }
         }
@@ -10213,25 +11137,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 10,
-              "cells": null,
-              "cell_days": 6,
-              "occupied_cells": 5,
-              "frp": {
-                "n": 10,
-                "sum": 153.58,
-                "mean": 15.358,
-                "min": 2.15,
-                "max": 30.46
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10251,23 +11156,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 15,
+              "detections": 10,
               "cells": null,
-              "cell_days": 10,
-              "occupied_cells": 6,
+              "cell_days": 6,
+              "occupied_cells": 5,
               "frp": {
-                "n": 15,
-                "sum": 507.8,
-                "mean": 33.8533,
-                "min": 6.9,
-                "max": 67.9
+                "n": 10,
+                "sum": 153.58,
+                "mean": 15.358,
+                "min": 2.15,
+                "max": 30.46
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 1,
@@ -10280,6 +11189,21 @@
                 "mean": 6.0,
                 "min": 6.0,
                 "max": 6.0
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 15,
+              "cells": null,
+              "cell_days": 10,
+              "occupied_cells": 6,
+              "frp": {
+                "n": 15,
+                "sum": 507.8,
+                "mean": 33.8533,
+                "min": 6.9,
+                "max": 67.9
               },
               "days_observed": 7
             }
@@ -10295,25 +11219,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 33,
-              "cells": null,
-              "cell_days": 13,
-              "occupied_cells": 7,
-              "frp": {
-                "n": 33,
-                "sum": 283.39,
-                "mean": 8.5876,
-                "min": 1.98,
-                "max": 26.43
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10333,23 +11238,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 8,
+              "detections": 33,
               "cells": null,
-              "cell_days": 6,
-              "occupied_cells": 6,
+              "cell_days": 13,
+              "occupied_cells": 7,
               "frp": {
-                "n": 8,
-                "sum": 226.8,
-                "mean": 28.35,
-                "min": 6.1,
-                "max": 69.4
+                "n": 33,
+                "sum": 283.39,
+                "mean": 8.5876,
+                "min": 1.98,
+                "max": 26.43
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 3,
@@ -10362,6 +11271,21 @@
                 "mean": 19.9333,
                 "min": 8.4,
                 "max": 29.7
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 8,
+              "cells": null,
+              "cell_days": 6,
+              "occupied_cells": 6,
+              "frp": {
+                "n": 8,
+                "sum": 226.8,
+                "mean": 28.35,
+                "min": 6.1,
+                "max": 69.4
               },
               "days_observed": 7
             }
@@ -10377,25 +11301,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 36,
-              "cells": null,
-              "cell_days": 16,
-              "occupied_cells": 10,
-              "frp": {
-                "n": 36,
-                "sum": 353.84,
-                "mean": 9.8289,
-                "min": 0.37,
-                "max": 51.8
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10415,8 +11320,36 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 36,
+              "cells": null,
+              "cell_days": 16,
+              "occupied_cells": 10,
+              "frp": {
+                "n": 36,
+                "sum": 353.84,
+                "mean": 9.8289,
+                "min": 0.37,
+                "max": 51.8
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 8,
@@ -10431,15 +11364,6 @@
                 "max": 85.6
               },
               "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
             }
           }
         }
@@ -10453,25 +11377,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 14,
-              "cells": null,
-              "cell_days": 8,
-              "occupied_cells": 7,
-              "frp": {
-                "n": 14,
-                "sum": 126.32,
-                "mean": 9.0229,
-                "min": 0.3,
-                "max": 27.96
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10491,8 +11396,36 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 14,
+              "cells": null,
+              "cell_days": 8,
+              "occupied_cells": 7,
+              "frp": {
+                "n": 14,
+                "sum": 126.32,
+                "mean": 9.0229,
+                "min": 0.3,
+                "max": 27.96
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 7,
@@ -10507,15 +11440,6 @@
                 "max": 35.5
               },
               "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
             }
           }
         }
@@ -10529,25 +11453,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 242,
-              "cells": null,
-              "cell_days": 55,
-              "occupied_cells": 22,
-              "frp": {
-                "n": 242,
-                "sum": 1518.78,
-                "mean": 6.276,
-                "min": 0.26,
-                "max": 109.55
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10567,23 +11472,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 35,
+              "detections": 242,
               "cells": null,
-              "cell_days": 20,
-              "occupied_cells": 13,
+              "cell_days": 55,
+              "occupied_cells": 22,
               "frp": {
-                "n": 35,
-                "sum": 834.5,
-                "mean": 23.8429,
-                "min": 4.9,
-                "max": 76.0
+                "n": 242,
+                "sum": 1518.78,
+                "mean": 6.276,
+                "min": 0.26,
+                "max": 109.55
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 10,
@@ -10596,6 +11505,21 @@
                 "mean": 9.98,
                 "min": 5.1,
                 "max": 16.6
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 35,
+              "cells": null,
+              "cell_days": 20,
+              "occupied_cells": 13,
+              "frp": {
+                "n": 35,
+                "sum": 834.5,
+                "mean": 23.8429,
+                "min": 4.9,
+                "max": 76.0
               },
               "days_observed": 7
             }
@@ -10611,25 +11535,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 760,
-              "cells": null,
-              "cell_days": 122,
-              "occupied_cells": 27,
-              "frp": {
-                "n": 760,
-                "sum": 2058.39,
-                "mean": 2.7084,
-                "min": 0.16,
-                "max": 90.43
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10649,23 +11554,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 51,
+              "detections": 760,
               "cells": null,
-              "cell_days": 29,
-              "occupied_cells": 17,
+              "cell_days": 122,
+              "occupied_cells": 27,
               "frp": {
-                "n": 51,
-                "sum": 854.3,
-                "mean": 16.751,
-                "min": 4.6,
-                "max": 106.5
+                "n": 760,
+                "sum": 2058.39,
+                "mean": 2.7084,
+                "min": 0.16,
+                "max": 90.43
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 30,
@@ -10678,6 +11587,21 @@
                 "mean": 10.25,
                 "min": 4.1,
                 "max": 63.9
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 51,
+              "cells": null,
+              "cell_days": 29,
+              "occupied_cells": 17,
+              "frp": {
+                "n": 51,
+                "sum": 854.3,
+                "mean": 16.751,
+                "min": 4.6,
+                "max": 106.5
               },
               "days_observed": 7
             }
@@ -10693,25 +11617,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 696,
-              "cells": null,
-              "cell_days": 103,
-              "occupied_cells": 30,
-              "frp": {
-                "n": 696,
-                "sum": 2395.51,
-                "mean": 3.4418,
-                "min": 0.22,
-                "max": 99.07
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10731,23 +11636,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 41,
+              "detections": 696,
               "cells": null,
-              "cell_days": 20,
-              "occupied_cells": 11,
+              "cell_days": 103,
+              "occupied_cells": 30,
               "frp": {
-                "n": 41,
-                "sum": 1135.3,
-                "mean": 27.6902,
-                "min": 5.2,
-                "max": 220.3
+                "n": 696,
+                "sum": 2395.51,
+                "mean": 3.4418,
+                "min": 0.22,
+                "max": 99.07
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 46,
@@ -10760,6 +11669,21 @@
                 "mean": 11.75,
                 "min": 4.1,
                 "max": 35.2
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 41,
+              "cells": null,
+              "cell_days": 20,
+              "occupied_cells": 11,
+              "frp": {
+                "n": 41,
+                "sum": 1135.3,
+                "mean": 27.6902,
+                "min": 5.2,
+                "max": 220.3
               },
               "days_observed": 7
             }
@@ -10775,25 +11699,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 220,
-              "cells": null,
-              "cell_days": 65,
-              "occupied_cells": 25,
-              "frp": {
-                "n": 220,
-                "sum": 618.32,
-                "mean": 2.8105,
-                "min": 0.31,
-                "max": 16.39
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10813,23 +11718,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 21,
+              "detections": 220,
               "cells": null,
-              "cell_days": 12,
-              "occupied_cells": 7,
+              "cell_days": 65,
+              "occupied_cells": 25,
               "frp": {
-                "n": 21,
-                "sum": 373.6,
-                "mean": 17.7905,
-                "min": 6.7,
-                "max": 42.6
+                "n": 220,
+                "sum": 618.32,
+                "mean": 2.8105,
+                "min": 0.31,
+                "max": 16.39
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 27,
@@ -10842,6 +11751,21 @@
                 "mean": 16.6259,
                 "min": 4.1,
                 "max": 97.7
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 21,
+              "cells": null,
+              "cell_days": 12,
+              "occupied_cells": 7,
+              "frp": {
+                "n": 21,
+                "sum": 373.6,
+                "mean": 17.7905,
+                "min": 6.7,
+                "max": 42.6
               },
               "days_observed": 7
             }
@@ -10857,25 +11781,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 221,
-              "cells": null,
-              "cell_days": 53,
-              "occupied_cells": 25,
-              "frp": {
-                "n": 221,
-                "sum": 693.19,
-                "mean": 3.1366,
-                "min": 0.24,
-                "max": 21.12
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10895,23 +11800,27 @@
             }
           }
         },
-        "modis": {
+        "viirs_snpp": {
           "platforms": {
-            "Aqua": {
+            "Suomi-NPP": {
               "status": "observed",
-              "detections": 15,
+              "detections": 221,
               "cells": null,
-              "cell_days": 12,
-              "occupied_cells": 12,
+              "cell_days": 53,
+              "occupied_cells": 25,
               "frp": {
-                "n": 15,
-                "sum": 161.9,
-                "mean": 10.7933,
-                "min": 4.6,
-                "max": 26.8
+                "n": 221,
+                "sum": 693.19,
+                "mean": 3.1366,
+                "min": 0.24,
+                "max": 21.12
               },
               "days_observed": 7
-            },
+            }
+          }
+        },
+        "modis": {
+          "platforms": {
             "Terra": {
               "status": "observed",
               "detections": 6,
@@ -10924,6 +11833,21 @@
                 "mean": 8.8167,
                 "min": 5.3,
                 "max": 13.3
+              },
+              "days_observed": 7
+            },
+            "Aqua": {
+              "status": "observed",
+              "detections": 15,
+              "cells": null,
+              "cell_days": 12,
+              "occupied_cells": 12,
+              "frp": {
+                "n": 15,
+                "sum": 161.9,
+                "mean": 10.7933,
+                "min": 4.6,
+                "max": 26.8
               },
               "days_observed": 7
             }
@@ -10939,25 +11863,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 28,
-              "cells": null,
-              "cell_days": 15,
-              "occupied_cells": 12,
-              "frp": {
-                "n": 28,
-                "sum": 97.38,
-                "mean": 3.4779,
-                "min": 0.38,
-                "max": 10.41
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -10977,9 +11882,28 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 28,
+              "cells": null,
+              "cell_days": 15,
+              "occupied_cells": 12,
+              "frp": {
+                "n": 28,
+                "sum": 97.38,
+                "mean": 3.4779,
+                "min": 0.38,
+                "max": 10.41
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -10988,7 +11912,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11009,25 +11933,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 50,
-              "cells": null,
-              "cell_days": 30,
-              "occupied_cells": 19,
-              "frp": {
-                "n": 50,
-                "sum": 227.09,
-                "mean": 4.5418,
-                "min": 0.34,
-                "max": 24.18
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11047,8 +11952,36 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 50,
+              "cells": null,
+              "cell_days": 30,
+              "occupied_cells": 19,
+              "frp": {
+                "n": 50,
+                "sum": 227.09,
+                "mean": 4.5418,
+                "min": 0.34,
+                "max": 24.18
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
+            "Terra": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            },
             "Aqua": {
               "status": "observed",
               "detections": 7,
@@ -11063,15 +11996,6 @@
                 "max": 38.3
               },
               "days_observed": 7
-            },
-            "Terra": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
             }
           }
         }
@@ -11085,19 +12009,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11111,9 +12022,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11122,7 +12046,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11143,25 +12067,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed",
-              "detections": 6,
-              "cells": null,
-              "cell_days": 3,
-              "occupied_cells": 2,
-              "frp": {
-                "n": 6,
-                "sum": 29.93,
-                "mean": 4.9883,
-                "min": 0.77,
-                "max": 7.93
-              },
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11181,9 +12086,28 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed",
+              "detections": 6,
+              "cells": null,
+              "cell_days": 3,
+              "occupied_cells": 2,
+              "frp": {
+                "n": 6,
+                "sum": 29.93,
+                "mean": 4.9883,
+                "min": 0.77,
+                "max": 7.93
+              },
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11192,7 +12116,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11213,19 +12137,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11245,9 +12156,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11256,7 +12180,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11277,19 +12201,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11309,9 +12220,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11320,7 +12244,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11341,19 +12265,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11367,9 +12278,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11378,7 +12302,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11399,19 +12323,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11425,9 +12336,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11436,7 +12360,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11457,19 +12381,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11483,9 +12394,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11494,7 +12418,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11515,19 +12439,6 @@
       "days_in_week": 7,
       "status": "observed",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 7
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11541,9 +12452,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 7
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11552,7 +12476,7 @@
               "frp": null,
               "days_observed": 7
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11570,22 +12494,9 @@
       "iso_week": 26,
       "week_start": "2021-06-28",
       "week_end": "2021-07-04",
-      "days_in_week": 3,
+      "days_in_week": 7,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 3
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11599,9 +12510,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 3
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11610,7 +12534,7 @@
               "frp": null,
               "days_observed": 3
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11625,25 +12549,237 @@
     },
     {
       "iso_year": 2021,
+      "iso_week": 27,
+      "week_start": "2021-07-05",
+      "week_end": "2021-07-11",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 28,
+      "week_start": "2021-07-12",
+      "week_end": "2021-07-18",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 29,
+      "week_start": "2021-07-19",
+      "week_end": "2021-07-25",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 30,
+      "week_start": "2021-07-26",
+      "week_end": "2021-08-01",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 31,
+      "week_start": "2021-08-02",
+      "week_end": "2021-08-08",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 32,
+      "week_start": "2021-08-09",
+      "week_end": "2021-08-15",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 33,
+      "week_start": "2021-08-16",
+      "week_end": "2021-08-22",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 34,
+      "week_start": "2021-08-23",
+      "week_end": "2021-08-29",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 35,
+      "week_start": "2021-08-30",
+      "week_end": "2021-09-05",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 36,
+      "week_start": "2021-09-06",
+      "week_end": "2021-09-12",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 37,
+      "week_start": "2021-09-13",
+      "week_end": "2021-09-19",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 38,
+      "week_start": "2021-09-20",
+      "week_end": "2021-09-26",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 39,
+      "week_start": "2021-09-27",
+      "week_end": "2021-10-03",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 40,
+      "week_start": "2021-10-04",
+      "week_end": "2021-10-10",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 41,
+      "week_start": "2021-10-11",
+      "week_end": "2021-10-17",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 42,
+      "week_start": "2021-10-18",
+      "week_end": "2021-10-24",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 43,
+      "week_start": "2021-10-25",
+      "week_end": "2021-10-31",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 44,
+      "week_start": "2021-11-01",
+      "week_end": "2021-11-07",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 45,
+      "week_start": "2021-11-08",
+      "week_end": "2021-11-14",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 46,
+      "week_start": "2021-11-15",
+      "week_end": "2021-11-21",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 47,
+      "week_start": "2021-11-22",
+      "week_end": "2021-11-28",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 48,
+      "week_start": "2021-11-29",
+      "week_end": "2021-12-05",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 49,
+      "week_start": "2021-12-06",
+      "week_end": "2021-12-12",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 50,
+      "week_start": "2021-12-13",
+      "week_end": "2021-12-19",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
+      "iso_week": 51,
+      "week_start": "2021-12-20",
+      "week_end": "2021-12-26",
+      "days_in_week": 7,
+      "status": "missing",
+      "by_sensor": {}
+    },
+    {
+      "iso_year": 2021,
       "iso_week": 52,
       "week_start": "2021-12-27",
       "week_end": "2022-01-02",
-      "days_in_week": 2,
+      "days_in_week": 7,
       "status": "incomplete",
       "by_sensor": {
-        "viirs_snpp": {
-          "platforms": {
-            "Suomi-NPP": {
-              "status": "observed_zero",
-              "detections": 0,
-              "cells": null,
-              "cell_days": 0,
-              "occupied_cells": 0,
-              "frp": null,
-              "days_observed": 2
-            }
-          }
-        },
         "viirs_noaa20": {
           "platforms": {
             "NOAA-20": {
@@ -11657,9 +12793,22 @@
             }
           }
         },
+        "viirs_snpp": {
+          "platforms": {
+            "Suomi-NPP": {
+              "status": "observed_zero",
+              "detections": 0,
+              "cells": null,
+              "cell_days": 0,
+              "occupied_cells": 0,
+              "frp": null,
+              "days_observed": 2
+            }
+          }
+        },
         "modis": {
           "platforms": {
-            "Aqua": {
+            "Terra": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,
@@ -11668,7 +12817,7 @@
               "frp": null,
               "days_observed": 2
             },
-            "Terra": {
+            "Aqua": {
               "status": "observed_zero",
               "detections": 0,
               "cells": null,

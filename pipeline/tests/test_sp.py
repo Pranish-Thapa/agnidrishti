@@ -52,10 +52,12 @@ def test_nrt_sp_separation_paths():
     assert nrt["provider"]["id"] == "nrt"
     assert sp["provider"]["id"] == "area-api"
     assert nrt["study_areas"][0]["years"] == ["2026"]
-    # Historical SP processing covers Jan-Jun 2012-2026 plus July 2026.
-    assert sp["study_areas"][0]["years"][0] == "2012"
+    # Historical SP processing covers 2000-2011 (MODIS) plus Jan-Jun 2012-2026
+    # plus July 2026. Per-region years come from the published index, never a
+    # hard-coded start year.
+    assert sp["study_areas"][0]["years"][0] == "2000"
     assert sp["study_areas"][0]["years"][-1] == "2026"
-    assert len(sp["study_areas"][0]["years"]) == 15
+    assert len(sp["study_areas"][0]["years"]) == 27
 
 
 def test_sp_contract_days():

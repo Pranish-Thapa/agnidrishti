@@ -43,14 +43,22 @@ def _utc_now() -> str:
 # ---------------------------------------------------------------------------
 
 def dedupe_area_entries(entries: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
-    """Deduplicate area-api entries by entry_id (latest wins) and group by
-    sensor, dropping entries whose stored file no longer exists."""
+    """Deduplicate area-api entries per (region, entry_id), latest wins.
 
-    by_id: dict[str, dict[str, Any]] = {}
+    The Area API entry id encodes sensor and date window only, so the same
+    window requested for different study regions shares one entry_id. Keying
+    on entry_id alone made every region but the last one disappear from the
+    pipeline; the region is part of the identity of an acquired file.
+
+    Entries whose stored file no longer exists are dropped (the inventory
+    reports them separately).
+    """
+
+    by_id: dict[tuple[str | None, str], dict[str, Any]] = {}
     for entry in entries:
         if entry.get("provider") != "area-api":
             continue
-        by_id[entry["entry_id"]] = entry
+        by_id[(entry.get("region_id"), entry["entry_id"])] = entry
 
     grouped: dict[str, list[dict[str, Any]]] = {sid: [] for sid in config.SENSOR_ORDER}
     for entry in sorted(
@@ -184,12 +192,11 @@ def build_inventory() -> dict[str, Any]:
         last_avail = availability_info.get("last_available")
 
         # Dates inside the availability span that were never requested are
-        # out of acquisition scope (months Aug-Dec by design, plus any month
-        # beyond the historical window). They are neither missing nor zero.
+        # out of acquisition scope. They are neither missing nor zero.
         not_requested = 0
         if first_avail and last_avail:
-            current = date.fromisoformat(max(first_avail, "2012-01-20"))
-            last = date.fromisoformat(min(last_avail, "2026-07-31"))
+            current = date.fromisoformat(first_avail)
+            last = date.fromisoformat(last_avail)
             while current <= last:
                 if current.isoformat() not in requested:
                     not_requested += 1
@@ -222,8 +229,11 @@ def build_inventory() -> dict[str, Any]:
             "distinct_headers": [{"columns": list(h), "files": c} for h, c in headers.items()],
             "note": (
                 "A date with a file but zero rows is a genuine no-detection "
-                "observation, not missing data. Records are detections inside "
-                f"bbox 80,27,86,29.5; they are not unique fires."
+                "observation, not missing data. Requests are region-scoped: "
+                "Nepal uses the shared OCHA bbox and the three new regions use "
+                "their own buffered bounding boxes, so raw counts are not "
+                "comparable across regions without area normalisation. Records "
+                "are detections, not unique fires."
             ),
         }
 
@@ -232,8 +242,14 @@ def build_inventory() -> dict[str, Any]:
         "generated_at": _utc_now(),
         "provider": "area-api",
         "product": "SP",
-        "bbox": "80,27,86,29.5",
-        "download_window_rule": "Jan-Jun each year 2012-2026, plus July 2026 (per acquisition plan)",
+        "regions": list(config.REGION_ORDER),
+        "region_bboxes": {
+            rid: config.REGIONS[rid].bbox for rid in config.REGION_ORDER
+        },
+        "download_window_rule": (
+            "MODIS pre-2012: 2000-11-01..2011-12-31 (full months, region bbox); "
+            "post-2012: Jan-Jun each year 2012-2026 plus July 2026 (per acquisition plan)"
+        ),
         "sensors": sensors,
     }
 
@@ -242,32 +258,182 @@ def build_inventory() -> dict[str, Any]:
 # Shared record loading (single normalization pass, reused by analysis)
 # ---------------------------------------------------------------------------
 
+def filter_entries_by_window(
+    entries: list[dict[str, Any]],
+    *,
+    min_date: str | None = None,
+    max_date: str | None = None,
+) -> list[dict[str, Any]]:
+    """Keep entries whose delivered window intersects [min_date, max_date].
+
+    Filtering happens on the acquisition window *before* any file is parsed.
+    That keeps the post-2012 calibration pass from reading the pre-2012 archive
+    at all, and it never drops an entry that straddles the boundary.
+    """
+
+    out: list[dict[str, Any]] = []
+    for entry in entries:
+        window = entry.get("date_window") or {}
+        start, end = window.get("start"), window.get("end")
+        if not start or not end:
+            out.append(entry)
+            continue
+        if min_date and end < min_date:
+            continue
+        if max_date and start > max_date:
+            continue
+        out.append(entry)
+    return out
+
+
+def records_for_entries(
+    entries_by_sensor: dict[str, list[dict[str, Any]]],
+) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, Any]]:
+    """Normalize + QC + district-assign a selected set of manifest entries.
+
+    Memory-lean by design: entries are processed one acquired file at a time
+    and only records that fall inside a study area are retained. The full
+    multi-sensor archive (millions of bounding-box rows) is never held in
+    memory at once, which is what makes the 2000-2026 six-region record
+    tractable. A final cross-file duplicate pass over the retained records
+    keeps the duplicate count honest for overlapping acquisition windows.
+
+    Chunk windows are contiguous and non-overlapping, so per-file QC is
+    equivalent to a whole-record pass except for the rare re-downloaded
+    window, which the final pass catches.
+    """
+
+    boundaries = geometry.load_boundaries()
+    index = geometry.DistrictIndex(boundaries)
+
+    qc_report: dict[str, Any] = {
+        "raw_record_count": 0,
+        "invalid_coordinate_count": 0,
+        "missing_essential_field_count": defaultdict(int),
+        "invalid_timestamp_count": 0,
+        "duplicate_count": 0,
+        "excluded_by_confidence_count": 0,
+        "excluded_by_static_source_mask_count": 0,
+        "valid_record_count": 0,
+        "outside_study_area_count": 0,
+        "final_retained_record_count": 0,
+        "unknown_satellite_count": 0,
+        "boundary_touch_count": 0,
+        "frp_missing_count": 0,
+        "duplicate_key": "sensor_id, platform, acq_date, acq_time, latitude, longitude",
+        "deduplication_scope": "within sensor and platform only; MODIS/VIIRS are never merged",
+        "confidence_filtering": "disabled (no threshold applied; all confidence levels retained)",
+        "assigned_by_district": defaultdict(int),
+    }
+    assigned_all: list[dict[str, Any]] = []
+
+    for sensor_id, entries in entries_by_sensor.items():
+        for entry in entries:
+            path = config.REPO_ROOT / entry["storage_path"]
+            if not path.exists():
+                continue
+            records = normalize.normalize_file(path, sensor_id)
+            for record in records:
+                record["_source_entry"] = entry.get("entry_id")
+            clean, batch_qc = qc.run_qc(records)
+            assigned, spatial_summary = spatial.assign_study_areas(clean, index)
+            assigned_all.extend(assigned)
+            for key in (
+                "raw_record_count",
+                "invalid_coordinate_count",
+                "invalid_timestamp_count",
+                "duplicate_count",
+                "valid_record_count",
+                "unknown_satellite_count",
+                "frp_missing_count",
+            ):
+                qc_report[key] = int(qc_report.get(key, 0)) + int(batch_qc.get(key) or 0)
+            for field, count in (batch_qc.get("missing_essential_field_count") or {}).items():
+                qc_report["missing_essential_field_count"][field] += int(count)
+            qc_report["outside_study_area_count"] += int(
+                (spatial_summary or {}).get("outside_study_area_count") or 0
+            )
+            qc_report["boundary_touch_count"] += int(
+                (spatial_summary or {}).get("boundary_touch_count") or 0
+            )
+            for district_id, count in (spatial_summary or {}).get("assigned_by_district", {}).items():
+                qc_report["assigned_by_district"][district_id] += int(count)
+
+    # Cross-file duplicate pass over the retained records only. Overlapping
+    # windows are rare, so the memory cost is bounded by the study-area record
+    # count rather than the full bounding-box stream.
+    seen: set[tuple[Any, ...]] = set()
+    final_records: list[dict[str, Any]] = []
+    cross_file_duplicates = 0
+    for record in assigned_all:
+        key = (
+            record.get("sensor_id"),
+            record.get("platform"),
+            record.get("acq_date"),
+            record.get("acq_time"),
+            record.get("latitude"),
+            record.get("longitude"),
+        )
+        if key in seen:
+            record.setdefault("issues", []).append("duplicate")
+            record["valid"] = False
+            cross_file_duplicates += 1
+            continue
+        seen.add(key)
+        final_records.append(record)
+
+    if cross_file_duplicates:
+        qc_report["duplicate_count"] += cross_file_duplicates
+        qc_report["valid_record_count"] = max(
+            0, int(qc_report["valid_record_count"]) - cross_file_duplicates
+        )
+        for district_id, count in list(qc_report["assigned_by_district"].items()):
+            # Duplicate records were already counted once in the district
+            # totals; the retained set below is the authoritative count.
+            qc_report["assigned_by_district"][district_id] = 0
+        totals: dict[str, int] = defaultdict(int)
+        for record in final_records:
+            totals[record["district_id"]] += 1
+        for district_id, count in totals.items():
+            qc_report["assigned_by_district"][district_id] = count
+
+    qc_report["final_retained_record_count"] = len(final_records)
+    qc_report["missing_essential_field_count"] = dict(qc_report["missing_essential_field_count"])
+    qc_report["assigned_by_district"] = dict(qc_report["assigned_by_district"])
+    spatial_summary = {
+        "outside_study_area_count": qc_report["outside_study_area_count"],
+        "boundary_touch_count": qc_report["boundary_touch_count"],
+        "assigned_by_district": dict(qc_report["assigned_by_district"]),
+    }
+    return final_records, qc_report, spatial_summary
+
+
 def load_historical_records(
     *,
     sensors: list[str] | None = None,
+    min_date: str | None = None,
+    max_date: str | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, Any]]:
-    """Normalize + QC + district-assign all historical SP records once.
+    """Normalize + QC + district-assign historical SP records once.
 
     Returns (records, qc_report, spatial_summary). Records carry sensor_id,
     platform, acq_date/time, coordinates, frp, confidence and district_id.
+
+    ``min_date``/``max_date`` bound the acquisition windows that are parsed.
+    Calibration passes use ``min_date=2012-01-20`` so pre-2012 MODIS records
+    are never used to fit a relationship against a VIIRS observation that does
+    not exist.
     """
 
     grouped = load_area_entries()
     selected = sensors or list(config.SENSOR_ORDER)
-    boundaries = geometry.load_boundaries()
-    index = geometry.DistrictIndex(boundaries)
-
-    all_records: list[dict[str, Any]] = []
-    for sensor_id in selected:
-        for entry in grouped.get(sensor_id, []):
-            path = config.REPO_ROOT / entry["storage_path"]
-            for record in normalize.normalize_file(path, sensor_id):
-                record["_source_entry"] = entry.get("entry_id")
-                all_records.append(record)
-
-    clean, qc_report = qc.run_qc(all_records)
-    assigned, spatial_summary = spatial.assign_study_areas(clean, index)
-    return assigned, qc_report, spatial_summary
+    scoped = {
+        sensor_id: filter_entries_by_window(
+            grouped.get(sensor_id, []), min_date=min_date, max_date=max_date
+        )
+        for sensor_id in selected
+    }
+    return records_for_entries(scoped)
 
 
 # ---------------------------------------------------------------------------
@@ -282,6 +448,7 @@ def build_quality_report(
     """Phase 3 quality investigation, including the low-detection question."""
 
     by_sensor_platform: Counter[str] = Counter()
+    sensor_totals: Counter[str] = Counter()
     frp_available = 0
     frp_missing = 0
     confidence_values: dict[str, Counter[str]] = defaultdict(Counter)
@@ -292,6 +459,7 @@ def build_quality_report(
     for record in records:
         key = f"{record['sensor_id']}:{record['platform']}"
         by_sensor_platform[key] += 1
+        sensor_totals[record["sensor_id"]] += 1
         if record.get("frp") is not None:
             frp_available += 1
         else:
@@ -317,25 +485,42 @@ def build_quality_report(
         if lat_index is None or lon_index is None:
             grid_issues += 1
 
-    district_area_km2 = {"NP-BANKE": 2037, "NP-BARDIYA": 2025, "NP-CHITWAN": 2218}
     total_district = sum(district_counts.values())
 
+    records_by_region: Counter[str] = Counter()
+    records_by_year: Counter[str] = Counter()
+    records_by_region_year: dict[str, Counter[str]] = defaultdict(Counter)
+    detection_days: dict[str, set[str]] = defaultdict(set)
+    for record in records:
+        region_id = record.get("district_id")
+        year = (record.get("acq_date") or "")[:4]
+        if region_id:
+            records_by_region[region_id] += 1
+            if year:
+                records_by_region_year[region_id][year] += 1
+        if year:
+            records_by_year[year] += 1
+        if region_id and record.get("acq_date"):
+            detection_days[region_id].add(record["acq_date"])
+
+    region_area_km2 = {
+        rid: config.REGIONS[rid].area_km2 for rid in config.REGION_ORDER
+    }
     investigation = {
-        "low_district_detection_context": (
-            "The three districts cover roughly 6,280 km2, about 4% of the "
-            "80,27,86,29.5 download bbox, which also contains the adjacent "
-            "Indian Terai where fire counts are high. A small share of "
-            "in-bbox records inside the districts is therefore expected "
-            "geometrically and is verified below with exact polygon "
-            "assignment, not a bounding-box shortcut."
+        "scope_note": (
+            "Requests are region-scoped. The six study areas differ in area by "
+            "two orders of magnitude (Nepal districts ~2,000 km2; Shan State "
+            "~156,000 km2), so raw record totals are not comparable across "
+            "regions without area and observation-day normalisation."
         ),
         "bbox_record_count": qc_report.get("raw_record_count"),
-        "district_record_count": total_district,
-        "district_share_of_bbox": (
+        "region_record_count": total_district,
+        "region_share_of_raw": (
             round(total_district / qc_report["raw_record_count"], 4)
             if qc_report.get("raw_record_count") else None
         ),
-        "district_area_km2_reference": district_area_km2,
+        "region_area_km2_reference": region_area_km2,
+        "raw_totals_not_comparable_across_regions": True,
     }
 
     return {
@@ -343,6 +528,16 @@ def build_quality_report(
         "generated_at": _utc_now(),
         "qc_report": qc_report,
         "records_by_sensor_platform": dict(by_sensor_platform),
+        "records_by_sensor": dict(sorted(sensor_totals.items())),
+        "records_by_region": dict(records_by_region),
+        "records_by_year": dict(sorted(records_by_year.items())),
+        "records_by_region_year": {
+            rid: dict(sorted(counter.items()))
+            for rid, counter in sorted(records_by_region_year.items())
+        },
+        "detection_days_by_region": {
+            rid: len(days) for rid, days in sorted(detection_days.items())
+        },
         "frp": {"available": frp_available, "missing": frp_missing},
         "confidence_value_distribution": {
             key: dict(counter) for key, counter in sorted(confidence_values.items())
@@ -485,7 +680,7 @@ def build_overlap_analysis(
             overpass[platform] = {
                 "day_night_passes": passes,
                 "hour_histogram": dict(sorted(counter.items())),
-                "note": "Local overpass = UTC - 5h45m (Nepal, UTC+5:45)",
+                "note": "Times are UTC. Local overpass hour depends on the study-area time zone (Nepal UTC+5:45, Thailand UTC+7, Indonesia UTC+7, Myanmar UTC+6:30).",
             }
 
         scope = district_id or "bbox"
@@ -508,7 +703,7 @@ def build_overlap_analysis(
         "bbox_scope": overlap_block(None),
         "districts": {
             district_id: overlap_block(district_id)
-            for district_id in config.DISTRICT_ORDER
+            for district_id in config.REGION_ORDER
         },
     }
 
@@ -549,7 +744,7 @@ def build_spatial_comparability(
             platform_cell_ids[platform].add(f"{district_id}:{cell['cell_id']}")
 
     districts: dict[str, Any] = {}
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         modis_cells = district_family_cells[district_id].get("modis", set())
         viirs_cells = district_family_cells[district_id].get("viirs", set())
         modis_cd = {pair for pair in comparable_pairs if pair[0].startswith(f"{district_id}:")}
@@ -681,11 +876,25 @@ def build_coverage_matrices(
             ),
         }
 
-    years = list(range(2012, 2027))
     matrices: dict[str, Any] = {}
+    # One shared year span across sensors. A sensor that starts later still
+    # needs rows for the earlier years so they read "unavailable" rather than
+    # being absent, and a sensor with no requested dates still needs the full
+    # span so uncovered months read "not_requested" instead of disappearing.
+    span_years: set[int] = set()
     for sensor_id in config.SENSOR_ORDER:
+        span_years.update(int(day[:4]) for day in requested_by_sensor.get(sensor_id, set()))
+        first_avail, last_avail = availability_spans.get(sensor_id, (None, None))
+        if first_avail:
+            span_years.add(int(first_avail[:4]))
+        if last_avail:
+            span_years.add(int(last_avail[:4]))
+    year_span = list(range(min(span_years), max(span_years) + 1)) if span_years else []
+
+    for sensor_id in config.SENSOR_ORDER:
+        years = year_span
         sensor_matrix: dict[str, Any] = {}
-        for district_id in config.DISTRICT_ORDER:
+        for district_id in config.REGION_ORDER:
             rows = []
             for year in years:
                 for month in range(1, 13):
@@ -737,7 +946,7 @@ def build_calibration_readiness(
         bucket[record["district_id"]].add(record["acq_date"])
 
     co_detection: dict[str, Counter[str]] = {}
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         common = modis_days[district_id] & viirs_days[district_id]
         monthly: Counter[str] = Counter()
         for d in common:
@@ -745,7 +954,7 @@ def build_calibration_readiness(
         co_detection[district_id] = monthly
 
     suitable_months: dict[str, list[dict[str, Any]]] = {}
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         months = []
         for ym, days in sorted(co_detection[district_id].items()):
             if days >= MIN_CO_DETECTION_DAYS:
@@ -756,7 +965,7 @@ def build_calibration_readiness(
     for year in range(2012, 2027):
         ok = True
         for month in range(1, 7):
-            for district_id in config.DISTRICT_ORDER:
+            for district_id in config.REGION_ORDER:
                 row = next(
                     (
                         m for m in coverage["sensors"]["modis"][district_id]["months"]
@@ -784,7 +993,7 @@ def build_calibration_readiness(
     total_comparable = comparability["bbox"]["comparable_cell_days"]
     district_comparable = {
         d: comparability["districts"][d]["comparable_cell_days"]
-        for d in config.DISTRICT_ORDER
+        for d in config.REGION_ORDER
     }
 
     answers = {

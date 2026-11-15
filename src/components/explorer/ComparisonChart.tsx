@@ -2,37 +2,43 @@ import { useMemo } from 'react'
 import { Download } from 'lucide-react'
 import { computeWeekCell, weekStratum, type WeekCell } from '../../lib/layers'
 import type { HarmonizationFactors, ReliabilityGrid } from '../../lib/experiments'
+import type { BackcastArtifact } from '../../lib/backcast'
 import type { ObservationDataset } from '../../lib/observations'
 import type { LayerId } from '../../lib/explorer'
+import { palette } from '../../lib/palette'
 
 type ComparisonChartProps = {
   dataset: ObservationDataset
   districtName: string
   layer: LayerId
   factors: HarmonizationFactors | null
+  backcast?: BackcastArtifact | null
   reliabilityGrid: ReliabilityGrid | null
 }
 
 const COLORS = {
-  Terra: '#84462E', // terracotta deep
-  Aqua: '#D28A4C', // amber
-  'Suomi-NPP': '#F2E8D8', // ivory — the reference
-  estimate: '#E3A56C', // amber soft — the provisional estimate
+  Terra: palette.terracotta.soft,
+  Aqua: palette.amber.soft,
+  'Suomi-NPP': palette.observation.DEFAULT,
+  estimate: palette.amber.DEFAULT,
 }
 
 const W = 1240
-const H = 260
-const PAD = { top: 18, right: 16, bottom: 26, left: 44 }
+const H = 280
+const PAD = { top: 20, right: 16, bottom: 36, left: 56 }
 
 /**
  * Weekly overlay (B3): one chart that shows the whole problem and the fix —
  * raw Terra, raw Aqua, raw VIIRS (the reference) and the averaged harmonized
  * estimate for the selected district-year. Gaps = weeks without observation.
  */
-export function ComparisonChart({ dataset, districtName, layer, factors, reliabilityGrid }: ComparisonChartProps) {
+export function ComparisonChart({ dataset, districtName, layer, factors, backcast, reliabilityGrid }: ComparisonChartProps) {
   const cells = useMemo<WeekCell[]>(
-    () => dataset.weeks.map((w) => computeWeekCell(w, layer, dataset.district_id, factors)),
-    [dataset, layer, factors],
+    () =>
+      dataset.weeks.map((w) =>
+        computeWeekCell(w, layer, dataset.district_id, factors, backcast),
+      ),
+    [dataset, layer, factors, backcast],
   )
 
   const series = useMemo(() => {
@@ -150,18 +156,18 @@ export function ComparisonChart({ dataset, districtName, layer, factors, reliabi
   }))
 
   return (
-    <section aria-labelledby="comparison-heading" className="mt-6 border border-sand/[0.12] bg-ink-850">
+    <section aria-labelledby="comparison-heading" className="card mt-6 overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-sand/10 px-5 py-4">
         <div>
-          <p className="eyebrow text-ash-dark">Raw vs corrected</p>
-          <h2 id="comparison-heading" className="mt-2 font-display text-xl text-bone">
+          <p className="data-label">Raw vs corrected</p>
+          <h2 id="comparison-heading" className="mt-1.5 font-display text-xl text-bone">
             One view of the problem and the fix
           </h2>
         </div>
         <button
           type="button"
           onClick={downloadCsv}
-          className="flex items-center gap-1.5 border border-sand/[0.14] bg-ink-950/70 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light transition-colors hover:bg-sand/[0.075] hover:text-bone"
+          className="flex items-center gap-1.5 rounded-full border border-sand/[0.14] bg-ink-950/70 px-3 py-1.5 text-meta font-medium text-ash-light transition-[background-color,color,border-color] hover:border-observation/35 hover:bg-observation/[0.07] hover:text-bone"
         >
           <Download size={12} strokeWidth={1.7} />
           Download weekly CSV
@@ -180,26 +186,26 @@ export function ComparisonChart({ dataset, districtName, layer, factors, reliabi
           >
             {gridLines.map((g) => (
               <g key={g.y}>
-                <line x1={PAD.left} x2={W - PAD.right} y1={g.y} y2={g.y} stroke="rgba(232,216,189,0.08)" />
-                <text x={PAD.left - 6} y={g.y + 3} textAnchor="end" fontSize="8" fill="#938E83">
+                <line x1={PAD.left} x2={W - PAD.right} y1={g.y} y2={g.y} stroke="rgb(168 182 206 / 0.09)" />
+                <text x={PAD.left - 6} y={g.y + 3} textAnchor="end" fontSize="14" fill={palette.ash.dark}>
                   {g.label}
                 </text>
               </g>
             ))}
 
             {monthTicks.map((t) => (
-              <text key={t.index} x={x(t.index)} y={H - 8} textAnchor="middle" fontSize="8" fill="#938E83">
+              <text key={t.index} x={x(t.index)} y={H - 8} textAnchor="middle" fontSize="14" fill={palette.ash.dark}>
                 {t.label}
               </text>
             ))}
 
-            <polyline points={polyline(series.terra)} fill="none" stroke={COLORS.Terra} strokeWidth="1.6" />
-            <polyline points={polyline(series.aqua)} fill="none" stroke={COLORS.Aqua} strokeWidth="1.6" />
-            <polyline points={polyline(series.snpp)} fill="none" stroke={COLORS['Suomi-NPP']} strokeWidth="2" />
+            <path d={polyline(series.terra)} fill="none" stroke={COLORS.Terra} strokeWidth="1.6" />
+            <path d={polyline(series.aqua)} fill="none" stroke={COLORS.Aqua} strokeWidth="1.6" />
+            <path d={polyline(series.snpp)} fill="none" stroke={COLORS['Suomi-NPP']} strokeWidth="2" />
 
             {layer === 'harmonized' && (
-              <polyline
-                points={polyline(series.estimate)}
+              <path
+                d={polyline(series.estimate)}
                 fill="none"
                 stroke={COLORS.estimate}
                 strokeWidth="2"
@@ -212,12 +218,12 @@ export function ComparisonChart({ dataset, districtName, layer, factors, reliabi
               x2={W - PAD.right}
               y1={scale(0)}
               y2={scale(0)}
-              stroke="rgba(232,216,189,0.15)"
+              stroke="rgb(168 182 206 / 0.16)"
             />
           </svg>
         </div>
 
-        <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5 font-mono text-[9px] uppercase tracking-[0.1em] text-ash-light">
+        <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-support text-ash-light">
           <span className="flex items-center gap-1.5">
             <span className="h-0.5 w-5" style={{ background: COLORS['Suomi-NPP'] }} aria-hidden="true" />
             VIIRS Suomi-NPP (reference)
@@ -243,7 +249,7 @@ export function ComparisonChart({ dataset, districtName, layer, factors, reliabi
             </span>
           )}
         </div>
-        <p className="mt-2 text-[10px] leading-relaxed text-ash-dark">
+        <p className="mt-2 text-support leading-relaxed text-ash-dark">
           Weekly hotspot detections inside the district — not unique fires. Gaps are weeks without
           observation, never zeros. The VIIRS line is the reference scale the harmonized estimate is
           built against; on this chart the corrected estimate tracks it instead of sitting 14x below.

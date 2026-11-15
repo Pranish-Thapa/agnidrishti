@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { StatusBadge } from '../ui/StatusBadge'
+import { palette, withAlpha } from '../../lib/palette'
 import {
   loadExperimentSummary,
   type CourtMetrics,
   type ExperimentSummary,
 } from '../../lib/experiments'
+import { MethodComparison } from './MethodComparison'
 
 const methodLabels: Record<string, string> = {
   ratio: 'Ratio-based correction',
@@ -36,10 +38,10 @@ export function ResultsSection() {
 
   if (!summary) {
     return (
-      <div className="border border-sand/[0.12] bg-ink-850 p-5">
-        <p className="text-[12px] leading-relaxed text-ash-dark">
+      <div className="card p-5">
+        <p className="text-support leading-relaxed text-ash-dark">
           Experiment summary is not available in this deployment. Run{' '}
-          <code className="font-mono text-[11px] text-ash-light">python -m pipeline validate</code>{' '}
+          <code className="font-mono text-meta text-ash-light">python -m pipeline validate</code>{' '}
           to publish it.
         </p>
       </div>
@@ -52,6 +54,8 @@ export function ResultsSection() {
 
   return (
     <div className="space-y-8">
+      <MethodComparison summary={summary} showRegionTable />
+
       {/* Method Court */}
       <div>
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -62,7 +66,7 @@ export function ResultsSection() {
             {decision.outcome === 'inconclusive' ? 'Verdict: inconclusive' : decision.outcome}
           </StatusBadge>
         </div>
-        <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-ash">
+        <p className="mt-2 max-w-[640px] text-support leading-relaxed text-ash">
           All three correction methods and two simple baselines were fitted on identical training
           years ({validation.validation_years.join(', ')} held out with a {validation.purge_days}-day
           purge) and evaluated on the identical validation sample of{' '}
@@ -72,44 +76,44 @@ export function ResultsSection() {
           from both phases to prevent temporal leakage. Baselines can never be selected as the
           harmonization method — they answer whether the extra machinery is justified at all.
         </p>
-        <div className="mt-4 overflow-x-auto border border-sand/10" role="region" aria-label="Method Court metrics table" tabIndex={0}>
+        <div className="card mt-4 overflow-x-auto" role="region" aria-label="Method Court metrics table" tabIndex={0}>
           <table className="w-full min-w-[620px] border-collapse text-left">
             <thead>
               <tr className="border-b border-sand/10 bg-sand/[0.03]">
-                <th className="px-4 py-3 font-mono text-[9px] font-normal uppercase tracking-[0.14em] text-ash-dark">
+                <th className="px-4 py-3 font-mono text-meta font-normal tracking-[0.02em] text-ash-dark">
                   Predictor
                 </th>
                 {metricHeaders.map(([key, label]) => (
-                  <th key={key} className="px-4 py-3 font-mono text-[9px] font-normal uppercase tracking-[0.14em] text-ash-dark">
+                  <th key={key} className="px-4 py-3 font-mono text-meta font-normal tracking-[0.02em] text-ash-dark">
                     {label}
                   </th>
                 ))}
-                <th className="px-4 py-3 font-mono text-[9px] font-normal uppercase tracking-[0.14em] text-ash-dark">
+                <th className="px-4 py-3 font-mono text-meta font-normal tracking-[0.02em] text-ash-dark">
                   n
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-sand/[0.08] text-[12px]">
+            <tbody className="divide-y divide-sand/[0.08] text-support">
               {court.ranking.map((method, rank) => {
                 const metrics = court.metrics[method]
                 const isBaseline = metrics.is_baseline ?? false
                 return (
                   <tr key={method}>
                     <th className="px-4 py-3.5 text-left font-normal text-ash-light">
-                      <span className="font-mono text-[9px] text-ash-dark">{rank + 1}.</span>{' '}
+                      <span className="font-mono text-meta text-ash-dark">{rank + 1}.</span>{' '}
                       {methodLabels[method] ?? method}
                       {isBaseline && (
-                        <span className="ml-2 font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                        <span className="ml-2 font-mono text-meta tracking-[0.02em] text-ash-dark">
                           baseline
                         </span>
                       )}
                     </th>
                     {metricHeaders.map(([key]) => (
-                      <td key={key} className="px-4 py-3.5 font-mono text-[11px] text-ash-light">
+                      <td key={key} className="px-4 py-3.5 font-mono text-meta text-ash-light">
                         {formatMetric(metrics[key])}
                       </td>
                     ))}
-                    <td className="px-4 py-3.5 font-mono text-[11px] text-ash-dark">{metrics.n}</td>
+                    <td className="px-4 py-3.5 font-mono text-meta text-ash-dark">{metrics.n}</td>
                   </tr>
                 )
               })}
@@ -118,15 +122,15 @@ export function ResultsSection() {
         </div>
 
         {court.paired_comparisons && Object.keys(court.paired_comparisons).length > 0 && (
-          <div className="mt-4 border border-sand/[0.08] bg-ink-900 px-4 py-3">
-            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+          <div className="card-flat mt-4 px-4 py-3.5">
+            <p className="font-mono text-meta tracking-[0.02em] text-ash-light">
               Paired agreement differences (moving-block bootstrap, 90% CI)
             </p>
             <ul className="mt-2 space-y-1">
               {Object.entries(court.paired_comparisons).map(([name, block]) => {
                 const robust = !(block.ci_lower <= 0 && block.ci_upper >= 0)
                 return (
-                  <li key={name} className="font-mono text-[10px] text-ash-light">
+                  <li key={name} className="font-mono text-meta text-ash-light">
                     {name.replace(/_minus_/g, ' − ')}: {block.point >= 0 ? '+' : ''}
                     {block.point} (CI {block.ci_lower} to {block.ci_upper}){' '}
                     <span className={robust ? 'text-ember' : 'text-ash-dark'}>
@@ -136,7 +140,7 @@ export function ResultsSection() {
                 )
               })}
             </ul>
-            <p className="mt-2 text-[11px] leading-relaxed text-ash-dark">
+            <p className="mt-2 text-support leading-relaxed text-ash-dark">
               Reading: a difference whose interval spans 0 means the two predictors are
               statistically indistinguishable on this data. The seasonal average (no MODIS input)
               comparison is the important one — it shows whether MODIS adds information beyond the
@@ -146,8 +150,8 @@ export function ResultsSection() {
         )}
 
         {weekly && (
-          <div className="mt-4 border border-sand/[0.08] bg-ink-900 px-4 py-3">
-            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+          <div className="card-flat mt-4 px-4 py-3.5">
+            <p className="font-mono text-meta tracking-[0.02em] text-ash-light">
               Weekly scale — the product is a weekly calendar
             </p>
             <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -158,20 +162,20 @@ export function ResultsSection() {
                   const block = weekly[method]
                   return (
                     <div key={method}>
-                      <p className="text-[11px] text-ash">{methodLabels[method] ?? method}</p>
+                      <p className="text-meta text-ash">{methodLabels[method] ?? method}</p>
                       <p className="mt-1 font-display text-xl text-bone">
                         {block.overall.ccc !== null && block.overall.ccc !== undefined
                           ? block.overall.ccc.toFixed(3)
                           : '—'}
                       </p>
-                      <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                      <p className="font-mono text-meta tracking-[0.02em] text-ash-dark">
                         weekly agreement · {block.weekly_buckets} weeks
                       </p>
                     </div>
                   )
                 })}
             </div>
-            <p className="mt-2 text-[11px] leading-relaxed text-ash-dark">
+            <p className="mt-2 text-support leading-relaxed text-ash-dark">
               Daily agreement is the hardest scale: most district-days record zero on both sides.
               Weekly aggregation removes that noise — on held-out weeks the corrected Terra series
               reaches{' '}
@@ -182,7 +186,7 @@ export function ResultsSection() {
           </div>
         )}
 
-        <p className="mt-3 text-[11px] leading-relaxed text-ash-dark">
+        <p className="mt-3 text-support leading-relaxed text-ash-dark">
           {decision.note ?? decision.justification}
         </p>
       </div>
@@ -190,14 +194,14 @@ export function ResultsSection() {
       {/* Reliability */}
       <div>
         <h3 className="font-display text-xl text-bone">Reliability strata (district × month)</h3>
-        <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-ash">
+        <p className="mt-2 max-w-[640px] text-support leading-relaxed text-ash">
           Graded from pooled <strong className="text-ash-light">out-of-fold predictions</strong> of
           the leave-one-year-out audit (every district-week predicted by a model trained without its
           year), using documented criteria (sample size, agreement, bias) — not arbitrary labels.
           Estimates in low-evidence strata are still shown in the explorer, but drawn dimmed with a
           low-evidence marker and their typical held-out error.
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-px border border-sand/10 bg-sand/10 sm:grid-cols-4">
+        <div className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-panel border border-sand/[0.1] bg-sand/10 sm:grid-cols-4">
           {(
             [
               ['reliable', 'Reliable'],
@@ -210,17 +214,17 @@ export function ResultsSection() {
               <p className="font-display text-3xl leading-none text-bone">
                 {reliability.category_counts[key] ?? 0}
               </p>
-              <p className="mt-2 text-[11px] leading-snug text-ash">{label}</p>
+              <p className="mt-2 text-meta leading-snug text-ash">{label}</p>
             </div>
           ))}
         </div>
-        <div className="mt-4 space-y-1.5 text-[11px] leading-relaxed text-ash-dark">
+        <div className="mt-4 space-y-1.5 text-support leading-relaxed text-ash-dark">
           <p><span className="text-ash-light">Reliable</span> — enough comparable observations (&ge; 30) and strong agreement (CCC &ge; 0.50) to trust the estimate for that district-month.</p>
           <p><span className="text-ash-light">Use with caution</span> — some evidence (&ge; 10 pairs, CCC &ge; 0.30); treat the number as indicative.</p>
           <p><span className="text-ash-light">Insufficient evidence</span> — too few observations to say anything; never shown as a value.</p>
           <p><span className="text-ash-light">Unavailable</span> — the sensor did not cover that month at all.</p>
         </div>
-        <p className="mt-3 text-[11px] leading-relaxed text-ash-dark">
+        <p className="mt-3 text-support leading-relaxed text-ash-dark">
           District evidence is not equal: Chitwan's validation CCC (0.19–0.34 across methods) is well
           below Banke and Bardiya (~0.5–0.63), so Chitwan strata grade lower in the grid. A
           "reliable" stratum describes the observational evidence for that district-month — it does
@@ -238,7 +242,7 @@ export function ResultsSection() {
             <h3 className="font-display text-xl text-bone">Seam Audit — the observation gap</h3>
             <StatusBadge tone="neutral">Diagnostic · not proof of causation</StatusBadge>
           </div>
-          <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-ash">
+          <p className="mt-2 max-w-[640px] text-support leading-relaxed text-ash">
             At the very start of the joint record (Feb–Apr 2012), VIIRS recorded{' '}
             <strong className="text-ash-light">many times more detections</strong> than MODIS in the
             same districts. Each pair of bars shows one district's MODIS platform: the long bar is
@@ -259,13 +263,13 @@ export function ResultsSection() {
               return (
                 <div
                   key={`${row.district_id}-${row.modis_platform}`}
-                  className="border border-sand/[0.08] bg-ink-900 px-4 py-3"
+                  className="card-flat px-4 py-3.5"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+                    <p className="font-mono text-meta tracking-[0.02em] text-ash-light">
                       {row.district_id.replace('NP-', '')} · MODIS {row.modis_platform}
                     </p>
-                    <p className="font-mono text-[9px] text-ash-dark">
+                    <p className="font-mono text-meta text-ash-dark">
                       raw {raw.toFixed(1)}x → {after?.toFixed(2)}x after {methodName ?? 'harmonization'}
                       {logRed !== null && logRed !== undefined
                         ? ` · ${logRed.toFixed(0)}% closed on the log scale`
@@ -273,16 +277,22 @@ export function ResultsSection() {
                     </p>
                   </div>
                   <div className="mt-2 space-y-1" aria-hidden="true">
-                    <div className="h-2.5 w-full bg-sand/[0.05]">
+                    <div className="h-2.5 w-full overflow-hidden rounded-full bg-sand/[0.05]">
                       <div
-                        className="h-full"
-                        style={{ width: `${widthRaw}%`, background: 'rgba(166, 93, 63, 0.75)' }}
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${widthRaw}%`,
+                          background: withAlpha(palette.terracotta.soft, 0.75),
+                        }}
                       />
                     </div>
-                    <div className="h-2.5 w-full bg-sand/[0.05]">
+                    <div className="h-2.5 w-full overflow-hidden rounded-full bg-sand/[0.05]">
                       <div
-                        className="h-full"
-                        style={{ width: `${Math.max(widthAfter, 1)}%`, background: 'rgba(210, 138, 76, 0.85)' }}
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${Math.max(widthAfter, 1)}%`,
+                          background: withAlpha(palette.amber.DEFAULT, 0.85),
+                        }}
                       />
                     </div>
                   </div>
@@ -290,8 +300,8 @@ export function ResultsSection() {
               )
             })}
           </div>
-          <div className="mt-3 border-l border-sand/50 pl-4">
-            <p className="text-[12px] leading-relaxed text-ash">
+          <div className="mt-4 rounded-r-lg border-l-2 border-sand/30 pl-4">
+            <p className="text-support leading-relaxed text-ash">
               A residual step remains even after the best correction: harmonization reduces the
               observation gap, it does not eliminate sensor differences — the leftover factor is
               evidence that correction factors are not perfectly stable across years. Weather, real
@@ -313,7 +323,7 @@ export function ResultsSection() {
             </h3>
             <StatusBadge tone="active">Held-out validation</StatusBadge>
           </div>
-          <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-ash">
+          <p className="mt-2 max-w-[640px] text-support leading-relaxed text-ash">
             The methods were fitted with <strong className="text-ash-light">no access to 2019 and
             2022</strong>, then asked to rebuild those years from MODIS alone. The paired bars show
             the reference VIIRS monthly totals (amber) against the reconstruction (terracotta) for
@@ -331,12 +341,12 @@ export function ResultsSection() {
                     ),
                   ) || 1
                 return (
-                  <div key={year} className="border border-sand/[0.08] bg-ink-900 p-4">
+                  <div key={year} className="card-flat p-4">
                     <div className="flex items-center justify-between">
-                      <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+                      <p className="font-mono text-meta tracking-[0.02em] text-ash-light">
                         Held-out year {year}
                       </p>
-                      <p className="font-mono text-[9px] text-ash-dark">
+                      <p className="font-mono text-meta text-ash-dark">
                         CCC {block.overall.ccc?.toFixed(3)} · MAE {block.overall.mae?.toFixed(2)}
                       </p>
                     </div>
@@ -354,7 +364,7 @@ export function ResultsSection() {
                         </div>
                       ))}
                     </div>
-                    <p className="mt-2 font-mono text-[8px] uppercase leading-relaxed tracking-[0.1em] text-ash-dark">
+                    <p className="mt-2 font-mono text-support leading-relaxed tracking-[0.02em] text-ash-dark">
                       profile r = {block.profile_correlation?.toFixed(3)} (raw uncorrected MODIS:{' '}
                       {block.raw_modis_profile_correlation?.toFixed(3)}) · variation ratio{' '}
                       {block.variation_ratio_pred_over_ref?.toFixed(2)} (≈1 preserves real swings;
@@ -365,7 +375,7 @@ export function ResultsSection() {
               },
             )}
           </div>
-          <p className="mt-3 text-[12px] leading-relaxed text-ash">
+          <p className="mt-3 text-support leading-relaxed text-ash">
             Across methods: profile correlation 0.97–1.00 — the seasonal shape survives. Quantile
             mapping has the lowest MAE but the lowest variation ratio too (0.26–0.43): it flattens
             real swings, which is exactly why low error alone did not win the Method Court. Ratio and
@@ -376,12 +386,14 @@ export function ResultsSection() {
       )}
 
       {/* Scope limitation */}
-      <div className="border-l border-sand/50 pl-4">
-        <p className="text-[12px] leading-relaxed text-ash">
-          Scope reminder: the harmonized record covers January–June 2012–2026 plus July 2026.
-          August–December was not acquired and supports no claim. VIIRS is the reference scale, not
-          ground truth; harmonized values are VIIRS-equivalent estimates with residual bias
-          reported above. Detections are not unique fires.
+      <div className="rounded-r-lg border-l-2 border-sand/30 pl-4">
+        <p className="text-support leading-relaxed text-ash">
+          Scope reminder: the post-2012 harmonized record covers January–June 2012–2026 plus July
+          2026. August–December 2012+ was not acquired and supports no claim. Pre-2012 MODIS
+          (Terra 2000–2011, Aqua 2002–2011) is estimated only where the regional transferability
+          decision is supported or limited. VIIRS is the reference scale, not ground truth;
+          harmonized values are VIIRS-equivalent estimates with residual bias reported above.
+          Detections are not unique fires.
         </p>
       </div>
     </div>

@@ -186,6 +186,26 @@ def _chunks(start: date, end: date, size: int) -> list[tuple[date, date]]:
     return result
 
 
+def region_bbox(region_id: str, *, buffer: float = 0.05) -> str:
+    """Area API bounding box for one configured region, with a small buffer.
+
+    The buffer is acquisition padding only. Point assignment is still exact
+    point-in-polygon; records outside the boundary are discarded.
+    """
+
+    region = config.REGIONS[region_id]
+    if not region.bbox:
+        raise ValueError(f"Region {region_id} has no configured bounding box")
+    west, south, east, north = region.bbox
+    return f"{west - buffer:.5f},{south - buffer:.5f},{east + buffer:.5f},{north + buffer:.5f}"
+
+
+def _area_storage_dir(sensor_id: str, source: str, region_id: str | None) -> Path:
+    if region_id:
+        return config.RAW_DIR / "regions" / region_id / sensor_id / source
+    return config.RAW_DIR / sensor_id / source
+
+
 def download_area_api(
     *,
     start: str | date,
@@ -196,6 +216,7 @@ def download_area_api(
     downloader: http.Downloader | None = None,
     force: bool = False,
     retrieved_at: str | None = None,
+    region_id: str | None = None,
 ) -> dict:
     config.ensure_directories()
     map_key = map_key or config.map_key()
@@ -228,9 +249,7 @@ def download_area_api(
                 start_date=chunk_start.isoformat(),
             )
             destination = (
-                config.RAW_DIR
-                / sensor_id
-                / source
+                _area_storage_dir(sensor_id, source, region_id)
                 / f"{sensor_id}_{chunk_start.isoformat()}_{chunk_end.isoformat()}.csv"
             )
 
@@ -240,6 +259,7 @@ def download_area_api(
                     for entry in entries
                     if entry.get("provider") == "area-api"
                     and entry.get("sensor_id") == sensor_id
+                    and entry.get("region_id") == region_id
                     and entry.get("date_window", {}).get("start") == chunk_start.isoformat()
                     and entry.get("date_window", {}).get("end") == chunk_end.isoformat()
                     and entry.get("storage_path")
@@ -262,6 +282,7 @@ def download_area_api(
                     "entry_id": f"area:{sensor_id}:{chunk_start.isoformat()}:{chunk_end.isoformat()}",
                     "provider": "area-api",
                     "product": "SP",
+                    "region_id": region_id,
                     "sensor_id": sensor_id,
                     "source_identifier": source,
                     "url": http.redact(url, [map_key]),
@@ -284,6 +305,7 @@ def download_area_api(
                         "entry_id": f"area:{sensor_id}:{chunk_start.isoformat()}:{chunk_end.isoformat()}",
                         "provider": "area-api",
                         "product": "SP",
+                        "region_id": region_id,
                         "sensor_id": sensor_id,
                         "source_identifier": source,
                         "url": http.redact(url, [map_key]),
@@ -303,6 +325,7 @@ def download_area_api(
                 "entry_id": f"area:{sensor_id}:{chunk_start.isoformat()}:{chunk_end.isoformat()}",
                 "provider": "area-api",
                 "product": "SP",
+                "region_id": region_id,
                 "sensor_id": sensor_id,
                 "source_identifier": source,
                 "url": http.redact(url, [map_key]),
@@ -373,18 +396,27 @@ def historical_windows(
 def download_historical(
     *,
     sensors: list[str] | None = None,
-    bbox: str = "80,27,86,29.5",
+    regions: list[str] | None = None,
     map_key: str | None = None,
     months: tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7),
     force: bool = False,
     availability_report: dict | None = None,
 ) -> dict:
-    """Download historical SP data in <=5-day chunks, prioritizing Jan-Jun (+Jul 2026)."""
+    """Download historical SP data per study region in <=5-day chunks.
+
+    Each region is acquired with its own bounding box into its own directory
+    (``data/raw/regions/<REGION_ID>/...``). Existing legacy Nepal chunks under
+    ``data/raw/<sensor>/...`` are reused rather than duplicated.
+    """
     config.ensure_directories()
     map_key = map_key or config.map_key()
     if not map_key:
         raise RuntimeError(f"Missing {config.MAP_KEY_ENV}; required for historical SP acquisition.")
     sensors = sensors or list(config.SENSOR_ORDER)
+    region_ids = regions or list(config.REGION_ORDER)
+    unknown = [region_id for region_id in region_ids if region_id not in config.REGIONS]
+    if unknown:
+        raise ValueError(f"Unknown region ids: {unknown}")
     # Load availability if not provided
     if availability_report is None:
         try:
@@ -416,28 +448,50 @@ def download_historical(
         avail_map[sensor_id] = (first, last)
 
     downloader = http.Downloader(secrets=[map_key], throttle_seconds=1.5)
-    all_results: list[dict] = []
-    for sensor_id in sensors:
-        first, last = avail_map[sensor_id]
-        # Prioritize Jan-Jun all years; include July only in last available year
-        wins = historical_windows(first, last, months=months, include_july_only_in_last_year=True)
-        for (wstart, wend) in wins:
-            # split into 5-day chunks
-            from datetime import date, timedelta
+    manifest = manifests.load_manifest(config.DOWNLOAD_MANIFEST)
+    existing_entries = manifest.get("entries", [])
+    legacy_entries = [
+        entry
+        for entry in existing_entries
+        if entry.get("provider") == "area-api"
+        and not entry.get("region_id")
+        and entry.get("storage_path")
+        and (config.REPO_ROOT / entry["storage_path"]).exists()
+    ]
+    region_results: dict[str, dict] = {}
+    for region_id in region_ids:
+        region = config.REGIONS[region_id]
+        if legacy_entries and region.country_code == "NPL":
+            region_results[region_id] = {
+                "status": "legacy_present",
+                "entries": len(legacy_entries),
+                "note": "Existing Nepal Area API chunks are reused; no duplicate acquisition.",
+            }
+            continue
+        bbox = region_bbox(region_id)
+        all_results: list[dict] = []
+        for sensor_id in sensors:
+            first, last = avail_map[sensor_id]
+            # Prioritize Jan-Jun all years; include July only in last available year
+            wins = historical_windows(first, last, months=months, include_july_only_in_last_year=True)
+            for (wstart, wend) in wins:
+                from datetime import date, timedelta
 
-            cur = date.fromisoformat(wstart)
-            lastd = date.fromisoformat(wend)
-            while cur <= lastd:
-                cend = min(cur + timedelta(days=config.AREA_API_MAX_DAYS - 1), lastd)
-                res = download_area_api(
-                    start=cur.isoformat(),
-                    end=cend.isoformat(),
-                    bbox=bbox,
-                    sensors=[sensor_id],
-                    map_key=map_key,
-                    downloader=downloader,
-                    force=force,
-                )
-                all_results.extend(res.get("entries", []))
-                cur = cend + timedelta(days=1)
-    return {"provider": "area-api", "entries": all_results}
+                cur = date.fromisoformat(wstart)
+                lastd = date.fromisoformat(wend)
+                while cur <= lastd:
+                    cend = min(cur + timedelta(days=config.AREA_API_MAX_DAYS - 1), lastd)
+                    res = download_area_api(
+                        start=cur.isoformat(),
+                        end=cend.isoformat(),
+                        bbox=bbox,
+                        sensors=[sensor_id],
+                        map_key=map_key,
+                        downloader=downloader,
+                        force=force,
+                        region_id=region_id,
+                    )
+                    all_results.extend(res.get("entries", []))
+                    cur = cend + timedelta(days=1)
+        region_results[region_id] = {"status": "downloaded", "entries": len(all_results)}
+    return {"provider": "area-api", "regions": region_results}

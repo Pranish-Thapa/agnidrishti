@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-14T04:36:36Z",
+  "generated_at": "2026-11-15T09:36:59Z",
   "provider": "sp",
   "product": "SP",
   "district_id": "NP-BANKE",
@@ -26,6 +26,9 @@
     "Terra": 75
   },
   "record_count": 1724,
+  "displayed_count": 1724,
+  "display_cap": 5000,
+  "display_note": "All 1,724 recorded detections for this region-year are shown.",
   "provenance": {
     "source": "NASA FIRMS active fire products (MOD14/MYD14 C6.1; VNP14IMG family)",
     "processing": "normalize -> qc -> exact district polygon assignment",

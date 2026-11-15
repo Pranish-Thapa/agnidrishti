@@ -7,6 +7,7 @@ const ease = [0.22, 1, 0.36, 1] as const
 
 const bone = palette.bone
 const accent = palette.amber.DEFAULT
+const channel = palette.observation.DEFAULT
 const secondary = palette.ash.DEFAULT
 const muted = palette.ash.dark
 
@@ -90,7 +91,7 @@ export function WorkflowSection() {
             <Reveal delay={0.08}>
               <h2 className="display mt-7 max-w-[720px] text-[clamp(2.6rem,5vw,4.6rem)] leading-[1] text-bone">
                 From raw detections to a more{' '}
-                <em className="italic text-sand/85">trustworthy history.</em>
+                <span className="text-observation-soft">trustworthy history.</span>
               </h2>
             </Reveal>
           </div>
@@ -127,13 +128,13 @@ export function WorkflowSection() {
                 aria-hidden="true"
               />
               <div className="flex items-baseline justify-between gap-4">
-                <p className="font-mono text-[10px] tracking-[0.18em] text-ember">{stage.index}</p>
-                <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-ash-dark">
+                <p className="font-mono text-meta tracking-[0.18em] text-ember">{stage.index}</p>
+                <p className="font-mono text-meta tracking-[0.02em] text-ash-dark">
                   {stage.meta}
                 </p>
               </div>
               <h3 className="display mt-5 text-4xl text-bone">{stage.title}</h3>
-              <p className="mt-4 max-w-[340px] text-[13px] leading-[1.8] text-ash">
+              <p className="mt-4 max-w-[340px] text-body-sm leading-[1.8] text-ash">
                 {stage.description}
               </p>
             </motion.article>
@@ -152,10 +153,10 @@ export function WorkflowSection() {
               <div className="space-y-5 sm:hidden">
                 <div>
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-ash-light">
+                    <span className="font-mono text-meta tracking-[0.02em] text-ash-light">
                       MODIS record
                     </span>
-                    <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                    <span className="font-mono text-meta tracking-[0.02em] text-ash-dark">
                       Longer span
                     </span>
                   </div>
@@ -163,24 +164,24 @@ export function WorkflowSection() {
                 </div>
                 <div>
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-ember/90">
+                    <span className="font-mono text-meta tracking-[0.02em] text-observation-soft">
                       VIIRS record
                     </span>
-                    <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                    <span className="font-mono text-meta tracking-[0.02em] text-ash-dark">
                       Finer reference
                     </span>
                   </div>
                   <div className="mt-2 flex h-1.5">
                     <span className="w-[44%]" />
-                    <span className="w-[56%] bg-ember/70" />
+                    <span className="w-[56%] bg-observation/70" />
                   </div>
                 </div>
                 <div>
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-sand/90">
+                    <span className="font-mono text-meta tracking-[0.02em] text-sand/90">
                       Overlap window
                     </span>
-                    <span className="font-mono text-[8px] uppercase tracking-[0.1em] text-ash-dark">
+                    <span className="font-mono text-meta tracking-[0.02em] text-ash-dark">
                       Shared observations
                     </span>
                   </div>
@@ -189,7 +190,7 @@ export function WorkflowSection() {
                     <span className="w-[56%] border-x border-sand/60 bg-sand/20" />
                   </div>
                 </div>
-                <p className="pt-1 font-mono text-[7px] uppercase tracking-[0.1em] text-ash-dark">
+                <p className="pt-1 font-mono text-meta tracking-[0.02em] text-ash-dark">
                   Illustrative timeline — not to scale
                 </p>
               </div>
@@ -219,7 +220,7 @@ export function WorkflowSection() {
                   y="22"
                   width="255"
                   height="16"
-                  fill={withAlpha(accent, 0.1)}
+                  fill={withAlpha(channel, 0.14)}
                   variants={growBar}
                   transition={{ duration: 0.7, delay: 0.16, ease }}
                   style={{ transformBox: 'fill-box', transformOrigin: 'left' }}
@@ -238,7 +239,7 @@ export function WorkflowSection() {
                   y1="52"
                   x2="568"
                   y2="52"
-                  stroke={withAlpha(accent, 0.8)}
+                  stroke={withAlpha(channel, 0.85)}
                   variants={draw}
                   transition={{ duration: 0.7, delay: 0.36, ease }}
                 />
@@ -251,18 +252,18 @@ export function WorkflowSection() {
                     stroke={withAlpha(bone, 0.18)}
                     strokeDasharray="2 4"
                   />
-                  <line x1="440" y1="22" x2="440" y2="38" stroke={withAlpha(accent, 0.7)} />
+                  <line x1="440" y1="22" x2="440" y2="38" stroke={withAlpha(channel, 0.75)} />
                   <line
                     x1="440"
                     y1="38"
                     x2="440"
                     y2="60"
-                    stroke={withAlpha(accent, 0.3)}
+                    stroke={withAlpha(channel, 0.35)}
                     strokeDasharray="2 4"
                   />
                   <circle cx="70" cy="76" r="3" fill={accent} />
                   <circle cx="568" cy="76" r="3" fill={accent} />
-                  <circle cx="315" cy="52" r="3" fill={accent} />
+                  <circle cx="315" cy="52" r="3" fill={channel} />
                 </motion.g>
                 <motion.g variants={fade} transition={{ duration: 0.5, delay: 0.62 }}>
                   <text
@@ -270,7 +271,7 @@ export function WorkflowSection() {
                     y="98"
                     fill={secondary}
                     fontFamily="IBM Plex Mono, monospace"
-                    fontSize="10"
+                    fontSize="13"
                     letterSpacing="1.2"
                   >
                     MODIS RECORD
@@ -278,9 +279,9 @@ export function WorkflowSection() {
                   <text
                     x="315"
                     y="44"
-                    fill={accent}
+                    fill={channel}
                     fontFamily="IBM Plex Mono, monospace"
-                    fontSize="10"
+                    fontSize="13"
                     letterSpacing="1.2"
                   >
                     VIIRS RECORD
@@ -288,20 +289,20 @@ export function WorkflowSection() {
                   <text
                     x="330"
                     y="112"
-                    fill={accent}
+                    fill={channel}
                     fontFamily="IBM Plex Mono, monospace"
-                    fontSize="10"
+                    fontSize="13"
                     letterSpacing="1.2"
                   >
                     OVERLAP WINDOW
                   </text>
-                  <line x1="315" y1="118" x2="568" y2="118" stroke={withAlpha(accent, 0.35)} />
+                  <line x1="315" y1="118" x2="568" y2="118" stroke={withAlpha(channel, 0.4)} />
                   <text
                     x="70"
                     y="142"
                     fill={muted}
                     fontFamily="IBM Plex Mono, monospace"
-                    fontSize="9"
+                    fontSize="13"
                     letterSpacing="1.1"
                   >
                     ILLUSTRATIVE TIMELINE — NOT TO SCALE

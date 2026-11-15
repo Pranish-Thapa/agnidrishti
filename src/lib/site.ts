@@ -13,6 +13,7 @@ export const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Explore', to: '/explorer' },
   { label: 'Our Method', to: '/methodology' },
+  { label: 'Community', to: '/community' },
   { label: 'About', to: '/about' },
 ] as const
 

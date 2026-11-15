@@ -1,9 +1,9 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T20:15:48Z",
+  "generated_at": "2026-11-15T09:34:21Z",
   "provider": "area-api",
   "product": "SP",
-  "record_count": 124506,
+  "record_count": 4618566,
   "outputs": [
     "inventory.json",
     "data_quality.json",

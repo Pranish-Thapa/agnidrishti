@@ -1,25 +1,25 @@
 {
   "contract_version": "1.0.0",
-  "generated_at": "2026-11-13T20:15:47Z",
+  "generated_at": "2026-11-15T09:34:14Z",
   "grid_degrees": 0.1,
   "bbox": {
-    "modis_cells_with_detections": 89,
-    "viirs_cells_with_detections": 95,
-    "cells_seen_by_both_families": 89,
-    "comparable_cell_days": 3777
+    "modis_cells_with_detections": 2624,
+    "viirs_cells_with_detections": 2624,
+    "cells_seen_by_both_families": 2589,
+    "comparable_cell_days": 159536
   },
   "platform_cells_with_detections": {
-    "Aqua": 85,
-    "NOAA-20": 93,
-    "NOAA-21": 93,
-    "Suomi-NPP": 95,
-    "Terra": 81
+    "Aqua": 2609,
+    "NOAA-20": 2447,
+    "NOAA-21": 2264,
+    "Suomi-NPP": 2613,
+    "Terra": 2564
   },
   "districts": {
     "NP-BANKE": {
-      "modis_cells_with_detections": 24,
+      "modis_cells_with_detections": 25,
       "viirs_cells_with_detections": 28,
-      "cells_seen_by_both_families": 24,
+      "cells_seen_by_both_families": 25,
       "comparable_cell_days": 1069,
       "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
     },
@@ -35,6 +35,27 @@
       "viirs_cells_with_detections": 35,
       "cells_seen_by_both_families": 35,
       "comparable_cell_days": 1386,
+      "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
+    },
+    "TH-CHIANG-MAI": {
+      "modis_cells_with_detections": 249,
+      "viirs_cells_with_detections": 251,
+      "cells_seen_by_both_families": 249,
+      "comparable_cell_days": 11829,
+      "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
+    },
+    "ID-RIAU": {
+      "modis_cells_with_detections": 783,
+      "viirs_cells_with_detections": 769,
+      "cells_seen_by_both_families": 750,
+      "comparable_cell_days": 11396,
+      "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
+    },
+    "MM-SHAN": {
+      "modis_cells_with_detections": 1502,
+      "viirs_cells_with_detections": 1509,
+      "cells_seen_by_both_families": 1500,
+      "comparable_cell_days": 132534,
       "note": "Cells counted here are cells with >=1 detection on >=1 day; a detection-free cell-day is not evidence of no fire."
     }
   },

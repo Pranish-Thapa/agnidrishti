@@ -12,8 +12,10 @@ Design notes
   mixed.
 * Coordinates are rounded to 4 decimal places (~11 m) — display precision,
   not a claim of GPS accuracy.
-* The compact positional-array format keeps payloads small (the whole
-  historical record is ~12 MB across all files).
+* The compact positional-array format is bounded per region-year: at most
+  MAX_DISPLAY_POINTS detections (the highest-FRP ones) are written so the map
+  stays loadable. The full count is always reported alongside the shown count,
+  so a capped file never pretends to be the complete record.
 * Every export file carries contract_version, provenance and per-platform
   record counts so missing platforms are visible instead of silent.
 """
@@ -29,6 +31,11 @@ from typing import Any
 from . import config, download, geometry, historical, manifests, normalize, qc, spatial
 
 POINTS_DIR = config.PUBLIC_DATA_DIR / "points"
+
+# Map-legibility bound. A 390 px map cannot render hundreds of thousands of
+# individual markers, and a 60 MB JSON is not loadable on a phone. Files are
+# capped deterministically by FRP; record_count still reports the full total.
+MAX_DISPLAY_POINTS = 5000
 
 # Brightness field exported per sensor family (the primary thermal channel).
 BRIGHTNESS_FIELD = {"modis": "brightness", "viirs": "bright_ti4"}
@@ -63,7 +70,7 @@ def _export_group(
 
     counts_summary: dict[str, Any] = {}
     files_written = 0
-    for district_id in config.DISTRICT_ORDER:
+    for district_id in config.REGION_ORDER:
         district_years = {year: recs for (d, year), recs in grouped.items() if d == district_id}
         all_years = sorted(district_years)
         platform_counts: Counter[str] = Counter()
@@ -73,8 +80,23 @@ def _export_group(
         district_dir = out_root / district_id
         district_dir.mkdir(parents=True, exist_ok=True)
         for year, recs in sorted(district_years.items()):
+            year_platform_counts = Counter(r["platform"] for r in recs)
+            capped = len(recs) > MAX_DISPLAY_POINTS
+            if capped:
+                # Highest FRP first, deterministic tie-break, then restore
+                # chronological order for the exported rows.
+                shown_records = sorted(
+                    recs,
+                    key=lambda r: (
+                        -(r["frp"] if r.get("frp") is not None else 0.0),
+                        r["acq_date"],
+                        r["acq_time"] or "",
+                    ),
+                )[:MAX_DISPLAY_POINTS]
+            else:
+                shown_records = recs
             rows = []
-            for r in sorted(recs, key=lambda x: (x["acq_date"], x["acq_time"] or "")):
+            for r in sorted(shown_records, key=lambda x: (x["acq_date"], x["acq_time"] or "")):
                 lat, lon = r["latitude"], r["longitude"]
                 if lat is None or lon is None:
                     continue  # QC already excludes these; defensive only
@@ -109,8 +131,17 @@ def _export_group(
                     "latitude", "longitude", "acq_date (MM-DD)", "acq_time (UTC)",
                     "platform", "brightness", "frp (MW)", "confidence", "daynight",
                 ],
-                "platform_counts": dict(sorted(Counter(r[4] for r in rows).items())),
-                "record_count": len(rows),
+                "platform_counts": dict(sorted(year_platform_counts.items())),
+                "record_count": len(recs),
+                "displayed_count": len(rows),
+                "display_cap": MAX_DISPLAY_POINTS,
+                "display_note": (
+                    f"Map display shows the {len(rows):,} highest-FRP detections of "
+                    f"{len(recs):,} recorded for this region-year; the full count is "
+                    "unaffected and no detection is treated as absent."
+                ) if capped else (
+                    f"All {len(rows):,} recorded detections for this region-year are shown."
+                ),
                 "provenance": _provenance(provider),
                 "records": rows,
             }
@@ -126,19 +157,101 @@ def _export_group(
     return {"files": files_written, "districts": counts_summary}
 
 
+def _stream_assigned_entries():
+    """Yield ``(entry, assigned_records)`` one acquired file at a time.
+
+    The full standard-processing archive holds millions of detections, so the
+    point export streams file by file and buffers at most a couple of years
+    instead of holding the whole record set in memory.
+    """
+
+    grouped = historical.load_area_entries()
+    entries: list[tuple[str, dict[str, Any]]] = []
+    for sensor_id, sensor_entries in grouped.items():
+        for entry in sensor_entries:
+            entries.append((sensor_id, entry))
+    entries.sort(
+        key=lambda item: ((item[1].get("date_window") or {}).get("start") or "", item[0])
+    )
+    index = geometry.DistrictIndex(geometry.load_boundaries())
+    for sensor_id, entry in entries:
+        path = config.REPO_ROOT / entry["storage_path"]
+        if not path.exists():
+            continue
+        records = normalize.normalize_file(path, sensor_id)
+        for record in records:
+            record["_source_entry"] = entry.get("entry_id")
+        clean, _qc = qc.run_qc(records)
+        assigned, _spatial = spatial.assign_study_areas(clean, index)
+        yield entry, assigned
+
+
+def _export_sp_streaming(out_root: Path) -> dict[str, Any]:
+    """Write SP point files year by year with a bounded memory buffer.
+
+    Entries arrive in window-start order, so once an entry starts in year Y no
+    earlier year can receive further records; that year is flushed to disk.
+    """
+
+    buffers: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    files = 0
+    record_count = 0
+    merged: dict[str, Any] = {}
+
+    def flush(year: str) -> None:
+        nonlocal files, record_count
+        records = buffers.pop(year, None)
+        if not records:
+            return
+        record_count += len(records)
+        result = _export_group(records, "sp", "SP", out_root)
+        files += result["files"]
+        for district_id, summary in result["districts"].items():
+            target = merged.setdefault(
+                district_id,
+                {"years": set(), "platform_counts": Counter(), "total_records": 0},
+            )
+            target["years"].update(summary["years"])
+            target["platform_counts"].update(summary["platform_counts"])
+            target["total_records"] += summary["total_records"]
+
+    for entry, assigned in _stream_assigned_entries():
+        for record in assigned:
+            buffers[str(record["acq_date"])[:4]].append(record)
+        window_year = str((entry.get("date_window") or {}).get("start") or "")[:4]
+        if window_year:
+            for year in list(buffers):
+                if year < window_year:
+                    flush(year)
+    for year in sorted(buffers):
+        flush(year)
+
+    return {
+        "files": files,
+        "record_count": record_count,
+        "districts": {
+            district_id: {
+                "years": sorted(summary["years"]),
+                "platform_counts": dict(sorted(summary["platform_counts"].items())),
+                "total_records": summary["total_records"],
+            }
+            for district_id, summary in sorted(merged.items())
+        },
+    }
+
+
 def run_point_export() -> dict[str, Any]:
     """Export verified point-level detections for the frontend map.
 
-    SP: every assigned standard-processing record (reuses the Task 04B loader
-    so processing is identical to the published aggregates). NRT: the acquired
+    SP: every assigned standard-processing record (streamed year by year so the
+    2000-2026 six-region archive stays memory-bounded). NRT: the acquired
     public snapshot files processed through the same chain.
     """
 
     POINTS_DIR.mkdir(parents=True, exist_ok=True)
 
     # SP records: full historical standard-processing set.
-    sp_records, _qc_report, _spatial = historical.load_historical_records()
-    sp_result = _export_group(sp_records, "sp", "SP", POINTS_DIR / "sp")
+    sp_result = _export_sp_streaming(POINTS_DIR / "sp")
 
     # NRT records: normalize + QC + assign the acquired NRT snapshot files.
     grouped = historical.load_area_entries()  # area-api only
@@ -168,14 +281,14 @@ def run_point_export() -> dict[str, Any]:
     manifest_out = {
         "contract_version": config.CONTRACT_VERSION,
         "generated_at": _utc_now(),
-        "sp": {"record_count": len(sp_records), **sp_result},
+        "sp": {"record_count": sp_result["record_count"], **sp_result},
         "nrt": {"record_count": len(nrt_assigned), **nrt_result},
         "provenance": _provenance("sp+nrt"),
     }
     manifests.write_json(POINTS_DIR / "index.json", manifest_out)
 
     return {
-        "sp_records": len(sp_records),
+        "sp_records": sp_result["record_count"],
         "nrt_records": len(nrt_assigned),
         "files": sp_result["files"] + nrt_result["files"],
         "output": str(POINTS_DIR),
