@@ -40,6 +40,7 @@ type MapPanelProps = {
   onSelectDistrict: (id: string) => void
   onYearChange: (year: string) => void
   onProviderChange: (provider: ProviderId) => void
+  initialExpanded?: boolean
 }
 
 type ViewMode = 'district' | 'hotspots' | 'both'
@@ -147,6 +148,7 @@ export function MapPanel({
   onSelectDistrict,
   onYearChange,
   onProviderChange,
+  initialExpanded,
 }: MapPanelProps) {
   const reduceMotion = useReducedMotion()
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -157,7 +159,7 @@ export function MapPanel({
   const hotspotLayerRef = useRef<L.LayerGroup | null>(null)
   const rendererRef = useRef<L.Canvas | null>(null)
 
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(initialExpanded ?? false)
   const [viewMode, setViewMode] = useState<ViewMode>('both')
   const [hotspots, setHotspots] = useState<(HotspotDataset | null)[] | null>(null)
   const [hotspotsLoading, setHotspotsLoading] = useState(false)

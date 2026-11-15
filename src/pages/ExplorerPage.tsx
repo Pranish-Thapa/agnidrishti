@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Reveal } from '../components/ui/Reveal'
 import { ExplorerControls } from '../components/explorer/ExplorerControls'
@@ -45,6 +46,8 @@ export function ExplorerPage() {
   const [indexLoading, setIndexLoading] = useState(true)
   const [datasetLoading, setDatasetLoading] = useState(true)
   const [districtSummaries, setDistrictSummaries] = useState<(DistrictYearSummary | null)[] | null>(null)
+  const [searchParams] = useSearchParams()
+  const openExpandedMap = searchParams.get('map') === 'expanded'
 
   const area = getStudyArea(areaId)
   const activeLayer = layers.find((item) => item.id === layer) ?? layers[0]
@@ -306,6 +309,7 @@ export function ExplorerPage() {
                   districtSummaries={districtSummaries}
                   onSelectDistrict={setAreaId}
                   onYearChange={setYear}
+                  initialExpanded={openExpandedMap}
                   onProviderChange={setProvider}
                 />
               </Reveal>

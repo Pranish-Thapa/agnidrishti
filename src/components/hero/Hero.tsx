@@ -122,10 +122,10 @@ export function Hero() {
                 />
               </Link>
               <Link
-                to="/methodology"
+                to="/explorer?map=expanded"
                 className="group inline-flex min-h-[50px] items-center justify-center gap-2.5 rounded-full border border-bone/25 bg-ink-950/25 px-6 text-body-sm font-medium text-bone backdrop-blur-sm transition-[background-color,border-color,color] duration-300 hover:border-observation/50 hover:bg-observation/[0.08] active:translate-y-px active:scale-[0.99] active:bg-observation/10"
               >
-                Understand Our Method
+                Explore the Fire Map
                 <ArrowRight
                   size={15}
                   strokeWidth={1.8}
