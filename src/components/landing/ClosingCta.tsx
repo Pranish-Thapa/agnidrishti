@@ -7,7 +7,7 @@ export function ClosingCta() {
     <section id="open-the-record" className="relative scroll-mt-20 overflow-hidden border-t border-sand/10 md:scroll-mt-24">
       <div
         className="absolute inset-0 bg-cover bg-[62%_42%]"
-        style={{ backgroundImage: "url('/videos/fire-hero-poster.jpg')" }}
+        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}videos/fire-hero-poster.jpg')` }}
         aria-hidden="true"
       />
       <div className="absolute inset-0 closing-shade" aria-hidden="true" />

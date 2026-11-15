@@ -6,6 +6,11 @@ export function HeroMedia() {
   const reduceMotion = useReducedMotion()
   const [videoFailed, setVideoFailed] = useState(false)
 
+  // Media paths must be base-aware: on GitHub Pages the app lives under
+  // /agnidrishti/, so a root-relative "/videos/..." would 404 and the hero would
+  // silently fall back to the static poster.
+  const mediaBase = `${import.meta.env.BASE_URL}videos/`
+
   useEffect(() => {
     const video = videoRef.current
     if (!video || reduceMotion) return
@@ -33,7 +38,7 @@ export function HeroMedia() {
       >
         <div
           className="absolute inset-0 bg-cover bg-[62%_center] lg:bg-center"
-          style={{ backgroundImage: "url('/videos/fire-hero-poster.jpg')" }}
+          style={{ backgroundImage: `url('${mediaBase}fire-hero-poster.jpg')` }}
         />
 
         {showVideo ? (
@@ -45,12 +50,12 @@ export function HeroMedia() {
             loop
             playsInline
             preload="auto"
-            poster="/videos/fire-hero-poster.jpg"
+            poster={`${mediaBase}fire-hero-poster.jpg`}
             disablePictureInPicture
             onError={() => setVideoFailed(true)}
           >
-            <source src="/videos/fire-hero-bg.webm" type="video/webm" />
-            <source src="/videos/fire-hero-bg.mp4" type="video/mp4" />
+            <source src={`${mediaBase}fire-hero-bg.webm`} type="video/webm" />
+            <source src={`${mediaBase}fire-hero-bg.mp4`} type="video/mp4" />
           </video>
         ) : null}
       </motion.div>

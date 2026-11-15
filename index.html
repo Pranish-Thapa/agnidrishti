@@ -16,7 +16,9 @@
       property="og:description"
       content="Did the fires increase, or did the satellites get better? Explore a fire record that accounts for the satellites observing it."
     />
-    <meta property="og:image" content="/videos/fire-hero-poster.jpg" />
+    <!-- Relative so it resolves under any base path (GitHub Pages serves this
+         app from /agnidrishti/); Vite does not rewrite meta[content] URLs. -->
+    <meta property="og:image" content="./videos/fire-hero-poster.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Agnidrishti — See the fire. Verify the signal." />
     <meta
