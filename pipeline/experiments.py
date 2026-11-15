@@ -1411,16 +1411,24 @@ def _write_report(
     lines.append("")
     lines.append("## Seam audit (diagnostic, not causal)")
     lines.append("")
-    for row in seam["scale_step_analysis"]:
+    if seam.get("skipped") or not seam.get("scale_step_analysis"):
+        # --from-pairs rebuilds the court from the committed pair table and has
+        # no raw records to run the seam audit on.
         lines.append(
-            f"- {row['district_id']} {row['modis_platform']}: raw VIIRS/MODIS scale step "
-            f"{row['raw_scale_step_viirs_over_modis']}x; after harmonization "
-            + ", ".join(
-                f"{k.replace('scale_step_after_', '')} {v}x" for k, v in row.items() if k.startswith("scale_step_after_")
-            )
+            "Not run in `--from-pairs` mode: the seam audit needs the raw record stream, "
+            "which the committed pair table does not carry. See the full pipeline output."
         )
-    lines.append("")
-    lines.append("No method fully removes the scale mismatch; residual steps remain and are reported honestly.")
+    else:
+        for row in seam["scale_step_analysis"]:
+            lines.append(
+                f"- {row['district_id']} {row['modis_platform']}: raw VIIRS/MODIS scale step "
+                f"{row['raw_scale_step_viirs_over_modis']}x; after harmonization "
+                + ", ".join(
+                    f"{k.replace('scale_step_after_', '')} {v}x" for k, v in row.items() if k.startswith("scale_step_after_")
+                )
+            )
+        lines.append("")
+        lines.append("No method fully removes the scale mismatch; residual steps remain and are reported honestly.")
     lines.append("")
     lines.append("## Lights-Out backtest (held-out years)")
     lines.append("")
@@ -1438,7 +1446,7 @@ def _write_report(
     lines.append("- Aug–Dec is outside the acquired record; no seasonal claim covers those months.")
     lines.append("- Recorded zeros are preserved, never manufactured into detections.")
     lines.append("- District-level instability (esp. Chitwan) means district-level results carry wider uncertainty.")
-    lines.append("- The pre-2012 MODIS-only era is outside the acquired data and cannot be audited.")
+    lines.append("- The pre-2012 MODIS era has no contemporaneous VIIRS; estimates there are produced only where the blocked transferability tests support them (see backcast_decisions.json).")
     lines.append("")
     lines.append("This report does not fabricate a winner where the evidence does not support one.")
 

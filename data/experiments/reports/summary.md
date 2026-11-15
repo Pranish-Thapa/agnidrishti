@@ -1,6 +1,6 @@
 # Task 05 — Harmonization experiment report
 
-Generated: 2026-11-14T05:53:35Z
+Generated: 2026-11-15T12:45:10Z
 
 ## Data and fairness
 
@@ -38,14 +38,7 @@ Generated: 2026-11-14T05:53:35Z
 
 ## Seam audit (diagnostic, not causal)
 
-- NP-BANKE Terra: raw VIIRS/MODIS scale step 23.197x; after harmonization ratio 1.12x, quantile_mapping 3.491x, monthly_shrinkage 1.12x
-- NP-BANKE Aqua: raw VIIRS/MODIS scale step 18.099x; after harmonization ratio 1.085x, quantile_mapping 2.698x, monthly_shrinkage 1.086x
-- NP-BARDIYA Terra: raw VIIRS/MODIS scale step 14.008x; after harmonization ratio 0.806x, quantile_mapping 2.334x, monthly_shrinkage 0.807x
-- NP-BARDIYA Aqua: raw VIIRS/MODIS scale step 11.926x; after harmonization ratio 0.863x, quantile_mapping 2.285x, monthly_shrinkage 0.858x
-- NP-CHITWAN Terra: raw VIIRS/MODIS scale step 49.857x; after harmonization ratio 2.101x, quantile_mapping 14.851x, monthly_shrinkage 2.096x
-- NP-CHITWAN Aqua: raw VIIRS/MODIS scale step 8.41x; after harmonization ratio 0.921x, quantile_mapping 1.626x, monthly_shrinkage 0.916x
-
-No method fully removes the scale mismatch; residual steps remain and are reported honestly.
+Not run in `--from-pairs` mode: the seam audit needs the raw record stream, which the committed pair table does not carry. See the full pipeline output.
 
 ## Lights-Out backtest (held-out years)
 
@@ -62,6 +55,6 @@ No method fully removes the scale mismatch; residual steps remain and are report
 - Aug–Dec is outside the acquired record; no seasonal claim covers those months.
 - Recorded zeros are preserved, never manufactured into detections.
 - District-level instability (esp. Chitwan) means district-level results carry wider uncertainty.
-- The pre-2012 MODIS-only era is outside the acquired data and cannot be audited.
+- The pre-2012 MODIS era has no contemporaneous VIIRS; estimates there are produced only where the blocked transferability tests support them (see backcast_decisions.json).
 
 This report does not fabricate a winner where the evidence does not support one.

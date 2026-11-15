@@ -304,15 +304,65 @@
     "districts": [
       "NP-BANKE",
       "NP-BARDIYA",
-      "NP-CHITWAN"
+      "NP-CHITWAN",
+      "TH-CHIANG-MAI",
+      "ID-RIAU",
+      "MM-SHAN"
     ],
+    "regions": [
+      "NP-BANKE",
+      "NP-BARDIYA",
+      "NP-CHITWAN",
+      "TH-CHIANG-MAI",
+      "ID-RIAU",
+      "MM-SHAN"
+    ],
+    "region_bboxes": {
+      "NP-BANKE": [
+        81.4985,
+        27.8536,
+        82.1941,
+        28.3378
+      ],
+      "NP-BARDIYA": [
+        81.0591,
+        28.0689,
+        81.7666,
+        28.6747
+      ],
+      "NP-CHITWAN": [
+        83.9187,
+        27.355,
+        84.7966,
+        27.8805
+      ],
+      "TH-CHIANG-MAI": [
+        98.008,
+        17.2424,
+        99.5729,
+        20.1474
+      ],
+      "ID-RIAU": [
+        100.0249,
+        -1.1223,
+        103.8146,
+        2.8839
+      ],
+      "MM-SHAN": [
+        96.1511,
+        19.2993,
+        101.1699,
+        24.1591
+      ]
+    },
     "source_datasets": [
       "data/raw/modis/MODIS_SP",
       "data/raw/viirs_snpp/VIIRS_SNPP_SP",
       "data/processed/historical/inventory.json"
     ],
-    "boundaries": "OCHA COD-AB Nepal admin level 2 (CC BY-IGO)",
-    "generated_at": "2026-11-14T05:53:40Z"
+    "boundaries": "geoBoundaries ADM1 for Thailand, Indonesia and Myanmar; OCHA COD-AB Nepal admin level 2 for the three Nepal districts (CC BY-IGO)",
+    "generated_at": "2026-11-15T12:45:09Z",
+    "raw_totals_not_comparable_across_regions": true
   },
   "validation_pairs": 2172
 }
