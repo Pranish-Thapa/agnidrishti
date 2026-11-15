@@ -1,0 +1,82 @@
+{
+ "contract_version": "1.0.0",
+ "generated_at": "2026-11-15T15:55:04Z",
+ "unit": "hotspot detections per calendar month",
+ "regions": [
+  {
+   "region_id": "NP-BANKE",
+   "path": "data/series/NP-BANKE.json",
+   "months": 309,
+   "available": [
+    "modis",
+    "viirs",
+    "ratio",
+    "quantile_mapping",
+    "monthly_shrinkage",
+    "harmonized"
+   ]
+  },
+  {
+   "region_id": "NP-BARDIYA",
+   "path": "data/series/NP-BARDIYA.json",
+   "months": 309,
+   "available": [
+    "modis",
+    "viirs",
+    "ratio",
+    "quantile_mapping",
+    "monthly_shrinkage",
+    "harmonized"
+   ]
+  },
+  {
+   "region_id": "NP-CHITWAN",
+   "path": "data/series/NP-CHITWAN.json",
+   "months": 309,
+   "available": [
+    "modis",
+    "viirs",
+    "ratio",
+    "quantile_mapping",
+    "monthly_shrinkage",
+    "harmonized"
+   ]
+  },
+  {
+   "region_id": "TH-CHIANG-MAI",
+   "path": "data/series/TH-CHIANG-MAI.json",
+   "months": 309,
+   "available": [
+    "modis",
+    "viirs",
+    "harmonized"
+   ]
+  },
+  {
+   "region_id": "ID-RIAU",
+   "path": "data/series/ID-RIAU.json",
+   "months": 309,
+   "available": [
+    "modis",
+    "viirs",
+    "harmonized"
+   ]
+  },
+  {
+   "region_id": "MM-SHAN",
+   "path": "data/series/MM-SHAN.json",
+   "months": 309,
+   "available": [
+    "modis",
+    "viirs",
+    "harmonized"
+   ]
+  }
+ ],
+ "notes": [
+  "Monthly totals are derived from processed daily observations.",
+  "Missing observations are excluded, never interpolated or zero-filled.",
+  "Post-2012 method values exist only where a fitted model and a transferability gate exist.",
+  "Pre-2012 harmonized values are gated backcast estimates, not VIIRS observations."
+ ]
+}
